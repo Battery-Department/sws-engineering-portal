@@ -2658,6 +2658,8 @@ export namespace Prisma {
     id: string | null
     email: string | null
     name: string | null
+    password: string | null
+    role: string | null
     externalId: string | null
     mondayUserId: string | null
     copilotUserId: string | null
@@ -2669,6 +2671,8 @@ export namespace Prisma {
     id: string | null
     email: string | null
     name: string | null
+    password: string | null
+    role: string | null
     externalId: string | null
     mondayUserId: string | null
     copilotUserId: string | null
@@ -2680,6 +2684,8 @@ export namespace Prisma {
     id: number
     email: number
     name: number
+    password: number
+    role: number
     externalId: number
     mondayUserId: number
     copilotUserId: number
@@ -2693,6 +2699,8 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    password?: true
+    role?: true
     externalId?: true
     mondayUserId?: true
     copilotUserId?: true
@@ -2704,6 +2712,8 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    password?: true
+    role?: true
     externalId?: true
     mondayUserId?: true
     copilotUserId?: true
@@ -2715,6 +2725,8 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    password?: true
+    role?: true
     externalId?: true
     mondayUserId?: true
     copilotUserId?: true
@@ -2799,6 +2811,8 @@ export namespace Prisma {
     id: string
     email: string | null
     name: string | null
+    password: string | null
+    role: string
     externalId: string | null
     mondayUserId: string | null
     copilotUserId: string | null
@@ -2827,6 +2841,8 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    password?: boolean
+    role?: boolean
     externalId?: boolean
     mondayUserId?: boolean
     copilotUserId?: boolean
@@ -2843,6 +2859,8 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    password?: boolean
+    role?: boolean
     externalId?: boolean
     mondayUserId?: boolean
     copilotUserId?: boolean
@@ -2854,6 +2872,8 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    password?: boolean
+    role?: boolean
     externalId?: boolean
     mondayUserId?: boolean
     copilotUserId?: boolean
@@ -2865,6 +2885,8 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    password?: boolean
+    role?: boolean
     externalId?: boolean
     mondayUserId?: boolean
     copilotUserId?: boolean
@@ -2872,7 +2894,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "externalId" | "mondayUserId" | "copilotUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "externalId" | "mondayUserId" | "copilotUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
@@ -2895,6 +2917,8 @@ export namespace Prisma {
       id: string
       email: string | null
       name: string | null
+      password: string | null
+      role: string
       externalId: string | null
       mondayUserId: string | null
       copilotUserId: string | null
@@ -3330,6 +3354,8 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'String'>
     readonly externalId: FieldRef<"User", 'String'>
     readonly mondayUserId: FieldRef<"User", 'String'>
     readonly copilotUserId: FieldRef<"User", 'String'>
@@ -22775,6 +22801,8 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     name: 'name',
+    password: 'password',
+    role: 'role',
     externalId: 'externalId',
     mondayUserId: 'mondayUserId',
     copilotUserId: 'copilotUserId',
@@ -23162,6 +23190,8 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     email?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
+    password?: StringNullableFilter<"User"> | string | null
+    role?: StringFilter<"User"> | string
     externalId?: StringNullableFilter<"User"> | string | null
     mondayUserId?: StringNullableFilter<"User"> | string | null
     copilotUserId?: StringNullableFilter<"User"> | string | null
@@ -23177,6 +23207,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    role?: SortOrder
     externalId?: SortOrderInput | SortOrder
     mondayUserId?: SortOrderInput | SortOrder
     copilotUserId?: SortOrderInput | SortOrder
@@ -23195,6 +23227,8 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
+    password?: StringNullableFilter<"User"> | string | null
+    role?: StringFilter<"User"> | string
     externalId?: StringNullableFilter<"User"> | string | null
     mondayUserId?: StringNullableFilter<"User"> | string | null
     copilotUserId?: StringNullableFilter<"User"> | string | null
@@ -23210,6 +23244,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    role?: SortOrder
     externalId?: SortOrderInput | SortOrder
     mondayUserId?: SortOrderInput | SortOrder
     copilotUserId?: SortOrderInput | SortOrder
@@ -23227,6 +23263,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    password?: StringNullableWithAggregatesFilter<"User"> | string | null
+    role?: StringWithAggregatesFilter<"User"> | string
     externalId?: StringNullableWithAggregatesFilter<"User"> | string | null
     mondayUserId?: StringNullableWithAggregatesFilter<"User"> | string | null
     copilotUserId?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -24673,6 +24711,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -24688,6 +24728,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -24703,6 +24745,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24718,6 +24762,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24733,6 +24779,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -24744,6 +24792,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24755,6 +24805,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26449,6 +26501,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
     externalId?: SortOrder
     mondayUserId?: SortOrder
     copilotUserId?: SortOrder
@@ -26460,6 +26514,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
     externalId?: SortOrder
     mondayUserId?: SortOrder
     copilotUserId?: SortOrder
@@ -26471,6 +26527,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    password?: SortOrder
+    role?: SortOrder
     externalId?: SortOrder
     mondayUserId?: SortOrder
     copilotUserId?: SortOrder
@@ -29292,6 +29350,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29306,6 +29366,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29386,6 +29448,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29400,6 +29464,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29506,6 +29572,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29520,6 +29588,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29607,6 +29677,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29621,6 +29693,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29743,6 +29817,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29757,6 +29833,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -29973,6 +30051,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29987,6 +30067,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31553,6 +31635,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -31567,6 +31651,8 @@ export namespace Prisma {
     id?: string
     email?: string | null
     name?: string | null
+    password?: string | null
+    role?: string
     externalId?: string | null
     mondayUserId?: string | null
     copilotUserId?: string | null
@@ -31622,6 +31708,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31636,6 +31724,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
     externalId?: NullableStringFieldUpdateOperationsInput | string | null
     mondayUserId?: NullableStringFieldUpdateOperationsInput | string | null
     copilotUserId?: NullableStringFieldUpdateOperationsInput | string | null

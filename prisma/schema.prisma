@@ -18,6 +18,8 @@ model User {
   id              String   @id @default(uuid())
   email           String?  @unique
   name            String?
+  password        String?
+  role            String   @default("customer")
   externalId      String?  
   mondayUserId    String?
   copilotUserId   String?
