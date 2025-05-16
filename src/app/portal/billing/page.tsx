@@ -1,374 +1,319 @@
-"use client"
+'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { 
-  CreditCard, 
-  Download,
-  Calendar,
-  DollarSign,
-  FileText,
-  TrendingUp,
-  Receipt,
-  Building,
-  Mail,
-  Phone,
-  AlertCircle
-} from 'lucide-react'
-import { useAuth } from '@/contexts/AuthContext'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Package,
+  CreditCard,
+  Download,
+  ChevronRight,
+  AlertCircle,
+  BarChart,
+  Menu,
+  X,
+  Home,
+  ShoppingCart,
+  DollarSign,
+  Truck,
+  Settings,
+  HelpCircle,
+  LogOut
+} from 'lucide-react'
 
-interface Invoice {
-  id: string
-  invoiceNumber: string
-  date: string
-  dueDate: string
-  amount: number
-  status: 'paid' | 'pending' | 'overdue'
-  items: {
-    description: string
-    quantity: number
-    price: number
-  }[]
-}
+const navigation = [
+  { name: 'Dashboard', href: '/portal/dashboard', icon: Home },
+  { name: 'Orders', href: '/portal/orders', icon: ShoppingCart },
+  { name: 'Billing', href: '/portal/billing', icon: DollarSign, current: true },
+  { name: 'Inventory', href: '/portal/inventory', icon: Package },
+  { name: 'Shipping', href: '/portal/shipping', icon: Truck },
+  { name: 'Analytics', href: '/portal/analytics', icon: BarChart },
+  { name: 'Settings', href: '/portal/settings', icon: Settings },
+]
 
-interface PaymentMethod {
-  id: string
-  type: 'card' | 'bank'
-  last4: string
-  brand?: string
-  isDefault: boolean
-  expiryDate?: string
-}
+const secondaryNavigation = [
+  { name: 'Help', href: '#', icon: HelpCircle },
+  { name: 'Sign out', href: '/portal/auth/login', icon: LogOut },
+]
 
 export default function BillingPage() {
-  const { user, loading } = useAuth()
   const router = useRouter()
-  const [invoices, setInvoices] = useState<Invoice[]>([])
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
-  const [dataLoading, setDataLoading] = useState(true)
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/portal/auth/login')
-    }
-  }, [user, loading, router])
-
-  useEffect(() => {
-    if (user) {
-      fetchBillingData()
-    }
-  }, [user])
-
-  const fetchBillingData = async () => {
-    setDataLoading(true)
-    // TODO: Replace with actual API calls
-    setTimeout(() => {
-      setInvoices([
-        {
-          id: '1',
-          invoiceNumber: 'INV-2025-001',
-          date: '2025-05-01',
-          dueDate: '2025-05-15',
-          amount: 4599.00,
-          status: 'paid',
-          items: [
-            { description: 'Tesla Powerwall 2', quantity: 1, price: 3999.00 },
-            { description: 'Installation Service', quantity: 1, price: 600.00 }
-          ]
-        },
-        {
-          id: '2',
-          invoiceNumber: 'INV-2025-002',
-          date: '2025-05-10',
-          dueDate: '2025-05-25',
-          amount: 8999.00,
-          status: 'pending',
-          items: [
-            { description: 'Solar Edge Home Battery', quantity: 2, price: 4499.50 }
-          ]
-        },
-        {
-          id: '3',
-          invoiceNumber: 'INV-2025-003',
-          date: '2025-04-15',
-          dueDate: '2025-04-30',
-          amount: 2199.00,
-          status: 'overdue',
-          items: [
-            { description: 'Maintenance Service', quantity: 1, price: 2199.00 }
-          ]
-        }
-      ])
-
-      setPaymentMethods([
-        {
-          id: '1',
-          type: 'card',
-          last4: '4242',
-          brand: 'Visa',
-          isDefault: true,
-          expiryDate: '12/2027'
-        },
-        {
-          id: '2',
-          type: 'card',
-          last4: '5555',
-          brand: 'Mastercard',
-          isDefault: false,
-          expiryDate: '08/2026'
-        }
-      ])
-      
-      setDataLoading(false)
-    }, 1000)
-  }
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'paid':
-        return 'default'
-      case 'pending':
-        return 'secondary'
-      case 'overdue':
-        return 'destructive'
-      default:
-        return 'default'
-    }
-  }
-
-  const billingSummary = {
-    currentBalance: invoices.filter(i => i.status !== 'paid').reduce((sum, i) => sum + i.amount, 0),
-    totalPaid: invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + i.amount, 0),
-    upcomingPayments: invoices.filter(i => i.status === 'pending').length,
-    overduePayments: invoices.filter(i => i.status === 'overdue').length
-  }
-
-  if (loading || dataLoading) {
-    return (
-      <div className="space-y-8">
-        <div>
-          <Skeleton className="h-8 w-48 mb-2" />
-          <Skeleton className="h-4 w-64" />
-        </div>
-        <div className="grid gap-4 md:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
-            <Card key={i}>
-              <CardHeader className="space-y-2">
-                <Skeleton className="h-4 w-24" />
-                <Skeleton className="h-8 w-32" />
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </div>
-    )
-  }
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="space-y-8">
-      {/* Page Header */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Billing & Payments</h1>
-          <p className="text-muted-foreground">Manage your invoices and payment methods</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sidebar - Mobile */}
+      <div className={`fixed inset-0 z-40 flex md:hidden ${sidebarOpen ? '' : 'hidden'}`}>
+        <div className="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800">
+          <div className="absolute top-0 right-0 -mr-12 pt-2">
+            <button
+              type="button"
+              className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <span className="sr-only">Close sidebar</span>
+              <X className="h-6 w-6 text-white" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+            <div className="flex-shrink-0 flex items-center px-4">
+              <span className="text-2xl font-bold text-white">Dealer Portal</span>
+            </div>
+            <nav className="mt-5 px-2 space-y-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`${
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  } group flex items-center px-2 py-2 text-base font-medium rounded-md`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push(item.href)
+                  }}
+                >
+                  <item.icon
+                    className={`${
+                      item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
+                    } mr-4 h-6 w-6`}
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="flex-shrink-0 flex border-t border-gray-700 p-4">
+            <nav className="space-y-1">
+              {secondaryNavigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push(item.href)
+                  }}
+                >
+                  <item.icon
+                    className="text-gray-400 group-hover:text-gray-300 mr-4 h-6 w-6"
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Button variant="outline">
-            <Download className="mr-2 h-4 w-4" />
-            Export
-          </Button>
-          <Button>
-            <CreditCard className="mr-2 h-4 w-4" />
-            Add Payment Method
-          </Button>
+        <div className="flex-shrink-0 w-14" aria-hidden="true"></div>
+      </div>
+
+      {/* Static sidebar for desktop */}
+      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
+        <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
+          <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+            <div className="flex items-center flex-shrink-0 px-4">
+              <span className="text-2xl font-bold text-white">Dealer Portal</span>
+            </div>
+            <nav className="mt-5 flex-1 px-2 space-y-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`${
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  } group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push(item.href)
+                  }}
+                >
+                  <item.icon
+                    className={`${
+                      item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
+                    } mr-3 h-6 w-6`}
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="flex-shrink-0 flex border-t border-gray-700 p-4">
+            <nav className="space-y-1">
+              {secondaryNavigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push(item.href)
+                  }}
+                >
+                  <item.icon
+                    className="text-gray-400 group-hover:text-gray-300 mr-3 h-6 w-6"
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
       </div>
 
-      {/* Billing Summary */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Current Balance</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${billingSummary.currentBalance.toFixed(2)}</div>
-            <p className="text-xs text-muted-foreground">
-              Across all pending invoices
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Paid</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${billingSummary.totalPaid.toFixed(2)}</div>
-            <p className="text-xs text-muted-foreground">
-              This year
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Upcoming</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{billingSummary.upcomingPayments}</div>
-            <p className="text-xs text-muted-foreground">
-              Payments due
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Overdue</CardTitle>
-            <AlertCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{billingSummary.overduePayments}</div>
-            <p className="text-xs text-muted-foreground">
-              Require attention
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Content area */}
+      <div className="md:pl-64 flex flex-col flex-1">
+        {/* Mobile header */}
+        <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-50">
+          <button
+            type="button"
+            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <span className="sr-only">Open sidebar</span>
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        {/* Recent Invoices */}
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Recent Invoices</CardTitle>
-            <CardDescription>Your billing history and payment status</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {invoices.map((invoice) => (
-                <div key={invoice.id} className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <FileText className="h-4 w-4 text-muted-foreground" />
-                      <h4 className="font-medium">{invoice.invoiceNumber}</h4>
-                      <Badge variant={getStatusColor(invoice.status)}>
-                        {invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
-                      </Badge>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>Issued: {new Date(invoice.date).toLocaleDateString()}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>Due: {new Date(invoice.dueDate).toLocaleDateString()}</span>
-                      </div>
-                    </div>
+        {/* Main content */}
+        <main className="flex-1 p-4 md:p-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Page header */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900">Billing</h1>
+              <p className="mt-2 text-sm text-gray-700">
+                Manage your billing information and download invoices
+              </p>
+            </div>
+
+            {/* Current plan section */}
+            <div className="bg-white shadow rounded-lg mb-6">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Current Plan</h3>
+                <div className="mt-4 flex items-start justify-between">
+                  <div>
+                    <p className="text-3xl font-semibold text-gray-900">Enterprise</p>
+                    <p className="text-sm text-gray-500">Unlimited orders, premium support</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-bold mb-2">${invoice.amount.toFixed(2)}</div>
-                    <div className="flex gap-2">
-                      {invoice.status === 'pending' && (
-                        <Button size="sm">
-                          Pay Now
-                        </Button>
-                      )}
-                      <Button variant="outline" size="sm">
-                        <Download className="mr-2 h-3 w-3" />
-                        PDF
-                      </Button>
+                    <p className="text-2xl font-semibold text-gray-900">$499/month</p>
+                    <p className="text-sm text-gray-500">Billed monthly</p>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Change Plan
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment method section */}
+            <div className="bg-white shadow rounded-lg mb-6">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Payment Method</h3>
+                <div className="mt-4">
+                  <div className="flex items-center">
+                    <CreditCard className="h-6 w-6 text-gray-400 mr-3" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">•••• •••• •••• 4242</p>
+                      <p className="text-sm text-gray-500">Expires 12/24</p>
                     </div>
                   </div>
                 </div>
-              ))}
+                <div className="mt-6 flex space-x-3">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Update Card
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Add Payment Method
+                  </button>
+                </div>
+              </div>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Payment Methods */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Payment Methods</CardTitle>
-            <CardDescription>Manage your saved payment methods</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {paymentMethods.map((method) => (
-                <div key={method.id} className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <CreditCard className="h-4 w-4 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium">
-                        {method.brand} ending in {method.last4}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        Expires {method.expiryDate}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {method.isDefault && (
-                      <Badge variant="secondary">Default</Badge>
-                    )}
-                    <Button variant="ghost" size="sm">
-                      Edit
-                    </Button>
-                  </div>
+            {/* Billing address section */}
+            <div className="bg-white shadow rounded-lg mb-6">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Billing Address</h3>
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-900">Battery Dealer Inc.</p>
+                  <p className="text-sm text-gray-500">123 Main Street</p>
+                  <p className="text-sm text-gray-500">New York, NY 10001</p>
+                  <p className="text-sm text-gray-500">United States</p>
                 </div>
-              ))}
-              <Button className="w-full" variant="outline">
-                <CreditCard className="mr-2 h-4 w-4" />
-                Add New Payment Method
-              </Button>
+                <div className="mt-6">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Update Address
+                  </button>
+                </div>
+              </div>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Billing Information */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Billing Information</CardTitle>
-            <CardDescription>Your company and contact details</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Building className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div className="flex-1">
-                  <div className="font-medium">Company Name</div>
-                  <div className="text-sm text-muted-foreground">
-                    Acme Corporation<br />
-                    123 Business Ave<br />
-                    San Francisco, CA 94105<br />
-                    United States
-                  </div>
+            {/* Invoice history */}
+            <div className="bg-white shadow rounded-lg">
+              <div className="px-4 py-5 sm:p-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Invoice History</h3>
+                <div className="mt-4">
+                  <ul className="divide-y divide-gray-200">
+                    {[
+                      { id: 'INV-0001', date: 'Dec 1, 2024', amount: '$499.00', status: 'Paid' },
+                      { id: 'INV-0002', date: 'Nov 1, 2024', amount: '$499.00', status: 'Paid' },
+                      { id: 'INV-0003', date: 'Oct 1, 2024', amount: '$499.00', status: 'Paid' },
+                      { id: 'INV-0004', date: 'Sep 1, 2024', amount: '$499.00', status: 'Paid' },
+                    ].map((invoice) => (
+                      <li key={invoice.id} className="py-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">{invoice.id}</p>
+                              <p className="text-sm text-gray-500">{invoice.date}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <span className="text-sm font-medium text-gray-900">{invoice.amount}</span>
+                            <span
+                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                invoice.status === 'Paid'
+                                  ? 'bg-green-100 text-green-800'
+                                  : 'bg-yellow-100 text-yellow-800'
+                              }`}
+                            >
+                              {invoice.status}
+                            </span>
+                            <button
+                              type="button"
+                              className="text-indigo-600 hover:text-indigo-900"
+                            >
+                              <Download className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Mail className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div className="flex-1">
-                  <div className="font-medium">Billing Email</div>
-                  <div className="text-sm text-muted-foreground">billing@acmecorp.com</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div className="flex-1">
-                  <div className="font-medium">Phone</div>
-                  <div className="text-sm text-muted-foreground">+1 (555) 123-4567</div>
-                </div>
-              </div>
-              <Button className="w-full" variant="outline">
-                Update Information
-              </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </main>
       </div>
     </div>
   )
