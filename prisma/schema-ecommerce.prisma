@@ -1,0 +1,352 @@
+// Battery Department E-commerce Models Extension
+// This extends the existing schema with commerce functionality
+
+model Customer {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id])
+  
+  // Customer Details
+  companyName       String?
+  billingAddress    Json?    // { street, city, state, zip, country }
+  shippingAddress   Json?    // { street, city, state, zip, country }
+  taxId             String?
+  phoneNumber       String?
+  
+  // Payment
+  stripeCustomerId  String?  @unique
+  paymentMethods    PaymentMethod[]
+  
+  // Relationships
+  orders            Order[]
+  subscriptions     Subscription[]
+  invoices          Invoice[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([stripeCustomerId])
+}
+
+model Product {
+  id                String   @id @default(uuid())
+  sku               String   @unique
+  name              String
+  description       String?
+  category          String   // "battery", "module", "pack", "accessory"
+  
+  // Pricing
+  basePrice         Float
+  currency          String   @default("USD")
+  
+  // Specifications
+  specifications    Json?    // { voltage, capacity, chemistry, weight, dimensions }
+  images            String[] // Array of image URLs
+  
+  // Inventory
+  inventoryItems    Inventory[]
+  
+  // Relationships
+  orderItems        OrderItem[]
+  cartItems         CartItem[]
+  priceHistory      PriceHistory[]
+  
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([category])
+  @@index([sku])
+}
+
+model Order {
+  id                String   @id @default(uuid())
+  orderNumber       String   @unique
+  
+  // Customer
+  customerId        String
+  customer          Customer @relation(fields: [customerId], references: [id])
+  
+  // Order Details
+  status            String   @default("pending") // pending, processing, shipped, delivered, cancelled
+  items             OrderItem[]
+  
+  // Totals
+  subtotal          Float
+  tax               Float
+  shipping          Float
+  total             Float
+  currency          String   @default("USD")
+  
+  // Shipping
+  shippingAddress   Json?
+  shippingMethod    String?
+  trackingNumber    String?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+  
+  // Payment
+  paymentStatus     String   @default("pending") // pending, paid, failed, refunded
+  paymentIntentId   String?  @unique
+  paidAt            DateTime?
+  
+  // Notes
+  customerNotes     String?
+  internalNotes     String?
+  
+  // Invoice
+  invoiceId         String?  @unique
+  invoice           Invoice? @relation(fields: [invoiceId], references: [id])
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([orderNumber])
+  @@index([customerId])
+  @@index([status])
+  @@index([paymentIntentId])
+}
+
+model OrderItem {
+  id                String   @id @default(uuid())
+  
+  // Order
+  orderId           String
+  order             Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  // Product
+  productId         String
+  product           Product  @relation(fields: [productId], references: [id])
+  
+  // Details
+  quantity          Int
+  unitPrice         Float
+  totalPrice        Float
+  
+  // Product snapshot at time of order
+  productSnapshot   Json?    // { name, sku, specifications }
+  
+  createdAt         DateTime @default(now())
+  
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Subscription {
+  id                String   @id @default(uuid())
+  
+  // Customer
+  customerId        String
+  customer          Customer @relation(fields: [customerId], references: [id])
+  
+  // Subscription Details
+  status            String   @default("active") // active, paused, cancelled, expired
+  planId            String
+  plan              SubscriptionPlan @relation(fields: [planId], references: [id])
+  
+  // Billing
+  billingCycle      String   @default("monthly") // monthly, quarterly, yearly
+  currentPeriodStart DateTime
+  currentPeriodEnd  DateTime
+  nextBillingDate   DateTime
+  
+  // Stripe
+  stripeSubscriptionId String? @unique
+  
+  // Metadata
+  metadata          Json?
+  cancelledAt       DateTime?
+  cancelReason      String?
+  
+  // Invoices
+  invoices          Invoice[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([customerId])
+  @@index([status])
+  @@index([stripeSubscriptionId])
+}
+
+model SubscriptionPlan {
+  id                String   @id @default(uuid())
+  name              String
+  description       String?
+  
+  // Pricing
+  price             Float
+  currency          String   @default("USD")
+  interval          String   @default("month") // month, quarter, year
+  
+  // Features
+  features          Json?    // Array of feature descriptions
+  
+  // Limits
+  limits            Json?    // { maxOrders, maxProducts, features }
+  
+  subscriptions     Subscription[]
+  
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Invoice {
+  id                String   @id @default(uuid())
+  invoiceNumber     String   @unique
+  
+  // Customer
+  customerId        String
+  customer          Customer @relation(fields: [customerId], references: [id])
+  
+  // Type
+  type              String   // "order", "subscription"
+  
+  // Related entities
+  order             Order?
+  subscriptionId    String?
+  subscription      Subscription? @relation(fields: [subscriptionId], references: [id])
+  
+  // Amounts
+  subtotal          Float
+  tax               Float
+  total             Float
+  currency          String   @default("USD")
+  
+  // Status
+  status            String   @default("pending") // pending, paid, overdue, cancelled
+  dueDate           DateTime
+  paidAt            DateTime?
+  
+  // Payment
+  paymentIntentId   String?  @unique
+  paymentMethod     String?
+  
+  // PDF
+  pdfUrl            String?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([customerId])
+  @@index([invoiceNumber])
+  @@index([status])
+}
+
+model PaymentMethod {
+  id                String   @id @default(uuid())
+  
+  // Customer
+  customerId        String
+  customer          Customer @relation(fields: [customerId], references: [id])
+  
+  // Stripe
+  stripePaymentMethodId String @unique
+  
+  // Details
+  type              String   // "card", "bank_account"
+  last4             String
+  brand             String?  // For cards: visa, mastercard, etc
+  expiryMonth       Int?     // For cards
+  expiryYear        Int?     // For cards
+  
+  isDefault         Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([customerId])
+  @@index([stripePaymentMethodId])
+}
+
+model Inventory {
+  id                String   @id @default(uuid())
+  
+  // Product
+  productId         String
+  product           Product  @relation(fields: [productId], references: [id])
+  
+  // Location
+  location          String   // warehouse location
+  
+  // Quantities
+  quantity          Int      @default(0)
+  reservedQuantity  Int      @default(0)
+  availableQuantity Int      @default(0)
+  reorderPoint      Int      @default(10)
+  reorderQuantity   Int      @default(50)
+  
+  // Tracking
+  batchNumber       String?
+  serialNumbers     String[] // Array of serial numbers
+  
+  lastRestocked     DateTime?
+  lastCounted       DateTime?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([productId, location])
+  @@index([productId])
+  @@index([location])
+}
+
+model Cart {
+  id                String   @id @default(uuid())
+  
+  // Session or User
+  sessionId         String?  @unique
+  userId            String?  @unique
+  user              User?    @relation(fields: [userId], references: [id])
+  
+  items             CartItem[]
+  
+  expiresAt         DateTime // Auto-cleanup after 30 days
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([sessionId])
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model CartItem {
+  id                String   @id @default(uuid())
+  
+  cartId            String
+  cart              Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  
+  productId         String
+  product           Product  @relation(fields: [productId], references: [id])
+  
+  quantity          Int
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([cartId, productId])
+  @@index([cartId])
+  @@index([productId])
+}
+
+model PriceHistory {
+  id                String   @id @default(uuid())
+  
+  productId         String
+  product           Product  @relation(fields: [productId], references: [id])
+  
+  price             Float
+  previousPrice     Float?
+  currency          String   @default("USD")
+  
+  reason            String?  // "market adjustment", "promotion", etc
+  
+  effectiveFrom     DateTime
+  effectiveUntil    DateTime?
+  
+  createdAt         DateTime @default(now())
+  
+  @@index([productId])
+  @@index([effectiveFrom])
+}
