@@ -178,7 +178,8 @@ export default function DashboardPage() {
       <div style={{
         display: 'none',
         position: 'fixed',
-        insetY: 0,
+        top: 0,
+        bottom: 0,
         zIndex: 30,
         width: '256px',
         backgroundColor: '#1f2937'
