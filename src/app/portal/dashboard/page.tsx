@@ -256,7 +256,7 @@ export default function DashboardPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Welcome */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">Welcome back, {user.name || user.email}</h2>
+                <h2 className="text-3xl font-bold text-gray-900">Welcome back, {user?.name || user?.email}</h2>
                 <p className="text-gray-600">Here's an overview of your battery management system</p>
               </div>
               
