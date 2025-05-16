@@ -1,13 +1,3 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "chmod +x scripts/setup-database.sh && ./scripts/setup-database.sh && prisma generate && next build",
-  "installCommand": "npm install",
-  "env": {
-    "PRISMA_HIDE_UPDATE_MESSAGE": "true"
-  },
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  }
+  "framework": "nextjs"
 }

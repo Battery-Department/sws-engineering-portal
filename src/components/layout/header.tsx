@@ -101,7 +101,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="rounded-full flex items-center gap-2">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name || "User"} />
+                  <AvatarImage src="/placeholder.svg" alt={user?.name || "User"} />
                   <AvatarFallback className="bg-gradient-to-r from-brand-blue to-brand-teal text-white">
                     {getInitials(user?.name || "User")}
                   </AvatarFallback>
@@ -114,7 +114,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Shield className="mr-2 h-4 w-4" />
-                <span>Role: {user?.role || "User"}</span>
+                <span>Role: Customer</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href="/portal/account" className="flex w-full">

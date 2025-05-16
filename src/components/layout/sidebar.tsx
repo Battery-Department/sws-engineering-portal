@@ -162,7 +162,8 @@ export default function Sidebar({ open, setOpen, activeRoute = "Dashboard" }: Si
             })}
           </div>
 
-          {user?.role === 'admin' && (
+          {/* Admin section - hidden for now */}
+          {false && (
             <>
               <Separator className="my-6" />
               <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Administration</p>
