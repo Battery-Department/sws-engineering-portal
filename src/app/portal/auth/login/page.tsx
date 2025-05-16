@@ -50,6 +50,11 @@ export default function LoginPage() {
             <CardDescription>
               Enter your email and password to access your account
             </CardDescription>
+            <div className="mt-2 p-3 bg-muted rounded-md">
+              <p className="text-xs text-muted-foreground">
+                Demo credentials: demo@example.com / demo123
+              </p>
+            </div>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
