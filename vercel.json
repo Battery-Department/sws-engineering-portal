@@ -1,16 +1,13 @@
 {
-  "buildCommand": "mkdir -p data && touch data/lithi.db && npx prisma generate && npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
   "framework": "nextjs",
+  "buildCommand": "chmod +x scripts/setup-database.sh && ./scripts/setup-database.sh && prisma generate && next build",
+  "installCommand": "npm install",
   "env": {
-    "DATABASE_URL": "file:./data/lithi.db",
-    "NEXTAUTH_SECRET": "i7a2WXB7sCk0aGA//CBWVfpBMTCxpqDbTTlZfzlABmw=",
-    "NEXTAUTH_URL": "https://battery-dashboard.vercel.app"
+    "PRISMA_HIDE_UPDATE_MESSAGE": "true"
   },
-  "build": {
-    "env": {
-      "DATABASE_URL": "file:./data/lithi.db"
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
     }
   }
 }
