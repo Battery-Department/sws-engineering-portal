@@ -1,29 +1,77 @@
-"use client"
+'use client'
 
 import React, { useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { 
-  Calendar, 
-  CreditCard, 
-  Package, 
-  TrendingUp, 
-  Users, 
-  Zap,
-  Battery,
-  FileText,
-  Truck,
+import {
+  Package,
+  CreditCard,
+  TrendingUp,
+  Users,
+  Home,
+  ShoppingCart,
   DollarSign,
-  ArrowRight,
+  Truck,
+  Settings,
+  HelpCircle,
+  LogOut,
   Menu,
+  X,
   Bell,
   Search,
-  Home,
-  ChevronRight,
-  Activity,
-  Clock
+  BarChart
 } from 'lucide-react'
+
+const navigation = [
+  { name: 'Dashboard', href: '/portal/dashboard', icon: Home, current: true },
+  { name: 'Orders', href: '/portal/orders', icon: ShoppingCart, current: false },
+  { name: 'Billing', href: '/portal/billing', icon: DollarSign, current: false },
+  { name: 'Inventory', href: '/portal/inventory', icon: Package, current: false },
+  { name: 'Shipping', href: '/portal/shipping', icon: Truck, current: false },
+  { name: 'Analytics', href: '/portal/analytics', icon: BarChart, current: false },
+  { name: 'Settings', href: '/portal/settings', icon: Settings, current: false },
+]
+
+const metrics = [
+  {
+    title: "Active Orders",
+    value: "12",
+    change: "+2 from last month",
+    icon: Package,
+    color: "#3b82f6",
+    bgColor: "#eff6ff"
+  },
+  {
+    title: "Monthly Revenue",
+    value: "$45,231.89",
+    change: "+20.1% from last month",
+    icon: TrendingUp,
+    color: "#10b981", 
+    bgColor: "#f0fdf4"
+  },
+  {
+    title: "Active Batteries",
+    value: "2,350",
+    change: "+180 from last month",
+    icon: CreditCard,
+    color: "#8b5cf6",
+    bgColor: "#f5f3ff"
+  },
+  {
+    title: "Active Customers",
+    value: "573",
+    change: "+201 since last year",
+    icon: Users,
+    color: "#f59e0b",
+    bgColor: "#fffbeb"
+  }
+]
+
+const recentOrders = [
+  { id: 'ORD-001', customer: 'Acme Corporation', product: 'Tesla Powerwall 2', status: 'delivered', amount: '$4,599.00', date: 'May 10, 2025' },
+  { id: 'ORD-002', customer: 'Global Tech Solutions', product: 'Solar Edge Home Battery', status: 'in-transit', amount: '$8,999.00', date: 'May 15, 2025' },
+  { id: 'ORD-003', customer: 'Green Energy Inc', product: 'Panasonic EverVolt 2.0', status: 'processing', amount: '$2,199.00', date: 'May 16, 2025' },
+]
 
 export default function DashboardPage() {
   const { user, loading } = useAuth()
@@ -38,8 +86,20 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb' }}>
+        <div style={{
+          width: '48px',
+          height: '48px',
+          border: '4px solid #e5e7eb',
+          borderTopColor: '#3b82f6',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }}></div>
+        <style jsx>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     )
   }
@@ -48,387 +108,312 @@ export default function DashboardPage() {
     return null
   }
 
-  const metrics = [
-    {
-      title: "Active Orders",
-      value: "12",
-      change: "+2 from last month",
-      icon: Package,
-      iconColor: "text-blue-600",
-      bgColor: "bg-blue-100"
-    },
-    {
-      title: "Monthly Revenue",
-      value: "$45,231.89",
-      change: "+20.1% from last month",
-      icon: TrendingUp,
-      iconColor: "text-green-600",
-      bgColor: "bg-green-100"
-    },
-    {
-      title: "Active Batteries",
-      value: "2,350",
-      change: "+180 from last month",
-      icon: Battery,
-      iconColor: "text-purple-600",
-      bgColor: "bg-purple-100"
-    },
-    {
-      title: "Active Customers",
-      value: "573",
-      change: "+201 since last year",
-      icon: Users,
-      iconColor: "text-yellow-600",
-      bgColor: "bg-yellow-100"
-    }
-  ]
-
-  const recentOrders = [
-    {
-      id: "ORD-001",
-      date: "May 10, 2025",
-      status: "delivered",
-      total: "$4,599.00",
-      items: ["Tesla Powerwall 2", "LG Chem RESU 10H"],
-      customer: "Acme Corporation"
-    },
-    {
-      id: "ORD-002", 
-      date: "May 15, 2025",
-      status: "in-transit",
-      total: "$8,999.00",
-      items: ["Solar Edge Home Battery × 2", "Enphase IQ Battery × 2"],
-      customer: "Global Tech Solutions"
-    },
-    {
-      id: "ORD-003",
-      date: "May 16, 2025", 
-      status: "processing",
-      total: "$2,199.00",
-      items: ["Panasonic EverVolt 2.0"],
-      customer: "Green Energy Inc"
-    }
-  ]
-
-  const getStatusStyle = (status: string) => {
-    switch (status) {
-      case 'delivered':
-        return 'bg-green-100 text-green-800'
-      case 'in-transit':
-        return 'bg-blue-100 text-blue-800'
-      case 'processing':
-        return 'bg-yellow-100 text-yellow-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
       {/* Sidebar - Mobile */}
-      <div className={`fixed inset-0 z-40 flex md:hidden ${sidebarOpen ? '' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setSidebarOpen(false)}></div>
-        
-        <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
-          <div className="absolute top-0 right-0 -mr-12 pt-2">
-            <button
-              className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <span className="sr-only">Close sidebar</span>
-              <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center px-4">
-              <Battery className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-semibold">Battery Dept</span>
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 40,
+        display: sidebarOpen ? 'flex' : 'none',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+      }} onClick={() => setSidebarOpen(false)}>
+        <div style={{
+          position: 'relative',
+          flex: '1 1 0%',
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '256px',
+          width: '100%',
+          backgroundColor: '#1f2937'
+        }} onClick={(e) => e.stopPropagation()}>
+          <div style={{ padding: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                style={{
+                  padding: '6px',
+                  borderRadius: '6px',
+                  color: 'white',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                <X size={24} />
+              </button>
             </div>
-            <nav className="mt-8 px-2">
-              <a href="#" className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-white bg-blue-600">
-                <Home className="mr-4 h-6 w-6" />
-                Dashboard
-              </a>
-              <a href="/portal/orders" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Package className="mr-4 h-6 w-6" />
-                Orders
-              </a>
-              <a href="/portal/billing" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <CreditCard className="mr-4 h-6 w-6" />
-                Billing
-              </a>
-              <a href="#" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Battery className="mr-4 h-6 w-6" />
-                Inventory
-              </a>
-              <a href="#" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <FileText className="mr-4 h-6 w-6" />
-                Reports
-              </a>
-            </nav>
           </div>
+          <nav style={{ flex: 1, padding: '0 8px' }}>
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  router.push(item.href)
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '8px 16px',
+                  margin: '2px 0',
+                  borderRadius: '8px',
+                  color: item.current ? 'white' : '#d1d5db',
+                  backgroundColor: item.current ? '#111827' : 'transparent',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <item.icon size={20} style={{ marginRight: '12px' }} />
+                {item.name}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
 
       {/* Static sidebar for desktop */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-white border-r border-gray-200">
-          <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center px-4">
-              <Battery className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-semibold">Battery Dept</span>
-            </div>
-            <nav className="mt-8 flex-1 px-2 space-y-1">
-              <a href="#" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-white bg-blue-600">
-                <Home className="mr-3 h-5 w-5" />
-                Dashboard
-              </a>
-              <a href="/portal/orders" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Package className="mr-3 h-5 w-5" />
-                Orders
-              </a>
-              <a href="/portal/billing" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <CreditCard className="mr-3 h-5 w-5" />
-                Billing
-              </a>
-              <a href="#" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Battery className="mr-3 h-5 w-5" />
-                Inventory
-              </a>
-              <a href="#" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <FileText className="mr-3 h-5 w-5" />
-                Reports
-              </a>
-            </nav>
+      <div style={{
+        display: 'none',
+        position: 'fixed',
+        insetY: 0,
+        zIndex: 30,
+        width: '256px',
+        backgroundColor: '#1f2937'
+      }} className="md-show">
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
+          <div style={{ padding: '20px' }}>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
           </div>
-          <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <div className="flex-shrink-0 w-full group block">
-              <div className="flex items-center">
-                <div>
-                  <div className="inline-block h-9 w-9 rounded-full bg-gray-500"></div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{user.name || user.email}</p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                </div>
-              </div>
-            </div>
+          <nav style={{ flex: 1, padding: '0 8px' }}>
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  router.push(item.href)
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '8px 16px',
+                  margin: '2px 0',
+                  borderRadius: '8px',
+                  color: item.current ? 'white' : '#d1d5db',
+                  backgroundColor: item.current ? '#111827' : 'transparent',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <item.icon size={20} style={{ marginRight: '12px' }} />
+                {item.name}
+              </a>
+            ))}
+          </nav>
+          <div style={{ padding: '16px', borderTop: '1px solid #374151' }}>
+            <a
+              href="/portal/auth/login"
+              onClick={(e) => {
+                e.preventDefault()
+                router.push('/portal/auth/login')
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '8px 16px',
+                borderRadius: '8px',
+                color: '#d1d5db',
+                textDecoration: 'none',
+                transition: 'all 0.2s'
+              }}
+            >
+              <LogOut size={20} style={{ marginRight: '12px' }} />
+              Sign out
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="md:pl-64 flex flex-col flex-1">
-        {/* Top nav*/}
-        <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white shadow">
-          <button
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <span className="sr-only">Open sidebar</span>
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
-
+      {/* Content area */}
+      <div style={{ paddingLeft: 0 }} className="md-content">
         {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-              <div className="flex items-center space-x-4">
-                <button className="p-2 text-gray-400 hover:text-gray-500">
-                  <Search className="h-5 w-5" />
-                </button>
-                <button className="p-2 text-gray-400 hover:text-gray-500">
-                  <Bell className="h-5 w-5" />
-                </button>
-                <div className="inline-block h-8 w-8 rounded-full bg-gray-500"></div>
+        <header style={{
+          backgroundColor: 'white',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 20
+        }}>
+          <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <button
+              onClick={() => setSidebarOpen(true)}
+              style={{
+                padding: '8px',
+                borderRadius: '8px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'block'
+              }}
+              className="md-hide"
+            >
+              <Menu size={24} />
+            </button>
+            <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#111827' }}>Dashboard</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <button style={{
+                padding: '8px',
+                borderRadius: '8px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer'
+              }}>
+                <Bell size={20} />
+              </button>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: '#6b7280',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontWeight: '500'
+              }}>
+                {user?.name?.[0] || 'U'}
               </div>
             </div>
           </div>
         </header>
 
-        <main className="flex-1">
-          <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* Welcome */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">Welcome back, {user?.name || user?.email}</h2>
-                <p className="text-gray-600">Here's an overview of your battery management system</p>
-              </div>
-              
-              {/* Metrics */}
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-                {metrics.map((metric) => (
-                  <div key={metric.title} className="bg-white overflow-hidden shadow rounded-lg">
-                    <div className="p-5">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <div className={`p-3 rounded-md ${metric.bgColor}`}>
-                            <metric.icon className={`h-6 w-6 ${metric.iconColor}`} />
-                          </div>
-                        </div>
-                        <div className="ml-5 w-0 flex-1">
-                          <dl>
-                            <dt className="text-sm font-medium text-gray-500 truncate">{metric.title}</dt>
-                            <dd className="flex items-baseline">
-                              <div className="text-2xl font-semibold text-gray-900">{metric.value}</div>
-                            </dd>
-                          </dl>
-                        </div>
-                      </div>
-                      <div className="mt-3">
-                        <p className="text-sm text-gray-600">{metric.change}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {/* Main content */}
+        <main style={{ padding: '24px' }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+            {/* Welcome section */}
+            <div style={{ marginBottom: '32px' }}>
+              <h2 style={{ fontSize: '30px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
+                Welcome back, {user?.name || user?.email}
+              </h2>
+              <p style={{ color: '#6b7280' }}>Here's an overview of your battery management system</p>
+            </div>
 
-              {/* Recent Orders & Quick Actions */}
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                {/* Recent Orders */}
-                <div className="bg-white shadow rounded-lg">
-                  <div className="px-4 py-5 sm:p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg leading-6 font-medium text-gray-900">Recent Orders</h3>
-                      <Link href="/portal/orders" className="text-sm text-blue-600 hover:text-blue-500">
-                        View all →
-                      </Link>
-                    </div>
-                    <div className="flow-root">
-                      <ul className="-my-5 divide-y divide-gray-200">
-                        {recentOrders.map((order) => (
-                          <li key={order.id} className="py-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center space-x-3">
-                                  <h4 className="text-sm font-medium text-gray-900 truncate">{order.id}</h4>
-                                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusStyle(order.status)}`}>
-                                    {order.status}
-                                  </span>
-                                </div>
-                                <p className="text-sm text-gray-500 truncate">{order.customer}</p>
-                                <p className="text-xs text-gray-400">{order.items.join(", ")}</p>
-                              </div>
-                              <div className="ml-4 flex-shrink-0">
-                                <div className="text-sm font-medium text-gray-900">{order.total}</div>
-                                <div className="text-xs text-gray-500">{order.date}</div>
-                              </div>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
+            {/* Metrics */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '24px',
+              marginBottom: '32px'
+            }}>
+              {metrics.map((metric) => (
+                <div key={metric.title} style={{
+                  backgroundColor: 'white',
+                  borderRadius: '12px',
+                  padding: '24px',
+                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                    <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280' }}>{metric.title}</h3>
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '8px',
+                      backgroundColor: metric.bgColor,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <metric.icon size={20} style={{ color: metric.color }} />
                     </div>
                   </div>
+                  <div style={{ fontSize: '24px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                    {metric.value}
+                  </div>
+                  <p style={{ fontSize: '14px', color: '#10b981' }}>{metric.change}</p>
                 </div>
+              ))}
+            </div>
 
-                {/* Quick Actions */}
-                <div className="bg-white shadow rounded-lg">
-                  <div className="px-4 py-5 sm:p-6">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Quick Actions</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <Link href="/portal/orders/new" className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400">
-                        <div className="flex-shrink-0">
-                          <Package className="h-6 w-6 text-gray-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="absolute inset-0" aria-hidden="true" />
-                          <p className="text-sm font-medium text-gray-900">New Order</p>
-                          <p className="text-sm text-gray-500">Create a battery order</p>
-                        </div>
-                      </Link>
-                      
-                      <Link href="/portal/billing" className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400">
-                        <div className="flex-shrink-0">
-                          <CreditCard className="h-6 w-6 text-gray-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="absolute inset-0" aria-hidden="true" />
-                          <p className="text-sm font-medium text-gray-900">View Billing</p>
-                          <p className="text-sm text-gray-500">Manage payments</p>
-                        </div>
-                      </Link>
-                      
-                      <Link href="/portal/inventory" className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400">
-                        <div className="flex-shrink-0">
-                          <Battery className="h-6 w-6 text-gray-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="absolute inset-0" aria-hidden="true" />
-                          <p className="text-sm font-medium text-gray-900">Inventory</p>
-                          <p className="text-sm text-gray-500">Track stock levels</p>
-                        </div>
-                      </Link>
-                      
-                      <Link href="#" className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400">
-                        <div className="flex-shrink-0">
-                          <Zap className="h-6 w-6 text-gray-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="absolute inset-0" aria-hidden="true" />
-                          <p className="text-sm font-medium text-gray-900">Subscriptions</p>
-                          <p className="text-sm text-gray-500">Manage services</p>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Account Summary */}
-              <div className="mt-8 bg-white shadow rounded-lg">
-                <div className="px-4 py-5 sm:p-6">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Account Summary</h3>
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <DollarSign className="h-8 w-8 text-gray-400" />
-                        </div>
-                        <div className="ml-4">
-                          <dt className="text-sm font-medium text-gray-500">Total Spent</dt>
-                          <dd className="text-lg font-semibold text-gray-900">$15,797.00</dd>
-                          <dd className="text-xs text-gray-500">This month</dd>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <Truck className="h-8 w-8 text-gray-400" />
-                        </div>
-                        <div className="ml-4">
-                          <dt className="text-sm font-medium text-gray-500">Pending Shipments</dt>
-                          <dd className="text-lg font-semibold text-gray-900">3</dd>
-                          <dd className="text-xs text-gray-500">Arriving this week</dd>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <Clock className="h-8 w-8 text-gray-400" />
-                        </div>
-                        <div className="ml-4">
-                          <dt className="text-sm font-medium text-gray-500">Next Service</dt>
-                          <dd className="text-lg font-semibold text-gray-900">Jun 1</dd>
-                          <dd className="text-xs text-gray-500">Maintenance scheduled</dd>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            {/* Recent Orders */}
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+            }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                Recent Orders
+              </h3>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Order ID</th>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Customer</th>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Product</th>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Status</th>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Amount</th>
+                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentOrders.map((order) => (
+                      <tr key={order.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
+                        <td style={{ padding: '16px 8px', fontSize: '14px', fontWeight: '500', color: '#111827' }}>{order.id}</td>
+                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.customer}</td>
+                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.product}</td>
+                        <td style={{ padding: '16px 8px' }}>
+                          <span style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            padding: '4px 12px',
+                            borderRadius: '9999px',
+                            fontSize: '12px',
+                            fontWeight: '500',
+                            backgroundColor: order.status === 'delivered' ? '#d1fae5' : order.status === 'in-transit' ? '#fef3c7' : '#dbeafe',
+                            color: order.status === 'delivered' ? '#065f46' : order.status === 'in-transit' ? '#78350f' : '#1e40af'
+                          }}>
+                            {order.status}
+                          </span>
+                        </td>
+                        <td style={{ padding: '16px 8px', fontSize: '14px', fontWeight: '500', color: '#111827' }}>{order.amount}</td>
+                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.date}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </main>
       </div>
+
+      <style jsx global>{`
+        @media (min-width: 768px) {
+          .md-show {
+            display: block !important;
+          }
+          .md-hide {
+            display: none !important;
+          }
+          .md-content {
+            padding-left: 256px !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

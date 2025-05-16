@@ -1,19 +1,17 @@
-"use client"
+'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Zap } from 'lucide-react'
+import { LogIn, Mail, Lock, AlertCircle, Battery } from 'lucide-react'
 
 export default function LoginPage() {
-  const { login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const { login } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -22,6 +20,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password)
+      router.push('/portal/dashboard')
     } catch (err) {
       setError('Invalid email or password')
     } finally {
@@ -30,118 +29,269 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md p-4">
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-              <Zap className="h-6 w-6 text-white" />
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#f9fafb',
+      backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '400px',
+        padding: '20px'
+      }}>
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '16px',
+          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+          padding: '40px'
+        }}>
+          {/* Logo */}
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <div style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: '#6366f1',
+              borderRadius: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 16px',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+            }}>
+              <Battery size={40} style={{ color: 'white' }} />
             </div>
+            <h1 style={{
+              fontSize: '28px',
+              fontWeight: 'bold',
+              color: '#111827',
+              marginBottom: '8px'
+            }}>
+              Battery Hub
+            </h1>
+            <p style={{ color: '#6b7280' }}>Sign in to your account</p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Welcome back</h1>
-          <p className="text-gray-600 mt-2">
-            Sign in to your Battery Department account
-          </p>
-        </div>
 
-        <Card className="bg-white border border-gray-200">
-          <CardHeader>
-            <CardTitle className="text-gray-900">Sign in</CardTitle>
-            <CardDescription className="text-gray-600">
-              Enter your email and password to access your account
-            </CardDescription>
-            <div className="mt-2 p-3 bg-blue-50 rounded-md border border-blue-200">
-              <p className="text-xs text-blue-700">
-                Demo credentials: demo@example.com / demo123
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
-                  {error}
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <Input
-                  id="email"
+          {/* Form */}
+          <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#374151',
+                marginBottom: '8px'
+              }}>
+                Email
+              </label>
+              <div style={{ position: 'relative' }}>
+                <Mail size={20} style={{
+                  position: 'absolute',
+                  left: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  color: '#6b7280'
+                }} />
+                <input
                   type="email"
-                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="john@example.com"
                   required
-                  autoComplete="email"
-                  className="border-gray-300"
+                  style={{
+                    width: '100%',
+                    padding: '12px 12px 12px 44px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    outline: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#6366f1'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#d1d5db'
+                    e.target.style.boxShadow = 'none'
+                  }}
                 />
               </div>
+            </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="text-sm font-medium text-gray-700">
-                    Password
-                  </label>
-                  <Link
-                    href="/portal/auth/forgot-password"
-                    className="text-sm text-blue-600 hover:underline"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-                <Input
-                  id="password"
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#374151',
+                marginBottom: '8px'
+              }}>
+                Password
+              </label>
+              <div style={{ position: 'relative' }}>
+                <Lock size={20} style={{
+                  position: 'absolute',
+                  left: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  color: '#6b7280'
+                }} />
+                <input
                   type="password"
-                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
                   required
-                  autoComplete="current-password"
-                  className="border-gray-300"
+                  style={{
+                    width: '100%',
+                    padding: '12px 12px 12px 44px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    outline: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#6366f1'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#d1d5db'
+                    e.target.style.boxShadow = 'none'
+                  }}
                 />
               </div>
+            </div>
 
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                />
-                <label htmlFor="remember" className="text-sm text-gray-700">
-                  Remember me
-                </label>
+            {error && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '12px',
+                backgroundColor: '#fee2e2',
+                border: '1px solid #fecaca',
+                borderRadius: '8px',
+                marginBottom: '20px'
+              }}>
+                <AlertCircle size={16} style={{ color: '#ef4444', marginRight: '8px' }} />
+                <span style={{ fontSize: '14px', color: '#ef4444' }}>{error}</span>
               </div>
+            )}
 
-              <Button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                disabled={loading}
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                width: '100%',
+                padding: '12px',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '500',
+                border: 'none',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading ? 0.7 : 1,
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}
+              onMouseEnter={(e) => {
+                if (!loading) {
+                  e.currentTarget.style.backgroundColor = '#4f46e5'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#6366f1'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+            >
+              {loading ? (
+                <>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    border: '2px solid #ffffff40',
+                    borderTopColor: 'white',
+                    borderRadius: '50%',
+                    animation: 'spin 0.8s linear infinite'
+                  }}></div>
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  <LogIn size={20} />
+                  Sign in
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Demo Credentials */}
+          <div style={{
+            padding: '16px',
+            backgroundColor: '#f3f4f6',
+            borderRadius: '8px',
+            marginBottom: '24px'
+          }}>
+            <h3 style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              color: '#111827',
+              marginBottom: '8px'
+            }}>
+              Demo Credentials
+            </h3>
+            <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '4px' }}>
+              Email: demo@battery.com
+            </p>
+            <p style={{ fontSize: '14px', color: '#6b7280' }}>
+              Password: demo123
+            </p>
+          </div>
+
+          {/* Register Link */}
+          <div style={{ textAlign: 'center' }}>
+            <p style={{ fontSize: '14px', color: '#6b7280' }}>
+              Don't have an account?{' '}
+              <a
+                href="/portal/auth/register"
+                onClick={(e) => {
+                  e.preventDefault()
+                  router.push('/portal/auth/register')
+                }}
+                style={{
+                  color: '#6366f1',
+                  fontWeight: '500',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none'
+                }}
               >
-                {loading ? (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                ) : (
-                  'Sign in'
-                )}
-              </Button>
-
-              <div className="text-center text-sm">
-                <span className="text-gray-600">
-                  Don't have an account?{' '}
-                </span>
-                <Link
-                  href="/portal/auth/register"
-                  className="text-blue-600 hover:underline"
-                >
-                  Sign up
-                </Link>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+                Sign up
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   )
 }
