@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./energy-system.css";
 
 export const metadata: Metadata = {
   title: "Battery Department Dashboard",
@@ -13,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="dark">{children}</body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

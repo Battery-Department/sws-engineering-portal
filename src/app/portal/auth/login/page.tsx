@@ -30,28 +30,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md p-4">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-              <Zap className="h-6 w-6 text-primary-foreground" />
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <Zap className="h-6 w-6 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Welcome back</h1>
+          <p className="text-gray-600 mt-2">
             Sign in to your Battery Department account
           </p>
         </div>
 
-        <Card>
+        <Card className="bg-white border border-gray-200">
           <CardHeader>
-            <CardTitle>Sign in</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-gray-900">Sign in</CardTitle>
+            <CardDescription className="text-gray-600">
               Enter your email and password to access your account
             </CardDescription>
-            <div className="mt-2 p-3 bg-muted rounded-md">
-              <p className="text-xs text-muted-foreground">
+            <div className="mt-2 p-3 bg-blue-50 rounded-md border border-blue-200">
+              <p className="text-xs text-blue-700">
                 Demo credentials: demo@example.com / demo123
               </p>
             </div>
@@ -59,13 +59,13 @@ export default function LoginPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive rounded-md">
+                <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
                   {error}
                 </div>
               )}
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-sm font-medium text-gray-700">
                   Email
                 </label>
                 <Input
@@ -76,17 +76,18 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
+                  className="border-gray-300"
                 />
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="text-sm font-medium">
+                  <label htmlFor="password" className="text-sm font-medium text-gray-700">
                     Password
                   </label>
                   <Link
                     href="/portal/auth/forgot-password"
-                    className="text-sm text-primary hover:underline"
+                    className="text-sm text-blue-600 hover:underline"
                   >
                     Forgot password?
                   </Link>
@@ -99,6 +100,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   autoComplete="current-password"
+                  className="border-gray-300"
                 />
               </div>
 
@@ -106,32 +108,32 @@ export default function LoginPage() {
                 <input
                   type="checkbox"
                   id="remember"
-                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <label htmlFor="remember" className="text-sm">
+                <label htmlFor="remember" className="text-sm text-gray-700">
                   Remember me
                 </label>
               </div>
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                 disabled={loading}
               >
                 {loading ? (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                 ) : (
                   'Sign in'
                 )}
               </Button>
 
               <div className="text-center text-sm">
-                <span className="text-muted-foreground">
+                <span className="text-gray-600">
                   Don't have an account?{' '}
                 </span>
                 <Link
                   href="/portal/auth/register"
-                  className="text-primary hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   Sign up
                 </Link>
