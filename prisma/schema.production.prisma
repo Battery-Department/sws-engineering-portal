@@ -1,0 +1,372 @@
+// This is your Prisma schema file for production (PostgreSQL)
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User and Authentication Models
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("customer") // customer, admin, staff
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  sessions        Session[]
+  customer        Customer?
+  supportMessages SupportMessage[]
+  actionLogs      ActionLog[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([token])
+}
+
+// E-commerce Models
+model Customer {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+  
+  // Customer Details
+  companyName     String?
+  billingAddress  Json?
+  shippingAddress Json?
+  phone           String?
+  taxId           String?
+  
+  // Preferences
+  emailNotifications   Boolean @default(true)
+  smsNotifications     Boolean @default(false)
+  preferredPaymentMethod String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  orders        Order[]
+  subscriptions Subscription[]
+  addresses     Address[]
+  paymentMethods PaymentMethod[]
+  invoices      Invoice[]
+  
+  @@index([userId])
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  sku         String  @unique
+  name        String
+  description String?
+  price       Float
+  
+  // Product Details
+  category    String
+  subcategory String?
+  brand       String?
+  model       String?
+  
+  // Battery Specific
+  voltage     Float?
+  capacity    Float?
+  chemistry   String?
+  weight      Float?
+  dimensions  Json?
+  
+  // Inventory
+  stock       Int     @default(0)
+  lowStockAlert Int?
+  
+  // Media
+  images      Json    @default("[]")
+  documents   Json    @default("[]")
+  
+  isActive    Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  orderItems OrderItem[]
+  subscriptionProducts SubscriptionProduct[]
+  
+  @@index([sku])
+  @@index([category])
+  @@index([name])
+}
+
+model Order {
+  id             String   @id @default(uuid())
+  orderNumber    String   @unique
+  customerId     String
+  customer       Customer @relation(fields: [customerId], references: [id])
+  
+  // Order Details
+  status         String   @default("pending") // pending, processing, shipped, delivered, cancelled
+  subtotal       Float
+  tax            Float
+  shipping       Float
+  total          Float
+  
+  // Addresses
+  billingAddress  Json
+  shippingAddress Json
+  
+  // Payment
+  paymentMethod   String?
+  paymentStatus   String   @default("pending") // pending, paid, failed, refunded
+  
+  // Shipping
+  shippingMethod  String?
+  trackingNumber  String?
+  estimatedDelivery DateTime?
+  deliveredAt     DateTime?
+  
+  // Notes
+  customerNotes   String?
+  internalNotes   String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  items     OrderItem[]
+  invoice   Invoice?
+  
+  @@index([customerId])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  // Item Details
+  quantity  Int
+  price     Float
+  subtotal  Float
+  
+  // Additional Info
+  serialNumbers Json   @default("[]")
+  warranty      String?
+  notes         String?
+  
+  createdAt DateTime @default(now())
+  
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Subscription {
+  id          String   @id @default(uuid())
+  customerId  String
+  customer    Customer @relation(fields: [customerId], references: [id])
+  
+  // Subscription Details
+  name        String
+  status      String   @default("active") // active, paused, cancelled, expired
+  interval    String   // monthly, quarterly, yearly
+  
+  // Billing
+  amount      Float
+  nextBilling DateTime
+  lastBilling DateTime?
+  
+  // Contract
+  startDate   DateTime @default(now())
+  endDate     DateTime?
+  autoRenew   Boolean  @default(true)
+  
+  // Notes
+  notes       String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  products    SubscriptionProduct[]
+  invoices    Invoice[]
+  
+  @@index([customerId])
+  @@index([status])
+}
+
+model SubscriptionProduct {
+  id             String       @id @default(uuid())
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  productId      String
+  product        Product      @relation(fields: [productId], references: [id])
+  
+  // Product Details
+  quantity       Int
+  price          Float
+  
+  createdAt      DateTime @default(now())
+  
+  @@index([subscriptionId])
+  @@index([productId])
+}
+
+model PaymentMethod {
+  id         String   @id @default(uuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  
+  // Payment Details
+  type       String   // card, bank, wire, credit
+  isDefault  Boolean  @default(false)
+  
+  // Card Details (if applicable)
+  last4      String?
+  brand      String?
+  expMonth   Int?
+  expYear    Int?
+  
+  // Bank Details (if applicable)
+  bankName   String?
+  accountNumber String?
+  routingNumber String?
+  
+  // Metadata
+  metadata   Json?
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([customerId])
+}
+
+model Invoice {
+  id           String   @id @default(uuid())
+  invoiceNumber String  @unique
+  customerId   String
+  customer     Customer @relation(fields: [customerId], references: [id])
+  
+  // Invoice Details
+  status       String   @default("draft") // draft, sent, paid, overdue, cancelled
+  issueDate    DateTime @default(now())
+  dueDate      DateTime
+  
+  // Amounts
+  subtotal     Float
+  tax          Float
+  total        Float
+  amountPaid   Float    @default(0)
+  
+  // References
+  orderId      String?  @unique
+  order        Order?   @relation(fields: [orderId], references: [id])
+  subscriptionId String?
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  
+  // Payment
+  paymentMethod String?
+  paidAt       DateTime?
+  
+  // Document
+  pdfUrl       String?
+  notes        String?
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([customerId])
+  @@index([status])
+  @@index([invoiceNumber])
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  
+  // Address Details
+  type       String   // billing, shipping
+  name       String
+  company    String?
+  street1    String
+  street2    String?
+  city       String
+  state      String
+  zip        String
+  country    String
+  phone      String?
+  
+  isDefault  Boolean  @default(false)
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([customerId])
+}
+
+// Support System
+model SupportMessage {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  sessionId String
+  session   SupportSession @relation(fields: [sessionId], references: [id])
+  
+  content   String
+  role      String   // user, assistant, system
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([sessionId])
+}
+
+model SupportSession {
+  id        String   @id @default(uuid())
+  topic     String?
+  status    String   @default("active") // active, resolved, archived
+  priority  String   @default("normal") // low, normal, high, urgent
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  messages  SupportMessage[]
+}
+
+// System Models
+model ActionLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  action    String
+  entity    String
+  entityId  String
+  details   Json?
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([entity])
+  @@index([entityId])
+}
