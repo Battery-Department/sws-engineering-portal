@@ -22,15 +22,15 @@ export async function GET(request: NextRequest) {
     }
 
     // For demo user
-    if (decoded.email === 'demo@example.com') {
+    if (decoded.email === 'demo@battery.com') {
       return NextResponse.json({
         user: {
           id: '1',
-          email: 'demo@example.com',
+          email: 'demo@battery.com',
           name: 'Demo User',
           customer: {
             id: '1',
-            companyName: 'Demo Company'
+            companyName: 'Battery Department'
           }
         }
       });
