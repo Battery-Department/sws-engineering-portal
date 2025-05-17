@@ -5,10 +5,13 @@ import BatteryCard from './BatteryCard';
 import DiscountTierVisualization from './DiscountTierVisualization';
 import PaymentLogos from './PaymentLogos';
 
-// Force dynamic rendering
+// Force dynamic rendering with no cache
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
-// Global styles
+// Unique version ID to bust cache
+const VERSION = Date.now();
+
 const globalStyles = `
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -78,6 +81,7 @@ const discountTiers = [
 ];
 
 export default function ProductsPage() {
+  const [mounted, setMounted] = useState(false);
   const [quantities, setQuantities] = useState({
     '6Ah': 0,
     '9Ah': 0,
@@ -87,10 +91,9 @@ export default function ProductsPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [showDiscountTiers, setShowDiscountTiers] = useState(false);
   const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
-  const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
-    setIsLoaded(true);
+    setMounted(true);
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -99,6 +102,10 @@ export default function ProductsPage() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+  
+  if (!mounted) {
+    return null;
+  }
   
   const handleQuantityChange = (type: '6Ah' | '9Ah' | '15Ah', quantity: number) => {
     setQuantities(prev => ({
@@ -139,10 +146,6 @@ export default function ProductsPage() {
     }));
   };
 
-  if (!isLoaded) {
-    return null;
-  }
-
   return (
     <div style={{
       minHeight: '100vh',
@@ -151,6 +154,7 @@ export default function ProductsPage() {
       display: 'flex'
     }}>
       <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
+      <meta name="version" content={VERSION.toString()} />
       
       {/* Sidebar */}
       <div style={{
@@ -224,12 +228,6 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
             }}>
               Orders
             </div>
@@ -242,12 +240,6 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
             }}>
               Favorites
             </div>
@@ -260,12 +252,6 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
             }}>
               Payment
             </div>
@@ -278,12 +264,6 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
             }}>
               Chat with Lithi
             </div>
@@ -411,7 +391,6 @@ export default function ProductsPage() {
 
         {/* Payment Logos Ticker */}
         <PaymentLogos />
-        
         
         {/* Payment Method Icons */}
         <div style={{
