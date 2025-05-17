@@ -304,7 +304,8 @@ export default function ProductsPage() {
         marginLeft: isMobile ? 0 : '260px',
         flex: 1,
         background: '#F8FAFC',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        width: isMobile ? '100%' : 'calc(100% - 260px)'
       }}>
         {/* Enhanced Hero Section */}
         <div
@@ -422,11 +423,114 @@ export default function ProductsPage() {
 
         {/* Payment Logos Ticker */}
         <PaymentLogos />
+        
+        {/* Trust Badges */}
+        <div style={{
+          background: 'white',
+          padding: '16px',
+          borderBottom: '1px solid #F0F9FF',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '32px',
+          flexWrap: 'wrap'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#5B9FFF',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B9FFF" strokeWidth="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>100% DeWalt Compatible</span>
+          </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#5B9FFF',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B9FFF" strokeWidth="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Same-Day Shipping</span>
+          </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#5B9FFF',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B9FFF" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>12-Month Warranty</span>
+          </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#5B9FFF',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B9FFF" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>SECURE CHECKOUT</span>
+          </div>
+        </div>
+        
+        {/* Payment Method Icons */}
+        <div style={{
+          padding: '12px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '16px',
+          background: '#F8FAFC',
+          borderBottom: '1px solid #E6F4FF'
+        }}>
+          <span style={{ fontSize: '14px', color: '#6B7280', marginRight: '8px' }}>
+            Your payment information is encrypted and secure. We accept all major payment methods.
+          </span>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            {/* Apple Pay icon */}
+            <div style={{ padding: '4px', color: '#000' }}>
+              <svg width="36" height="24" viewBox="0 0 40 20" fill="currentColor">
+                <path d="M7.91 2.62c-0.38 0.48-1 0.8-1.61 0.75-0.08-0.63 0.28-1.29 0.64-1.7 0.38-0.44 1.03-0.76 1.57-0.78 0.07 0.63-0.23 1.24-0.6 1.73zm0.6 0.87c-0.89-0.06-1.65 0.53-2.07 0.53-0.42 0-1.08-0.5-1.77-0.49-0.91 0.02-1.75 0.56-2.22 1.42-0.95 1.72-0.25 4.27 0.68 5.67 0.45 0.69 0.99 1.46 1.7 1.43 0.68-0.03 0.94-0.44 1.76-0.44 0.82 0 1.05 0.44 1.77 0.43 0.73-0.01 1.2-0.7 1.65-1.39 0.52-0.8 0.73-1.57 0.74-1.61-0.02-0.01-1.42-0.57-1.44-2.26-0.01-1.41 1.12-2.09 1.17-2.13-0.64-0.98-1.64-1.09-1.99-1.12-0.89-0.03-1.57 0.5-1.98 0.5z"/>
+              </svg>
+            </div>
+            {/* Visa icon */}
+            <div style={{ width: '40px', height: '24px', background: '#1A1F71', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 'bold' }}>
+              VISA
+            </div>
+            {/* Mastercard icon */}
+            <div style={{ width: '40px', height: '24px', display: 'flex', alignItems: 'center' }}>
+              <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#EB001B', marginRight: '-4px' }}></div>
+              <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#F79E1B' }}></div>
+            </div>
+            {/* American Express icon */}
+            <div style={{ width: '40px', height: '24px', background: '#006FCF', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '8px', fontWeight: 'bold' }}>
+              AMEX
+            </div>
+          </div>
+        </div>
 
         <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: isMobile ? '16px' : '32px',
+          maxWidth: '100%',
+          padding: isMobile ? '16px' : '32px 48px',
           paddingBottom: '32px',
           paddingTop: '0'
         }}>
@@ -434,9 +538,11 @@ export default function ProductsPage() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: '20px',
+            gap: '24px',
             marginTop: '32px',
-            marginBottom: '32px'
+            marginBottom: '32px',
+            maxWidth: '1400px',
+            margin: '32px auto'
           }}>
             {Object.entries(batterySpecs).map(([type, specs]) => {
               const batteryType = type as '6Ah' | '9Ah' | '15Ah';
@@ -466,7 +572,9 @@ export default function ProductsPage() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            boxShadow: '0 4px 12px rgba(0, 111, 238, 0.08)'
+            boxShadow: '0 4px 12px rgba(0, 111, 238, 0.08)',
+            maxWidth: '1400px',
+            margin: '0 auto 24px'
           }}>
             <div style={{
               display: 'flex',
@@ -527,12 +635,17 @@ export default function ProductsPage() {
           </div>
           
           {/* Discount Tier Visualization */}
-          <DiscountTierVisualization 
-            currentTotal={baseTotal} 
-            discountTiers={discountTiers}
-            showDiscountTiers={showDiscountTiers}
-            setShowDiscountTiers={setShowDiscountTiers}
-          />
+          <div style={{
+            maxWidth: '1400px',
+            margin: '0 auto'
+          }}>
+            <DiscountTierVisualization 
+              currentTotal={baseTotal} 
+              discountTiers={discountTiers}
+              showDiscountTiers={showDiscountTiers}
+              setShowDiscountTiers={setShowDiscountTiers}
+            />
+          </div>
           
           {/* Order Summary and Checkout Section */}
           <div
@@ -542,7 +655,9 @@ export default function ProductsPage() {
               padding: "24px",
               marginTop: "24px",
               border: "1px solid #E2E8F0",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)"
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)",
+              maxWidth: '1400px',
+              margin: '24px auto 0'
             }}
           >
             {hasItems ? (
