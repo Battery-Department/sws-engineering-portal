@@ -231,10 +231,13 @@ export default function ProductsPage() {
               fontWeight: '500',
               marginBottom: '6px',
               transition: 'all 0.2s ease',
-              cursor: 'pointer',
-              ':hover': {
-                background: 'rgba(0, 111, 238, 0.05)'
-              }
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
             }}>
               Orders
             </div>
@@ -247,6 +250,12 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
             }}>
               Favorites
             </div>
@@ -259,6 +268,12 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
             }}>
               Payment
             </div>
@@ -271,6 +286,12 @@ export default function ProductsPage() {
               marginBottom: '6px',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 111, 238, 0.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
             }}>
               Chat with Lithi
             </div>
