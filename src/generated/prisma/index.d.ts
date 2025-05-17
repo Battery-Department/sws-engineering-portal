@@ -98,6 +98,16 @@ export type CartItem = $Result.DefaultSelection<Prisma.$CartItemPayload>
  * 
  */
 export type PriceHistory = $Result.DefaultSelection<Prisma.$PriceHistoryPayload>
+/**
+ * Model SystemHealth
+ * 
+ */
+export type SystemHealth = $Result.DefaultSelection<Prisma.$SystemHealthPayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -393,6 +403,26 @@ export class PrismaClient<
     * ```
     */
   get priceHistory(): Prisma.PriceHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.systemHealth`: Exposes CRUD operations for the **SystemHealth** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SystemHealths
+    * const systemHealths = await prisma.systemHealth.findMany()
+    * ```
+    */
+  get systemHealth(): Prisma.SystemHealthDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -849,7 +879,9 @@ export namespace Prisma {
     Inventory: 'Inventory',
     Cart: 'Cart',
     CartItem: 'CartItem',
-    PriceHistory: 'PriceHistory'
+    PriceHistory: 'PriceHistory',
+    SystemHealth: 'SystemHealth',
+    Notification: 'Notification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -868,7 +900,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "chatSession" | "message" | "sessionTag" | "mondaySync" | "customer" | "product" | "order" | "orderItem" | "subscription" | "subscriptionPlan" | "invoice" | "paymentMethod" | "inventory" | "cart" | "cartItem" | "priceHistory"
+      modelProps: "user" | "chatSession" | "message" | "sessionTag" | "mondaySync" | "customer" | "product" | "order" | "orderItem" | "subscription" | "subscriptionPlan" | "invoice" | "paymentMethod" | "inventory" | "cart" | "cartItem" | "priceHistory" | "systemHealth" | "notification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2130,6 +2162,154 @@ export namespace Prisma {
           }
         }
       }
+      SystemHealth: {
+        payload: Prisma.$SystemHealthPayload<ExtArgs>
+        fields: Prisma.SystemHealthFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SystemHealthFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SystemHealthFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          findFirst: {
+            args: Prisma.SystemHealthFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SystemHealthFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          findMany: {
+            args: Prisma.SystemHealthFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>[]
+          }
+          create: {
+            args: Prisma.SystemHealthCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          createMany: {
+            args: Prisma.SystemHealthCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SystemHealthCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>[]
+          }
+          delete: {
+            args: Prisma.SystemHealthDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          update: {
+            args: Prisma.SystemHealthUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          deleteMany: {
+            args: Prisma.SystemHealthDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SystemHealthUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SystemHealthUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>[]
+          }
+          upsert: {
+            args: Prisma.SystemHealthUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SystemHealthPayload>
+          }
+          aggregate: {
+            args: Prisma.SystemHealthAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSystemHealth>
+          }
+          groupBy: {
+            args: Prisma.SystemHealthGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SystemHealthGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SystemHealthCountArgs<ExtArgs>
+            result: $Utils.Optional<SystemHealthCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2231,6 +2411,8 @@ export namespace Prisma {
     cart?: CartOmit
     cartItem?: CartItemOmit
     priceHistory?: PriceHistoryOmit
+    systemHealth?: SystemHealthOmit
+    notification?: NotificationOmit
   }
 
   /* Types for Logging */
@@ -22787,6 +22969,2208 @@ export namespace Prisma {
 
 
   /**
+   * Model SystemHealth
+   */
+
+  export type AggregateSystemHealth = {
+    _count: SystemHealthCountAggregateOutputType | null
+    _avg: SystemHealthAvgAggregateOutputType | null
+    _sum: SystemHealthSumAggregateOutputType | null
+    _min: SystemHealthMinAggregateOutputType | null
+    _max: SystemHealthMaxAggregateOutputType | null
+  }
+
+  export type SystemHealthAvgAggregateOutputType = {
+    responseTime: number | null
+    errorRate: number | null
+    uptime: number | null
+  }
+
+  export type SystemHealthSumAggregateOutputType = {
+    responseTime: number | null
+    errorRate: number | null
+    uptime: number | null
+  }
+
+  export type SystemHealthMinAggregateOutputType = {
+    id: string | null
+    service: string | null
+    status: string | null
+    responseTime: number | null
+    errorRate: number | null
+    uptime: number | null
+    message: string | null
+    lastCheck: Date | null
+    nextCheck: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SystemHealthMaxAggregateOutputType = {
+    id: string | null
+    service: string | null
+    status: string | null
+    responseTime: number | null
+    errorRate: number | null
+    uptime: number | null
+    message: string | null
+    lastCheck: Date | null
+    nextCheck: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SystemHealthCountAggregateOutputType = {
+    id: number
+    service: number
+    status: number
+    responseTime: number
+    errorRate: number
+    uptime: number
+    message: number
+    lastCheck: number
+    nextCheck: number
+    metadata: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SystemHealthAvgAggregateInputType = {
+    responseTime?: true
+    errorRate?: true
+    uptime?: true
+  }
+
+  export type SystemHealthSumAggregateInputType = {
+    responseTime?: true
+    errorRate?: true
+    uptime?: true
+  }
+
+  export type SystemHealthMinAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    responseTime?: true
+    errorRate?: true
+    uptime?: true
+    message?: true
+    lastCheck?: true
+    nextCheck?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SystemHealthMaxAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    responseTime?: true
+    errorRate?: true
+    uptime?: true
+    message?: true
+    lastCheck?: true
+    nextCheck?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SystemHealthCountAggregateInputType = {
+    id?: true
+    service?: true
+    status?: true
+    responseTime?: true
+    errorRate?: true
+    uptime?: true
+    message?: true
+    lastCheck?: true
+    nextCheck?: true
+    metadata?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SystemHealthAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemHealth to aggregate.
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemHealths to fetch.
+     */
+    orderBy?: SystemHealthOrderByWithRelationInput | SystemHealthOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SystemHealthWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemHealths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemHealths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SystemHealths
+    **/
+    _count?: true | SystemHealthCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SystemHealthAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SystemHealthSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SystemHealthMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SystemHealthMaxAggregateInputType
+  }
+
+  export type GetSystemHealthAggregateType<T extends SystemHealthAggregateArgs> = {
+        [P in keyof T & keyof AggregateSystemHealth]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSystemHealth[P]>
+      : GetScalarType<T[P], AggregateSystemHealth[P]>
+  }
+
+
+
+
+  export type SystemHealthGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SystemHealthWhereInput
+    orderBy?: SystemHealthOrderByWithAggregationInput | SystemHealthOrderByWithAggregationInput[]
+    by: SystemHealthScalarFieldEnum[] | SystemHealthScalarFieldEnum
+    having?: SystemHealthScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SystemHealthCountAggregateInputType | true
+    _avg?: SystemHealthAvgAggregateInputType
+    _sum?: SystemHealthSumAggregateInputType
+    _min?: SystemHealthMinAggregateInputType
+    _max?: SystemHealthMaxAggregateInputType
+  }
+
+  export type SystemHealthGroupByOutputType = {
+    id: string
+    service: string
+    status: string
+    responseTime: number | null
+    errorRate: number | null
+    uptime: number | null
+    message: string | null
+    lastCheck: Date
+    nextCheck: Date | null
+    metadata: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SystemHealthCountAggregateOutputType | null
+    _avg: SystemHealthAvgAggregateOutputType | null
+    _sum: SystemHealthSumAggregateOutputType | null
+    _min: SystemHealthMinAggregateOutputType | null
+    _max: SystemHealthMaxAggregateOutputType | null
+  }
+
+  type GetSystemHealthGroupByPayload<T extends SystemHealthGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SystemHealthGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SystemHealthGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SystemHealthGroupByOutputType[P]>
+            : GetScalarType<T[P], SystemHealthGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SystemHealthSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    responseTime?: boolean
+    errorRate?: boolean
+    uptime?: boolean
+    message?: boolean
+    lastCheck?: boolean
+    nextCheck?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["systemHealth"]>
+
+  export type SystemHealthSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    responseTime?: boolean
+    errorRate?: boolean
+    uptime?: boolean
+    message?: boolean
+    lastCheck?: boolean
+    nextCheck?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["systemHealth"]>
+
+  export type SystemHealthSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    responseTime?: boolean
+    errorRate?: boolean
+    uptime?: boolean
+    message?: boolean
+    lastCheck?: boolean
+    nextCheck?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["systemHealth"]>
+
+  export type SystemHealthSelectScalar = {
+    id?: boolean
+    service?: boolean
+    status?: boolean
+    responseTime?: boolean
+    errorRate?: boolean
+    uptime?: boolean
+    message?: boolean
+    lastCheck?: boolean
+    nextCheck?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SystemHealthOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service" | "status" | "responseTime" | "errorRate" | "uptime" | "message" | "lastCheck" | "nextCheck" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["systemHealth"]>
+
+  export type $SystemHealthPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SystemHealth"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      service: string
+      status: string
+      responseTime: number | null
+      errorRate: number | null
+      uptime: number | null
+      message: string | null
+      lastCheck: Date
+      nextCheck: Date | null
+      metadata: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["systemHealth"]>
+    composites: {}
+  }
+
+  type SystemHealthGetPayload<S extends boolean | null | undefined | SystemHealthDefaultArgs> = $Result.GetResult<Prisma.$SystemHealthPayload, S>
+
+  type SystemHealthCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SystemHealthFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SystemHealthCountAggregateInputType | true
+    }
+
+  export interface SystemHealthDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SystemHealth'], meta: { name: 'SystemHealth' } }
+    /**
+     * Find zero or one SystemHealth that matches the filter.
+     * @param {SystemHealthFindUniqueArgs} args - Arguments to find a SystemHealth
+     * @example
+     * // Get one SystemHealth
+     * const systemHealth = await prisma.systemHealth.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SystemHealthFindUniqueArgs>(args: SelectSubset<T, SystemHealthFindUniqueArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SystemHealth that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SystemHealthFindUniqueOrThrowArgs} args - Arguments to find a SystemHealth
+     * @example
+     * // Get one SystemHealth
+     * const systemHealth = await prisma.systemHealth.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SystemHealthFindUniqueOrThrowArgs>(args: SelectSubset<T, SystemHealthFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SystemHealth that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthFindFirstArgs} args - Arguments to find a SystemHealth
+     * @example
+     * // Get one SystemHealth
+     * const systemHealth = await prisma.systemHealth.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SystemHealthFindFirstArgs>(args?: SelectSubset<T, SystemHealthFindFirstArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SystemHealth that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthFindFirstOrThrowArgs} args - Arguments to find a SystemHealth
+     * @example
+     * // Get one SystemHealth
+     * const systemHealth = await prisma.systemHealth.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SystemHealthFindFirstOrThrowArgs>(args?: SelectSubset<T, SystemHealthFindFirstOrThrowArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SystemHealths that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SystemHealths
+     * const systemHealths = await prisma.systemHealth.findMany()
+     * 
+     * // Get first 10 SystemHealths
+     * const systemHealths = await prisma.systemHealth.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const systemHealthWithIdOnly = await prisma.systemHealth.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SystemHealthFindManyArgs>(args?: SelectSubset<T, SystemHealthFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SystemHealth.
+     * @param {SystemHealthCreateArgs} args - Arguments to create a SystemHealth.
+     * @example
+     * // Create one SystemHealth
+     * const SystemHealth = await prisma.systemHealth.create({
+     *   data: {
+     *     // ... data to create a SystemHealth
+     *   }
+     * })
+     * 
+     */
+    create<T extends SystemHealthCreateArgs>(args: SelectSubset<T, SystemHealthCreateArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SystemHealths.
+     * @param {SystemHealthCreateManyArgs} args - Arguments to create many SystemHealths.
+     * @example
+     * // Create many SystemHealths
+     * const systemHealth = await prisma.systemHealth.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SystemHealthCreateManyArgs>(args?: SelectSubset<T, SystemHealthCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SystemHealths and returns the data saved in the database.
+     * @param {SystemHealthCreateManyAndReturnArgs} args - Arguments to create many SystemHealths.
+     * @example
+     * // Create many SystemHealths
+     * const systemHealth = await prisma.systemHealth.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SystemHealths and only return the `id`
+     * const systemHealthWithIdOnly = await prisma.systemHealth.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SystemHealthCreateManyAndReturnArgs>(args?: SelectSubset<T, SystemHealthCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SystemHealth.
+     * @param {SystemHealthDeleteArgs} args - Arguments to delete one SystemHealth.
+     * @example
+     * // Delete one SystemHealth
+     * const SystemHealth = await prisma.systemHealth.delete({
+     *   where: {
+     *     // ... filter to delete one SystemHealth
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SystemHealthDeleteArgs>(args: SelectSubset<T, SystemHealthDeleteArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SystemHealth.
+     * @param {SystemHealthUpdateArgs} args - Arguments to update one SystemHealth.
+     * @example
+     * // Update one SystemHealth
+     * const systemHealth = await prisma.systemHealth.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SystemHealthUpdateArgs>(args: SelectSubset<T, SystemHealthUpdateArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SystemHealths.
+     * @param {SystemHealthDeleteManyArgs} args - Arguments to filter SystemHealths to delete.
+     * @example
+     * // Delete a few SystemHealths
+     * const { count } = await prisma.systemHealth.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SystemHealthDeleteManyArgs>(args?: SelectSubset<T, SystemHealthDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SystemHealths.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SystemHealths
+     * const systemHealth = await prisma.systemHealth.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SystemHealthUpdateManyArgs>(args: SelectSubset<T, SystemHealthUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SystemHealths and returns the data updated in the database.
+     * @param {SystemHealthUpdateManyAndReturnArgs} args - Arguments to update many SystemHealths.
+     * @example
+     * // Update many SystemHealths
+     * const systemHealth = await prisma.systemHealth.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SystemHealths and only return the `id`
+     * const systemHealthWithIdOnly = await prisma.systemHealth.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SystemHealthUpdateManyAndReturnArgs>(args: SelectSubset<T, SystemHealthUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SystemHealth.
+     * @param {SystemHealthUpsertArgs} args - Arguments to update or create a SystemHealth.
+     * @example
+     * // Update or create a SystemHealth
+     * const systemHealth = await prisma.systemHealth.upsert({
+     *   create: {
+     *     // ... data to create a SystemHealth
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SystemHealth we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SystemHealthUpsertArgs>(args: SelectSubset<T, SystemHealthUpsertArgs<ExtArgs>>): Prisma__SystemHealthClient<$Result.GetResult<Prisma.$SystemHealthPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SystemHealths.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthCountArgs} args - Arguments to filter SystemHealths to count.
+     * @example
+     * // Count the number of SystemHealths
+     * const count = await prisma.systemHealth.count({
+     *   where: {
+     *     // ... the filter for the SystemHealths we want to count
+     *   }
+     * })
+    **/
+    count<T extends SystemHealthCountArgs>(
+      args?: Subset<T, SystemHealthCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SystemHealthCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SystemHealth.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SystemHealthAggregateArgs>(args: Subset<T, SystemHealthAggregateArgs>): Prisma.PrismaPromise<GetSystemHealthAggregateType<T>>
+
+    /**
+     * Group by SystemHealth.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SystemHealthGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SystemHealthGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SystemHealthGroupByArgs['orderBy'] }
+        : { orderBy?: SystemHealthGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SystemHealthGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSystemHealthGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SystemHealth model
+   */
+  readonly fields: SystemHealthFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SystemHealth.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SystemHealthClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SystemHealth model
+   */
+  interface SystemHealthFieldRefs {
+    readonly id: FieldRef<"SystemHealth", 'String'>
+    readonly service: FieldRef<"SystemHealth", 'String'>
+    readonly status: FieldRef<"SystemHealth", 'String'>
+    readonly responseTime: FieldRef<"SystemHealth", 'Float'>
+    readonly errorRate: FieldRef<"SystemHealth", 'Float'>
+    readonly uptime: FieldRef<"SystemHealth", 'Float'>
+    readonly message: FieldRef<"SystemHealth", 'String'>
+    readonly lastCheck: FieldRef<"SystemHealth", 'DateTime'>
+    readonly nextCheck: FieldRef<"SystemHealth", 'DateTime'>
+    readonly metadata: FieldRef<"SystemHealth", 'Json'>
+    readonly createdAt: FieldRef<"SystemHealth", 'DateTime'>
+    readonly updatedAt: FieldRef<"SystemHealth", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SystemHealth findUnique
+   */
+  export type SystemHealthFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemHealth to fetch.
+     */
+    where: SystemHealthWhereUniqueInput
+  }
+
+  /**
+   * SystemHealth findUniqueOrThrow
+   */
+  export type SystemHealthFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemHealth to fetch.
+     */
+    where: SystemHealthWhereUniqueInput
+  }
+
+  /**
+   * SystemHealth findFirst
+   */
+  export type SystemHealthFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemHealth to fetch.
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemHealths to fetch.
+     */
+    orderBy?: SystemHealthOrderByWithRelationInput | SystemHealthOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemHealths.
+     */
+    cursor?: SystemHealthWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemHealths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemHealths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemHealths.
+     */
+    distinct?: SystemHealthScalarFieldEnum | SystemHealthScalarFieldEnum[]
+  }
+
+  /**
+   * SystemHealth findFirstOrThrow
+   */
+  export type SystemHealthFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemHealth to fetch.
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemHealths to fetch.
+     */
+    orderBy?: SystemHealthOrderByWithRelationInput | SystemHealthOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SystemHealths.
+     */
+    cursor?: SystemHealthWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemHealths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemHealths.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SystemHealths.
+     */
+    distinct?: SystemHealthScalarFieldEnum | SystemHealthScalarFieldEnum[]
+  }
+
+  /**
+   * SystemHealth findMany
+   */
+  export type SystemHealthFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter, which SystemHealths to fetch.
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SystemHealths to fetch.
+     */
+    orderBy?: SystemHealthOrderByWithRelationInput | SystemHealthOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SystemHealths.
+     */
+    cursor?: SystemHealthWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SystemHealths from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SystemHealths.
+     */
+    skip?: number
+    distinct?: SystemHealthScalarFieldEnum | SystemHealthScalarFieldEnum[]
+  }
+
+  /**
+   * SystemHealth create
+   */
+  export type SystemHealthCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SystemHealth.
+     */
+    data: XOR<SystemHealthCreateInput, SystemHealthUncheckedCreateInput>
+  }
+
+  /**
+   * SystemHealth createMany
+   */
+  export type SystemHealthCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SystemHealths.
+     */
+    data: SystemHealthCreateManyInput | SystemHealthCreateManyInput[]
+  }
+
+  /**
+   * SystemHealth createManyAndReturn
+   */
+  export type SystemHealthCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * The data used to create many SystemHealths.
+     */
+    data: SystemHealthCreateManyInput | SystemHealthCreateManyInput[]
+  }
+
+  /**
+   * SystemHealth update
+   */
+  export type SystemHealthUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SystemHealth.
+     */
+    data: XOR<SystemHealthUpdateInput, SystemHealthUncheckedUpdateInput>
+    /**
+     * Choose, which SystemHealth to update.
+     */
+    where: SystemHealthWhereUniqueInput
+  }
+
+  /**
+   * SystemHealth updateMany
+   */
+  export type SystemHealthUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SystemHealths.
+     */
+    data: XOR<SystemHealthUpdateManyMutationInput, SystemHealthUncheckedUpdateManyInput>
+    /**
+     * Filter which SystemHealths to update
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * Limit how many SystemHealths to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemHealth updateManyAndReturn
+   */
+  export type SystemHealthUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * The data used to update SystemHealths.
+     */
+    data: XOR<SystemHealthUpdateManyMutationInput, SystemHealthUncheckedUpdateManyInput>
+    /**
+     * Filter which SystemHealths to update
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * Limit how many SystemHealths to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemHealth upsert
+   */
+  export type SystemHealthUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SystemHealth to update in case it exists.
+     */
+    where: SystemHealthWhereUniqueInput
+    /**
+     * In case the SystemHealth found by the `where` argument doesn't exist, create a new SystemHealth with this data.
+     */
+    create: XOR<SystemHealthCreateInput, SystemHealthUncheckedCreateInput>
+    /**
+     * In case the SystemHealth was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SystemHealthUpdateInput, SystemHealthUncheckedUpdateInput>
+  }
+
+  /**
+   * SystemHealth delete
+   */
+  export type SystemHealthDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+    /**
+     * Filter which SystemHealth to delete.
+     */
+    where: SystemHealthWhereUniqueInput
+  }
+
+  /**
+   * SystemHealth deleteMany
+   */
+  export type SystemHealthDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SystemHealths to delete
+     */
+    where?: SystemHealthWhereInput
+    /**
+     * Limit how many SystemHealths to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SystemHealth without action
+   */
+  export type SystemHealthDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SystemHealth
+     */
+    select?: SystemHealthSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SystemHealth
+     */
+    omit?: SystemHealthOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    message: string | null
+    priority: string | null
+    channel: string | null
+    read: boolean | null
+    readAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    message: string | null
+    priority: string | null
+    channel: string | null
+    read: boolean | null
+    readAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    title: number
+    message: number
+    priority: number
+    channel: number
+    read: number
+    readAt: number
+    metadata: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    message?: true
+    priority?: true
+    channel?: true
+    read?: true
+    readAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    message?: true
+    priority?: true
+    channel?: true
+    read?: true
+    readAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    message?: true
+    priority?: true
+    channel?: true
+    read?: true
+    readAt?: true
+    metadata?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    userId: string | null
+    type: string
+    title: string
+    message: string
+    priority: string
+    channel: string
+    read: boolean
+    readAt: Date | null
+    metadata: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    priority?: boolean
+    channel?: boolean
+    read?: boolean
+    readAt?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    priority?: boolean
+    channel?: boolean
+    read?: boolean
+    readAt?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    priority?: boolean
+    channel?: boolean
+    read?: boolean
+    readAt?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    message?: boolean
+    priority?: boolean
+    channel?: boolean
+    read?: boolean
+    readAt?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "title" | "message" | "priority" | "channel" | "read" | "readAt" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["notification"]>
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string | null
+      type: string
+      title: string
+      message: string
+      priority: string
+      channel: string
+      read: boolean
+      readAt: Date | null
+      metadata: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'String'>
+    readonly userId: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'String'>
+    readonly title: FieldRef<"Notification", 'String'>
+    readonly message: FieldRef<"Notification", 'String'>
+    readonly priority: FieldRef<"Notification", 'String'>
+    readonly channel: FieldRef<"Notification", 'String'>
+    readonly read: FieldRef<"Notification", 'Boolean'>
+    readonly readAt: FieldRef<"Notification", 'DateTime'>
+    readonly metadata: FieldRef<"Notification", 'Json'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+    readonly updatedAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -23083,6 +25467,42 @@ export namespace Prisma {
   };
 
   export type PriceHistoryScalarFieldEnum = (typeof PriceHistoryScalarFieldEnum)[keyof typeof PriceHistoryScalarFieldEnum]
+
+
+  export const SystemHealthScalarFieldEnum: {
+    id: 'id',
+    service: 'service',
+    status: 'status',
+    responseTime: 'responseTime',
+    errorRate: 'errorRate',
+    uptime: 'uptime',
+    message: 'message',
+    lastCheck: 'lastCheck',
+    nextCheck: 'nextCheck',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SystemHealthScalarFieldEnum = (typeof SystemHealthScalarFieldEnum)[keyof typeof SystemHealthScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    title: 'title',
+    message: 'message',
+    priority: 'priority',
+    channel: 'channel',
+    read: 'read',
+    readAt: 'readAt',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -24705,6 +27125,182 @@ export namespace Prisma {
     effectiveFrom?: DateTimeWithAggregatesFilter<"PriceHistory"> | Date | string
     effectiveUntil?: DateTimeNullableWithAggregatesFilter<"PriceHistory"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PriceHistory"> | Date | string
+  }
+
+  export type SystemHealthWhereInput = {
+    AND?: SystemHealthWhereInput | SystemHealthWhereInput[]
+    OR?: SystemHealthWhereInput[]
+    NOT?: SystemHealthWhereInput | SystemHealthWhereInput[]
+    id?: StringFilter<"SystemHealth"> | string
+    service?: StringFilter<"SystemHealth"> | string
+    status?: StringFilter<"SystemHealth"> | string
+    responseTime?: FloatNullableFilter<"SystemHealth"> | number | null
+    errorRate?: FloatNullableFilter<"SystemHealth"> | number | null
+    uptime?: FloatNullableFilter<"SystemHealth"> | number | null
+    message?: StringNullableFilter<"SystemHealth"> | string | null
+    lastCheck?: DateTimeFilter<"SystemHealth"> | Date | string
+    nextCheck?: DateTimeNullableFilter<"SystemHealth"> | Date | string | null
+    metadata?: JsonNullableFilter<"SystemHealth">
+    createdAt?: DateTimeFilter<"SystemHealth"> | Date | string
+    updatedAt?: DateTimeFilter<"SystemHealth"> | Date | string
+  }
+
+  export type SystemHealthOrderByWithRelationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    errorRate?: SortOrderInput | SortOrder
+    uptime?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    lastCheck?: SortOrder
+    nextCheck?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemHealthWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    service?: string
+    AND?: SystemHealthWhereInput | SystemHealthWhereInput[]
+    OR?: SystemHealthWhereInput[]
+    NOT?: SystemHealthWhereInput | SystemHealthWhereInput[]
+    status?: StringFilter<"SystemHealth"> | string
+    responseTime?: FloatNullableFilter<"SystemHealth"> | number | null
+    errorRate?: FloatNullableFilter<"SystemHealth"> | number | null
+    uptime?: FloatNullableFilter<"SystemHealth"> | number | null
+    message?: StringNullableFilter<"SystemHealth"> | string | null
+    lastCheck?: DateTimeFilter<"SystemHealth"> | Date | string
+    nextCheck?: DateTimeNullableFilter<"SystemHealth"> | Date | string | null
+    metadata?: JsonNullableFilter<"SystemHealth">
+    createdAt?: DateTimeFilter<"SystemHealth"> | Date | string
+    updatedAt?: DateTimeFilter<"SystemHealth"> | Date | string
+  }, "id" | "service">
+
+  export type SystemHealthOrderByWithAggregationInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    errorRate?: SortOrderInput | SortOrder
+    uptime?: SortOrderInput | SortOrder
+    message?: SortOrderInput | SortOrder
+    lastCheck?: SortOrder
+    nextCheck?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SystemHealthCountOrderByAggregateInput
+    _avg?: SystemHealthAvgOrderByAggregateInput
+    _max?: SystemHealthMaxOrderByAggregateInput
+    _min?: SystemHealthMinOrderByAggregateInput
+    _sum?: SystemHealthSumOrderByAggregateInput
+  }
+
+  export type SystemHealthScalarWhereWithAggregatesInput = {
+    AND?: SystemHealthScalarWhereWithAggregatesInput | SystemHealthScalarWhereWithAggregatesInput[]
+    OR?: SystemHealthScalarWhereWithAggregatesInput[]
+    NOT?: SystemHealthScalarWhereWithAggregatesInput | SystemHealthScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SystemHealth"> | string
+    service?: StringWithAggregatesFilter<"SystemHealth"> | string
+    status?: StringWithAggregatesFilter<"SystemHealth"> | string
+    responseTime?: FloatNullableWithAggregatesFilter<"SystemHealth"> | number | null
+    errorRate?: FloatNullableWithAggregatesFilter<"SystemHealth"> | number | null
+    uptime?: FloatNullableWithAggregatesFilter<"SystemHealth"> | number | null
+    message?: StringNullableWithAggregatesFilter<"SystemHealth"> | string | null
+    lastCheck?: DateTimeWithAggregatesFilter<"SystemHealth"> | Date | string
+    nextCheck?: DateTimeNullableWithAggregatesFilter<"SystemHealth"> | Date | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"SystemHealth">
+    createdAt?: DateTimeWithAggregatesFilter<"SystemHealth"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SystemHealth"> | Date | string
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    userId?: StringNullableFilter<"Notification"> | string | null
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    priority?: StringFilter<"Notification"> | string
+    channel?: StringFilter<"Notification"> | string
+    read?: BoolFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    metadata?: JsonNullableFilter<"Notification">
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    priority?: SortOrder
+    channel?: SortOrder
+    read?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    userId?: StringNullableFilter<"Notification"> | string | null
+    type?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    priority?: StringFilter<"Notification"> | string
+    channel?: StringFilter<"Notification"> | string
+    read?: BoolFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    metadata?: JsonNullableFilter<"Notification">
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    priority?: SortOrder
+    channel?: SortOrder
+    read?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Notification"> | string
+    userId?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    type?: StringWithAggregatesFilter<"Notification"> | string
+    title?: StringWithAggregatesFilter<"Notification"> | string
+    message?: StringWithAggregatesFilter<"Notification"> | string
+    priority?: StringWithAggregatesFilter<"Notification"> | string
+    channel?: StringWithAggregatesFilter<"Notification"> | string
+    read?: BoolWithAggregatesFilter<"Notification"> | boolean
+    readAt?: DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"Notification">
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -26423,6 +29019,216 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SystemHealthCreateInput = {
+    id?: string
+    service: string
+    status: string
+    responseTime?: number | null
+    errorRate?: number | null
+    uptime?: number | null
+    message?: string | null
+    lastCheck?: Date | string
+    nextCheck?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SystemHealthUncheckedCreateInput = {
+    id?: string
+    service: string
+    status: string
+    responseTime?: number | null
+    errorRate?: number | null
+    uptime?: number | null
+    message?: string | null
+    lastCheck?: Date | string
+    nextCheck?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SystemHealthUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    responseTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    errorRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    uptime?: NullableFloatFieldUpdateOperationsInput | number | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    lastCheck?: DateTimeFieldUpdateOperationsInput | Date | string
+    nextCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemHealthUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    responseTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    errorRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    uptime?: NullableFloatFieldUpdateOperationsInput | number | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    lastCheck?: DateTimeFieldUpdateOperationsInput | Date | string
+    nextCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemHealthCreateManyInput = {
+    id?: string
+    service: string
+    status: string
+    responseTime?: number | null
+    errorRate?: number | null
+    uptime?: number | null
+    message?: string | null
+    lastCheck?: Date | string
+    nextCheck?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SystemHealthUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    responseTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    errorRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    uptime?: NullableFloatFieldUpdateOperationsInput | number | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    lastCheck?: DateTimeFieldUpdateOperationsInput | Date | string
+    nextCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SystemHealthUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    service?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    responseTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    errorRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    uptime?: NullableFloatFieldUpdateOperationsInput | number | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    lastCheck?: DateTimeFieldUpdateOperationsInput | Date | string
+    nextCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateInput = {
+    id?: string
+    userId?: string | null
+    type: string
+    title: string
+    message: string
+    priority?: string
+    channel?: string
+    read?: boolean
+    readAt?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: string
+    userId?: string | null
+    type: string
+    title: string
+    message: string
+    priority?: string
+    channel?: string
+    read?: boolean
+    readAt?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: string
+    userId?: string | null
+    type: string
+    title: string
+    message: string
+    priority?: string
+    channel?: string
+    read?: boolean
+    readAt?: Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -27690,6 +30496,104 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type SystemHealthCountOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    responseTime?: SortOrder
+    errorRate?: SortOrder
+    uptime?: SortOrder
+    message?: SortOrder
+    lastCheck?: SortOrder
+    nextCheck?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemHealthAvgOrderByAggregateInput = {
+    responseTime?: SortOrder
+    errorRate?: SortOrder
+    uptime?: SortOrder
+  }
+
+  export type SystemHealthMaxOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    responseTime?: SortOrder
+    errorRate?: SortOrder
+    uptime?: SortOrder
+    message?: SortOrder
+    lastCheck?: SortOrder
+    nextCheck?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemHealthMinOrderByAggregateInput = {
+    id?: SortOrder
+    service?: SortOrder
+    status?: SortOrder
+    responseTime?: SortOrder
+    errorRate?: SortOrder
+    uptime?: SortOrder
+    message?: SortOrder
+    lastCheck?: SortOrder
+    nextCheck?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SystemHealthSumOrderByAggregateInput = {
+    responseTime?: SortOrder
+    errorRate?: SortOrder
+    uptime?: SortOrder
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    priority?: SortOrder
+    channel?: SortOrder
+    read?: SortOrder
+    readAt?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    priority?: SortOrder
+    channel?: SortOrder
+    read?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    priority?: SortOrder
+    channel?: SortOrder
+    read?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ChatSessionCreateNestedManyWithoutUserInput = {

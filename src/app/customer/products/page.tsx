@@ -2,33 +2,28 @@
 
 import React, { useState, useEffect } from 'react';
 import BatteryCard from './BatteryCard';
-import OrderSummary from './OrderSummary';
 import DiscountTierVisualization from './DiscountTierVisualization';
 import PaymentLogos from './PaymentLogos';
 
-// Force dynamic rendering to prevent caching issues
+// Force dynamic rendering and disable SSR
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
-// Global styles to hide number input arrows
+// Global styles
 const globalStyles = `
-  /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
     margin: 0 !important;
   }
-
-  /* Firefox */
   input[type=number] {
     -moz-appearance: textfield !important;
     appearance: textfield !important;
   }
 `;
 
-// Retail prices for comparison (DO NOT CHANGE)
 const retailPrices = { "6Ah": 169, "9Ah": 249, "15Ah": 379 };
 
-// Battery specifications (DO NOT CHANGE)
 const batterySpecs = {
   "6Ah": {
     weight: "1.9 lbs",
@@ -59,7 +54,6 @@ const batterySpecs = {
   },
 };
 
-// Discount tiers (DO NOT CHANGE)
 const discountTiers = [
   {
     threshold: 1000,
@@ -94,8 +88,10 @@ export default function ProductsPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [showDiscountTiers, setShowDiscountTiers] = useState(false);
   const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
+  const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
+    setIsLoaded(true);
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -112,19 +108,16 @@ export default function ProductsPage() {
     }));
   };
   
-  // Calculate totals with actual base prices
   const baseTotal = Object.entries(quantities).reduce((total, [type, quantity]) => {
     const batteryType = type as '6Ah' | '9Ah' | '15Ah';
     return total + (batterySpecs[batteryType].basePrice * quantity);
   }, 0);
   
-  // Calculate totals based on retail prices for comparison
   const retailTotal = Object.entries(quantities).reduce((total, [type, quantity]) => {
     const batteryType = type as '6Ah' | '9Ah' | '15Ah';
     return total + (retailPrices[batteryType] * quantity);
   }, 0);
   
-  // Determine the current discount tier
   let currentDiscountTier = -1;
   for (let i = discountTiers.length - 1; i >= 0; i--) {
     if (baseTotal >= discountTiers[i].threshold) {
@@ -133,15 +126,11 @@ export default function ProductsPage() {
     }
   }
   
-  // Calculate final prices
   const discountRate = currentDiscountTier >= 0 ? discountTiers[currentDiscountTier].discountRate : 0;
   const discountAmount = baseTotal * discountRate;
   const finalTotal = baseTotal - discountAmount;
-  
-  // Calculate savings
   const totalSavings = retailTotal - finalTotal;
   const savingsPercentage = retailTotal > 0 ? (totalSavings / retailTotal) * 100 : 0;
-  
   const hasItems = Object.values(quantities).some(quantity => quantity > 0);
   
   const toggleCardExpansion = (type: string) => {
@@ -151,6 +140,10 @@ export default function ProductsPage() {
     }));
   };
 
+  if (!isLoaded) {
+    return null;
+  }
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -158,10 +151,9 @@ export default function ProductsPage() {
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       display: 'flex'
     }}>
-      {/* Inject global styles */}
       <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
       
-      {/* Enhanced Sidebar Navigation */}
+      {/* Sidebar */}
       <div style={{
         position: 'fixed',
         left: 0,
@@ -300,7 +292,7 @@ export default function ProductsPage() {
         </nav>
       </div>
       
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div style={{
         marginLeft: isMobile ? 0 : '260px',
         flex: 1,
@@ -308,7 +300,7 @@ export default function ProductsPage() {
         minHeight: '100vh',
         width: isMobile ? '100%' : 'calc(100% - 260px)'
       }}>
-        {/* Enhanced Hero Section */}
+        {/* Hero Section */}
         <div
           style={{
             background: "linear-gradient(135deg, #0048AC 0%, #006FEE 50%, #0084FF 100%)",
@@ -991,7 +983,6 @@ export default function ProductsPage() {
             )}
           </div>
         </div>
-        
       </div>
     </div>
   );

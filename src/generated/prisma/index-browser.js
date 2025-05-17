@@ -354,6 +354,36 @@ exports.Prisma.PriceHistoryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SystemHealthScalarFieldEnum = {
+  id: 'id',
+  service: 'service',
+  status: 'status',
+  responseTime: 'responseTime',
+  errorRate: 'errorRate',
+  uptime: 'uptime',
+  message: 'message',
+  lastCheck: 'lastCheck',
+  nextCheck: 'nextCheck',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  priority: 'priority',
+  channel: 'channel',
+  read: 'read',
+  readAt: 'readAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -398,7 +428,9 @@ exports.Prisma.ModelName = {
   Inventory: 'Inventory',
   Cart: 'Cart',
   CartItem: 'CartItem',
-  PriceHistory: 'PriceHistory'
+  PriceHistory: 'PriceHistory',
+  SystemHealth: 'SystemHealth',
+  Notification: 'Notification'
 };
 
 /**

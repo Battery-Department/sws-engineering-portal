@@ -1,43 +1,91 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
+import { PrismaClient } from '@/generated/prisma'
+import bcrypt from 'bcryptjs'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function main() {
-  // Clean up existing data
-  await prisma.user.deleteMany({});
-  
-  // Create a test user
-  const hashedPassword = await bcrypt.hash('password123', 10);
-  
-  const user = await prisma.user.create({
-    data: {
-      email: 'test@example.com',
-      name: 'Test User',
-      password: hashedPassword,
-      role: 'customer',
-      customer: {
-        create: {
-          companyName: 'Test Company',
-          phone: '+1234567890',
-          emailNotifications: true,
-          smsNotifications: false
-        }
-      }
-    },
-    include: {
-      customer: true
-    }
-  });
+  console.log('Starting database seed...')
 
-  console.log({ user });
+  // Create test customer user
+  const hashedPassword = await bcrypt.hash('test123', 10)
+  
+  try {
+    // Check if user already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email: 'test@customer.com' }
+    })
+
+    if (!existingUser) {
+      // Create user and customer record
+      const user = await prisma.user.create({
+        data: {
+          email: 'test@customer.com',
+          name: 'Test Customer',
+          password: hashedPassword,
+          role: 'customer',
+          customer: {
+            create: {
+              phoneNumber: '555-0123',
+              billingAddress: {
+                street: '123 Test Street',
+                city: 'Test City',
+                state: 'TC',
+                zip: '12345',
+                country: 'USA'
+              },
+              shippingAddress: {
+                street: '123 Test Street',
+                city: 'Test City',
+                state: 'TC',
+                zip: '12345',
+                country: 'USA'
+              }
+            }
+          }
+        },
+        include: {
+          customer: true
+        }
+      })
+      
+      console.log('Test customer created:', user.email)
+    } else {
+      console.log('Test customer already exists')
+    }
+
+    // Create test B2B user
+    const existingB2BUser = await prisma.user.findUnique({
+      where: { email: 'admin@lithi.com' }
+    })
+
+    if (!existingB2BUser) {
+      const b2bUser = await prisma.user.create({
+        data: {
+          email: 'admin@lithi.com',
+          name: 'Admin User',
+          password: hashedPassword,
+          role: 'admin'
+        }
+      })
+      
+      console.log('Test B2B admin created:', b2bUser.email)
+    } else {
+      console.log('Test B2B admin already exists')
+    }
+
+  } catch (error) {
+    console.error('Error creating test users:', error)
+  }
+
+  console.log('Database seed completed!')
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
+  .then(async () => {
+    await prisma.$disconnect()
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })

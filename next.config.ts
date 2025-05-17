@@ -9,7 +9,15 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 's-maxage=1, stale-while-revalidate',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
           },
         ],
       },
@@ -17,8 +25,9 @@ const nextConfig: NextConfig = {
   },
   generateBuildId: async () => {
     // Generate a unique build ID to force fresh deployment
-    return `build-${Date.now()}`
-  }
+    return `build-${Date.now()}-${Math.random().toString(36).substring(7)}`
+  },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

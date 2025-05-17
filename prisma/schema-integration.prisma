@@ -1,0 +1,226 @@
+// Lithi Ecosystem Integration Schema
+// This extends the existing schema with integration features
+
+model Integration {
+  id                String   @id @default(uuid())
+  service           String   // "chatbot", "copilot", "monday", "dashboard"
+  status            String   @default("active") // "active", "inactive", "error"
+  apiKey            String?
+  webhookUrl        String?
+  webhookSecret     String?
+  
+  // Configuration
+  config            Json?    // Service-specific configuration
+  
+  // Last sync information
+  lastSync          DateTime?
+  lastError         String?
+  
+  // Metadata
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([service])
+  @@index([status])
+}
+
+model EventLog {
+  id                String   @id @default(uuid())
+  eventType         String
+  eventData         Json
+  source            String   // Service that triggered the event
+  status            String   @default("pending") // "pending", "processed", "failed"
+  
+  // Related entities
+  userId            String?
+  sessionId         String?
+  orderId           String?
+  
+  // Processing information
+  processedAt       DateTime?
+  error             String?
+  retryCount        Int      @default(0)
+  
+  // Metadata
+  createdAt         DateTime @default(now())
+  
+  @@index([eventType])
+  @@index([source])
+  @@index([status])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model WebhookDelivery {
+  id                String   @id @default(uuid())
+  webhookId         String
+  eventId           String
+  url               String
+  
+  // Delivery details
+  status            String   @default("pending") // "pending", "success", "failed"
+  statusCode        Int?
+  response          String?
+  error             String?
+  
+  // Retry information
+  attempts          Int      @default(0)
+  nextRetryAt       DateTime?
+  
+  // Metadata
+  createdAt         DateTime @default(now())
+  deliveredAt       DateTime?
+  
+  @@index([webhookId])
+  @@index([eventId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model ChatContext {
+  id                String   @id @default(uuid())
+  sessionId         String   @unique
+  userId            String?
+  
+  // Context data
+  contextData       Json     // Current conversation context
+  userPreferences   Json?    // User preferences and settings
+  orderHistory      Json?    // Recent order history
+  productViews      Json?    // Recently viewed products
+  
+  // Integration status
+  dashboardSynced   Boolean  @default(true)
+  chatbotSynced     Boolean  @default(true)
+  copilotSynced     Boolean  @default(false)
+  
+  // Metadata
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  user              User?    @relation(fields: [userId], references: [id])
+  
+  @@index([userId])
+  @@index([sessionId])
+}
+
+model Notification {
+  id                String   @id @default(uuid())
+  userId            String
+  
+  // Notification details
+  type              String   // "order", "message", "system", "promotion"
+  title             String
+  message           String
+  priority          String   @default("normal") // "low", "normal", "high", "urgent"
+  
+  // Delivery channels
+  channels          Json     // ["email", "sms", "push", "in-app"]
+  
+  // Status
+  status            String   @default("pending") // "pending", "sent", "read", "dismissed"
+  sentAt            DateTime?
+  readAt            DateTime?
+  dismissedAt       DateTime?
+  
+  // Related entities
+  orderId           String?
+  sessionId         String?
+  
+  // Metadata
+  metadata          Json?
+  createdAt         DateTime @default(now())
+  expiresAt         DateTime?
+  
+  user              User     @relation(fields: [userId], references: [id])
+  
+  @@index([userId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SystemHealth {
+  id                String   @id @default(uuid())
+  service           String   // Service identifier
+  status            String   // "healthy", "degraded", "down"
+  
+  // Metrics
+  responseTime      Float?   // Average response time in ms
+  errorRate         Float?   // Error rate percentage
+  uptime            Float?   // Uptime percentage
+  
+  // Health check details
+  lastCheck         DateTime
+  nextCheck         DateTime
+  consecutiveFails  Int      @default(0)
+  
+  // Additional info
+  message           String?
+  metadata          Json?
+  
+  @@unique([service])
+  @@index([status])
+  @@index([lastCheck])
+}
+
+// Extensions to existing models for integration
+
+model User {
+  // ... existing fields ...
+  
+  chatContexts      ChatContext[]
+  notifications     Notification[]
+  preferences       UserPreferences?
+}
+
+model UserPreferences {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  
+  // Communication preferences
+  emailNotifications  Boolean @default(true)
+  smsNotifications    Boolean @default(false)
+  pushNotifications   Boolean @default(true)
+  
+  // Chat preferences
+  chatAutoOpen        Boolean @default(false)
+  chatSoundEnabled    Boolean @default(true)
+  preferredLanguage   String  @default("en")
+  
+  // Display preferences
+  theme               String  @default("light") // "light", "dark", "auto"
+  compactView         Boolean @default(false)
+  
+  // Integration preferences
+  syncWithCopilot     Boolean @default(true)
+  shareDataWithAI     Boolean @default(true)
+  
+  user                User    @relation(fields: [userId], references: [id])
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model ChatSession {
+  // ... existing fields ...
+  
+  // Integration fields
+  dashboardUserId     String?
+  copilotThreadId     String?
+  mondayItemId        String?
+  
+  // Context
+  context             ChatContext?
+}
+
+model Order {
+  // ... existing fields ...
+  
+  // Integration fields
+  chatSessionId       String?
+  copilotTaskId       String?
+  mondayItemId        String?
+  
+  // Source tracking
+  source              String  @default("dashboard") // "dashboard", "chatbot", "api", "import"
+}
