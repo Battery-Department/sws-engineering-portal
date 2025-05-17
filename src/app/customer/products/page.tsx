@@ -5,8 +5,6 @@ import BatteryCard from './BatteryCard';
 import OrderSummary from './OrderSummary';
 import DiscountTierVisualization from './DiscountTierVisualization';
 import PaymentLogos from './PaymentLogos';
-import { EditableContent } from '@/components/EditableContent';
-import { EditModeToggle } from '@/components/EditModeToggle';
 
 // Force dynamic rendering to prevent caching issues
 export const dynamic = 'force-dynamic';
@@ -350,9 +348,7 @@ export default function ProductsPage() {
           </span>
         </div>
 
-        <EditableContent
-          contentKey="hero-title"
-          tag="h1"
+        <h1
           style={{
             fontSize: isMobile ? "28px" : "48px",
             fontWeight: 800,
@@ -361,11 +357,9 @@ export default function ProductsPage() {
           }}
         >
           FlexVolt Battery System
-        </EditableContent>
+        </h1>
 
-        <EditableContent
-          contentKey="hero-subtitle"
-          tag="p"
+        <p
           style={{
             fontSize: isMobile ? "15px" : "18px",
             maxWidth: "600px",
@@ -375,7 +369,7 @@ export default function ProductsPage() {
           }}
         >
           Professional portable power solutions with up to 45% savings compared to retail
-        </EditableContent>
+        </p>
         
         <div style={{
           display: "flex",
@@ -998,8 +992,6 @@ export default function ProductsPage() {
           </div>
         </div>
         
-        {/* Edit Mode Toggle */}
-        <EditModeToggle />
       </div>
     </div>
   );
