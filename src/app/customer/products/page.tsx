@@ -8,6 +8,9 @@ import PaymentLogos from './PaymentLogos';
 import { EditableContent } from '@/components/EditableContent';
 import { EditModeToggle } from '@/components/EditModeToggle';
 
+// Force dynamic rendering to prevent caching issues
+export const dynamic = 'force-dynamic';
+
 // Global styles to hide number input arrows
 const globalStyles = `
   /* Chrome, Safari, Edge, Opera */
@@ -82,9 +85,6 @@ const discountTiers = [
     description: "Best value for large teams and organizations",
   },
 ];
-
-// Force dynamic rendering to prevent caching issues
-export const dynamic = 'force-dynamic';
 
 export default function ProductsPage() {
   const [quantities, setQuantities] = useState({
