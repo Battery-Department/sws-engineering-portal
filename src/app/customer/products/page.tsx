@@ -732,7 +732,31 @@ export default function ProductsPage() {
                 </button>
                 
                 <button
-                  onClick={() => router.push('/customer/invoice')}
+                  onClick={() => {
+                    // Prepare invoice data
+                    const items = Object.entries(quantities)
+                      .filter(([_, quantity]) => quantity > 0)
+                      .map(([type, quantity]) => {
+                        const batteryType = type as '6Ah' | '9Ah' | '15Ah';
+                        return {
+                          type,
+                          quantity,
+                          unitPrice: batterySpecs[batteryType].basePrice,
+                          originalPrice: retailPrices[batteryType]
+                        };
+                      });
+                    
+                    const invoiceData = {
+                      items,
+                      subtotal: baseTotal,
+                      discount: discountAmount,
+                      total: finalTotal
+                    };
+                    
+                    // Store in sessionStorage
+                    sessionStorage.setItem('invoiceData', JSON.stringify(invoiceData));
+                    router.push('/customer/invoice');
+                  }}
                   style={{
                     flex: 1,
                     background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
@@ -999,7 +1023,32 @@ export default function ProductsPage() {
               </button>
               
               <button
-                onClick={() => router.push('/customer/invoice')}
+                onClick={() => {
+                  // Prepare invoice data
+                  const items = Object.entries(quantities)
+                    .filter(([_, quantity]) => quantity > 0)
+                    .map(([type, quantity]) => {
+                      const batteryType = type as '6Ah' | '9Ah' | '15Ah';
+                      return {
+                        type,
+                        quantity,
+                        unitPrice: batterySpecs[batteryType].basePrice,
+                        originalPrice: retailPrices[batteryType]
+                      };
+                    });
+                  
+                  const invoiceData = {
+                    items,
+                    subtotal: baseTotal,
+                    discount: discountAmount,
+                    total: finalTotal
+                  };
+                  
+                  // Store in sessionStorage
+                  sessionStorage.setItem('invoiceData', JSON.stringify(invoiceData));
+                  router.push('/customer/invoice');
+                  setShowMobileCart(false);
+                }}
                 style={{
                   width: '100%',
                   background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
