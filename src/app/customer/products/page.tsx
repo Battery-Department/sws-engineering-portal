@@ -450,22 +450,17 @@ export default function ProductsPage() {
           </div>
         </div>
         
-        {/* Discount Tier Visualization */}
-        <DiscountTierVisualization 
-          currentTotal={baseTotal} 
-          discountTiers={discountTiers}
-          showDiscountTiers={showDiscountTiers}
-          setShowDiscountTiers={setShowDiscountTiers}
-        />
         
         {/* Responsive Discount Tiers Section */}
         <div
           style={{
             marginTop: "15px",
             marginBottom: "25px",
-            background: isMobile ? "transparent" : "linear-gradient(to right, #F8FAFC, #F0F9FF)",
-            padding: "16px",
-            borderRadius: "8px",
+            background: isMobile ? "transparent" : "#FFFFFF",
+            padding: isMobile ? "16px 0" : "24px",
+            borderRadius: "12px",
+            boxShadow: isMobile ? "none" : "0 4px 12px rgba(0, 111, 238, 0.08)",
+            border: isMobile ? "none" : "1px solid #E6F4FF"
           }}
         >
           <div
@@ -473,17 +468,18 @@ export default function ProductsPage() {
               display: "flex",
               flexDirection: isMobile ? "column" : "row",
               justifyContent: "space-between",
-              gap: isMobile ? "12px" : "16px",
+              gap: isMobile ? "12px" : "0",
               position: "relative"
             }}
           >
             {discountTiers.map((tier, index) => {
               const isActive = currentDiscountTier === index;
+              const isApplicable = baseTotal >= tier.threshold;
               const tierOpacity = isActive ? 1 : 0.7;
               const borderColor = isActive ? tier.color : "#E6F4FF";
-              const bgIntensity = index === 0 ? "rgba(91, 159, 255, 0.05)" : 
-                                 index === 1 ? "rgba(0, 111, 238, 0.08)" : 
-                                 "rgba(0, 72, 172, 0.1)";
+              const bgColor = isActive ? tier.color : "#FFFFFF";
+              const textColor = isActive ? "#FFFFFF" : tier.color;
+              const checkmarkColor = isActive ? "#FFFFFF" : "#22C55E";
               
               return (
                 <React.Fragment key={index}>
@@ -492,9 +488,9 @@ export default function ProductsPage() {
                     <div
                       style={{
                         width: "1px",
-                        background: "#E2E8F0",
-                        alignSelf: "stretch",
-                        margin: "0 -8px"
+                        background: "#E6F4FF",
+                        height: "120px",
+                        alignSelf: "center"
                       }}
                     />
                   )}
@@ -513,14 +509,16 @@ export default function ProductsPage() {
                   <div
                     style={{
                       flex: 1,
-                      padding: isMobile ? "12px" : "16px",
-                      background: isMobile ? "white" : bgIntensity,
+                      padding: isMobile ? "16px" : "20px",
+                      background: isMobile ? (isActive ? bgColor : "white") : (isActive ? bgColor : "#F8FAFC"),
                       borderRadius: "8px",
                       border: isMobile ? `1px solid ${borderColor}` : "none",
-                      boxShadow: isMobile && isActive ? "0 2px 8px rgba(0, 111, 238, 0.1)" : "none",
+                      boxShadow: isActive ? "0 4px 12px rgba(0, 111, 238, 0.15)" : "none",
                       position: "relative",
-                      opacity: tierOpacity,
-                      transition: "all 0.3s ease"
+                      transition: "all 0.3s ease",
+                      textAlign: "center",
+                      cursor: "pointer",
+                      transform: isActive && !isMobile ? "scale(1.05)" : "scale(1)"
                     }}
                   >
                     {/* Left Border Indicator (Mobile Only) */}
@@ -538,23 +536,24 @@ export default function ProductsPage() {
                       />
                     )}
                     
-                    {/* Checkmark for Active Tier */}
-                    {isActive && (
+                    {/* Checkmark for Active/Applicable Tier */}
+                    {isApplicable && (
                       <div
                         style={{
                           position: "absolute",
-                          top: "12px",
-                          right: "12px",
-                          width: "20px",
-                          height: "20px",
+                          top: isMobile ? "8px" : "12px",
+                          right: isMobile ? "8px" : "12px",
+                          width: "24px",
+                          height: "24px",
                           borderRadius: "50%",
-                          background: tier.color,
+                          background: checkmarkColor,
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center"
+                          justifyContent: "center",
+                          boxShadow: isActive ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "0 2px 4px rgba(0, 0, 0, 0.05)"
                         }}
                       >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={isActive ? tier.color : "white"} strokeWidth="3">
                           <path d="M20 6L9 17l-5-5" />
                         </svg>
                       </div>
@@ -564,26 +563,27 @@ export default function ProductsPage() {
                       style={{
                         display: "flex",
                         flexDirection: isMobile ? "row" : "column",
-                        justifyContent: isMobile ? "space-between" : "flex-start",
-                        alignItems: isMobile ? "center" : "stretch",
-                        marginBottom: isMobile ? "0" : "8px"
+                        justifyContent: isMobile ? "space-between" : "center",
+                        alignItems: isMobile ? "center" : "center",
+                        marginBottom: isMobile ? "0" : "12px"
                       }}
                     >
                       <div
                         style={{
-                          fontSize: isMobile ? "16px" : "14px",
+                          fontSize: isMobile ? "16px" : "18px",
                           fontWeight: 600,
-                          color: isActive ? tier.color : "#003D88",
-                          marginBottom: isMobile ? "0" : "4px"
+                          color: textColor,
+                          marginBottom: isMobile ? "0" : "8px"
                         }}
                       >
                         ${tier.threshold.toLocaleString()}+
                       </div>
                       <div
                         style={{
-                          fontSize: isMobile ? "18px" : "24px",
-                          fontWeight: 700,
-                          color: tier.color
+                          fontSize: isMobile ? "20px" : "36px",
+                          fontWeight: 800,
+                          color: isActive ? "#FFFFFF" : tier.color,
+                          lineHeight: 1
                         }}
                       >
                         {tier.discount}
@@ -591,16 +591,29 @@ export default function ProductsPage() {
                     </div>
                     <div
                       style={{
-                        fontSize: "14px",
-                        color: "#5B9FFF",
-                        marginTop: isMobile ? "4px" : "0",
-                        whiteSpace: isMobile ? "nowrap" : "normal",
-                        overflow: isMobile ? "hidden" : "visible",
-                        textOverflow: isMobile ? "ellipsis" : "clip"
+                        fontSize: isMobile ? "13px" : "14px",
+                        color: isActive ? "rgba(255, 255, 255, 0.9)" : "#64748B",
+                        marginTop: isMobile ? "8px" : "0",
+                        lineHeight: 1.4,
+                        fontWeight: isActive ? 500 : 400
                       }}
                     >
                       {tier.description}
                     </div>
+                    {!isMobile && isActive && (
+                      <div
+                        style={{
+                          marginTop: "12px",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          color: "rgba(255, 255, 255, 0.9)",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.5px"
+                        }}
+                      >
+                        CURRENT TIER
+                      </div>
+                    )}
                   </div>
                 </React.Fragment>
               );
