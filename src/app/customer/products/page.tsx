@@ -285,18 +285,6 @@ export default function ProductsPage() {
           HEAVY-DUTY FLEXVOLT BATTERIES
         </h1>
 
-        <p
-          style={{
-            fontSize: isMobile ? "16px" : "18px",
-            maxWidth: "700px",
-            margin: "0 auto 16px auto",
-            lineHeight: 1.5,
-            opacity: 0.9,
-            fontWeight: 600,
-          }}
-        >
-          TOUGH, LONG-LASTING POWER | 45% SAVINGS | ZERO-DOWNTIME GUARANTEE
-        </p>
         
         <div style={{
           display: "flex",
@@ -691,50 +679,105 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              <button
-                onClick={() => router.push('/customer/payment')}
+              <div
                 style={{
-                  width: "100%",
-                  background: "linear-gradient(135deg, #006FEE 0%, #0084FF 100%)",
-                  color: "#FFFFFF",
-                  border: "none",
-                  borderRadius: "12px",
-                  padding: "18px",
-                  fontWeight: 700,
-                  fontSize: "18px",
-                  cursor: "pointer",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                  boxShadow: "0 4px 12px rgba(0, 111, 238, 0.2)",
-                  transition: "all 0.2s ease",
+                  flexDirection: isMobile ? "column" : "row",
+                  gap: "12px",
                   marginTop: "20px"
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-1px)';
-                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 111, 238, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.2)';
-                }}
               >
-                Proceed to Checkout
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                <button
+                  onClick={() => router.push('/customer/payment')}
+                  style={{
+                    flex: 1,
+                    background: "linear-gradient(135deg, #006FEE 0%, #0084FF 100%)",
+                    color: "#FFFFFF",
+                    border: "none",
+                    borderRadius: "12px",
+                    padding: "18px",
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    boxShadow: "0 4px 12px rgba(0, 111, 238, 0.2)",
+                    transition: "all 0.2s ease"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 111, 238, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.2)';
+                  }}
                 >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
+                  Proceed to Checkout
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+                
+                <button
+                  onClick={() => router.push('/customer/invoice')}
+                  style={{
+                    flex: 1,
+                    background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+                    color: "#FFFFFF",
+                    border: "none",
+                    borderRadius: "12px",
+                    padding: "18px",
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    boxShadow: "0 4px 12px rgba(16, 185, 129, 0.2)",
+                    transition: "all 0.2s ease"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(16, 185, 129, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.2)';
+                  }}
+                >
+                  Send Me An Invoice
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </button>
+              </div>
             </div>
           ) : (
             <div
@@ -932,23 +975,46 @@ export default function ProductsPage() {
               </div>
             </div>
             
-            <button
-              onClick={() => router.push('/customer/payment')}
-              style={{
-                width: '100%',
-                marginTop: '24px',
-                background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                padding: '16px',
-                fontSize: '16px',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Checkout
-            </button>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              marginTop: '24px'
+            }}>
+              <button
+                onClick={() => router.push('/customer/payment')}
+                style={{
+                  width: '100%',
+                  background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                Proceed to Checkout
+              </button>
+              
+              <button
+                onClick={() => router.push('/customer/invoice')}
+                style={{
+                  width: '100%',
+                  background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                Send Me An Invoice
+              </button>
+            </div>
           </div>
         </div>
       )}
