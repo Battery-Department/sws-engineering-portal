@@ -343,61 +343,12 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      {/* Quick Links - Moved here */}
+      {/* Products Section */}
       <div style={{
         padding: isMobile ? '16px' : '32px',
         maxWidth: '1400px',
         margin: '0 auto'
       }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
-          gap: '16px',
-          marginBottom: '32px'
-        }}>
-          {[
-            { text: 'View Orders', icon: ShoppingCart, href: '/customer/orders' },
-            { text: 'Dashboard', icon: Home, href: '/customer/dashboard' },
-            { text: 'Support Chat', icon: MessageCircle, href: '/customer/chat' },
-            { text: 'My Account', icon: User, href: '/customer/account' }
-          ].map((link, index) => (
-            <button
-              key={index}
-              onClick={() => router.push(link.href)}
-              style={{
-                background: 'white',
-                border: '1px solid #E6F4FF',
-                borderRadius: '12px',
-                padding: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                color: '#006FEE',
-                fontWeight: '600',
-                fontSize: '14px',
-                boxShadow: '0 2px 8px rgba(0, 111, 238, 0.05)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#F0F9FF';
-                e.currentTarget.style.borderColor = '#006FEE';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'white';
-                e.currentTarget.style.borderColor = '#E6F4FF';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 111, 238, 0.05)';
-              }}
-            >
-              <link.icon size={18} />
-              {link.text}
-            </button>
-          ))}
-        </div>
 
         {/* Battery Cards Grid */}
         <div style={{
@@ -506,6 +457,156 @@ export default function ProductsPage() {
           showDiscountTiers={showDiscountTiers}
           setShowDiscountTiers={setShowDiscountTiers}
         />
+        
+        {/* Responsive Discount Tiers Section */}
+        <div
+          style={{
+            marginTop: "15px",
+            marginBottom: "25px",
+            background: isMobile ? "transparent" : "linear-gradient(to right, #F8FAFC, #F0F9FF)",
+            padding: "16px",
+            borderRadius: "8px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              justifyContent: "space-between",
+              gap: isMobile ? "12px" : "16px",
+              position: "relative"
+            }}
+          >
+            {discountTiers.map((tier, index) => {
+              const isActive = currentDiscountTier === index;
+              const tierOpacity = isActive ? 1 : 0.7;
+              const borderColor = isActive ? tier.color : "#E6F4FF";
+              const bgIntensity = index === 0 ? "rgba(91, 159, 255, 0.05)" : 
+                                 index === 1 ? "rgba(0, 111, 238, 0.08)" : 
+                                 "rgba(0, 72, 172, 0.1)";
+              
+              return (
+                <React.Fragment key={index}>
+                  {/* Desktop Vertical Divider */}
+                  {!isMobile && index > 0 && (
+                    <div
+                      style={{
+                        width: "1px",
+                        background: "#E2E8F0",
+                        alignSelf: "stretch",
+                        margin: "0 -8px"
+                      }}
+                    />
+                  )}
+                  
+                  {/* Mobile Horizontal Separator */}
+                  {isMobile && index > 0 && (
+                    <div
+                      style={{
+                        height: "1px",
+                        background: "#E2E8F0",
+                        margin: "0"
+                      }}
+                    />
+                  )}
+                  
+                  <div
+                    style={{
+                      flex: 1,
+                      padding: isMobile ? "12px" : "16px",
+                      background: isMobile ? "white" : bgIntensity,
+                      borderRadius: "8px",
+                      border: isMobile ? `1px solid ${borderColor}` : "none",
+                      boxShadow: isMobile && isActive ? "0 2px 8px rgba(0, 111, 238, 0.1)" : "none",
+                      position: "relative",
+                      opacity: tierOpacity,
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    {/* Left Border Indicator (Mobile Only) */}
+                    {isMobile && isActive && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          width: "3px",
+                          background: tier.color,
+                          borderRadius: "8px 0 0 8px"
+                        }}
+                      />
+                    )}
+                    
+                    {/* Checkmark for Active Tier */}
+                    {isActive && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "12px",
+                          right: "12px",
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                          background: tier.color,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                      </div>
+                    )}
+                    
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: isMobile ? "row" : "column",
+                        justifyContent: isMobile ? "space-between" : "flex-start",
+                        alignItems: isMobile ? "center" : "stretch",
+                        marginBottom: isMobile ? "0" : "8px"
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: isMobile ? "16px" : "14px",
+                          fontWeight: 600,
+                          color: isActive ? tier.color : "#003D88",
+                          marginBottom: isMobile ? "0" : "4px"
+                        }}
+                      >
+                        ${tier.threshold.toLocaleString()}+
+                      </div>
+                      <div
+                        style={{
+                          fontSize: isMobile ? "18px" : "24px",
+                          fontWeight: 700,
+                          color: tier.color
+                        }}
+                      >
+                        {tier.discount}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        color: "#5B9FFF",
+                        marginTop: isMobile ? "4px" : "0",
+                        whiteSpace: isMobile ? "nowrap" : "normal",
+                        overflow: isMobile ? "hidden" : "visible",
+                        textOverflow: isMobile ? "ellipsis" : "clip"
+                      }}
+                    >
+                      {tier.description}
+                    </div>
+                  </div>
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
         
         {/* Order Summary and Checkout Section */}
         <div
@@ -688,20 +789,6 @@ export default function ProductsPage() {
         }}>
           <PaymentLogos />
           
-          {/* Secure Checkout Section - Moved here */}
-          <div style={{
-            padding: '12px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '16px',
-            background: '#F8FAFC',
-            borderBottom: '1px solid #E6F4FF'
-          }}>
-            <span style={{ fontSize: '14px', color: '#6B7280', marginRight: '8px' }}>
-              Your payment information is encrypted and secure. We accept all major payment methods.
-            </span>
-          </div>
 
           {/* Customer Support Section - Moved to bottom */}
           <div style={{
