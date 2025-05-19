@@ -84,6 +84,9 @@ export default function InvoicePage() {
   // Generate invoice number
   const invoiceNumber = `INV-${today.getFullYear()}-${Math.floor(Math.random() * 9000) + 1000}`;
   
+  // Create payment reference number for accounting systems
+  const paymentReference = `BD-${today.getFullYear()}${(today.getMonth() + 1).toString().padStart(2, '0')}${today.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 1000) + 1000}`;
+  
   const handlePrint = () => {
     window.print();
   };
@@ -190,6 +193,7 @@ export default function InvoicePage() {
               }}>
                 <p style={{ margin: '2px 0' }}>1250 Industrial Parkway</p>
                 <p style={{ margin: '2px 0' }}>Chicago, IL 60642</p>
+                <p style={{ margin: '2px 0' }}>Tax ID: 87-1234567</p>
                 <p style={{ margin: '2px 0' }}>support@batterydepartment.com</p>
                 <p style={{ margin: '2px 0' }}>(312) 555-7890</p>
               </div>
@@ -303,6 +307,13 @@ export default function InvoicePage() {
                     fontSize: '14px',
                     fontWeight: '600',
                     color: '#64748B'
+                  }}>SKU</th>
+                  <th style={{
+                    textAlign: 'left',
+                    padding: '12px 16px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    color: '#64748B'
                   }}>Item Description</th>
                   <th style={{
                     textAlign: 'center',
@@ -324,38 +335,27 @@ export default function InvoicePage() {
                     fontSize: '14px',
                     fontWeight: '600',
                     color: '#64748B'
-                  }}>Original</th>
-                  <th style={{
-                    textAlign: 'right',
-                    padding: '12px 16px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#64748B'
-                  }}>Savings</th>
-                  <th style={{
-                    textAlign: 'right',
-                    padding: '12px 16px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#64748B'
                   }}>Amount</th>
                 </tr>
               </thead>
               <tbody>
                 {invoiceData.items.map((item: any, index: number) => {
-                  const savings = Math.round(((item.originalPrice - item.unitPrice) / item.originalPrice) * 100);
+                  const sku = `BD-FV${item.type}-PRO`;
                   return (
                     <tr key={index} style={{ borderBottom: '1px solid #E6F4FF' }}>
+                      <td style={{ padding: '16px', color: '#64748B', fontFamily: 'monospace' }}>
+                        {sku}
+                      </td>
                       <td style={{ padding: '16px' }}>
                         <div style={{ fontWeight: '600', color: '#0A051E' }}>
-                          FlexVolt {item.type} Battery
+                          Battery Department FlexVolt {item.type} Professional Series
                         </div>
                         <div style={{
                           fontSize: '12px',
-                          color: '#10B981',
+                          color: '#64748B',
                           marginTop: '4px'
                         }}>
-                          Compatible with all DeWalt 20V/60V tools
+                          Compatible with DeWalt® 20V/60V Tools - USA Made
                         </div>
                       </td>
                       <td style={{
@@ -368,17 +368,6 @@ export default function InvoicePage() {
                         textAlign: 'right',
                         color: '#0A051E'
                       }}>${item.unitPrice.toFixed(2)}</td>
-                      <td style={{
-                        padding: '16px',
-                        textAlign: 'right',
-                        color: '#64748B'
-                      }}>${item.originalPrice.toFixed(2)}</td>
-                      <td style={{
-                        padding: '16px',
-                        textAlign: 'right',
-                        color: '#10B981',
-                        fontWeight: '600'
-                      }}>Save {savings}%</td>
                       <td style={{
                         padding: '16px',
                         textAlign: 'right',
@@ -447,7 +436,40 @@ export default function InvoicePage() {
             </div>
           </div>
           
-          {/* Terms & Warranty */}
+          {/* Payment Reference for Accounting */}
+          <div style={{
+            background: '#E6F4FF',
+            padding: '16px',
+            borderRadius: '8px',
+            marginBottom: '24px',
+            border: '1px solid #BAE0FF'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px'
+            }}>
+              <div>
+                <span style={{ fontSize: '14px', color: '#64748B', fontWeight: '600' }}>
+                  Purchase Order Reference:
+                </span>
+                <span style={{ marginLeft: '8px', fontSize: '14px', color: '#0A051E', fontFamily: 'monospace' }}>
+                  _________________________
+                </span>
+              </div>
+              <div>
+                <span style={{ fontSize: '14px', color: '#64748B', fontWeight: '600' }}>
+                  Payment Reference:
+                </span>
+                <span style={{ marginLeft: '8px', fontSize: '14px', color: '#0A051E', fontFamily: 'monospace', fontWeight: '600' }}>
+                  {paymentReference}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Terms & Legal Information */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
@@ -463,13 +485,16 @@ export default function InvoicePage() {
                 textTransform: 'uppercase'
               }}>Payment Terms</h4>
               <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '4px' }}>
-                Payment due within 30 days
+                NET 30 - Payment due within 30 days of invoice date
               </p>
               <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '4px' }}>
-                Make checks payable to: Battery Department LLC
+                ACH/Wire: Contact accounting@batterydepartment.com
               </p>
-              <p style={{ fontSize: '14px', color: '#64748B' }}>
-                For wire transfers, please contact accounting
+              <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '4px' }}>
+                Check payable to: Battery Department LLC
+              </p>
+              <p style={{ fontSize: '13px', color: '#64748B', fontWeight: '600' }}>
+                Tax ID: 87-1234567
               </p>
             </div>
             <div>
@@ -479,16 +504,63 @@ export default function InvoicePage() {
                 color: '#64748B',
                 marginBottom: '8px',
                 textTransform: 'uppercase'
-              }}>Warranty Information</h4>
+              }}>Product Warranty & Legal</h4>
               <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '4px' }}>
                 <span style={{ color: '#10B981', fontWeight: '600' }}>
-                  ZERO-HASSLE REPLACEMENTS - NO QUESTIONS ASKED
+                  12-MONTH WARRANTY - NO QUESTIONS ASKED
                 </span>
               </p>
-              <p style={{ fontSize: '14px', color: '#64748B' }}>
-                All products include 12-month warranty from date of purchase
+              <p style={{ fontSize: '13px', color: '#64748B', marginBottom: '4px' }}>
+                Warranty covers Battery Department batteries only
+              </p>
+              <p style={{ fontSize: '13px', color: '#64748B' }}>
+                Compatible with DeWalt® tools - Will not void tool warranty
               </p>
             </div>
+          </div>
+
+          {/* Legal Disclaimer */}
+          <div style={{
+            background: '#FFF7ED',
+            border: '1px solid #FED7AA',
+            borderRadius: '8px',
+            padding: '16px',
+            marginBottom: '32px'
+          }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: '700',
+              color: '#EA580C',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              IMPORTANT LEGAL NOTICE
+            </h4>
+            <p style={{
+              fontSize: '13px',
+              color: '#7C2D12',
+              lineHeight: '1.5',
+              marginBottom: '6px'
+            }}>
+              <strong>Battery Department LLC is not affiliated with DeWalt®, Stanley Black & Decker, or their subsidiaries.</strong>
+              DeWalt® is a registered trademark of Stanley Black & Decker, Inc. and is used solely for compatibility reference.
+            </p>
+            <p style={{
+              fontSize: '13px',
+              color: '#7C2D12',
+              lineHeight: '1.5'
+            }}>
+              Battery Department LLC manufactures and sells its own brand of premium replacement batteries. 
+              All products are made in the USA and designed for compatibility with DeWalt® 20V and 60V tools.
+              Our warranty covers only the batteries we supply and does not extend to any power tool equipment.
+            </p>
           </div>
           
           {/* Actions */}

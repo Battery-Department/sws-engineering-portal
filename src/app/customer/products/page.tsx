@@ -856,6 +856,56 @@ export default function ProductsPage() {
         </div>
 
         {/* Payment Info - Moved to bottom as requested */}
+        {/* Legal Disclaimer */}
+        <div style={{
+          marginTop: '32px',
+          marginBottom: '32px',
+          background: '#FFF7ED',
+          border: '1px solid #FED7AA',
+          borderRadius: '12px',
+          padding: '20px'
+        }}>
+          <h4 style={{
+            fontSize: '16px',
+            fontWeight: '700',
+            color: '#EA580C',
+            marginBottom: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA580C" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            IMPORTANT PRODUCT INFORMATION
+          </h4>
+          <p style={{
+            fontSize: '14px',
+            color: '#7C2D12',
+            lineHeight: '1.6',
+            marginBottom: '8px'
+          }}>
+            <strong>Battery Department LLC is not affiliated with DeWalt® or Stanley Black & Decker.</strong> We are an independent OEM supplier manufacturing our own brand of premium batteries that are compatible with DeWalt® 20V and 60V tools.
+          </p>
+          <p style={{
+            fontSize: '14px',
+            color: '#7C2D12',
+            lineHeight: '1.6',
+            marginBottom: '8px'
+          }}>
+            <strong>Product Origin:</strong> All batteries are manufactured and shipped from the USA.
+          </p>
+          <p style={{
+            fontSize: '14px',
+            color: '#7C2D12',
+            lineHeight: '1.6'
+          }}>
+            <strong>Warranty Coverage:</strong> Our 12-month warranty covers only the batteries we supply. We do not provide warranty coverage for DeWalt® tools. Using our batteries will not void your DeWalt® tool warranty. If any battery becomes faulty within 12 months, we will repair or replace it - no questions asked.
+          </p>
+        </div>
+
         <div style={{
           marginTop: '40px',
           paddingTop: '40px',
