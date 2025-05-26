@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Send, Plus, Search, Menu, X, Trash2, Battery, Sparkles, Upload, Paperclip, Image as ImageIcon, Package } from 'lucide-react'
+import { Send, Plus, Search, Menu, X, Trash2, Battery, Sparkles, Upload, Paperclip, Image as ImageIcon, Package, Zap, Clock, Shield, DollarSign, Award, TrendingUp, Wrench } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { lithiIntegration } from '@/services/integrations/lithi-integration'
 
@@ -29,6 +29,7 @@ export default function LithiChatPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [hoveredConv, setHoveredConv] = useState<string | null>(null)
+  const [hoveredQuickAction, setHoveredQuickAction] = useState<number | null>(null)
   const [showWelcome, setShowWelcome] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -93,20 +94,21 @@ export default function LithiChatPage() {
     setCurrentConversation(newConversation)
   }
 
-  const sendMessage = async () => {
-    if (!inputMessage.trim() || isLoading) return
+  const sendMessage = async (message?: string) => {
+    const messageToSend = message || inputMessage
+    if (!messageToSend.trim() || isLoading) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputMessage.trim(),
+      content: messageToSend.trim(),
       timestamp: new Date()
     }
 
     // Update current conversation
     const updatedConversation = currentConversation || {
       id: Date.now().toString(),
-      title: inputMessage.substring(0, 30) + '...',
+      title: messageToSend.substring(0, 30) + '...',
       messages: [],
       createdAt: new Date(),
       updatedAt: new Date()
@@ -117,7 +119,7 @@ export default function LithiChatPage() {
 
     // Update title if it's the first message
     if (updatedConversation.messages.length === 1) {
-      updatedConversation.title = inputMessage.substring(0, 30) + (inputMessage.length > 30 ? '...' : '')
+      updatedConversation.title = messageToSend.substring(0, 30) + (messageToSend.length > 30 ? '...' : '')
     }
 
     // Update state
@@ -131,99 +133,202 @@ export default function LithiChatPage() {
       
       // Generate contextual response based on keywords
       let responseContent = ''
-      const lowerInput = inputMessage.toLowerCase()
+      const lowerInput = messageToSend.toLowerCase()
       
-      if (lowerInput.includes('battery') || lowerInput.includes('batteries')) {
-        responseContent = `I'd be happy to help you find the perfect battery solution! 🔋
+      if (lowerInput.includes('find batteries') || lowerInput.includes('battery') || lowerInput.includes('flexvolt')) {
+        responseContent = `I'd be happy to help you find the perfect FlexVolt battery solution! 🔋
 
-Based on your needs, here are our **top recommendations**:
+Based on your needs, here are our **top FlexVolt recommendations**:
 
-**LithiPro 150Ah Battery**
-- **Capacity**: 150Ah at 12V
-- **Best for**: Professional contractors and high-demand applications
-- **Runtime**: Up to 12 hours of continuous heavy-duty use
-- **Price**: $599 (Save $100 off regular price)
-- **Warranty**: 5-year comprehensive coverage
+**9Ah FlexVolt Battery** ⭐ Most Popular
+- **Capacity**: 9Ah at 20V/60V MAX
+- **Runtime**: Up to 6.5 hours continuous use
+- **Work Output**: 340 screws / 260 ft cuts
+- **Charging Time**: 55 minutes with fast charger
+- **Price**: $125 (Save $124 off MSRP)
+- **Weight**: Only 2.4 lbs
 
-**PowerMax 100Ah Battery**
-- **Capacity**: 100Ah at 12V  
-- **Best for**: Standard construction tools and equipment
-- **Runtime**: 8-10 hours typical usage
-- **Price**: $399 (Best value option)
-- **Warranty**: 3-year protection
+**15Ah FlexVolt Battery** 💪 Maximum Power
+- **Capacity**: 15Ah at 20V/60V MAX
+- **Runtime**: Up to 10 hours heavy-duty use
+- **Work Output**: 560 screws / 430 ft cuts
+- **Charging Time**: 90 minutes
+- **Price**: $245 (Save $134 off MSRP)
+- **Weight**: 3.2 lbs
 
-**Key Benefits**:
-- 🚀 **Fast charging** - 80% charge in just 45 minutes
-- 🛡️ **Built tough** - IP67 weatherproof rating
-- 📱 **Smart BMS** - Monitor battery health via mobile app
-- ♻️ **Eco-friendly** - 95% recyclable components
+**6Ah FlexVolt Battery** 🎯 Compact Power
+- **Capacity**: 6Ah at 20V/60V MAX
+- **Runtime**: Up to 4 hours
+- **Work Output**: 225 screws / 175 ft cuts
+- **Charging Time**: 45 minutes
+- **Price**: $95 (Save $74 off MSRP)
+- **Weight**: 1.9 lbs ultra-light
 
-Would you like me to help you calculate the exact battery capacity needed for your specific tools?`
+**Key FlexVolt Benefits**:
+- ⚡ **Automatic Voltage Switching** - Works with all 20V and 60V MAX tools
+- 🛡️ **3-Year Warranty** - Industry-leading protection
+- 🌡️ **Temperature Management** - Performs in extreme conditions
+- 📱 **Tool Connect** - Optional Bluetooth tracking
+
+Would you like me to help calculate the exact battery configuration for your crew size?`
       } else if (lowerInput.includes('help') || lowerInput.includes('support')) {
         responseContent = `Welcome to Battery Department Support! I'm here to assist you 24/7. 
 
 **How can I help you today?**
 
 **🛒 Orders & Shipping**
-- Track your order status
+- Track your FlexVolt order status
 - Modify or cancel orders
-- Check delivery times
-- Return or exchange products
+- Express shipping options
+- Bulk order processing
 
-**🔋 Product Support**
-- Find the right battery for your needs
-- Technical specifications
-- Compatibility checking
-- Warranty information
+**🔋 FlexVolt Product Support**
+- Battery compatibility guide
+- Runtime calculations
+- Tool recommendations
+- Warranty claims
 
 **💡 Technical Assistance**
-- Installation guides
+- Charging best practices
+- Storage guidelines
 - Troubleshooting tips
-- Safety guidelines
-- Maintenance advice
+- Safety protocols
 
-**💰 Billing & Account**
-- Payment questions
-- Account management
-- Bulk order discounts
-- Invoice requests
+**💰 Contractor Benefits**
+- Volume discounts (10-20% off)
+- Net 30 payment terms
+- Dedicated account manager
+- Priority support
 
-Just let me know what you need help with, and I'll provide detailed assistance right away!`
+**📊 Fleet Management**
+- Battery tracking solutions
+- Usage analytics
+- Replacement planning
+- Cost optimization
+
+Just let me know what you need help with, and I'll provide expert assistance right away!`
+      } else if (lowerInput.includes('runtime') || lowerInput.includes('how long')) {
+        responseContent = `Let me calculate FlexVolt runtime for your tools! ⚡
+
+**FlexVolt Runtime Guide:**
+
+**Light-Duty Tools** (Drills, Impact Drivers)
+- **6Ah**: 3-4 hours continuous
+- **9Ah**: 5-6.5 hours continuous
+- **15Ah**: 8-10 hours continuous
+
+**Medium-Duty Tools** (Circular Saws, Grinders)
+- **6Ah**: 45-60 minutes active cutting
+- **9Ah**: 75-90 minutes active cutting
+- **15Ah**: 2-2.5 hours active cutting
+
+**Heavy-Duty Tools** (Table Saws, Miter Saws)
+- **6Ah**: 175 cuts per charge
+- **9Ah**: 260 cuts per charge
+- **15Ah**: 430 cuts per charge
+
+**Pro Tips for Maximum Runtime**:
+- 🔄 Rotate batteries to prevent overheating
+- ❄️ Store batteries at room temperature
+- 🔌 Use DCB118 Fast Charger for quick turnaround
+- 📊 Track usage with Tool Connect app
+
+**Need a specific calculation?** Tell me:
+1. Which tools you're using
+2. Your typical daily usage
+3. Crew size
+
+I'll recommend the perfect battery configuration!`
       } else if (lowerInput.includes('order') || lowerInput.includes('track')) {
-        responseContent = `I'll help you track your order! 📦
+        responseContent = `I'll help you track your FlexVolt order! 📦
 
 **Your Recent Orders:**
 
-**Order #ORD-2024-005** - Delivered ✅
-- 2x LithiPro 150Ah Battery
-- 2x Smart BMS Module
-- Delivered on May 24, 2025
+**Order #FV-2024-005** - Delivered ✅
+- 2× 9Ah FlexVolt Battery
+- 2× 15Ah FlexVolt Battery
+- 1× DCB118 Fast Charger
+- Total: $745 (Saved $486)
 - **Tracking**: 1Z999AA10123456784
 
-**Order #ORD-2024-004** - In Transit 🚚
-- 3x PowerMax 100Ah Battery
-- Expected delivery: May 27, 2025
+**Order #FV-2024-004** - In Transit 🚚
+- 5× 6Ah FlexVolt Battery
+- 3× 9Ah FlexVolt Battery
+- Expected delivery: Tomorrow by 5 PM
 - **Tracking**: 1Z999AA10123456783
 
-To track a specific order, you can:
-1. Visit the **Order History** page
-2. Enter your tracking number at our carrier's website
-3. Call our support line at 1-800-BATTERY
+**Quick Actions:**
+- 📱 Get SMS delivery updates
+- 🔄 Reorder favorite items
+- 📄 Download invoices
+- 💬 Contact your account manager
 
-**Need to make changes?** Orders can be modified within 2 hours of placement. Let me know if you need to update anything!`
+**Contractor Perks Active**:
+- 15% volume discount applied
+- Free next-day shipping
+- Extended 30-day returns
+- Priority customer support
+
+Need to modify an order? Orders can be changed within 2 hours of placement. Let me know!`
+      } else if (lowerInput.includes('recommend') || lowerInput.includes('crew') || lowerInput.includes('package')) {
+        responseContent = `Let me recommend the perfect FlexVolt package for your crew! 👷‍♂️
+
+**Popular Crew Packages:**
+
+**🏆 MID-SIZE CREW PACKAGE** (Most Popular)
+*Perfect for 4-6 person crews*
+- 10× 6Ah FlexVolt batteries
+- 10× 9Ah FlexVolt batteries  
+- 5× 15Ah FlexVolt batteries
+- **224 total runtime hours**
+- **Price**: $4,425 (Save $1,105)
+- ✅ Covers all tool types
+- ✅ No downtime guarantee
+
+**⚡ STARTER CREW PACKAGE**
+*Ideal for 1-3 person teams*
+- 2× 6Ah FlexVolt batteries
+- 2× 9Ah FlexVolt batteries
+- 2× 15Ah FlexVolt batteries
+- **64 total runtime hours**
+- **Price**: $1,270 (Save $379)
+- ✅ Residential contractor favorite
+
+**💪 LARGE CREW PACKAGE**
+*Built for 10+ person operations*
+- 20× 9Ah FlexVolt batteries
+- 10× 15Ah FlexVolt batteries
+- 5× DCB118 Fast Chargers
+- **380 total runtime hours**
+- **Price**: $6,995 (Save $2,430)
+- ✅ Commercial project ready
+- ✅ Dedicated support included
+
+**Volume Discounts**:
+- $1,000+: 10% off
+- $2,500+: 15% off
+- $5,000+: 20% off
+
+Which crew size should I calculate for?`
       } else {
-        responseContent = `Thanks for reaching out! I'm your Battery Department AI assistant, ready to help you power up your projects. ⚡
+        responseContent = `Thanks for reaching out! I'm your FlexVolt expert, ready to help you power up your projects. ⚡
 
 **Here's what I can help you with:**
 
-• **Find the perfect battery** - Tell me about your tools and usage
+• **Find FlexVolt batteries** - Match batteries to your DeWalt tools
 • **Calculate runtime** - Get accurate estimates for your equipment  
-• **Compare products** - Side-by-side battery comparisons
+• **Compare products** - 6Ah vs 9Ah vs 15Ah detailed comparison
 • **Track orders** - Real-time shipping updates
-• **Technical support** - Installation and troubleshooting help
-• **Bulk pricing** - Special rates for contractors
+• **Technical support** - Charging, storage, and troubleshooting
+• **Bulk pricing** - Contractor discounts up to 20% off
 
-What would you like to know more about? Feel free to ask me anything about our battery products or services!`
+**Quick FlexVolt Facts**:
+- 🔋 Works with ALL DeWalt 20V MAX and 60V MAX tools
+- ⚡ Automatic voltage switching technology
+- 🏆 #1 contractor choice for reliability
+- 🛡️ 3-year warranty + free replacement
+
+What would you like to know more about? Feel free to ask me anything about FlexVolt batteries!`
       }
       
       const assistantMessage: Message = {
@@ -283,6 +388,37 @@ What would you like to know more about? Feel free to ask me anything about our b
     }
   }
 
+  const quickActions = [
+    { 
+      icon: Battery, 
+      text: 'Find batteries', 
+      color: '#006FEE',
+      bgColor: '#E6F4FF',
+      hoverBg: '#C3E7FF'
+    },
+    { 
+      icon: Clock, 
+      text: 'Calculate runtime', 
+      color: '#7C3AED',
+      bgColor: '#EDE9FE',
+      hoverBg: '#DDD6FE'
+    },
+    { 
+      icon: Package, 
+      text: 'Track orders', 
+      color: '#059669',
+      bgColor: '#D1FAE5',
+      hoverBg: '#A7F3D0'
+    },
+    { 
+      icon: TrendingUp, 
+      text: 'Get recommendations', 
+      color: '#DC2626',
+      bgColor: '#FEE2E2',
+      hoverBg: '#FECACA'
+    }
+  ]
+
   return (
     <div style={{
       display: 'flex',
@@ -292,30 +428,30 @@ What would you like to know more about? Feel free to ask me anything about our b
     }}>
       {/* Sidebar */}
       <div style={{
-        width: isSidebarOpen ? '280px' : '0px',
+        width: isSidebarOpen ? '300px' : '0px',
         backgroundColor: 'white',
-        borderRight: '2px solid #E6F4FF',
+        borderRight: '1px solid #E5E7EB',
         transition: 'width 0.3s ease',
         overflow: 'hidden',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        boxShadow: '2px 0 8px rgba(0, 0, 0, 0.04)'
       }}>
         {/* Sidebar Header */}
         <div style={{
-          padding: '20px',
-          borderBottom: '2px solid #E6F4FF',
-          background: 'linear-gradient(to bottom, #FFFFFF, #F8FAFC)'
+          padding: '24px 20px',
+          borderBottom: '1px solid #E5E7EB'
         }}>
           <button
             onClick={createNewConversation}
             style={{
               width: '100%',
-              padding: '12px 16px',
+              padding: '14px 20px',
               backgroundColor: '#006FEE',
               border: 'none',
-              borderRadius: '8px',
+              borderRadius: '10px',
               color: 'white',
-              fontSize: '14px',
+              fontSize: '15px',
               fontWeight: '600',
               cursor: 'pointer',
               display: 'flex',
@@ -323,33 +459,33 @@ What would you like to know more about? Feel free to ask me anything about our b
               justifyContent: 'center',
               gap: '8px',
               transition: 'all 0.2s ease',
-              boxShadow: '0 2px 4px rgba(0, 111, 238, 0.2)'
+              boxShadow: '0 2px 8px rgba(0, 111, 238, 0.25)'
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.backgroundColor = '#0050B3'
               e.currentTarget.style.transform = 'translateY(-1px)'
-              e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 111, 238, 0.3)'
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.35)'
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.backgroundColor = '#006FEE'
               e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 111, 238, 0.2)'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 111, 238, 0.25)'
             }}
           >
-            <Plus size={18} />
+            <Plus size={20} strokeWidth={2.5} />
             New Conversation
           </button>
         </div>
 
         {/* Search */}
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: '16px 20px' }}>
           <div style={{ position: 'relative' }}>
             <Search size={18} style={{
               position: 'absolute',
-              left: '12px',
+              left: '14px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: '#5B6B7D'
+              color: '#6B7280'
             }} />
             <input
               type="text"
@@ -358,9 +494,9 @@ What would you like to know more about? Feel free to ask me anything about our b
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '10px 10px 10px 40px',
-                backgroundColor: '#F8FAFC',
-                border: '2px solid #E6F4FF',
+                padding: '12px 12px 12px 44px',
+                backgroundColor: '#F9FAFB',
+                border: '1px solid #E5E7EB',
                 borderRadius: '8px',
                 fontSize: '14px',
                 color: '#111827',
@@ -370,10 +506,12 @@ What would you like to know more about? Feel free to ask me anything about our b
               onFocus={(e) => {
                 e.target.style.borderColor = '#006FEE'
                 e.target.style.backgroundColor = 'white'
+                e.target.style.boxShadow = '0 0 0 3px rgba(0, 111, 238, 0.1)'
               }}
               onBlur={(e) => {
-                e.target.style.borderColor = '#E6F4FF'
-                e.target.style.backgroundColor = '#F8FAFC'
+                e.target.style.borderColor = '#E5E7EB'
+                e.target.style.backgroundColor = '#F9FAFB'
+                e.target.style.boxShadow = 'none'
               }}
             />
           </div>
@@ -383,34 +521,32 @@ What would you like to know more about? Feel free to ask me anything about our b
         <div style={{
           flex: 1,
           overflowY: 'auto',
-          padding: '8px'
+          padding: '8px 12px'
         }}>
           {filteredConversations.map(conv => (
             <div
               key={conv.id}
               onClick={() => setCurrentConversation(conv)}
               style={{
-                padding: '12px 16px',
+                padding: '14px 16px',
                 marginBottom: '4px',
-                backgroundColor: currentConversation?.id === conv.id ? '#E6F4FF' : 'transparent',
-                borderRadius: '8px',
+                backgroundColor: currentConversation?.id === conv.id ? '#EFF6FF' : 'transparent',
+                borderRadius: '10px',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                border: '2px solid transparent',
-                transform: hoveredConv === conv.id ? 'translateX(4px)' : 'translateX(0)'
+                border: currentConversation?.id === conv.id ? '1px solid #DBEAFE' : '1px solid transparent',
+                transform: hoveredConv === conv.id && currentConversation?.id !== conv.id ? 'translateX(4px)' : 'translateX(0)'
               }}
               onMouseEnter={() => setHoveredConv(conv.id)}
               onMouseLeave={() => setHoveredConv(null)}
               onMouseOver={(e) => {
                 if (currentConversation?.id !== conv.id) {
-                  e.currentTarget.style.backgroundColor = '#F8FAFC'
-                  e.currentTarget.style.borderColor = '#E6F4FF'
+                  e.currentTarget.style.backgroundColor = '#F9FAFB'
                 }
               }}
               onMouseOut={(e) => {
                 if (currentConversation?.id !== conv.id) {
                   e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.borderColor = 'transparent'
                 }
               }}
             >
@@ -433,7 +569,7 @@ What would you like to know more about? Feel free to ask me anything about our b
                   </div>
                   <div style={{
                     fontSize: '12px',
-                    color: '#5B6B7D'
+                    color: '#6B7280'
                   }}>
                     {new Date(conv.updatedAt).toLocaleDateString()}
                   </div>
@@ -445,16 +581,15 @@ What would you like to know more about? Feel free to ask me anything about our b
                       deleteConversation(conv.id)
                     }}
                     style={{
-                      padding: '4px',
+                      padding: '6px',
                       border: 'none',
                       background: 'none',
                       cursor: 'pointer',
-                      color: '#DC2626',
-                      opacity: 0.7,
-                      transition: 'opacity 0.2s'
+                      color: '#EF4444',
+                      opacity: 0,
+                      transition: 'opacity 0.2s',
+                      animation: 'fadeIn 0.2s forwards'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
-                    onMouseOut={(e) => e.currentTarget.style.opacity = '0.7'}
                   >
                     <Trash2 size={16} />
                   </button>
@@ -469,16 +604,19 @@ What would you like to know more about? Feel free to ask me anything about our b
       <div style={{
         flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        position: 'relative'
       }}>
         {/* Header */}
         <header style={{
-          background: 'linear-gradient(to right, #006FEE, #0050B3)',
-          padding: '20px 32px',
+          background: 'linear-gradient(135deg, #006FEE 0%, #0050B3 100%)',
+          padding: '20px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          boxShadow: '0 2px 8px rgba(0, 111, 238, 0.15)'
+          boxShadow: '0 2px 12px rgba(0, 111, 238, 0.15)',
+          position: 'relative',
+          zIndex: 10
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button
@@ -486,41 +624,45 @@ What would you like to know more about? Feel free to ask me anything about our b
               style={{
                 padding: '8px',
                 border: 'none',
-                background: 'rgba(255, 255, 255, 0.2)',
+                background: 'rgba(255, 255, 255, 0.15)',
                 borderRadius: '8px',
                 cursor: 'pointer',
                 color: 'white',
-                transition: 'all 0.2s'
+                transition: 'all 0.2s',
+                backdropFilter: 'blur(10px)'
               }}
-              onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'}
-              onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+              onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'}
+              onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'}
             >
-              {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+              {isSidebarOpen ? <X size={20} strokeWidth={2.5} /> : <Menu size={20} strokeWidth={2.5} />}
             </button>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
+                width: '42px',
+                height: '42px',
+                borderRadius: '12px',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}>
-                <Sparkles size={24} style={{ color: 'white' }} />
+                <Sparkles size={24} style={{ color: 'white' }} strokeWidth={2.5} />
               </div>
               <div>
                 <h1 style={{
                   fontSize: '20px',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   color: 'white',
-                  margin: 0
+                  margin: 0,
+                  letterSpacing: '-0.02em'
                 }}>
                   Lithi AI Assistant
                 </h1>
                 <p style={{
                   fontSize: '14px',
-                  color: 'rgba(255, 255, 255, 0.8)',
+                  color: 'rgba(255, 255, 255, 0.9)',
                   margin: 0
                 }}>
                   Your Battery Expert
@@ -533,18 +675,20 @@ What would you like to know more about? Feel free to ask me anything about our b
             alignItems: 'center',
             gap: '12px'
           }}>
-            <span style={{ color: 'white', fontSize: '14px' }}>Mike Johnson</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px' }}>Mike Johnson</span>
             <div style={{
               width: '40px',
               height: '40px',
               borderRadius: '50%',
               backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(10px)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: 'white',
               fontWeight: '600',
-              fontSize: '16px'
+              fontSize: '16px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
             }}>
               MJ
             </div>
@@ -555,83 +699,101 @@ What would you like to know more about? Feel free to ask me anything about our b
         <div style={{
           flex: 1,
           overflowY: 'auto',
-          padding: '32px 0',
-          backgroundColor: '#F8FAFC'
+          backgroundColor: '#F8FAFC',
+          position: 'relative'
         }}>
           {showWelcome && (
             <div style={{
-              maxWidth: '600px',
+              maxWidth: '800px',
               margin: '0 auto',
-              padding: '0 24px',
-              textAlign: 'center',
-              marginTop: '60px'
+              padding: '60px 24px 40px',
+              textAlign: 'center'
             }}>
               <div style={{
-                width: '80px',
-                height: '80px',
-                borderRadius: '20px',
+                width: '88px',
+                height: '88px',
+                borderRadius: '24px',
                 background: 'linear-gradient(135deg, #006FEE, #0050B3)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '0 auto 24px',
-                boxShadow: '0 8px 24px rgba(0, 111, 238, 0.25)'
+                margin: '0 auto 28px',
+                boxShadow: '0 12px 32px rgba(0, 111, 238, 0.25)',
+                position: 'relative'
               }}>
-                <Battery size={40} style={{ color: 'white' }} />
+                <Battery size={44} style={{ color: 'white' }} strokeWidth={2} />
+                <div style={{
+                  position: 'absolute',
+                  top: '-4px',
+                  right: '-4px',
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
+                  background: '#10B981',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
+                }}>
+                  <Sparkles size={14} style={{ color: 'white' }} strokeWidth={3} />
+                </div>
               </div>
               <h2 style={{
-                fontSize: '28px',
-                fontWeight: '700',
+                fontSize: '32px',
+                fontWeight: '800',
                 color: '#111827',
-                marginBottom: '12px'
+                marginBottom: '12px',
+                letterSpacing: '-0.03em'
               }}>
                 Welcome to Lithi AI
               </h2>
               <p style={{
-                fontSize: '16px',
-                color: '#5B6B7D',
-                marginBottom: '32px',
-                lineHeight: '1.6'
+                fontSize: '17px',
+                color: '#6B7280',
+                marginBottom: '48px',
+                lineHeight: '1.6',
+                maxWidth: '600px',
+                margin: '0 auto 48px'
               }}>
                 I'm your intelligent battery assistant. I can help you find the perfect battery, 
                 calculate runtime for your tools, track orders, and provide expert technical support.
               </p>
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridTemplateColumns: 'repeat(2, 1fr)',
                 gap: '16px',
-                marginTop: '40px'
+                maxWidth: '560px',
+                margin: '0 auto'
               }}>
-                {[
-                  { icon: Battery, text: 'Find batteries', color: '#006FEE' },
-                  { icon: Sparkles, text: 'Get recommendations', color: '#8B5CF6' },
-                  { icon: Package, text: 'Track orders', color: '#10B981' }
-                ].map((item, idx) => (
+                {quickActions.map((item, idx) => (
                   <div
                     key={idx}
                     style={{
-                      padding: '20px',
-                      backgroundColor: 'white',
-                      borderRadius: '12px',
-                      border: '2px solid #E6F4FF',
+                      padding: '24px',
+                      backgroundColor: hoveredQuickAction === idx ? item.hoverBg : item.bgColor,
+                      borderRadius: '16px',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      transform: hoveredQuickAction === idx ? 'translateY(-4px)' : 'translateY(0)',
+                      boxShadow: hoveredQuickAction === idx 
+                        ? `0 12px 24px ${item.color}20`
+                        : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                      border: `2px solid ${hoveredQuickAction === idx ? item.color : 'transparent'}`
                     }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px)'
-                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 111, 238, 0.15)'
-                      e.currentTarget.style.borderColor = item.color
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = 'none'
-                      e.currentTarget.style.borderColor = '#E6F4FF'
-                    }}
-                    onClick={() => setInputMessage(item.text)}
+                    onMouseEnter={() => setHoveredQuickAction(idx)}
+                    onMouseLeave={() => setHoveredQuickAction(null)}
+                    onClick={() => sendMessage(item.text)}
                   >
-                    <item.icon size={24} style={{ color: item.color, marginBottom: '8px' }} />
+                    <item.icon 
+                      size={28} 
+                      style={{ 
+                        color: item.color, 
+                        marginBottom: '12px',
+                        strokeWidth: 2
+                      }} 
+                    />
                     <p style={{
-                      fontSize: '14px',
+                      fontSize: '15px',
                       fontWeight: '600',
                       color: '#111827',
                       margin: 0
@@ -644,183 +806,192 @@ What would you like to know more about? Feel free to ask me anything about our b
             </div>
           )}
 
-          {currentConversation?.messages.map((message, index) => (
-            <div
-              key={message.id}
-              style={{
-                marginBottom: '24px',
-                display: 'flex',
-                justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',
-                padding: '0 24px',
-                opacity: 0,
-                transform: 'translateY(10px)',
-                animation: 'messageAppear 0.4s ease-out forwards',
-                animationDelay: `${index * 0.05}s`
-              }}
-            >
-              <div style={{
-                maxWidth: '600px',
-                width: '100%'
-              }}>
-                {message.role === 'assistant' && (
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginBottom: '12px'
-                  }}>
-                    <div style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
-                      background: 'linear-gradient(135deg, #006FEE, #0050B3)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
-                    }}>
-                      <Sparkles size={20} style={{ color: 'white' }} />
-                    </div>
-                    <span style={{
-                      fontSize: '15px',
-                      fontWeight: '600',
-                      color: '#111827'
-                    }}>
-                      Lithi AI
-                    </span>
-                  </div>
-                )}
+          <div style={{ padding: '24px 0' }}>
+            {currentConversation?.messages.map((message, index) => (
+              <div
+                key={message.id}
+                style={{
+                  marginBottom: '24px',
+                  opacity: 0,
+                  transform: 'translateY(10px)',
+                  animation: 'messageAppear 0.4s ease-out forwards',
+                  animationDelay: `${index * 0.05}s`
+                }}
+              >
                 <div style={{
-                  backgroundColor: message.role === 'user' ? '#006FEE' : 'white',
-                  color: message.role === 'user' ? 'white' : '#111827',
-                  borderRadius: '12px',
-                  padding: message.role === 'user' ? '16px 20px' : '20px',
-                  fontSize: '15px',
-                  lineHeight: '1.6',
-                  boxShadow: message.role === 'user' 
-                    ? '0 4px 12px rgba(0, 111, 238, 0.2)' 
-                    : '0 4px 12px rgba(0, 0, 0, 0.05)',
-                  border: message.role === 'assistant' ? '2px solid #E6F4FF' : 'none'
+                  maxWidth: '840px',
+                  margin: '0 auto',
+                  padding: '0 24px'
                 }}>
-                  {message.role === 'assistant' ? (
-                    <ReactMarkdown
-                      components={{
-                        p: ({ children }) => (
-                          <p style={{ 
-                            margin: '0 0 16px 0', 
-                            lineHeight: '1.7',
-                            color: '#111827'
-                          }}>
-                            {children}
-                          </p>
-                        ),
-                        strong: ({ children }) => (
-                          <strong style={{ 
-                            fontWeight: '700',
-                            color: '#006FEE'
-                          }}>
-                            {children}
-                          </strong>
-                        ),
-                        ul: ({ children }) => (
-                          <ul style={{ 
-                            margin: '0 0 16px 0', 
-                            paddingLeft: '0',
-                            listStyle: 'none'
-                          }}>
-                            {children}
-                          </ul>
-                        ),
-                        li: ({ children }) => (
-                          <li style={{ 
-                            marginBottom: '8px',
-                            paddingLeft: '24px',
-                            position: 'relative'
-                          }}>
-                            <span style={{
-                              position: 'absolute',
-                              left: '0',
-                              top: '8px',
-                              width: '8px',
-                              height: '8px',
-                              borderRadius: '50%',
-                              backgroundColor: '#006FEE'
-                            }} />
-                            {children}
-                          </li>
-                        ),
-                        code: ({ children }) => (
-                          <code style={{
-                            backgroundColor: '#F8FAFC',
-                            padding: '2px 6px',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            fontFamily: 'Menlo, Monaco, Consolas, monospace',
-                            color: '#DC2626'
-                          }}>
-                            {children}
-                          </code>
-                        )
-                      }}
-                    >
-                      {message.content}
-                    </ReactMarkdown>
+                  {message.role === 'user' ? (
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'flex-end'
+                    }}>
+                      <div style={{
+                        maxWidth: '70%',
+                        backgroundColor: '#006FEE',
+                        color: 'white',
+                        borderRadius: '18px 18px 4px 18px',
+                        padding: '16px 20px',
+                        fontSize: '15px',
+                        lineHeight: '1.6',
+                        boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
+                      }}>
+                        {message.content}
+                      </div>
+                    </div>
                   ) : (
-                    message.content
-                  )}
-                </div>
-                {message.attachments && message.attachments.length > 0 && (
-                  <div style={{
-                    marginTop: '8px',
-                    display: 'flex',
-                    gap: '8px',
-                    flexWrap: 'wrap'
-                  }}>
-                    {message.attachments.map((file, idx) => (
-                      <div
-                        key={idx}
-                        style={{
-                          padding: '8px 12px',
-                          backgroundColor: '#E6F4FF',
-                          borderRadius: '8px',
-                          fontSize: '13px',
-                          color: '#006FEE',
+                    <div>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        marginBottom: '12px'
+                      }}>
+                        <div style={{
+                          width: '38px',
+                          height: '38px',
+                          borderRadius: '12px',
+                          background: 'linear-gradient(135deg, #006FEE, #0050B3)',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '6px'
-                        }}
-                      >
-                        <Paperclip size={14} />
-                        {file.name}
+                          justifyContent: 'center',
+                          boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
+                        }}>
+                          <Sparkles size={20} style={{ color: 'white' }} strokeWidth={2.5} />
+                        </div>
+                        <span style={{
+                          fontSize: '15px',
+                          fontWeight: '600',
+                          color: '#111827'
+                        }}>
+                          Lithi AI
+                        </span>
                       </div>
-                    ))}
+                      <div style={{
+                        backgroundColor: 'white',
+                        borderRadius: '18px',
+                        padding: '20px 24px',
+                        fontSize: '15px',
+                        lineHeight: '1.7',
+                        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
+                        border: '1px solid #E5E7EB'
+                      }}>
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => (
+                              <p style={{ 
+                                margin: '0 0 16px 0', 
+                                lineHeight: '1.7',
+                                color: '#374151'
+                              }}>
+                                {children}
+                              </p>
+                            ),
+                            strong: ({ children }) => (
+                              <strong style={{ 
+                                fontWeight: '700',
+                                color: '#006FEE'
+                              }}>
+                                {children}
+                              </strong>
+                            ),
+                            ul: ({ children }) => (
+                              <ul style={{ 
+                                margin: '0 0 16px 0', 
+                                paddingLeft: '0',
+                                listStyle: 'none'
+                              }}>
+                                {children}
+                              </ul>
+                            ),
+                            li: ({ children }) => (
+                              <li style={{ 
+                                marginBottom: '10px',
+                                paddingLeft: '28px',
+                                position: 'relative',
+                                color: '#374151'
+                              }}>
+                                <span style={{
+                                  position: 'absolute',
+                                  left: '0',
+                                  top: '8px',
+                                  width: '8px',
+                                  height: '8px',
+                                  borderRadius: '50%',
+                                  backgroundColor: '#006FEE'
+                                }} />
+                                {children}
+                              </li>
+                            ),
+                            code: ({ children }) => (
+                              <code style={{
+                                backgroundColor: '#F3F4F6',
+                                padding: '2px 6px',
+                                borderRadius: '4px',
+                                fontSize: '14px',
+                                fontFamily: 'Menlo, Monaco, Consolas, monospace',
+                                color: '#DC2626'
+                              }}>
+                                {children}
+                              </code>
+                            )
+                          }}
+                        >
+                          {message.content}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  )}
+                  {message.attachments && message.attachments.length > 0 && (
+                    <div style={{
+                      marginTop: '8px',
+                      display: 'flex',
+                      gap: '8px',
+                      flexWrap: 'wrap',
+                      justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start'
+                    }}>
+                      {message.attachments.map((file, idx) => (
+                        <div
+                          key={idx}
+                          style={{
+                            padding: '8px 12px',
+                            backgroundColor: '#EFF6FF',
+                            borderRadius: '8px',
+                            fontSize: '13px',
+                            color: '#006FEE',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px'
+                          }}
+                        >
+                          <Paperclip size={14} />
+                          {file.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#9CA3AF',
+                    marginTop: '8px',
+                    textAlign: message.role === 'user' ? 'right' : 'left'
+                  }}>
+                    {new Date(message.timestamp).toLocaleTimeString([], { 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
                   </div>
-                )}
-                <div style={{
-                  fontSize: '12px',
-                  color: '#9CA3AF',
-                  marginTop: '8px',
-                  textAlign: message.role === 'user' ? 'right' : 'left'
-                }}>
-                  {new Date(message.timestamp).toLocaleTimeString([], { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                  })}
                 </div>
               </div>
-            </div>
-          ))}
-          
-          {isLoading && (
-            <div style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              marginBottom: '24px',
-              padding: '0 24px'
-            }}>
+            ))}
+            
+            {isLoading && (
               <div style={{
-                maxWidth: '600px',
-                width: '100%'
+                maxWidth: '840px',
+                margin: '0 auto',
+                padding: '0 24px'
               }}>
                 <div style={{
                   display: 'flex',
@@ -829,16 +1000,16 @@ What would you like to know more about? Feel free to ask me anything about our b
                   marginBottom: '12px'
                 }}>
                   <div style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '10px',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '12px',
                     background: 'linear-gradient(135deg, #006FEE, #0050B3)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
                   }}>
-                    <Sparkles size={20} style={{ color: 'white' }} />
+                    <Sparkles size={20} style={{ color: 'white' }} strokeWidth={2.5} />
                   </div>
                   <span style={{
                     fontSize: '15px',
@@ -850,10 +1021,10 @@ What would you like to know more about? Feel free to ask me anything about our b
                 </div>
                 <div style={{
                   backgroundColor: 'white',
-                  borderRadius: '12px',
-                  padding: '20px',
-                  border: '2px solid #E6F4FF',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
+                  borderRadius: '18px',
+                  padding: '20px 24px',
+                  border: '1px solid #E5E7EB',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)'
                 }}>
                   <div style={{
                     display: 'flex',
@@ -888,7 +1059,7 @@ What would you like to know more about? Feel free to ask me anything about our b
                     </div>
                     <span style={{
                       fontSize: '14px',
-                      color: '#5B6B7D',
+                      color: '#6B7280',
                       fontStyle: 'italic'
                     }}>
                       Thinking...
@@ -896,20 +1067,21 @@ What would you like to know more about? Feel free to ask me anything about our b
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
+            )}
+            <div ref={messagesEndRef} />
+          </div>
         </div>
 
         {/* Input Area */}
         <div style={{
-          borderTop: '2px solid #E6F4FF',
-          padding: '24px',
-          backgroundColor: 'white'
+          borderTop: '1px solid #E5E7EB',
+          backgroundColor: 'white',
+          boxShadow: '0 -4px 12px rgba(0, 0, 0, 0.04)'
         }}>
           <div style={{
-            maxWidth: '600px',
-            margin: '0 auto'
+            maxWidth: '840px',
+            margin: '0 auto',
+            padding: '20px 24px'
           }}>
             <div style={{
               display: 'flex',
@@ -941,16 +1113,16 @@ What would you like to know more about? Feel free to ask me anything about our b
                   placeholder="Ask me anything about batteries..."
                   style={{
                     width: '100%',
-                    padding: '14px 48px 14px 20px',
-                    backgroundColor: '#F8FAFC',
-                    border: '2px solid #E6F4FF',
-                    borderRadius: '12px',
+                    padding: '16px 52px 16px 20px',
+                    backgroundColor: '#F9FAFB',
+                    border: '2px solid #E5E7EB',
+                    borderRadius: '14px',
                     fontSize: '15px',
                     color: '#111827',
                     outline: 'none',
                     resize: 'none',
                     minHeight: '56px',
-                    maxHeight: '120px',
+                    maxHeight: '140px',
                     lineHeight: '1.5',
                     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                     transition: 'all 0.2s ease'
@@ -958,11 +1130,11 @@ What would you like to know more about? Feel free to ask me anything about our b
                   onFocus={(e) => {
                     e.target.style.borderColor = '#006FEE'
                     e.target.style.backgroundColor = 'white'
-                    e.target.style.boxShadow = '0 0 0 3px rgba(0, 111, 238, 0.1)'
+                    e.target.style.boxShadow = '0 0 0 4px rgba(0, 111, 238, 0.1)'
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = '#E6F4FF'
-                    e.target.style.backgroundColor = '#F8FAFC'
+                    e.target.style.borderColor = '#E5E7EB'
+                    e.target.style.backgroundColor = '#F9FAFB'
                     e.target.style.boxShadow = 'none'
                   }}
                 />
@@ -970,31 +1142,31 @@ What would you like to know more about? Feel free to ask me anything about our b
                   onClick={handleFileUpload}
                   style={{
                     position: 'absolute',
-                    right: '12px',
-                    bottom: '12px',
+                    right: '14px',
+                    bottom: '14px',
                     padding: '8px',
                     backgroundColor: 'transparent',
                     border: 'none',
                     borderRadius: '8px',
                     cursor: 'pointer',
-                    color: '#5B6B7D',
+                    color: '#6B7280',
                     transition: 'all 0.2s'
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F8FAFC'
+                    e.currentTarget.style.backgroundColor = '#F3F4F6'
                     e.currentTarget.style.color = '#006FEE'
                   }}
                   onMouseOut={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent'
-                    e.currentTarget.style.color = '#5B6B7D'
+                    e.currentTarget.style.color = '#6B7280'
                   }}
                   title="Attach files"
                 >
-                  <Paperclip size={20} />
+                  <Paperclip size={20} strokeWidth={2} />
                 </button>
               </div>
               <button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={!inputMessage.trim() || isLoading}
                 style={{
                   padding: '16px',
@@ -1017,7 +1189,7 @@ What would you like to know more about? Feel free to ask me anything about our b
                   if (inputMessage.trim() && !isLoading) {
                     e.currentTarget.style.backgroundColor = '#0050B3'
                     e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 111, 238, 0.4)'
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 111, 238, 0.4)'
                   }
                 }}
                 onMouseOut={(e) => {
@@ -1028,13 +1200,13 @@ What would you like to know more about? Feel free to ask me anything about our b
                   }
                 }}
               >
-                <Send size={20} />
+                <Send size={20} strokeWidth={2.5} />
               </button>
             </div>
             <div style={{
               marginTop: '12px',
               fontSize: '13px',
-              color: '#5B6B7D',
+              color: '#6B7280',
               display: 'flex',
               alignItems: 'center',
               gap: '8px'
@@ -1068,120 +1240,68 @@ What would you like to know more about? Feel free to ask me anything about our b
             transform: translateY(0);
           }
         }
+
+        @keyframes fadeIn {
+          to {
+            opacity: 1;
+          }
+        }
         
         /* Custom scrollbar */
         *::-webkit-scrollbar {
-          width: 10px;
+          width: 8px;
         }
         
         *::-webkit-scrollbar-track {
-          background: #F8FAFC;
+          background: #F9FAFB;
           border-radius: 10px;
         }
         
         *::-webkit-scrollbar-thumb {
-          background: #E6F4FF;
+          background: #E5E7EB;
           border-radius: 10px;
-          border: 2px solid #F8FAFC;
         }
         
         *::-webkit-scrollbar-thumb:hover {
-          background: #C3E7FF;
+          background: #D1D5DB;
         }
         
-        /* Markdown content styling */
-        .markdown-content h1,
-        .markdown-content h2,
-        .markdown-content h3 {
-          color: #111827;
-          font-weight: 700;
-          margin: 20px 0 12px 0;
+        /* Input field animations */
+        textarea:focus {
+          animation: focusGlow 0.3s ease-out;
         }
         
-        .markdown-content h1 {
-          font-size: 24px;
+        @keyframes focusGlow {
+          0% {
+            box-shadow: 0 0 0 0 rgba(0, 111, 238, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 4px rgba(0, 111, 238, 0.1);
+          }
         }
         
-        .markdown-content h2 {
-          font-size: 20px;
+        /* Button animations */
+        button {
+          position: relative;
+          overflow: hidden;
         }
         
-        .markdown-content h3 {
-          font-size: 18px;
+        button::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: translate(-50%, -50%);
+          transition: width 0.3s, height 0.3s;
         }
         
-        .markdown-content ul,
-        .markdown-content ol {
-          margin: 16px 0;
-          padding-left: 24px;
-        }
-        
-        .markdown-content li {
-          margin-bottom: 8px;
-          line-height: 1.6;
-        }
-        
-        .markdown-content code {
-          background-color: #F8FAFC;
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
-          font-size: 0.9em;
-        }
-        
-        .markdown-content pre {
-          background-color: #F8FAFC;
-          border: 2px solid #E6F4FF;
-          border-radius: 8px;
-          padding: 16px;
-          overflow-x: auto;
-          margin: 16px 0;
-        }
-        
-        .markdown-content pre code {
-          background: none;
-          padding: 0;
-        }
-        
-        .markdown-content blockquote {
-          border-left: 4px solid #006FEE;
-          padding-left: 16px;
-          margin: 16px 0;
-          color: #5B6B7D;
-          font-style: italic;
-        }
-        
-        .markdown-content a {
-          color: #006FEE;
-          text-decoration: none;
-          font-weight: 500;
-        }
-        
-        .markdown-content a:hover {
-          text-decoration: underline;
-        }
-        
-        .markdown-content table {
-          border-collapse: collapse;
-          width: 100%;
-          margin: 16px 0;
-        }
-        
-        .markdown-content th,
-        .markdown-content td {
-          border: 1px solid #E6F4FF;
-          padding: 12px;
-          text-align: left;
-        }
-        
-        .markdown-content th {
-          background-color: #F8FAFC;
-          font-weight: 600;
-          color: #111827;
-        }
-        
-        .markdown-content tr:nth-child(even) {
-          background-color: #F8FAFC;
+        button:active::after {
+          width: 300px;
+          height: 300px;
         }
       `}</style>
     </div>
