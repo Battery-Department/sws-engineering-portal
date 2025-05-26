@@ -7,7 +7,7 @@ import {
   Zap, Package, Users, Target, Truck, Shield, DollarSign, Star, ChevronDown, 
   ChevronUp, ChevronRight, Settings, Calculator, AlertCircle, CheckCircle,
   Lock, MapPin, Wrench, HardHat, Calendar, Briefcase, Activity, Brain,
-  Info, Sparkles, Building, Timer, Tool, FileText, CreditCard
+  Info, Sparkles, Building, Timer, FileText, CreditCard
 } from 'lucide-react';
 
 // Force dynamic rendering with no cache
@@ -17,7 +17,7 @@ export const fetchCache = 'force-no-store';
 // Tool categories and data
 const toolCategories = [
   { id: 'drills', name: 'Drills & Drivers', icon: Wrench },
-  { id: 'saws', name: 'Saws & Cutters', icon: Tool },
+  { id: 'saws', name: 'Saws & Cutters', icon: Hammer },
   { id: 'grinders', name: 'Grinders & Sanders', icon: Settings },
   { id: 'nailers', name: 'Nailers & Staplers', icon: Hammer },
   { id: 'lights', name: 'Lights & Fans', icon: Zap },
@@ -311,7 +311,7 @@ export default function ConfigurePage() {
   // Progress indicator
   const steps = [
     { id: 1, name: 'Job Details', icon: Briefcase },
-    { id: 2, name: 'Tool Selection', icon: Tool },
+    { id: 2, name: 'Tool Selection', icon: Wrench },
     { id: 3, name: 'Get Results', icon: Brain }
   ];
 
