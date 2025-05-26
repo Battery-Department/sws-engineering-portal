@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ShoppingCart, X, CreditCard, FileText, ChevronRight, Truck, Clock, Shield, Star, Users, BarChart } from 'lucide-react';
-import ProductTabs from '../../../components/battery/UpdatedProductTabs';
-import EnhancedDiscountProgressBar from '../../../components/battery/EnhancedDiscountProgressBar';
+import { 
+  ShoppingCart, X, CreditCard, FileText, ChevronRight, Truck, Clock, Shield, Star, Users, 
+  BarChart, Battery, Activity, Zap, Package, Plus, Minus, CheckCircle, Trash2, Gift,
+  Award, AlertCircle
+} from 'lucide-react';
 
 // Force dynamic rendering with no cache
 export const dynamic = 'force-dynamic';
@@ -17,16 +19,12 @@ const batteriesData = [
     runtime: 'Up to 4 hours',
     weight: '1.9 lbs',
     price: 95,
-    retailPrice: 169,
+    msrp: 169,
     voltage: "20V/60V",
     features: "Compatible with all DeWalt 20V/60V tools",
-    featureBullets: [
-      "Runtime: Up to 4 hours of continuous operation",
-      "Charge Time: Full charge in 45 minutes",
-      "Perfect for: Finish work and medium-duty applications"
-    ],
+    workOutput: '225 screws / 175 ft cuts',
+    chargingTime: '45 minutes',
     savings: 44,
-    units: [5, 10, 25],
     popular: false
   },
   {
@@ -35,16 +33,12 @@ const batteriesData = [
     runtime: 'Up to 6.5 hours',
     weight: '2.4 lbs',
     price: 125,
-    retailPrice: 249,
+    msrp: 249,
     voltage: "20V/60V",
     features: "Compatible with all DeWalt 20V/60V tools",
-    featureBullets: [
-      "Runtime: Up to 6.5 hours of continuous operation",
-      "Charge Time: Full charge in 55 minutes",
-      "Perfect for: Pro contractors and heavy-duty usage"
-    ],
+    workOutput: '340 screws / 260 ft cuts',
+    chargingTime: '55 minutes',
     savings: 50,
-    units: [5, 10, 25],
     popular: true
   },
   {
@@ -53,16 +47,12 @@ const batteriesData = [
     runtime: 'Up to 10 hours',
     weight: '3.2 lbs',
     price: 245,
-    retailPrice: 379,
+    msrp: 379,
     voltage: "20V/60V",
     features: "Compatible with all DeWalt 20V/60V tools",
-    featureBullets: [
-      "Runtime: Up to 10 hours of continuous operation",
-      "Charge Time: Full charge in 90 minutes",
-      "Perfect for: Commercial jobsites and extended applications"
-    ],
+    workOutput: '560 screws / 430 ft cuts',
+    chargingTime: '90 minutes',
     savings: 35,
-    units: [5, 10, 25],
     popular: false
   }
 ];
@@ -75,42 +65,60 @@ const discountTiers = [
 
 const jobsiteSolutions = [
   {
+    id: 'starter',
     name: "STARTER CREW PACKAGE",
     teamSize: "1-3 person teams",
     details: ["2× 6Ah", "2× 9Ah", "2× 15Ah"],
     price: 1270,
+    msrp: 1649,
     savings: 379,
     hours: 64,
     description: "Most popular for residential contractors",
     purchases: 127,
     isPopular: false,
-    teamIcon: 1,
+    features: [
+      "64 hours total runtime",
+      "Perfect for small crews",
+      "Covers all tool types"
+    ],
     quantities: { '6Ah': 2, '9Ah': 2, '15Ah': 2 }
   },
   {
+    id: 'midsize',
     name: "MID-SIZE CREW PACKAGE",
     teamSize: "4-6 person teams",
     details: ["10× 6Ah", "10× 9Ah", "5× 15Ah"],
     price: 4425,
+    msrp: 5530,
     savings: 1105,
     hours: 224,
     description: "Recommended for commercial projects",
     purchases: 86,
     isPopular: true,
-    teamIcon: 2,
+    features: [
+      "224 hours total runtime",
+      "Optimal for medium crews",
+      "Best value per battery"
+    ],
     quantities: { '6Ah': 10, '9Ah': 10, '15Ah': 5 }
   },
   {
+    id: 'workforce',
     name: "FULL WORKFORCE SOLUTION",
     teamSize: "7-12 person teams",
     details: ["15× 6Ah", "20× 9Ah", "15× 15Ah"],
     price: 8875,
+    msrp: 11095,
     savings: 2220,
     hours: 450,
     description: "Preferred by general contractors",
     purchases: 42,
     isPopular: false,
-    teamIcon: 3,
+    features: [
+      "450 hours total runtime",
+      "Complete fleet solution",
+      "Maximum savings"
+    ],
     quantities: { '6Ah': 15, '9Ah': 20, '15Ah': 15 }
   }
 ];
@@ -122,13 +130,12 @@ export default function ProductsPage() {
     '9Ah': 0,
     '15Ah': 0
   });
-  const [showCart, setShowCart] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(1024);
-  const [activeTab, setActiveTab] = useState('packages'); // 'batteries' or 'packages'
+  const [showCartDetails, setShowCartDetails] = useState(true);
+  const [activeTab, setActiveTab] = useState('batteries');
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    setWindowWidth(window.innerWidth);
+    const handleResize = () => {};
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -151,6 +158,7 @@ export default function ProductsPage() {
 
   const discountAmount = subtotal * (discountPercentage / 100);
   const total = subtotal - discountAmount;
+  const totalItems = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
 
   const updateQuantity = (battery: string, delta: number) => {
     setQuantities(prev => ({
@@ -159,27 +167,20 @@ export default function ProductsPage() {
     }));
   };
 
-  const calcTotalAh = () => {
-    return Object.entries(quantities).reduce((sum, [battery, qty]) => {
-      const ah = parseInt(battery);
-      return sum + (ah * qty);
-    }, 0);
+  const addPackageToCart = (packageQuantities: { [key: string]: number }) => {
+    setQuantities(prev => ({
+      '6Ah': prev['6Ah'] + (packageQuantities['6Ah'] || 0),
+      '9Ah': prev['9Ah'] + (packageQuantities['9Ah'] || 0),
+      '15Ah': prev['15Ah'] + (packageQuantities['15Ah'] || 0)
+    }));
+    setShowCartDetails(true);
   };
 
-  const calculatePowerHours = () => {
-    const sixAhQty = quantities['6Ah'] || 0;
-    const nineAhQty = quantities['9Ah'] || 0;
-    const fifteenAhQty = quantities['15Ah'] || 0;
-
-    return {
-      circularSaw: Math.round((sixAhQty * 1.2) + (nineAhQty * 1.8) + (fifteenAhQty * 3)),
-      drill: Math.round((sixAhQty * 3) + (nineAhQty * 4.5) + (fifteenAhQty * 7.5)),
-      impactDriver: Math.round((sixAhQty * 2) + (nineAhQty * 3) + (fifteenAhQty * 5))
-    };
+  const clearCart = () => {
+    setQuantities({ '6Ah': 0, '9Ah': 0, '15Ah': 0 });
   };
 
   const handleCheckout = () => {
-    // Store order data in session
     const orderData = {
       items: quantities,
       subtotal,
@@ -192,7 +193,6 @@ export default function ProductsPage() {
   };
 
   const handleInvoice = () => {
-    // Store order data in session
     const orderData = {
       items: quantities,
       subtotal,
@@ -204,906 +204,613 @@ export default function ProductsPage() {
     router.push('/customer/invoice');
   };
 
-  const totalAh = calcTotalAh();
-  const hasItems = Object.values(quantities).some(q => q > 0);
-  const isMobile = windowWidth < 768;
-  const powerHours = calculatePowerHours();
+  const handleMouseEnter = (cardId: string) => {
+    setHoveredCard(cardId);
+  };
 
-  // Add CSS animations
-  if (typeof document !== 'undefined' && !document.getElementById('hero-animations')) {
-    const style = document.createElement('style');
-    style.id = 'hero-animations';
-    style.innerHTML = `
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: .8; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
 
   return (
-    <div style={{ 
-      minHeight: '100vh',
-      background: '#F8F9FA',
-      margin: 0,
-      padding: 0,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    }}>
-      {/* Hero Header */}
+    <div style={{ backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
+      {/* Header Section */}
       <div style={{
-        width: '100%',
-        padding: '24px'
+        background: 'linear-gradient(135deg, #0048AC 0%, #006FEE 50%, #0084FF 100%)',
+        color: 'white',
+        padding: '48px 24px',
+        borderRadius: '0 0 24px 24px',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
         <div style={{
-          background: '#2563EB',
-          borderRadius: '16px',
-          position: 'relative',
-          overflow: 'hidden',
-          maxWidth: '1400px',
-          margin: '0 auto',
-          boxShadow: '0 8px 32px rgba(37, 99, 235, 0.2)'
-        }}>
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `
+            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%)
+          `,
+          pointerEvents: 'none'
+        }} />
+
+        <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{
-            padding: isMobile ? '20px 16px' : '32px 40px',
-            position: 'relative',
-            textAlign: 'center',
-            animation: 'fadeIn 0.6s ease-out'
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: 'rgba(255, 255, 255, 0.15)',
+            padding: '8px 20px',
+            borderRadius: '100px',
+            marginBottom: '24px',
+            backdropFilter: 'blur(10px)'
           }}>
-          {/* Promotional Banner */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: 'rgba(255, 255, 255, 0.98)',
-              color: '#1E40AF',
-              padding: isMobile ? '8px 16px' : '10px 20px',
-              borderRadius: '100px',
-              marginBottom: isMobile ? '16px' : '24px',
-              fontSize: isMobile ? '12px' : '14px',
-              fontWeight: '700',
-              animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
-            }}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#1E40AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M13 2L3 14h9l-1 8L21 10h-9l1-8z" />
-            </svg>
-            BULK SAVINGS: 20% OFF BULK ORDERS
+            <Package size={20} />
+            <span style={{ fontWeight: '600', fontSize: '14px' }}>
+              BULK SAVINGS: 20% OFF BULK ORDERS
+            </span>
           </div>
-          
-          {/* Primary Headline */}
+
           <h1 style={{
-            fontSize: isMobile ? '24px' : '32px',
+            fontSize: '48px',
             fontWeight: '800',
-            color: 'white',
-            margin: isMobile ? '0 0 24px 0' : '0 0 32px 0',
-            letterSpacing: '0.5px',
-            textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            lineHeight: '1.2'
+            marginBottom: '16px',
+            lineHeight: '1.1'
           }}>
             HEAVY-DUTY FLEXVOLT BATTERIES
           </h1>
-          
-          {/* Key Benefits */}
+
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            gap: isMobile ? '16px' : '48px',
-            flexWrap: 'wrap',
-            flexDirection: isMobile ? 'column' : 'row',
-            alignItems: 'center'
+            gap: '32px',
+            marginTop: '32px',
+            flexWrap: 'wrap'
           }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'white',
-              fontSize: '14px',
-              fontWeight: '600'
-            }}>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              WORKS WITH ALL YOUR DEWALT 20V/60V TOOLS
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle size={20} />
+              <span>WORKS WITH ALL YOUR DEWALT 20V/60V TOOLS</span>
             </div>
-            
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'white',
-              fontSize: '14px',
-              fontWeight: '600'
-            }}>
-              <Truck size={20} color="white" />
-              UPS SHIPPING
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Truck size={20} />
+              <span>UPS SHIPPING</span>
             </div>
-            
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'white',
-              fontSize: '14px',
-              fontWeight: '600'
-            }}>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M1 4v6h6"></path>
-                <path d="M23 20v-6h-6"></path>
-                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
-              </svg>
-              ZERO-HASSLE REPLACEMENTS - NO QUESTIONS ASKED
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Shield size={20} />
+              <span>ZERO-HASSLE REPLACEMENTS - NO QUESTIONS ASKED</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-      {/* Main Container */}
-      <div style={{
-        display: 'flex',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        gap: '24px',
-        padding: '24px'
-      }}>
-        {/* Left Column - Product Cards */}
-        <div style={{ flex: 1 }}>
-          {/* Tabs */}
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            marginBottom: '24px',
-            borderBottom: '2px solid #E5E7EB',
-            position: 'relative'
-          }}>
-            <button
-              onClick={() => setActiveTab('batteries')}
-              style={{
-                padding: '14px 26px',
-                background: activeTab === 'batteries' ? '#2563EB' : 'transparent',
-                color: activeTab === 'batteries' ? 'white' : '#666',
-                border: 'none',
-                borderRadius: '12px 12px 0 0',
-                fontSize: '15px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                position: 'relative'
-              }}
-            >
-              Individual Batteries
-            </button>
-            
-            <button
-              onClick={() => setActiveTab('packages')}
-              style={{
-                padding: '14px 26px',
-                background: activeTab === 'packages' ? '#2563EB' : 'transparent',
-                color: activeTab === 'packages' ? 'white' : '#666',
-                border: 'none',
-                borderRadius: '12px 12px 0 0',
-                fontSize: '15px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
-            >
-              Complete Jobsite Packages
-              <span style={{
-                background: '#10B981',
-                color: 'white',
-                fontSize: '11px',
-                padding: '2px 8px',
-                borderRadius: '12px',
-                fontWeight: '600'
-              }}>
-                Recommended
-              </span>
-            </button>
-            
-            {/* Active Tab Indicator */}
-            <div style={{
+      {/* Main Content */}
+      <div style={{ padding: '32px 24px', maxWidth: '1400px', margin: '0 auto' }}>
+        {/* Tab Navigation */}
+        <div style={{
+          display: 'flex',
+          gap: '8px',
+          marginBottom: '32px',
+          padding: '8px',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+        }}>
+          <button
+            onClick={() => setActiveTab('batteries')}
+            style={{
+              flex: 1,
+              padding: '16px 24px',
+              borderRadius: '8px',
+              border: 'none',
+              backgroundColor: activeTab === 'batteries' ? '#006FEE' : 'transparent',
+              color: activeTab === 'batteries' ? 'white' : '#5B6B7D',
+              fontSize: '16px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px'
+            }}
+            onMouseEnter={(e) => {
+              if (activeTab !== 'batteries') {
+                e.currentTarget.style.backgroundColor = '#F0F9FF';
+                e.currentTarget.style.color = '#006FEE';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== 'batteries') {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#5B6B7D';
+              }
+            }}
+          >
+            <Battery size={20} />
+            Individual Batteries
+          </button>
+          <button
+            onClick={() => setActiveTab('packages')}
+            style={{
+              flex: 1,
+              padding: '16px 24px',
+              borderRadius: '8px',
+              border: 'none',
+              backgroundColor: activeTab === 'packages' ? '#006FEE' : 'transparent',
+              color: activeTab === 'packages' ? 'white' : '#5B6B7D',
+              fontSize: '16px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => {
+              if (activeTab !== 'packages') {
+                e.currentTarget.style.backgroundColor = '#F0F9FF';
+                e.currentTarget.style.color = '#006FEE';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== 'packages') {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#5B6B7D';
+              }
+            }}
+          >
+            <Package size={20} />
+            Complete Jobsite Packages
+            <span style={{
               position: 'absolute',
-              bottom: '-2px',
-              left: activeTab === 'batteries' ? '0' : '50%',
-              width: '50%',
-              height: '2px',
-              background: '#2563EB',
-              transition: 'left 0.2s',
-              borderRadius: '1px'
-            }} />
-          </div>
+              top: '8px',
+              right: '16px',
+              backgroundColor: '#10B981',
+              color: 'white',
+              fontSize: '11px',
+              fontWeight: '700',
+              padding: '2px 8px',
+              borderRadius: '12px'
+            }}>
+              Recommended
+            </span>
+          </button>
+        </div>
 
-          {/* Tab Content */}
+        {/* Individual Batteries Tab */}
+        {activeTab === 'batteries' && (
           <div style={{
-            transition: 'opacity 0.2s',
-            opacity: 1
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+            gap: '24px',
+            marginBottom: '32px'
           }}>
-            {activeTab === 'batteries' ? (
-              /* Battery Cards */
-              <div>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '20px',
-                  marginBottom: '32px'
-                }}>
-                  {batteriesData.map((battery, index) => (
-                    <div key={battery.id} style={{
-                      background: `linear-gradient(to bottom, ${
-                        index === 0 ? '#F0F9FF' : 
-                        index === 1 ? '#E0F2FE' : 
-                        '#DBEAFE'
-                      }, white)`,
-                      borderRadius: '16px',
-                      padding: '24px 24px 34px 24px',
-                      border: battery.popular ? '2px solid #0066FF' : '1px solid #E5E7EB',
-                      position: 'relative',
-                      transition: 'all 0.2s',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)';
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
-                    }}>
-                      {battery.popular && (
-                        <div style={{
-                          position: 'absolute',
-                          top: '-12px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          background: '#0066FF',
-                          color: 'white',
-                          padding: '4px 16px',
-                          borderRadius: '12px',
-                          fontSize: '12px',
-                          fontWeight: '600'
-                        }}>
-                          Most Popular
-                        </div>
-                      )}
-                      
-                      <h3 style={{ 
-                        fontSize: '18px',
-                        fontWeight: '700',
-                        margin: '0 0 8px 0'
-                      }}>
-                        {battery.id} <span style={{ fontWeight: '800' }}>FlexVolt</span> Battery
-                      </h3>
-                      
-                      <p style={{ 
-                        fontSize: '14px',
-                        color: '#666',
-                        margin: '0 0 16px 0'
-                      }}>
-                        {battery.runtime} • {battery.weight}
-                      </p>
-                      
-                      <div style={{ 
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        gap: '12px',
-                        margin: '0 0 20px 0'
-                      }}>
-                        <span style={{
-                          fontSize: '32px',
-                          fontWeight: '700',
-                          color: '#0F172A'
-                        }}>
-                          ${battery.price}
-                        </span>
-                        <span style={{
-                          fontSize: '18px',
-                          color: '#999',
-                          textDecoration: 'line-through'
-                        }}>
-                          ${battery.retailPrice}
-                        </span>
-                        <span style={{
-                          fontSize: '14px',
-                          color: '#10B981',
-                          fontWeight: '600',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}>
-                          <span style={{
-                            display: 'inline-block',
-                            width: '4px',
-                            height: '4px',
-                            borderRadius: '50%',
-                            background: '#999'
-                          }}></span>
-                          Save {battery.savings}%
-                        </span>
-                      </div>
-                      
-                      {/* Quantity Controls */}
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '16px',
-                        marginBottom: '16px'
-                      }}>
-                        <button
-                          onClick={() => updateQuantity(battery.id, -1)}
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            border: '1px solid #E5E7EB',
-                            background: 'white',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            fontSize: '18px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}
-                        >
-                          -
-                        </button>
-                        
-                        <span style={{
-                          fontSize: '20px',
-                          fontWeight: '600',
-                          minWidth: '40px',
-                          textAlign: 'center'
-                        }}>
-                          {quantities[battery.id]}
-                        </span>
-                        
-                        <button
-                          onClick={() => updateQuantity(battery.id, 1)}
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            border: '1px solid #E5E7EB',
-                            background: '#0066FF',
-                            color: 'white',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            fontSize: '18px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}
-                        >
-                          +
-                        </button>
-                      </div>
-                      
-                      {/* Unit Buttons */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px',
-                        marginBottom: '16px'
-                      }}>
-                        {battery.units.map(unit => (
-                          <button
-                            key={unit}
-                            onClick={() => updateQuantity(battery.id, unit)}
-                            style={{
-                              flex: 1,
-                              padding: '6px',
-                              border: '1px solid #E5E7EB',
-                              background: 'white',
-                              borderRadius: '6px',
-                              cursor: 'pointer',
-                              fontSize: '12px',
-                              color: '#666'
-                            }}
-                          >
-                            {unit} units
-                          </button>
-                        ))}
-                      </div>
-                      
-                      {/* Compatibility */}
-                      <div style={{
-                        fontSize: '12px',
-                        color: '#10B981',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        marginBottom: '12px'
-                      }}>
-                        <Shield size={14} />
-                        {battery.features}
-                      </div>
-                      
-                      {/* Feature Bullets */}
-                      <ul style={{
-                        margin: '0',
-                        padding: '0',
-                        listStyle: 'none'
-                      }}>
-                        {battery.featureBullets.map((bullet, idx) => (
-                          <li 
-                            key={idx}
-                            style={{
-                              fontSize: '13px',
-                              color: '#4B5563',
-                              margin: '0 0 8px 0',
-                              display: 'flex',
-                              alignItems: 'flex-start',
-                              gap: '6px'
-                            }}
-                          >
-                            <span style={{
-                              display: 'block',
-                              width: '8px',
-                              height: '8px',
-                              borderRadius: '50%',
-                              background: 'rgba(52, 211, 153, 0.9)',
-                              marginTop: '5px'
-                            }}></span>
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              /* Complete Jobsite Packages */
-              <div>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '20px'
-                }}>
-                  {jobsiteSolutions.map((solution, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        background: `linear-gradient(to bottom, ${
-                          index === 0 ? '#F0F9FF' : 
-                          index === 1 ? '#E0F2FE' : 
-                          '#DBEAFE'
-                        }, white)`,
-                        border: solution.isPopular ? '2px solid #0066FF' : '1px solid #E5E7EB',
-                        borderRadius: '12px',
-                        padding: '20px',
-                        position: 'relative',
-                        transition: 'all 0.2s',
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)';
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                        (e.currentTarget as HTMLDivElement).style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
-                      }}
-                    >
-                      {solution.isPopular && (
-                        <div style={{
-                          position: 'absolute',
-                          top: '-12px',
-                          right: '20px',
-                          background: '#0066FF',
-                          color: 'white',
-                          padding: '4px 12px',
-                          borderRadius: '12px',
-                          fontSize: '12px',
-                          fontWeight: '600'
-                        }}>
-                          BEST VALUE
-                        </div>
-                      )}
-                      
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginBottom: '12px'
-                      }}>
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}>
-                          {[...Array(solution.teamIcon)].map((_, i) => (
-                            <Users key={i} size={16} color="#0066FF" />
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <h4 style={{
-                        fontSize: '16px',
-                        fontWeight: '700',
-                        margin: '0 0 4px 0',
-                        color: '#003D88'
-                      }}>
-                        {solution.name}
-                      </h4>
-                      
-                      {/* Star rating */}
-                      <div style={{
-                        display: 'flex',
-                        gap: '2px',
-                        marginBottom: '12px'
-                      }}>
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={14} fill="#FCD34D" color="#FCD34D" />
-                        ))}
-                        <span style={{ 
-                          fontSize: '12px', 
-                          color: '#666',
-                          marginLeft: '4px'
-                        }}>
-                          ({solution.purchases} purchases this month)
-                        </span>
-                      </div>
-                      
-                      <p style={{
-                        fontSize: '14px',
-                        color: '#666',
-                        margin: '0 0 12px 0'
-                      }}>
-                        Perfect for {solution.teamSize}
-                      </p>
-                      
-                      <div style={{
-                        background: 'rgba(255,255,255,0.8)',
-                        padding: '12px',
-                        borderRadius: '8px',
-                        marginBottom: '12px'
-                      }}>
-                        <ul style={{
-                          margin: '0 0 12px 0',
-                          padding: '0 0 0 20px',
-                          listStyle: 'none'
-                        }}>
-                          {solution.details.map((item, idx) => (
-                            <li key={idx} style={{
-                              fontSize: '14px',
-                              fontWeight: '600',
-                              color: '#333',
-                              marginBottom: '4px',
-                              position: 'relative',
-                              paddingLeft: '16px'
-                            }}>
-                              <span style={{
-                                position: 'absolute',
-                                left: 0,
-                                top: '6px',
-                                width: '6px',
-                                height: '6px',
-                                borderRadius: '50%',
-                                background: '#3B82F6'
-                              }} />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                        <p style={{
-                          fontSize: '24px',
-                          fontWeight: '700',
-                          margin: '0',
-                          color: '#0066FF'
-                        }}>
-                          ${solution.price.toLocaleString()}
-                          <span style={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            color: '#10B981',
-                            marginLeft: '8px'
-                          }}>
-                            ($${solution.savings} savings)
-                          </span>
-                        </p>
-                      </div>
-                      
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginBottom: '12px',
-                        fontSize: '14px',
-                        color: '#666'
-                      }}>
-                        <Clock size={16} />
-                        <span>Powers up to {solution.hours} hours of continuous work</span>
-                      </div>
-                      
-                      <p style={{
+            {batteriesData.map(battery => (
+              <div
+                key={battery.id}
+                style={{
+                  position: 'relative',
+                  background: 'white',
+                  border: '2px solid #E6F4FF',
+                  borderRadius: '16px',
+                  padding: '28px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: hoveredCard === battery.id ? 'translateY(-4px)' : 'translateY(0)',
+                  boxShadow: hoveredCard === battery.id 
+                    ? '0 12px 24px rgba(0, 111, 238, 0.15)' 
+                    : '0 4px 12px rgba(0, 0, 0, 0.04)'
+                }}
+                onMouseEnter={() => handleMouseEnter(battery.id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {battery.popular && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '-12px',
+                    right: '24px',
+                    backgroundColor: '#FFB800',
+                    color: 'white',
+                    padding: '6px 16px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    boxShadow: '0 2px 8px rgba(255, 184, 0, 0.3)'
+                  }}>
+                    <Star size={14} fill="white" />
+                    MOST POPULAR
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '20px' }}>
+                  <div>
+                    <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#0A051E', marginBottom: '8px' }}>
+                      {battery.name}
+                    </h3>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '32px', fontWeight: '800', color: '#006FEE' }}>
+                        ${battery.price}
+                      </span>
+                      <span style={{ fontSize: '18px', color: '#9CA3AF', textDecoration: 'line-through' }}>
+                        ${battery.msrp}
+                      </span>
+                      <span style={{
+                        backgroundColor: '#E6F9F0',
+                        color: '#059669',
+                        padding: '4px 10px',
+                        borderRadius: '16px',
                         fontSize: '13px',
-                        color: '#666',
-                        marginBottom: '16px',
-                        fontStyle: 'italic'
+                        fontWeight: '600'
                       }}>
-                        "{solution.description}"
-                      </p>
-                      
+                        Save {battery.savings}%
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{
+                    width: '72px',
+                    height: '72px',
+                    background: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)',
+                    borderRadius: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Battery size={40} color="#006FEE" />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: '20px', fontSize: '15px', color: '#5B6B7D' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <CheckCircle size={16} color="#10B981" />
+                    <span>{battery.features}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <Clock size={16} color="#5B6B7D" />
+                    <span>Runtime: {battery.runtime} of continuous operation</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <Zap size={16} color="#5B6B7D" />
+                    <span>Charge Time: Full charge in {battery.chargingTime}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Activity size={16} color="#5B6B7D" />
+                    <span>Perfect for: {battery.workOutput}</span>
+                  </div>
+                </div>
+
+                <div style={{ 
+                  borderTop: '1px solid #E6F4FF', 
+                  paddingTop: '20px',
+                  marginTop: '20px'
+                }}>
+                  {/* Quick add buttons */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gap: '8px',
+                    marginBottom: '16px'
+                  }}>
+                    {[5, 10, 25].map(qty => (
                       <button
-                        onClick={() => {
-                          setQuantities(solution.quantities);
+                        key={qty}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          updateQuantity(battery.id, qty);
                         }}
                         style={{
-                          width: '100%',
-                          padding: '12px',
-                          background: '#0066FF',
-                          color: 'white',
-                          border: 'none',
+                          padding: '10px',
+                          border: '1px solid #E6F4FF',
                           borderRadius: '8px',
+                          backgroundColor: 'white',
+                          color: '#006FEE',
                           fontSize: '14px',
                           fontWeight: '600',
                           cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '8px',
-                          transition: 'all 0.2s'
+                          transition: 'all 0.2s ease'
                         }}
                         onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.02)';
-                          (e.currentTarget as HTMLButtonElement).style.background = '#0058DD';
+                          e.currentTarget.style.backgroundColor = '#F0F9FF';
+                          e.currentTarget.style.borderColor = '#006FEE';
                         }}
                         onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-                          (e.currentTarget as HTMLButtonElement).style.background = '#0066FF';
+                          e.currentTarget.style.backgroundColor = 'white';
+                          e.currentTarget.style.borderColor = '#E6F4FF';
                         }}
                       >
-                        <ShoppingCart size={16} />
-                        ADD COMPLETE PACKAGE
+                        +{qty} units
                       </button>
+                    ))}
+                  </div>
+
+                  {/* Custom quantity controls */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        updateQuantity(battery.id, -1);
+                      }}
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '8px',
+                        border: '1px solid #E6F4FF',
+                        backgroundColor: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#FFE6E6';
+                        e.currentTarget.style.borderColor = '#EF4444';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white';
+                        e.currentTarget.style.borderColor = '#E6F4FF';
+                      }}
+                    >
+                      <Minus size={18} color="#5B6B7D" />
+                    </button>
+                    
+                    <div style={{
+                      flex: 1,
+                      textAlign: 'center',
+                      padding: '10px',
+                      backgroundColor: '#F8FAFC',
+                      borderRadius: '8px',
+                      fontSize: '18px',
+                      fontWeight: '600',
+                      color: '#0A051E'
+                    }}>
+                      {quantities[battery.id] || 0} units
+                    </div>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        updateQuantity(battery.id, 1);
+                      }}
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '8px',
+                        border: '1px solid #E6F4FF',
+                        backgroundColor: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#E6FFF9';
+                        e.currentTarget.style.borderColor = '#10B981';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white';
+                        e.currentTarget.style.borderColor = '#E6F4FF';
+                      }}
+                    >
+                      <Plus size={18} color="#5B6B7D" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Bundle Packages Tab */}
+        {activeTab === 'packages' && (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+            gap: '24px',
+            marginBottom: '32px'
+          }}>
+            {jobsiteSolutions.map(pkg => (
+              <div
+                key={pkg.id}
+                style={{
+                  position: 'relative',
+                  background: 'white',
+                  border: '2px solid #E6F4FF',
+                  borderRadius: '16px',
+                  padding: '28px',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  transform: hoveredCard === pkg.id ? 'translateY(-4px)' : 'translateY(0)',
+                  boxShadow: hoveredCard === pkg.id 
+                    ? '0 12px 24px rgba(0, 111, 238, 0.15)' 
+                    : '0 4px 12px rgba(0, 0, 0, 0.04)'
+                }}
+                onMouseEnter={() => handleMouseEnter(pkg.id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {pkg.isPopular && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '-12px',
+                    right: '24px',
+                    backgroundColor: '#10B981',
+                    color: 'white',
+                    padding: '6px 16px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
+                  }}>
+                    <Award size={14} fill="white" />
+                    BEST VALUE
+                  </div>
+                )}
+
+                <div style={{ marginBottom: '20px' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E', marginBottom: '4px' }}>
+                    {pkg.name}
+                  </h3>
+                  <p style={{ fontSize: '15px', color: '#5B6B7D', marginBottom: '16px' }}>
+                    {pkg.teamSize}
+                  </p>
+                  
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '36px', fontWeight: '800', color: '#006FEE' }}>
+                      ${pkg.price.toLocaleString()}
+                    </span>
+                    <span style={{ fontSize: '20px', color: '#9CA3AF', textDecoration: 'line-through' }}>
+                      ${pkg.msrp.toLocaleString()}
+                    </span>
+                  </div>
+                  
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    backgroundColor: '#E6F9F0',
+                    color: '#059669',
+                    padding: '6px 12px',
+                    borderRadius: '20px',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}>
+                    <Gift size={16} />
+                    Save ${pkg.savings.toLocaleString()}
+                  </div>
+                </div>
+
+                <div style={{
+                  backgroundColor: '#F8FAFC',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  marginBottom: '20px'
+                }}>
+                  <p style={{ fontSize: '14px', fontWeight: '600', color: '#0A051E', marginBottom: '12px' }}>
+                    Package includes:
+                  </p>
+                  {pkg.details.map((detail, idx) => (
+                    <div key={idx} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      marginBottom: '6px',
+                      fontSize: '14px',
+                      color: '#5B6B7D'
+                    }}>
+                      <CheckCircle size={16} color="#10B981" />
+                      <span>{detail}</span>
+                    </div>
+                  ))}
+                  <div style={{
+                    marginTop: '12px',
+                    paddingTop: '12px',
+                    borderTop: '1px solid #E6F4FF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    color: '#006FEE'
+                  }}>
+                    <Clock size={16} />
+                    <span>{pkg.hours} hours total runtime</span>
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: '20px' }}>
+                  {pkg.features.map((feature, idx) => (
+                    <div key={idx} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      marginBottom: '8px',
+                      fontSize: '14px',
+                      color: '#5B6B7D'
+                    }}>
+                      <CheckCircle size={16} color="#10B981" />
+                      <span>{feature}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-          </div>
 
-          {/* Power Calculation Bar Chart */}
-          {hasItems && (
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              padding: '24px',
-              marginTop: '32px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '20px'
-              }}>
-                <h3 style={{
-                  fontSize: '18px',
-                  fontWeight: '700',
-                  margin: 0,
-                  color: '#003D88'
-                }}>
-                  Power Calculation
-                </h3>
                 <div style={{
-                  cursor: 'pointer',
-                  color: '#666'
-                }}
-                title="Battery power is calculated based on average tool consumption rates: Circular Saw (5Ah/hr), Drill (2Ah/hr), Impact Driver (3Ah/hr)">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                  </svg>
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '16px',
+                  paddingBottom: '16px',
+                  borderBottom: '1px solid #E6F4FF'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Users size={16} color="#5B6B7D" />
+                    <span style={{ fontSize: '14px', color: '#5B6B7D' }}>
+                      {pkg.purchases} purchased this month
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', gap: '2px' }}>
+                    {[1, 2, 3, 4, 5].map(star => (
+                      <Star key={star} size={14} fill="#FFB800" color="#FFB800" />
+                    ))}
+                  </div>
                 </div>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addPackageToCart(pkg.quantities);
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '14px 24px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    backgroundColor: '#006FEE',
+                    color: 'white',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#0059D1';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#006FEE';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <Plus size={18} />
+                  Add Package to Cart
+                </button>
               </div>
-
-              <div style={{ 
-                display: 'grid',
-                gap: '16px'
-              }}>
-                {/* Circular Saw */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    minWidth: '120px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2">
-                      <circle cx="12" cy="12" r="9"></circle>
-                      <circle cx="12" cy="12" r="3"></circle>
-                      <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
-                      <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
-                      <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
-                      <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
-                    </svg>
-                    <span style={{ fontSize: '14px', color: '#666' }}>Circular Saw</span>
-                  </div>
-                  <div style={{ flex: 1, position: 'relative' }}>
-                    <div style={{
-                      height: '24px',
-                      background: '#E5E7EB',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{
-                        height: '100%',
-                        background: 'linear-gradient(90deg, #93C5FD 0%, #2563EB 100%)',
-                        width: `${Math.min((powerHours.circularSaw / Math.max(...Object.values(powerHours))) * 100, 100)}%`,
-                        transition: 'width 0.3s',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        paddingRight: '8px'
-                      }}>
-                        <span style={{ 
-                          color: 'white',
-                          fontSize: '12px',
-                          fontWeight: '600'
-                        }}>
-                          {powerHours.circularSaw}h
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Drill */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    minWidth: '120px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2">
-                      <path d="M14 4l6 6v6l-6 6"></path>
-                      <path d="M14 10H3"></path>
-                      <path d="M17 7l3 3-3 3"></path>
-                    </svg>
-                    <span style={{ fontSize: '14px', color: '#666' }}>Drill</span>
-                  </div>
-                  <div style={{ flex: 1, position: 'relative' }}>
-                    <div style={{
-                      height: '24px',
-                      background: '#E5E7EB',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{
-                        height: '100%',
-                        background: 'linear-gradient(90deg, #93C5FD 0%, #2563EB 100%)',
-                        width: `${Math.min((powerHours.drill / Math.max(...Object.values(powerHours))) * 100, 100)}%`,
-                        transition: 'width 0.3s',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        paddingRight: '8px'
-                      }}>
-                        <span style={{ 
-                          color: 'white',
-                          fontSize: '12px',
-                          fontWeight: '600'
-                        }}>
-                          {powerHours.drill}h
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Impact Driver */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    minWidth: '120px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2">
-                      <path d="M12 2l3.09 5.26L21 7.27l-4.37 4.28L18 17l-5.82-3.03L6.36 17l1.37-5.45L3.36 7.27l5.91-.01z"/>
-                    </svg>
-                    <span style={{ fontSize: '14px', color: '#666' }}>Impact Driver</span>
-                  </div>
-                  <div style={{ flex: 1, position: 'relative' }}>
-                    <div style={{
-                      height: '24px',
-                      background: '#E5E7EB',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{
-                        height: '100%',
-                        background: 'linear-gradient(90deg, #93C5FD 0%, #2563EB 100%)',
-                        width: `${Math.min((powerHours.impactDriver / Math.max(...Object.values(powerHours))) * 100, 100)}%`,
-                        transition: 'width 0.3s',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        paddingRight: '8px'
-                      }}>
-                        <span style={{ 
-                          color: 'white',
-                          fontSize: '12px',
-                          fontWeight: '600'
-                        }}>
-                          {powerHours.impactDriver}h
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <p style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                margin: '16px 0 0 0',
-                color: '#003D88',
-                textAlign: 'center'
-              }}>
-                Total Amp Hours: {totalAh}Ah
-              </p>
-            </div>
-          )}
-          
-          {/* Product Tabs Component */}
-          <div style={{ marginTop: '32px' }}>
-            <ProductTabs 
-              isMobile={false} 
-            />
+            ))}
           </div>
-        </div>
+        )}
 
-        {/* Right Column - Order Summary */}
-        <div style={{ width: '380px' }}>
+        {/* Cart Summary Section */}
+        {totalItems > 0 && (
           <div style={{
-            background: 'white',
+            backgroundColor: 'white',
             borderRadius: '16px',
-            padding: '24px',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-            position: 'sticky',
-            top: '24px'
+            padding: '28px',
+            border: '1px solid #E6F4FF',
+            boxShadow: '0 4px 12px rgba(0, 111, 238, 0.04)'
           }}>
             <div style={{
               display: 'flex',
@@ -1111,231 +818,350 @@ export default function ProductsPage() {
               alignItems: 'center',
               marginBottom: '24px'
             }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                margin: 0
-              }}>
-                <ShoppingCart size={20} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+              <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#0A051E' }}>
                 Your Order
-              </h3>
-              <button
-                onClick={() => setQuantities({ '6Ah': 0, '9Ah': 0, '15Ah': 0 })}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#999',
-                  cursor: 'pointer',
-                  fontSize: '14px'
-                }}
-              >
-                <X size={16} /> Clear
-              </button>
-            </div>
-
-            {/* Order Lines */}
-            <div style={{ marginBottom: '24px' }}>
-              {Object.entries(quantities).map(([battery, qty]) => qty > 0 && (
-                <div
-                  key={battery}
+              </h2>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={() => setShowCartDetails(!showCartDetails)}
                   style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginBottom: '12px',
-                    fontSize: '15px'
+                    color: '#006FEE',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s ease'
                   }}
                 >
-                  <span>{qty}x {battery} Battery</span>
-                  <span style={{ fontWeight: '600' }}>
-                    ${(batteriesData.find(b => b.id === battery)?.price || 0) * qty}.00
-                  </span>
-                </div>
-              ))}
-              
-              {!hasItems && (
-                <p style={{ color: '#999', textAlign: 'center', fontSize: '14px' }}>
-                  No items in cart
-                </p>
-              )}
+                  {showCartDetails ? 'Hide Details' : 'Show Details'}
+                </button>
+                <button
+                  onClick={clearCart}
+                  style={{
+                    color: '#EF4444',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s ease'
+                  }}
+                >
+                  Clear All
+                </button>
+              </div>
             </div>
 
-            {/* Totals */}
-            {hasItems && (
-              <>
-                <div style={{
-                  borderTop: '1px solid #E5E7EB',
-                  paddingTop: '16px',
-                  marginBottom: '16px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginBottom: '8px',
-                    fontSize: '15px'
-                  }}>
-                    <span>Subtotal:</span>
-                    <span>${subtotal.toFixed(2)}</span>
-                  </div>
+            {/* Cart items */}
+            {showCartDetails && (
+              <div style={{ marginBottom: '24px' }}>
+                {Object.entries(quantities).map(([batteryId, qty]) => {
+                  if (qty === 0) return null;
+                  const battery = batteriesData.find(b => b.id === batteryId);
+                  if (!battery) return null;
                   
-                  {discountPercentage > 0 && (
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: '8px',
-                      fontSize: '15px',
-                      color: '#10B981'
-                    }}>
-                      <span>{discountPercentage}% OFF:</span>
-                      <span>-${discountAmount.toFixed(2)}</span>
+                  return (
+                    <div
+                      key={batteryId}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '16px 0',
+                        borderBottom: '1px solid #F3F4F6'
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <p style={{ fontWeight: '600', color: '#0A051E', fontSize: '16px' }}>
+                          {battery.name}
+                        </p>
+                        <p style={{ fontSize: '14px', color: '#5B6B7D', marginTop: '4px' }}>
+                          ${battery.price} × {qty} = ${(battery.price * qty).toFixed(2)}
+                        </p>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <button
+                            onClick={() => updateQuantity(batteryId, -1)}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '6px',
+                              border: '1px solid #E6F4FF',
+                              backgroundColor: 'white',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = '#FFE6E6';
+                              e.currentTarget.style.borderColor = '#EF4444';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = 'white';
+                              e.currentTarget.style.borderColor = '#E6F4FF';
+                            }}
+                          >
+                            <Minus size={16} color="#5B6B7D" />
+                          </button>
+                          <span style={{
+                            padding: '0 16px',
+                            fontSize: '16px',
+                            fontWeight: '600',
+                            color: '#0A051E'
+                          }}>
+                            {qty}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(batteryId, 1)}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '6px',
+                              border: '1px solid #E6F4FF',
+                              backgroundColor: 'white',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = '#E6FFF9';
+                              e.currentTarget.style.borderColor = '#10B981';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = 'white';
+                              e.currentTarget.style.borderColor = '#E6F4FF';
+                            }}
+                          >
+                            <Plus size={16} color="#5B6B7D" />
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => updateQuantity(batteryId, -qty)}
+                          style={{
+                            padding: '8px',
+                            borderRadius: '6px',
+                            border: 'none',
+                            backgroundColor: '#FFE6E6',
+                            color: '#DC2626',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#FEE2E2';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#FFE6E6';
+                          }}
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </div>
-                  )}
-                  
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: '18px',
-                    fontWeight: '700',
-                    color: '#0066FF'
-                  }}>
-                    <span>Total:</span>
-                    <span>${total.toFixed(2)}</span>
-                  </div>
-                </div>
+                  );
+                })}
+              </div>
+            )}
 
-                {/* Discount Progress */}
-                <div style={{ marginBottom: '20px' }}>
-                  <div style={{
-                    fontSize: '14px',
-                    color: '#666',
-                    marginBottom: '8px'
-                  }}>
-                    Bulk Discount Progress
+            {/* Discount Progress */}
+            {subtotal > 0 && subtotal < 5000 && (
+              <div style={{
+                backgroundColor: '#F0F9FF',
+                borderRadius: '12px',
+                padding: '16px',
+                marginBottom: '24px'
+              }}>
+                <div style={{ marginBottom: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                    <span style={{ fontSize: '14px', fontWeight: '600', color: '#0A051E' }}>
+                      {discountPercentage > 0 
+                        ? `You're saving ${discountPercentage}%!` 
+                        : 'Add more to save!'}
+                    </span>
+                    <span style={{ fontSize: '14px', color: '#5B6B7D' }}>
+                      ${(discountTiers.find(t => t.threshold > subtotal)?.threshold || 5000 - subtotal).toFixed(0)} to next tier
+                    </span>
                   </div>
                   <div style={{
+                    width: '100%',
                     height: '8px',
-                    background: '#E5E7EB',
+                    backgroundColor: '#E6F4FF',
                     borderRadius: '4px',
-                    overflow: 'hidden',
-                    position: 'relative'
+                    overflow: 'hidden'
                   }}>
                     <div style={{
-                      height: '100%',
-                      background: '#0066FF',
                       width: `${Math.min((subtotal / 5000) * 100, 100)}%`,
-                      transition: 'width 0.3s'
+                      height: '100%',
+                      backgroundColor: '#006FEE',
+                      transition: 'width 0.3s ease'
                     }} />
                   </div>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: '4px',
-                    fontSize: '12px',
-                    color: '#999'
-                  }}>
-                    <span>10%</span>
-                    <span>15%</span>
-                    <span>20%</span>
-                  </div>
                 </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#5B6B7D' }}>
+                  <span>$0</span>
+                  <span>$1,000 (10%)</span>
+                  <span>$2,500 (15%)</span>
+                  <span>$5,000 (20%)</span>
+                </div>
+              </div>
+            )}
 
-                {/* Action Buttons */}
+            {/* Totals */}
+            <div style={{ borderTop: '2px solid #E6F4FF', paddingTop: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <span style={{ fontSize: '16px', color: '#5B6B7D' }}>Subtotal</span>
+                <span style={{ fontSize: '16px', fontWeight: '600', color: '#0A051E' }}>
+                  ${subtotal.toFixed(2)}
+                </span>
+              </div>
+              {discountAmount > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                  <span style={{ fontSize: '16px', color: '#059669' }}>
+                    Bulk Discount ({discountPercentage}%)
+                  </span>
+                  <span style={{ fontSize: '16px', fontWeight: '600', color: '#059669' }}>
+                    -${discountAmount.toFixed(2)}
+                  </span>
+                </div>
+              )}
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                marginBottom: '24px',
+                paddingTop: '12px',
+                borderTop: '1px solid #E6F4FF'
+              }}>
+                <span style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E' }}>Total</span>
+                <span style={{ fontSize: '28px', fontWeight: '800', color: '#006FEE' }}>
+                  ${total.toFixed(2)}
+                </span>
+              </div>
+
+              {/* Action buttons */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <button
                   onClick={handleCheckout}
                   style={{
-                    width: '100%',
-                    padding: '16px',
-                    background: '#0066FF',
+                    backgroundColor: '#006FEE',
                     color: 'white',
-                    border: 'none',
+                    padding: '14px 24px',
                     borderRadius: '8px',
+                    border: 'none',
                     fontSize: '16px',
                     fontWeight: '600',
                     cursor: 'pointer',
-                    marginBottom: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '8px'
+                    gap: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#0059D1';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#006FEE';
+                    e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
-                  <ShoppingCart size={18} />
-                  Proceed to Checkout
+                  <CreditCard size={18} />
+                  Checkout
                 </button>
-
-                <div style={{
-                  display: 'flex',
-                  gap: '12px'
-                }}>
-                  <button
-                    onClick={handleInvoice}
-                    style={{
-                      flex: 1,
-                      padding: '12px',
-                      background: 'white',
-                      color: '#333',
-                      border: '1px solid #E5E7EB',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    <FileText size={16} />
-                    Request Quote
-                  </button>
-                  <button
-                    style={{
-                      flex: 1,
-                      padding: '12px',
-                      background: 'white',
-                      color: '#333',
-                      border: '1px solid #E5E7EB',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    <CreditCard size={16} />
-                    Financing
-                  </button>
-                </div>
-
-                {/* Delivery Info */}
-                <div style={{
-                  marginTop: '20px',
-                  padding: '16px',
-                  background: '#F0FDF4',
-                  borderRadius: '8px',
-                  fontSize: '14px'
-                }}>
-                  <div style={{
+                <button
+                  onClick={handleInvoice}
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#006FEE',
+                    padding: '14px 24px',
+                    borderRadius: '8px',
+                    border: '2px solid #006FEE',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: '8px',
-                    marginBottom: '4px',
-                    color: '#10B981',
-                    fontWeight: '600'
-                  }}>
-                    <Truck size={16} />
-                    Estimated Delivery: May 22-23
-                  </div>
-                  <div style={{ color: '#666' }}>
-                    Order within 2h 56m for same-day shipping
-                  </div>
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#F0F9FF';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                  }}
+                >
+                  <FileText size={18} />
+                  Get Invoice
+                </button>
+              </div>
+
+              {/* Benefits */}
+              <div style={{
+                marginTop: '20px',
+                padding: '16px',
+                backgroundColor: '#F0F9FF',
+                borderRadius: '12px',
+                fontSize: '14px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>Free shipping on orders over $1,000</span>
                 </div>
-              </>
-            )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>12-month warranty on all batteries</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>Same-day processing for orders before 2PM</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Empty Cart Message */}
+        {totalItems === 0 && (
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '16px',
+            padding: '48px',
+            textAlign: 'center',
+            border: '1px solid #E6F4FF',
+            boxShadow: '0 4px 12px rgba(0, 111, 238, 0.04)'
+          }}>
+            <ShoppingCart size={48} color="#9CA3AF" style={{ marginBottom: '16px' }} />
+            <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E', marginBottom: '8px' }}>
+              Your cart is empty
+            </h3>
+            <p style={{ fontSize: '16px', color: '#5B6B7D', marginBottom: '24px' }}>
+              Select batteries or packages above to get started
+            </p>
+            <button
+              onClick={() => setActiveTab('batteries')}
+              style={{
+                padding: '12px 24px',
+                borderRadius: '8px',
+                border: 'none',
+                backgroundColor: '#006FEE',
+                color: 'white',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Browse Products
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
