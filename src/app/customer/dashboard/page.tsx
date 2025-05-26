@@ -8,6 +8,7 @@ import {
   Clock,
   ShoppingCart,
   Plus,
+  Minus,
   Heart,
   Eye,
   DollarSign,
@@ -23,120 +24,106 @@ import {
   Truck,
   Shield,
   Star,
-  AlertCircle
+  AlertCircle,
+  Calculator,
+  FileText,
+  Grid,
+  Download,
+  X,
+  Trash2,
+  CheckCircle
 } from 'lucide-react'
 
 export default function CustomerDashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState({
-    name: 'Alex Thompson',
-    email: 'alex@company.com',
-    tier: 'Gold',
-    savings: 4567.89
+    name: 'Mike Johnson',
+    email: 'mike@constructionco.com',
+    tier: 'Gold Partner',
+    savings: 12456.00
   })
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState('overview')
+  
+  // Cart state for product cards
+  const [cart, setCart] = useState<{[key: string]: number}>({
+    '6Ah': 0,
+    '9Ah': 0,
+    '15Ah': 0
+  })
+  const [showCartDrawer, setShowCartDrawer] = useState(false)
 
   const stats = {
-    totalOrders: 24,
-    avgOrderValue: 3456,
-    savedProducts: 8,
-    activeBatteries: 15,
-    totalSavings: 4567.89,
-    loyaltyPoints: 2456
+    totalOrders: 3,
+    monthlySpend: 4875,
+    fleetSize: 247,
+    discountTier: 15
   }
 
   const recentOrders = [
     {
-      id: 'ORD-1234',
-      date: 'May 15, 2025',
-      items: ['FlexVolt 15Ah Battery x5', 'Installation Kit'],
-      total: 4599.00,
+      id: 'ORD-BD-2405-001',
+      date: 'May 22, 2025',
+      product: '9Ah FlexVolt Battery × 24 units',
+      total: 3000.00,
       status: 'Delivered',
-      savings: 345.00
+      savings: 1500.00
     },
     {
-      id: 'ORD-1233',
-      date: 'May 10, 2025',
-      items: ['FlexVolt 9Ah Battery x10'],
-      total: 2999.00,
+      id: 'ORD-BD-2405-002',
+      date: 'May 20, 2025',
+      product: 'Mid-Size Crew Package (10×6Ah, 10×9Ah, 5×15Ah)',
+      total: 4425.00,
       status: 'In Transit',
-      savings: 234.00
+      savings: 1105.00
     },
     {
-      id: 'ORD-1232',
-      date: 'May 5, 2025',
-      items: ['Battery Monitor', 'Cables'],
-      total: 1899.00,
+      id: 'ORD-BD-2405-003',
+      date: 'May 18, 2025',
+      product: '15Ah FlexVolt Battery × 12 units',
+      total: 2940.00,
       status: 'Processing',
-      savings: 156.00
+      savings: 1008.00
     }
   ]
 
-  const favoriteProducts = [
+  const batteryProducts = [
     {
-      id: 'PROD-001',
-      name: 'FlexVolt 15Ah Battery',
-      price: 379.00,
-      originalPrice: 459.00,
-      image: '⚡',
-      lastPurchased: 'May 15, 2025',
-      stock: 'In Stock',
-      rating: 4.8,
-      reviews: 234,
-      savings: 80.00
+      id: '6Ah',
+      name: '6Ah FlexVolt Battery',
+      runtime: 'Up to 4 hours',
+      weight: '1.9 lbs',
+      price: 95,
+      msrp: 169,
+      savings: 44,
+      workOutput: '225 screws / 175 ft cuts',
+      chargingTime: '45 minutes',
+      popular: false
     },
     {
-      id: 'PROD-002',
-      name: 'FlexVolt 9Ah Battery',
-      price: 249.00,
-      originalPrice: 299.00,
-      image: '🔋',
-      lastPurchased: 'April 20, 2025',
-      stock: 'In Stock',
-      rating: 4.7,
-      reviews: 189,
-      savings: 50.00
+      id: '9Ah',
+      name: '9Ah FlexVolt Battery',
+      runtime: 'Up to 6.5 hours',
+      weight: '2.4 lbs',
+      price: 125,
+      msrp: 249,
+      savings: 50,
+      workOutput: '340 screws / 260 ft cuts',
+      chargingTime: '55 minutes',
+      popular: true
     },
     {
-      id: 'PROD-003',
-      name: 'FlexVolt 6Ah Battery',
-      price: 169.00,
-      originalPrice: 199.00,
-      image: '🔌',
-      lastPurchased: 'May 10, 2025',
-      stock: 'Low Stock',
-      rating: 4.9,
-      reviews: 312,
-      savings: 30.00
-    }
-  ]
-
-  const notifications = [
-    {
-      id: 1,
-      type: 'discount',
-      title: 'New discount tier unlocked!',
-      message: 'Congratulations! You now get 15% off all orders.',
-      time: '2 hours ago',
-      read: false
-    },
-    {
-      id: 2,
-      type: 'order',
-      title: 'Order delivered',
-      message: 'Your order #ORD-1234 has been delivered successfully.',
-      time: '1 day ago',
-      read: false
-    },
-    {
-      id: 3,
-      type: 'reward',
-      title: 'Earned 500 loyalty points',
-      message: 'Points earned from your recent purchase.',
-      time: '3 days ago',
-      read: true
+      id: '15Ah',
+      name: '15Ah FlexVolt Battery',
+      runtime: 'Up to 10 hours',
+      weight: '3.2 lbs',
+      price: 245,
+      msrp: 379,
+      savings: 35,
+      workOutput: '560 screws / 430 ft cuts',
+      chargingTime: '90 minutes',
+      popular: false
     }
   ]
 
@@ -153,13 +140,31 @@ export default function CustomerDashboardPage() {
       case 'Delivered':
         return { bg: '#E6F9F0', color: '#059669' }
       case 'In Transit':
-        return { bg: '#FEF3C7', color: '#D97706' }
-      case 'Processing':
         return { bg: '#E0E7FF', color: '#4F46E5' }
+      case 'Processing':
+        return { bg: '#FEF3C7', color: '#F59E0B' }
       default:
         return { bg: '#F3F4F6', color: '#6B7280' }
     }
   }
+
+  const updateQuantity = (batteryId: string, delta: number) => {
+    setCart(prev => ({
+      ...prev,
+      [batteryId]: Math.max(0, prev[batteryId] + delta)
+    }))
+  }
+
+  const subtotal = Object.entries(cart).reduce((sum, [battery, qty]) => {
+    const batteryData = batteryProducts.find(b => b.id === battery)
+    return sum + (batteryData ? batteryData.price * qty : 0)
+  }, 0)
+
+  const discountPercentage = subtotal >= 5000 ? 20 : subtotal >= 2500 ? 15 : subtotal >= 1000 ? 10 : 0
+  const discountAmount = subtotal * (discountPercentage / 100)
+  const total = subtotal - discountAmount
+
+  const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0)
 
   return (
     <div style={{ backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
@@ -182,7 +187,7 @@ export default function CustomerDashboardPage() {
                 Welcome back, {user.name}
               </h1>
               <p style={{ fontSize: '16px', opacity: 0.9 }}>
-                Here's what's happening with your battery business
+                Your Battery Department Fleet Management Portal
               </p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -237,14 +242,13 @@ export default function CustomerDashboardPage() {
           {/* Quick Stats Bar */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '16px'
           }}>
             {[
-              { label: 'Total Savings', value: `$${stats.totalSavings.toFixed(2)}`, icon: DollarSign, color: '#22C55E' },
-              { label: 'Loyalty Points', value: stats.loyaltyPoints.toLocaleString(), icon: Star, color: '#FFB800' },
-              { label: 'Active Orders', value: '3', icon: Truck, color: '#3B82F6' },
-              { label: 'Discount Tier', value: '15%', icon: Gift, color: '#7C3AED' }
+              { label: 'Total Savings', value: `$${user.savings.toFixed(2)}`, icon: DollarSign, color: '#22C55E' },
+              { label: 'Total Orders', value: stats.totalOrders.toString(), icon: ShoppingCart, color: '#3B82F6' },
+              { label: 'Discount Tier', value: `Gold Partner - ${stats.discountTier}% Off`, icon: Gift, color: '#7C3AED' }
             ].map((stat, index) => (
               <div key={index} style={{
                 background: 'rgba(255, 255, 255, 0.1)',
@@ -279,47 +283,101 @@ export default function CustomerDashboardPage() {
 
       {/* Main Content */}
       <div style={{ padding: '24px', maxWidth: '1400px', margin: '0 auto' }}>
-        {/* Activity Overview Grid */}
+        
+        {/* Quick Actions - Moved to top */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '16px',
+          marginBottom: '32px'
+        }}>
+          {[
+            {
+              title: 'Quick Reorder',
+              icon: RefreshCw,
+              color: '#3B82F6',
+              href: '/customer/orders'
+            },
+            {
+              title: 'Runtime Calculator',
+              icon: Calculator,
+              color: '#10B981',
+              href: '/customer/configure'
+            },
+            {
+              title: 'Browse Products',
+              icon: Grid,
+              color: '#F59E0B',
+              href: '/customer/products'
+            },
+            {
+              title: 'Download Invoice',
+              icon: Download,
+              color: '#7C3AED',
+              href: '/customer/invoice'
+            }
+          ].map(action => (
+            <button
+              key={action.title}
+              onClick={() => router.push(action.href)}
+              style={{
+                padding: '20px',
+                border: 'none',
+                borderRadius: '12px',
+                backgroundColor: action.color,
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                fontSize: '16px',
+                fontWeight: '600',
+                boxShadow: `0 4px 12px ${action.color}30`,
+                transform: hoveredCard === action.title ? 'translateY(-2px)' : 'translateY(0)'
+              }}
+              onMouseEnter={() => handleMouseEnter(action.title)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <action.icon size={20} />
+              {action.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Activity Overview Grid - 3 cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           gap: '24px',
           marginBottom: '32px'
         }}>
           {[
             {
               id: 'orders',
-              title: 'Total Orders',
-              value: stats.totalOrders,
-              change: '+3 this month',
+              title: 'Active Orders',
+              value: '3',
+              change: '+1 this week',
               icon: ShoppingCart,
               color: '#3B82F6',
               bgGradient: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)'
             },
             {
-              id: 'value',
-              title: 'Avg Order Value',
-              value: `$${stats.avgOrderValue.toLocaleString()}`,
-              change: '+12% from last month',
-              icon: TrendingUp,
+              id: 'fleet',
+              title: 'Fleet Size',
+              value: '247 Batteries',
+              change: 'Across 6 jobsites',
+              icon: Battery,
               color: '#10B981',
               bgGradient: 'linear-gradient(135deg, #E6FFF9 0%, #F0FFF8 100%)'
             },
             {
-              id: 'saved',
-              title: 'Saved Products',
-              value: stats.savedProducts,
-              change: '2 new additions',
-              icon: Heart,
-              color: '#EF4444',
-              bgGradient: 'linear-gradient(135deg, #FFE6E6 0%, #FFF0F0 100%)'
-            },
-            {
-              id: 'batteries',
-              title: 'Active Batteries',
-              value: stats.activeBatteries,
-              change: 'All operational',
-              icon: Battery,
+              id: 'spend',
+              title: 'Avg Monthly Spend',
+              value: `$${stats.monthlySpend.toLocaleString()}`,
+              change: '+18% vs last year',
+              icon: TrendingUp,
               color: '#7C3AED',
               bgGradient: 'linear-gradient(135deg, #F3E6FF 0%, #F9F0FF 100%)'
             }
@@ -372,7 +430,7 @@ export default function CustomerDashboardPage() {
           ))}
         </div>
 
-        {/* Recent Orders with Timeline */}
+        {/* Recent Orders */}
         <div style={{
           backgroundColor: 'white',
           borderRadius: '16px',
@@ -462,7 +520,7 @@ export default function CustomerDashboardPage() {
                       <span style={{ fontSize: '14px', color: '#5B6B7D' }}>{order.date}</span>
                     </div>
                     <p style={{ fontSize: '14px', color: '#5B6B7D', marginBottom: '12px' }}>
-                      {order.items.join(', ')}
+                      {order.product}
                     </p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                       <p style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E' }}>
@@ -529,7 +587,7 @@ export default function CustomerDashboardPage() {
           </div>
         </div>
 
-        {/* Favorite Products with enhanced cards */}
+        {/* Frequently Ordered Products */}
         <div style={{
           backgroundColor: 'white',
           borderRadius: '16px',
@@ -545,7 +603,7 @@ export default function CustomerDashboardPage() {
             marginBottom: '24px'
           }}>
             <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E' }}>
-              Favorite Products
+              Frequently Ordered Products
             </h2>
             <button
               onClick={() => router.push('/customer/favorites')}
@@ -564,277 +622,414 @@ export default function CustomerDashboardPage() {
               onMouseEnter={(e) => e.currentTarget.style.color = '#0059D1'}
               onMouseLeave={(e) => e.currentTarget.style.color = '#006FEE'}
             >
-              View all favorites
+              View all products
               <ChevronRight size={16} />
             </button>
           </div>
 
+          {/* Product Cards */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
             gap: '20px'
           }}>
-            {favoriteProducts.map(product => (
+            {batteryProducts.map(battery => (
               <div
-                key={product.id}
+                key={battery.id}
                 style={{
-                  padding: '20px',
-                  border: '1px solid #E6F4FF',
+                  position: 'relative',
+                  background: 'white',
+                  border: '2px solid #E6F4FF',
                   borderRadius: '12px',
+                  padding: '24px',
                   transition: 'all 0.3s ease',
                   cursor: 'pointer',
-                  background: hoveredCard === product.id ? '#F8FBFF' : 'white'
+                  transform: hoveredCard === battery.id ? 'translateY(-4px)' : 'translateY(0)',
+                  boxShadow: hoveredCard === battery.id 
+                    ? '0 12px 24px rgba(0, 111, 238, 0.15)' 
+                    : '0 4px 12px rgba(0, 0, 0, 0.04)'
                 }}
-                onMouseEnter={() => handleMouseEnter(product.id)}
+                onMouseEnter={() => handleMouseEnter(battery.id)}
                 onMouseLeave={handleMouseLeave}
               >
-                <div style={{ display: 'flex', alignItems: 'start', gap: '16px' }}>
+                {battery.popular && (
                   <div style={{
-                    width: '80px',
-                    height: '80px',
-                    background: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)',
-                    borderRadius: '12px',
+                    position: 'absolute',
+                    top: '-12px',
+                    right: '20px',
+                    backgroundColor: '#FFB800',
+                    color: 'white',
+                    padding: '6px 16px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: '700',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '40px',
-                    border: '1px solid #E6F4FF'
+                    gap: '4px',
+                    boxShadow: '0 2px 8px rgba(255, 184, 0, 0.3)'
                   }}>
-                    {product.image}
+                    <Star size={14} fill="white" />
+                    MOST POPULAR
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                      <div>
-                        <p style={{ fontWeight: '700', color: '#0A051E', fontSize: '16px', marginBottom: '4px' }}>
-                          {product.name}
-                        </p>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Star size={14} fill="#FFB800" color="#FFB800" />
-                            <span style={{ fontSize: '14px', color: '#5B6B7D', fontWeight: '500' }}>
-                              {product.rating}
-                            </span>
-                          </div>
-                          <span style={{ fontSize: '14px', color: '#9CA3AF' }}>
-                            ({product.reviews} reviews)
-                          </span>
-                        </div>
-                      </div>
-                      <span style={{
-                        fontSize: '13px',
-                        color: product.stock === 'In Stock' ? '#10B981' : '#F59E0B',
-                        fontWeight: '600',
-                        backgroundColor: product.stock === 'In Stock' ? '#E6F9F0' : '#FEF3C7',
-                        padding: '4px 12px',
-                        borderRadius: '20px'
-                      }}>
-                        {product.stock}
+                )}
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
+                  <div>
+                    <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E', marginBottom: '8px' }}>
+                      {battery.name}
+                    </h3>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '28px', fontWeight: '800', color: '#006FEE' }}>
+                        ${battery.price}
                       </span>
-                    </div>
-                    
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '12px' }}>
-                      <p style={{ fontSize: '24px', fontWeight: '800', color: '#0A051E' }}>
-                        ${product.price.toFixed(2)}
-                      </p>
-                      <p style={{ fontSize: '16px', color: '#9CA3AF', textDecoration: 'line-through' }}>
-                        ${product.originalPrice.toFixed(2)}
-                      </p>
+                      <span style={{ fontSize: '16px', color: '#9CA3AF', textDecoration: 'line-through' }}>
+                        ${battery.msrp}
+                      </span>
                       <span style={{
-                        backgroundColor: '#FFE6E6',
-                        color: '#DC2626',
+                        backgroundColor: '#E6F9F0',
+                        color: '#059669',
                         padding: '2px 8px',
                         borderRadius: '16px',
                         fontSize: '12px',
                         fontWeight: '600'
                       }}>
-                        -${product.savings.toFixed(0)}
+                        -{battery.savings}%
                       </span>
                     </div>
-                    
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          console.log('Add to cart:', product.id)
-                        }}
-                        style={{
-                          flex: 1,
-                          backgroundColor: '#006FEE',
-                          color: 'white',
-                          padding: '10px 16px',
-                          borderRadius: '8px',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontWeight: '600',
-                          fontSize: '14px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#0059D1'
-                          e.currentTarget.style.transform = 'translateY(-1px)'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#006FEE'
-                          e.currentTarget.style.transform = 'translateY(0)'
-                        }}
-                      >
-                        <Plus size={16} />
-                        Add to Cart
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          console.log('View details:', product.id)
-                        }}
-                        style={{
-                          padding: '10px',
-                          backgroundColor: '#F0F9FF',
-                          border: '1px solid #E6F4FF',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#E6F4FF'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#F0F9FF'
-                        }}
-                      >
-                        <Eye size={16} color="#006FEE" />
-                      </button>
-                    </div>
                   </div>
+                  <div style={{
+                    width: '60px',
+                    height: '60px',
+                    background: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Battery size={32} color="#006FEE" />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: '16px', fontSize: '14px', color: '#5B6B7D' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                    <Clock size={14} />
+                    <span>{battery.runtime} continuous operation</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                    <Zap size={14} />
+                    <span>{battery.chargingTime} charge time</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Activity size={14} />
+                    <span>{battery.workOutput}</span>
+                  </div>
+                </div>
+
+                {/* Quantity selector buttons */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '8px',
+                  marginBottom: '16px'
+                }}>
+                  {[5, 10, 25].map(qty => (
+                    <button
+                      key={qty}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        updateQuantity(battery.id, qty)
+                        setShowCartDrawer(true)
+                      }}
+                      style={{
+                        padding: '8px',
+                        border: '1px solid #E6F4FF',
+                        borderRadius: '8px',
+                        backgroundColor: 'white',
+                        color: '#006FEE',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#F0F9FF'
+                        e.currentTarget.style.borderColor = '#006FEE'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white'
+                        e.currentTarget.style.borderColor = '#E6F4FF'
+                      }}
+                    >
+                      +{qty}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Custom quantity controls */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      updateQuantity(battery.id, -1)
+                    }}
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      border: '1px solid #E6F4FF',
+                      backgroundColor: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FFE6E6'
+                      e.currentTarget.style.borderColor = '#EF4444'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'white'
+                      e.currentTarget.style.borderColor = '#E6F4FF'
+                    }}
+                  >
+                    <Minus size={16} color="#5B6B7D" />
+                  </button>
+                  
+                  <div style={{
+                    flex: 1,
+                    textAlign: 'center',
+                    padding: '8px',
+                    backgroundColor: '#F8FAFC',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    color: '#0A051E'
+                  }}>
+                    {cart[battery.id] || 0} units
+                  </div>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      updateQuantity(battery.id, 1)
+                    }}
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      border: '1px solid #E6F4FF',
+                      backgroundColor: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#E6FFF9'
+                      e.currentTarget.style.borderColor = '#10B981'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'white'
+                      e.currentTarget.style.borderColor = '#E6F4FF'
+                    }}
+                  >
+                    <Plus size={16} color="#5B6B7D" />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Quick Actions with gradient cards */}
-        <div style={{
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          padding: '24px',
-          border: '1px solid #E6F4FF',
-          boxShadow: '0 4px 12px rgba(0, 111, 238, 0.04)'
-        }}>
-          <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E', marginBottom: '24px' }}>
-            Quick Actions
-          </h2>
+        {/* Cart Summary */}
+        {totalItems > 0 && (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '16px'
+            backgroundColor: 'white',
+            borderRadius: '16px',
+            padding: '24px',
+            border: '1px solid #E6F4FF',
+            boxShadow: '0 4px 12px rgba(0, 111, 238, 0.04)'
           }}>
-            {[
-              {
-                title: 'Track Orders',
-                icon: Truck,
-                gradient: 'linear-gradient(135deg, #F3E6FF 0%, #F9F0FF 100%)',
-                color: '#7C3AED',
-                href: '/customer/orders'
-              },
-              {
-                title: 'Browse Products',
-                icon: Package,
-                gradient: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)',
-                color: '#3B82F6',
-                href: '/customer/products'
-              },
-              {
-                title: 'Rewards Center',
-                icon: Award,
-                gradient: 'linear-gradient(135deg, #FFF7E6 0%, #FFF9F0 100%)',
-                color: '#F59E0B',
-                href: '/customer/rewards'
-              },
-              {
-                title: 'Support Center',
-                icon: Shield,
-                gradient: 'linear-gradient(135deg, #E6FFF9 0%, #F0FFF8 100%)',
-                color: '#10B981',
-                href: '/customer/support'
-              }
-            ].map(action => (
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '20px'
+            }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#0A051E' }}>
+                Cart Summary
+              </h2>
               <button
-                key={action.title}
-                onClick={() => router.push(action.href)}
+                onClick={() => setShowCartDrawer(!showCartDrawer)}
                 style={{
-                  padding: '24px',
-                  border: `1px solid ${action.color}20`,
-                  borderRadius: '12px',
-                  background: action.gradient,
+                  color: '#006FEE',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  background: 'none',
+                  border: 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px',
-                  transform: hoveredCard === action.title ? 'translateY(-4px)' : 'translateY(0)',
-                  boxShadow: hoveredCard === action.title 
-                    ? `0 12px 24px ${action.color}20` 
-                    : '0 4px 12px rgba(0, 0, 0, 0.04)'
+                  transition: 'color 0.2s ease'
                 }}
-                onMouseEnter={() => handleMouseEnter(action.title)}
-                onMouseLeave={handleMouseLeave}
               >
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  backgroundColor: action.color + '15',
-                  borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <action.icon size={24} color={action.color} />
-                </div>
-                <span style={{ color: '#0A051E', fontWeight: '600', fontSize: '16px' }}>
-                  {action.title}
-                </span>
+                {showCartDrawer ? 'Hide Details' : 'Show Details'}
               </button>
-            ))}
-          </div>
-        </div>
-      </div>
+            </div>
 
-      {/* Floating Action Button */}
-      <button
-        onClick={() => router.push('/customer/chat')}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          backgroundColor: '#006FEE',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-          boxShadow: '0 8px 24px rgba(0, 111, 238, 0.3)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'all 0.3s ease',
-          zIndex: 1000
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'scale(1.1)'
-          e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 111, 238, 0.4)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'scale(1)'
-          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 111, 238, 0.3)'
-        }}
-      >
-        <Activity size={24} />
-      </button>
+            {/* Cart items */}
+            {showCartDrawer && (
+              <div style={{ marginBottom: '20px' }}>
+                {Object.entries(cart).map(([batteryId, qty]) => {
+                  if (qty === 0) return null
+                  const battery = batteryProducts.find(b => b.id === batteryId)
+                  if (!battery) return null
+                  
+                  return (
+                    <div
+                      key={batteryId}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '12px 0',
+                        borderBottom: '1px solid #F3F4F6'
+                      }}
+                    >
+                      <div>
+                        <p style={{ fontWeight: '600', color: '#0A051E' }}>{battery.name}</p>
+                        <p style={{ fontSize: '14px', color: '#5B6B7D' }}>
+                          ${battery.price} × {qty} = ${(battery.price * qty).toFixed(2)}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => updateQuantity(batteryId, -qty)}
+                        style={{
+                          padding: '6px',
+                          borderRadius: '6px',
+                          border: 'none',
+                          backgroundColor: '#FFE6E6',
+                          color: '#DC2626',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#FEE2E2'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#FFE6E6'
+                        }}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Totals */}
+            <div style={{ borderTop: '2px solid #E6F4FF', paddingTop: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <span style={{ color: '#5B6B7D' }}>Subtotal</span>
+                <span style={{ fontWeight: '600', color: '#0A051E' }}>${subtotal.toFixed(2)}</span>
+              </div>
+              {discountAmount > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: '#059669' }}>Bulk Discount ({discountPercentage}%)</span>
+                  <span style={{ fontWeight: '600', color: '#059669' }}>-${discountAmount.toFixed(2)}</span>
+                </div>
+              )}
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <span style={{ fontSize: '18px', fontWeight: '700', color: '#0A051E' }}>Total</span>
+                <span style={{ fontSize: '24px', fontWeight: '800', color: '#006FEE' }}>${total.toFixed(2)}</span>
+              </div>
+
+              {/* Action buttons */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <button
+                  onClick={() => router.push('/customer/payment')}
+                  style={{
+                    backgroundColor: '#006FEE',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#0059D1'
+                    e.currentTarget.style.transform = 'translateY(-1px)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#006FEE'
+                    e.currentTarget.style.transform = 'translateY(0)'
+                  }}
+                >
+                  <CreditCard size={18} />
+                  Checkout
+                </button>
+                <button
+                  onClick={() => router.push('/customer/invoice')}
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#006FEE',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    border: '2px solid #006FEE',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#F0F9FF'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white'
+                  }}
+                >
+                  <FileText size={18} />
+                  Get Invoice
+                </button>
+              </div>
+
+              {/* Benefits */}
+              <div style={{
+                marginTop: '16px',
+                padding: '12px',
+                backgroundColor: '#F0F9FF',
+                borderRadius: '8px',
+                fontSize: '14px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>Free shipping on orders over $1,000</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>12-month warranty on all batteries</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <CheckCircle size={16} color="#10B981" />
+                  <span style={{ color: '#5B6B7D' }}>Same-day processing for orders before 2PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import EnhancedDiscountProgressBar from '../../../components/battery/EnhancedDiscountProgressBar';
 
 interface OrderSummaryProps {
   items: {
@@ -13,12 +14,13 @@ interface OrderSummaryProps {
 }
 
 const DISCOUNT_TIERS = {
-  tier1: { threshold: 5000, discount: 0.1, label: '10% discount' },
-  tier2: { threshold: 10000, discount: 0.15, label: '15% discount' },
-  tier3: { threshold: 20000, discount: 0.2, label: '20% discount' }
+  tier1: { threshold: 5000, discount: 0.1, label: '10% discount', color: '#16A34A' },
+  tier2: { threshold: 10000, discount: 0.15, label: '15% discount', color: '#0891B2' },
+  tier3: { threshold: 20000, discount: 0.2, label: '20% discount', color: '#4F46E5' }
 };
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) => {
+  const prevSubtotalRef = useRef(0);
   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + (item.retailPrice * item.quantity), 0);
   
@@ -50,6 +52,18 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
   // Calculate progress to next tier
   let progressPercent = 0;
   let amountToNextTier = 0;
+  
+  // Format discount tiers for progress bar with explicit typing
+  const discountTiersArray: Array<{ threshold: number; discount: string; color: string }> = [
+    { threshold: DISCOUNT_TIERS.tier1.threshold, discount: "10%", color: DISCOUNT_TIERS.tier1.color },
+    { threshold: DISCOUNT_TIERS.tier2.threshold, discount: "15%", color: DISCOUNT_TIERS.tier2.color },
+    { threshold: DISCOUNT_TIERS.tier3.threshold, discount: "20%", color: DISCOUNT_TIERS.tier3.color }
+  ];
+  
+  // Track previous subtotal for animation
+  useEffect(() => {
+    prevSubtotalRef.current = subtotal;
+  }, [subtotal]);
   
   if (nextTier) {
     const previousThreshold = currentTier ? currentTier.threshold : 0;
@@ -139,34 +153,14 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
           </div>
         )}
         
-        {nextTier && (
-          <div style={{ marginBottom: '24px' }}>
-            <div style={{
-              fontSize: '12px',
-              color: '#525252',
-              marginBottom: '8px',
-              textAlign: 'center'
-            }}>
-              ${amountToNextTier.toFixed(2)} away from {nextTier.label}
-            </div>
-            
-            <div style={{
-              backgroundColor: '#F3F3F3',
-              borderRadius: '8px',
-              height: '8px',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                backgroundColor: '#FCBC19',
-                height: '100%',
-                width: `${progressPercent}%`,
-                transition: 'width 0.3s ease',
-                borderRadius: '8px'
-              }} />
-            </div>
-          </div>
-        )}
+        <div style={{ marginBottom: '24px' }}>
+          <EnhancedDiscountProgressBar 
+            currentTotal={subtotal}
+            discountTiers={discountTiersArray}
+            isMobile={isMobile}
+            prevTotal={prevSubtotalRef.current}
+          />
+        </div>
       </div>
       
       <button style={{

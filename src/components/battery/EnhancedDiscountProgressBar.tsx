@@ -1,21 +1,33 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { TrendingUp, Zap } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
-interface DiscountProgressBarProps {
-  currentTotal: number;
-  discountTiers: any[];
-  isMobile: boolean;
+interface DiscountTier {
+  threshold: number;
+  discount: string;
+  color: string;
 }
 
-const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({ 
+interface EnhancedDiscountProgressBarProps {
+  currentTotal: number;
+  discountTiers: DiscountTier[];
+  isMobile: boolean;
+  prevTotal?: number | null;
+}
+
+const EnhancedDiscountProgressBar: React.FC<EnhancedDiscountProgressBarProps> = ({ 
   currentTotal = 0, 
   discountTiers = [],
-  isMobile = false
+  isMobile = false,
+  prevTotal
 }) => {
   const [animatedWidth, setAnimatedWidth] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [discountMessage, setDiscountMessage] = useState<string | null>(null);
+  const [justReachedThreshold, setJustReachedThreshold] = useState(false);
+  const previousTotal = useRef<number>(prevTotal !== undefined && prevTotal !== null ? prevTotal : 0);
+  const messageTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Validate props
   if (!discountTiers || discountTiers.length === 0) {
@@ -55,18 +67,92 @@ const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({
     progressPercentage = 100;
   }
 
+  // Confetti configuration
+  const confettiConfig = {
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 },
+    colors: ['#4F46E5', '#3B82F6', '#60A5FA', '#34D399', '#F59E0B', '#EF4444'],
+    // For TypeScript compatibility: shapes needs to be properly typed
+    ticks: 300,
+    gravity: 0.8,
+    drift: 0,
+    scalar: 1.2,
+    zIndex: 100
+  };
+
+  // Function to fire confetti with tier-based density
+  const fireConfetti = (discountLevel: string): void => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Skip animation but still show message
+      setDiscountMessage(`You've unlocked ${discountLevel} savings!`);
+      if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
+      messageTimeoutRef.current = setTimeout(() => setDiscountMessage(null), 5000);
+      return;
+    }
+    
+    // Set particle count based on discount tier percentage
+    const discountPercentage = parseInt(discountLevel.replace('%', '').trim());
+    const particleCount = discountPercentage * 10; // 10% = 100 particles, 20% = 200 particles
+    
+    // Fire confetti from multiple origins
+    confetti({
+      ...confettiConfig,
+      particleCount,
+      origin: { x: 0.3, y: 0.5 }
+    });
+    
+    confetti({
+      ...confettiConfig,
+      particleCount,
+      origin: { x: 0.7, y: 0.5 }
+    });
+    
+    // Show congratulatory message
+    setDiscountMessage(`Congratulations! You've unlocked ${discountLevel} savings!`);
+    if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
+    messageTimeoutRef.current = setTimeout(() => setDiscountMessage(null), 5000);
+    
+    // Add pulse effect to progress bar
+    setJustReachedThreshold(true);
+    if (animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+    animationTimeoutRef.current = setTimeout(() => setJustReachedThreshold(false), 3000);
+  };
+
   useEffect(() => {
     // Animate progress bar
-    setTimeout(() => {
+    setAnimatedWidth(0);
+    const animationTimeout: NodeJS.Timeout = setTimeout(() => {
       setAnimatedWidth(progressPercentage);
     }, 100);
     
-    // Show confetti effect when reaching a tier
-    if (currentTierIndex >= 0 && progressPercentage > 0) {
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 1000);
+    // Detect threshold crossing
+    if (currentTotal > previousTotal.current) {
+      // Check if we've crossed a threshold
+      for (let i = 0; i < discountTiers.length; i++) {
+        const threshold = discountTiers[i].threshold;
+        if (currentTotal >= threshold && previousTotal.current < threshold) {
+          // We crossed this threshold
+          setShowConfetti(true);
+          fireConfetti(discountTiers[i].discount);
+          break;
+        }
+      }
     }
-  }, [progressPercentage, currentTierIndex]);
+    
+    // Update previous total
+    previousTotal.current = currentTotal;
+    
+    // Cleanup timeouts on unmount
+    return () => {
+      if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
+      if (animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+      clearTimeout(animationTimeout);
+    };
+  }, [progressPercentage, currentTotal, discountTiers]);
 
   return (
     <div style={{
@@ -79,21 +165,6 @@ const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({
       position: "relative",
       overflow: "hidden"
     }}>
-      {/* Confetti effect */}
-      {showConfetti && (
-        <div style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "none"
-        }}>
-          <Zap size={48} color="#10B981" style={{
-            animation: "bounce 0.5s ease-out"
-          }} />
-        </div>
-      )}
-      
       <div style={{
         display: "flex",
         alignItems: "center",
@@ -111,7 +182,9 @@ const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({
             fontWeight: "700",
             color: "#003D88",
             margin: 0
-          }}>Unlock More Savings</h3>
+          }}>
+            Unlock More Savings
+          </h3>
         </div>
         
         {currentTierIndex < discountTiers.length - 1 && (
@@ -168,7 +241,8 @@ const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-end",
-            paddingRight: "12px"
+            paddingRight: "12px",
+            animation: justReachedThreshold ? "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite" : "none"
           }}
         >
           {animatedWidth > 20 && (
@@ -245,8 +319,58 @@ const DiscountProgressBar: React.FC<DiscountProgressBarProps> = ({
           </>
         )}
       </div>
+
+      {/* Congratulatory message overlay */}
+      {discountMessage && (
+        <div 
+          style={{
+            position: "fixed",
+            top: "25%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "rgba(255, 255, 255, 0.95)",
+            padding: "24px 32px",
+            borderRadius: "12px",
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            textAlign: "center",
+            zIndex: 50,
+            animation: "fade-in 0.5s ease-out forwards",
+            maxWidth: "90vw"
+          }}
+          role="alert"
+          aria-live="polite"
+        >
+          <div style={{
+            fontSize: "20px",
+            fontWeight: "700",
+            color: "#2563EB",
+            marginBottom: "8px"
+          }}>
+            {discountMessage}
+          </div>
+          <div style={{
+            fontSize: "16px",
+            color: "#4B5563"
+          }}>
+            Keep adding items for even bigger savings!
+          </div>
+        </div>
+      )}
+
+      {/* Custom animations */}
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+        
+        @keyframes fade-in {
+          from { opacity: 0; transform: translate(-50%, -60%); }
+          to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+      `}</style>
     </div>
   );
 };
 
-export default DiscountProgressBar;
+export default EnhancedDiscountProgressBar;

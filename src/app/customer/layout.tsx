@@ -14,16 +14,18 @@ import {
   X,
   CreditCard,
   Bell,
-  Award
+  Award,
+  Settings
 } from 'lucide-react'
 
 const navigation = [
   { name: 'Dashboard', href: '/customer/dashboard', icon: Home },
-  { name: 'Products', href: '/customer/products', icon: Package },
-  { name: 'Orders', href: '/customer/orders', icon: ShoppingCart },
-  { name: 'Favorites', href: '/customer/favorites', icon: Heart },
-  { name: 'Payment', href: '/customer/payment', icon: CreditCard },
-  { name: 'Chat with Lithi', href: '/customer/chat', icon: MessageCircle },
+  { name: 'Product Config', href: '/customer/products', icon: Package },
+  { name: 'Fleet Calculator', href: '/customer/configure', icon: Settings },
+  { name: 'Order History', href: '/customer/orders', icon: ShoppingCart },
+  { name: 'Saved Items', href: '/customer/favorites', icon: Heart },
+  { name: 'Billing & Invoices', href: '/customer/payment', icon: CreditCard },
+  { name: 'Support Center', href: '/customer/chat', icon: MessageCircle },
 ]
 
 export default function CustomerLayout({
@@ -105,7 +107,7 @@ export default function CustomerLayout({
               fontSize: '20px', 
               fontWeight: '700',
               color: '#003D88'
-            }}>Battery Hub</h2>
+            }}>Battery Department</h2>
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}
@@ -244,12 +246,12 @@ export default function CustomerLayout({
                 fontWeight: '700',
                 color: '#003D88',
                 marginBottom: '4px'
-              }}>Battery Hub</h1>
+              }}>Battery Department</h1>
               <p style={{
                 fontSize: '13px',
                 color: '#5B9FFF',
                 fontWeight: '500'
-              }}>FlexVolt System</p>
+              }}>Partner Portal</p>
             </div>
           </div>
         </div>
@@ -385,7 +387,7 @@ export default function CustomerLayout({
               fontSize: '20px', 
               fontWeight: '700',
               color: '#003D88'
-            }}>Battery Hub</h1>
+            }}>Battery Department</h1>
           </div>
           <button
             onClick={() => router.push('/customer/notifications')}

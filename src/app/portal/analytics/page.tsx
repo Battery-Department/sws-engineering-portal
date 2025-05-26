@@ -40,28 +40,28 @@ const navigation = [
 const kpiCards = [
   {
     title: "Total Revenue",
-    value: "$124,573",
-    change: "+12.5%",
+    value: "$642,825",
+    change: "+18.2%",
     trend: "up",
     period: "vs last month"
   },
   {
     title: "Order Volume",
-    value: "1,234",
-    change: "+8.3%",
+    value: "342",
+    change: "+12.5%",
     trend: "up",
     period: "vs last month"
   },
   {
     title: "Average Order Value",
-    value: "$2,456",
-    change: "-2.1%",
-    trend: "down",
+    value: "$1,879",
+    change: "+5.7%",
+    trend: "up",
     period: "vs last month"
   },
   {
     title: "Customer Retention",
-    value: "87.4%",
+    value: "78.4%",
     change: "+3.2%",
     trend: "up",
     period: "vs last quarter"
@@ -78,10 +78,10 @@ const salesData = [
 ]
 
 const topProducts = [
-  { name: 'Tesla Powerwall 2', sales: 156, revenue: '$718,644', growth: '+15%' },
-  { name: 'Solar Edge Home Battery', sales: 89, revenue: '$800,991', growth: '+8%' },
-  { name: 'LG Chem RESU 10H', sales: 76, revenue: '$342,000', growth: '+22%' },
-  { name: 'Panasonic EverVolt 2.0', sales: 64, revenue: '$140,778', growth: '-5%' },
+  { name: '9Ah FlexVolt Battery', sales: 1425, revenue: '$178,125', growth: '+22%' },
+  { name: 'Mid-Size Crew Package', sales: 30, revenue: '$132,750', growth: '+18%' },
+  { name: '15Ah FlexVolt Battery', sales: 401, revenue: '$98,175', growth: '+15%' },
+  { name: '6Ah FlexVolt Battery', sales: 810, revenue: '$76,950', growth: '+8%' },
 ]
 
 export default function AnalyticsPage() {
@@ -131,7 +131,7 @@ export default function AnalyticsPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -504,19 +504,19 @@ export default function AnalyticsPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '14px', color: '#6b7280' }}>New Customers</span>
-                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>234</span>
+                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>47</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '14px', color: '#6b7280' }}>Repeat Rate</span>
-                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>67%</span>
+                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>78%</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '14px', color: '#6b7280' }}>Avg. Lifetime Value</span>
-                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>$12,456</span>
+                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>$4,800</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '14px', color: '#6b7280' }}>Churn Rate</span>
-                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>2.3%</span>
+                    <span style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>2.1%</span>
                   </div>
                 </div>
               </div>

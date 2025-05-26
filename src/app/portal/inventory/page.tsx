@@ -47,54 +47,64 @@ export default function InventoryPage() {
 
   const inventory = [
     {
-      id: 'BAT-001',
-      name: 'Lithium Battery 48V 200Ah',
-      sku: 'LB48200',
+      id: 'FLX-6AH',
+      name: '6Ah FlexVolt Battery',
+      sku: 'FLX-6AH',
       status: 'In Stock',
-      quantity: 125,
-      price: '$2,499.00',
-      category: 'Lithium Batteries',
-      lastUpdate: 'Dec 14, 2024'
+      quantity: 850,
+      price: '$95.00',
+      category: 'FlexVolt Batteries',
+      lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'BAT-002',
-      name: 'Lithium Battery 24V 100Ah',
-      sku: 'LB24100',
+      id: 'FLX-9AH',
+      name: '9Ah FlexVolt Battery',
+      sku: 'FLX-9AH',
+      status: 'In Stock',
+      quantity: 1247,
+      price: '$125.00',
+      category: 'FlexVolt Batteries',
+      lastUpdate: 'May 24, 2025'
+    },
+    {
+      id: 'FLX-15AH',
+      name: '15Ah FlexVolt Battery',
+      sku: 'FLX-15AH',
       status: 'Low Stock',
-      quantity: 15,
-      price: '$1,299.00',
-      category: 'Lithium Batteries',
-      lastUpdate: 'Dec 13, 2024'
+      quantity: 89,
+      price: '$245.00',
+      category: 'FlexVolt Batteries',
+      lastUpdate: 'May 23, 2025'
     },
     {
-      id: 'BAT-003',
-      name: 'Solar Controller MPPT 60A',
-      sku: 'SC60A',
-      status: 'Out of Stock',
-      quantity: 0,
-      price: '$399.00',
-      category: 'Controllers',
-      lastUpdate: 'Dec 12, 2024'
-    },
-    {
-      id: 'BAT-004',
-      name: 'Battery Monitor LCD Display',
-      sku: 'BM100',
+      id: 'FLX-PKG-START',
+      name: 'Starter Crew Package',
+      sku: 'FLX-PKG-START',
       status: 'In Stock',
-      quantity: 250,
-      price: '$149.00',
-      category: 'Accessories',
-      lastUpdate: 'Dec 14, 2024'
+      quantity: 42,
+      price: '$1,270.00',
+      category: 'Bundle Packages',
+      lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'BAT-005',
-      name: 'Lithium Battery 48V 100Ah',
-      sku: 'LB48100',
+      id: 'FLX-PKG-MID',
+      name: 'Mid-Size Crew Package',
+      sku: 'FLX-PKG-MID',
       status: 'In Stock',
-      quantity: 85,
-      price: '$1,999.00',
-      category: 'Lithium Batteries',
-      lastUpdate: 'Dec 14, 2024'
+      quantity: 28,
+      price: '$4,425.00',
+      category: 'Bundle Packages',
+      lastUpdate: 'May 24, 2025'
+    },
+    {
+      id: 'FLX-PKG-FULL',
+      name: 'Full Workforce Solution',
+      sku: 'FLX-PKG-FULL',
+      status: 'Low Stock',
+      quantity: 8,
+      price: '$8,875.00',
+      category: 'Bundle Packages',
+      lastUpdate: 'May 22, 2025'
     },
   ]
 
@@ -115,7 +125,7 @@ export default function InventoryPage() {
           </div>
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex-shrink-0 flex items-center px-4">
-              <span className="text-2xl font-bold text-white">Dealer Portal</span>
+              <span className="text-2xl font-bold text-white">Battery Department</span>
             </div>
             <nav className="mt-5 px-2 space-y-1">
               {navigation.map((item) => (
@@ -173,7 +183,7 @@ export default function InventoryPage() {
         <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <span className="text-2xl font-bold text-white">Dealer Portal</span>
+              <span className="text-2xl font-bold text-white">Battery Department</span>
             </div>
             <nav className="mt-5 flex-1 px-2 space-y-1">
               {navigation.map((item) => (
@@ -262,7 +272,7 @@ export default function InventoryPage() {
                       <dl>
                         <dt className="text-sm font-medium text-gray-500 truncate">Total Products</dt>
                         <dd className="flex items-baseline">
-                          <div className="text-2xl font-semibold text-gray-900">87</div>
+                          <div className="text-2xl font-semibold text-gray-900">6</div>
                         </dd>
                       </dl>
                     </div>
@@ -279,7 +289,7 @@ export default function InventoryPage() {
                       <dl>
                         <dt className="text-sm font-medium text-gray-500 truncate">Low Stock</dt>
                         <dd className="flex items-baseline">
-                          <div className="text-2xl font-semibold text-gray-900">12</div>
+                          <div className="text-2xl font-semibold text-gray-900">2</div>
                         </dd>
                       </dl>
                     </div>
@@ -296,7 +306,7 @@ export default function InventoryPage() {
                       <dl>
                         <dt className="text-sm font-medium text-gray-500 truncate">Out of Stock</dt>
                         <dd className="flex items-baseline">
-                          <div className="text-2xl font-semibold text-gray-900">4</div>
+                          <div className="text-2xl font-semibold text-gray-900">0</div>
                         </dd>
                       </dl>
                     </div>
@@ -313,7 +323,7 @@ export default function InventoryPage() {
                       <dl>
                         <dt className="text-sm font-medium text-gray-500 truncate">Total Value</dt>
                         <dd className="flex items-baseline">
-                          <div className="text-2xl font-semibold text-gray-900">$347K</div>
+                          <div className="text-2xl font-semibold text-gray-900">$420K</div>
                         </dd>
                       </dl>
                     </div>

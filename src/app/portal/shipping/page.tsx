@@ -39,37 +39,37 @@ const navigation = [
 
 const shipments = [
   {
-    id: 'SHP-001',
-    orderId: 'ORD-001',
-    customer: 'Acme Corporation',
+    id: 'FLX-SHP-001',
+    orderId: 'FLX-2025-001',
+    customer: 'Walsh Construction Group',
     status: 'delivered',
     carrier: 'FedEx',
     trackingNumber: '795870384652',
-    destination: 'New York, NY',
+    destination: 'Chicago, IL - Jobsite',
     estimatedDelivery: 'May 15, 2025',
     actualDelivery: 'May 14, 2025',
     items: 2
   },
   {
-    id: 'SHP-002',
-    orderId: 'ORD-002',
-    customer: 'Global Tech Solutions',
+    id: 'FLX-SHP-002',
+    orderId: 'FLX-2025-002',
+    customer: 'Davis Building Corp',
     status: 'in-transit',
     carrier: 'UPS',
     trackingNumber: '1Z999AA10123456784',
-    destination: 'Los Angeles, CA',
+    destination: 'Houston, TX - Main Warehouse',
     estimatedDelivery: 'May 18, 2025',
     actualDelivery: null,
-    items: 4
+    items: 2
   },
   {
-    id: 'SHP-003',
-    orderId: 'ORD-003',
-    customer: 'Green Energy Inc',
+    id: 'FLX-SHP-003',
+    orderId: 'FLX-2025-003',
+    customer: 'Miller & Sons Electric',
     status: 'processing',
-    carrier: 'DHL',
+    carrier: 'FedEx',
     trackingNumber: '1234567890',
-    destination: 'Chicago, IL',
+    destination: 'Phoenix, AZ - Desert Ridge Site',
     estimatedDelivery: 'May 20, 2025',
     actualDelivery: null,
     items: 1
@@ -79,31 +79,31 @@ const shipments = [
 const metrics = [
   {
     title: "Active Shipments",
-    value: "23",
-    change: "+12% from last week",
+    value: "12",
+    change: "-8% from last week",
     icon: Truck,
     color: "#3b82f6",
     bgColor: "#eff6ff"
   },
   {
     title: "On-Time Delivery",
-    value: "94%",
-    change: "+2% from last month",
+    value: "96.5%",
+    change: "+2.1% from last month",
     icon: CheckCircle,
     color: "#10b981", 
     bgColor: "#f0fdf4"
   },
   {
     title: "Average Transit Time",
-    value: "3.2 days",
-    change: "-0.5 days from last month",
+    value: "2.1 days",
+    change: "-0.3 days from last month",
     icon: Clock,
     color: "#8b5cf6",
     bgColor: "#f5f3ff"
   },
   {
     title: "Pending Shipments",
-    value: "7",
+    value: "3",
     change: "Need attention",
     icon: AlertCircle,
     color: "#f59e0b",
@@ -162,7 +162,7 @@ export default function ShippingPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -219,7 +219,7 @@ export default function ShippingPage() {
       }} className="md-show">
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
           </div>
           <nav style={{ flex: 1, padding: '0 8px' }}>
             {navigation.map((item) => (

@@ -35,32 +35,32 @@ const navigation = [
 const metrics = [
   {
     title: "Active Orders",
-    value: "12",
-    change: "+2 from last month",
+    value: "18",
+    change: "+6 from last month",
     icon: Package,
     color: "#3b82f6",
     bgColor: "#eff6ff"
   },
   {
     title: "Monthly Revenue",
-    value: "$45,231.89",
-    change: "+20.1% from last month",
+    value: "$142,850.00",
+    change: "+18.2% from last month",
     icon: TrendingUp,
     color: "#10b981", 
     bgColor: "#f0fdf4"
   },
   {
-    title: "Active Batteries",
-    value: "2,350",
-    change: "+180 from last month",
+    title: "Batteries Deployed",
+    value: "2,847",
+    change: "+89 from last month",
     icon: CreditCard,
     color: "#8b5cf6",
     bgColor: "#f5f3ff"
   },
   {
-    title: "Active Customers",
-    value: "573",
-    change: "+201 since last year",
+    title: "Partner Dealers",
+    value: "67",
+    change: "+23 since last quarter",
     icon: Users,
     color: "#f59e0b",
     bgColor: "#fffbeb"
@@ -68,9 +68,9 @@ const metrics = [
 ]
 
 const recentOrders = [
-  { id: 'ORD-001', customer: 'Acme Corporation', product: 'Tesla Powerwall 2', status: 'delivered', amount: '$4,599.00', date: 'May 10, 2025' },
-  { id: 'ORD-002', customer: 'Global Tech Solutions', product: 'Solar Edge Home Battery', status: 'in-transit', amount: '$8,999.00', date: 'May 15, 2025' },
-  { id: 'ORD-003', customer: 'Green Energy Inc', product: 'Panasonic EverVolt 2.0', status: 'processing', amount: '$2,199.00', date: 'May 16, 2025' },
+  { id: 'ORD-001', customer: 'Turner Construction', product: '9Ah FlexVolt Battery (24 units)', status: 'delivered', amount: '$3,000.00', date: 'May 10, 2025' },
+  { id: 'ORD-002', customer: 'Midwest Contractors LLC', product: 'Mid-Size Crew Package', status: 'in-transit', amount: '$4,425.00', date: 'May 15, 2025' },
+  { id: 'ORD-003', customer: 'Johnson Electric Co.', product: '15Ah FlexVolt Battery (12 units)', status: 'processing', amount: '$2,940.00', date: 'May 16, 2025' },
 ]
 
 export default function DashboardPage() {
@@ -129,7 +129,7 @@ export default function DashboardPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -186,7 +186,7 @@ export default function DashboardPage() {
       }} className="md-show">
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>FlexVolt</span>
           </div>
           <nav style={{ flex: 1, padding: '0 8px' }}>
             {navigation.map((item) => (
@@ -297,9 +297,9 @@ export default function DashboardPage() {
             {/* Welcome section */}
             <div style={{ marginBottom: '32px' }}>
               <h2 style={{ fontSize: '30px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
-                Welcome back, {user?.name || user?.email}
+                Welcome back, Mike
               </h2>
-              <p style={{ color: '#6b7280' }}>Here's an overview of your battery management system</p>
+              <p style={{ color: '#6b7280' }}>Here's your Battery Department fleet management overview</p>
             </div>
 
             {/* Metrics */}
