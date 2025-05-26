@@ -26,54 +26,58 @@ import {
 
 const orders = [
   {
-    id: 'ORD-1234',
-    date: 'May 15, 2025',
+    id: 'ORD-2024-005',
+    date: 'May 22, 2025',
     status: 'Delivered',
-    total: '$4,599.00',
+    total: '$2,645.00',
     items: [
-      { name: 'Tesla Powerwall 2', quantity: 1, price: '$4,499.00' },
-      { name: 'Installation Kit', quantity: 1, price: '$100.00' }
+      { name: 'LithiPro 150Ah Battery', quantity: 2, price: '$1,198.00' },
+      { name: 'Smart BMS Module', quantity: 2, price: '$398.00' },
+      { name: 'Premium Cable Kit', quantity: 1, price: '$49.00' }
     ],
     trackingNumber: '1Z999AA10123456784',
-    deliveryDate: 'May 17, 2025',
-    shippingAddress: '123 Main St, San Francisco, CA 94105'
+    deliveryDate: 'May 24, 2025',
+    shippingAddress: '456 Park Ave, San Francisco, CA 94105'
   },
   {
-    id: 'ORD-1233',
-    date: 'May 10, 2025',
+    id: 'ORD-2024-004',
+    date: 'May 18, 2025',
     status: 'In Transit',
-    total: '$2,999.00',
+    total: '$1,797.00',
     items: [
-      { name: 'LG Chem RESU 10H', quantity: 1, price: '$2,999.00' }
+      { name: 'PowerMax 100Ah Battery', quantity: 3, price: '$599.00' }
     ],
     trackingNumber: '1Z999AA10123456783',
-    estimatedDelivery: 'May 18, 2025',
-    shippingAddress: '123 Main St, San Francisco, CA 94105'
+    estimatedDelivery: 'May 27, 2025',
+    shippingAddress: '456 Park Ave, San Francisco, CA 94105'
   },
   {
-    id: 'ORD-1232',
-    date: 'May 5, 2025',
+    id: 'ORD-2024-003',
+    date: 'May 14, 2025',
     status: 'Processing',
-    total: '$1,899.00',
+    total: '$3,245.00',
     items: [
-      { name: 'Battery Monitor LCD Display', quantity: 2, price: '$899.50' },
-      { name: 'Extension Cables', quantity: 1, price: '$100.00' }
+      { name: 'Contractor Bundle - 5 Pack', quantity: 1, price: '$2,999.00' },
+      { name: 'Fast Charger Station', quantity: 1, price: '$199.00' },
+      { name: 'Safety Equipment Kit', quantity: 1, price: '$47.00' }
     ],
     trackingNumber: null,
-    estimatedDelivery: 'May 20, 2025',
-    shippingAddress: '123 Main St, San Francisco, CA 94105'
+    estimatedDelivery: 'May 29, 2025',
+    shippingAddress: '456 Park Ave, San Francisco, CA 94105'
   },
   {
-    id: 'ORD-1231',
-    date: 'April 28, 2025',
+    id: 'ORD-2024-002',
+    date: 'May 5, 2025',
     status: 'Delivered',
-    total: '$8,999.00',
+    total: '$899.00',
     items: [
-      { name: 'Solar Edge Home Battery', quantity: 1, price: '$8,999.00' }
+      { name: 'EcoCharge 50Ah Battery', quantity: 2, price: '$398.00' },
+      { name: 'Universal Mounting Bracket', quantity: 2, price: '$50.00' },
+      { name: 'Quick Connect Kit', quantity: 1, price: '$53.00' }
     ],
     trackingNumber: '1Z999AA10123456782',
-    deliveryDate: 'May 1, 2025',
-    shippingAddress: '456 Oak Ave, San Francisco, CA 94105'
+    deliveryDate: 'May 7, 2025',
+    shippingAddress: '789 Oak St, San Francisco, CA 94105'
   }
 ]
 
@@ -85,6 +89,7 @@ export default function CustomerOrdersPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedStatus, setSelectedStatus] = useState('all')
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null)
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   useEffect(() => {
     // Get user from localStorage
@@ -97,12 +102,12 @@ export default function CustomerOrdersPage() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F8FAFC' }}>
         <div style={{
           width: '48px',
           height: '48px',
-          border: '4px solid #e5e7eb',
-          borderTopColor: '#3b82f6',
+          border: '4px solid #E6F4FF',
+          borderTopColor: '#006FEE',
           borderRadius: '50%',
           animation: 'spin 1s linear infinite'
         }}></div>
@@ -133,44 +138,48 @@ export default function CustomerOrdersPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#F8FAFC' }}>
       {/* Content area */}
       <div style={{ paddingLeft: 0 }}>
         {/* Header */}
         <header style={{
-          backgroundColor: 'white',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          background: 'linear-gradient(to right, #006FEE, #0050B3)',
           position: 'sticky',
           top: 0,
           zIndex: 20
         }}>
-          <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#111827' }}>My Orders</h1>
+          <div style={{ padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <h1 style={{ fontSize: '24px', fontWeight: '600', color: 'white' }}>Order History</h1>
             <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              backgroundColor: '#6b7280',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontWeight: '500'
+              gap: '12px'
             }}>
-              {user?.name?.[0] || 'U'}
+              <span style={{ color: 'white', fontSize: '14px' }}>Mike Johnson</span>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontWeight: '600',
+                fontSize: '16px'
+              }}>
+                MJ
+              </div>
             </div>
           </div>
         </header>
 
         {/* Main content */}
-        <main style={{ padding: '24px' }}>
+        <main style={{ padding: '32px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             {/* Page header */}
             <div style={{ marginBottom: '32px' }}>
-              <h2 style={{ fontSize: '30px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
-                Order History
-              </h2>
-              <p style={{ color: '#6b7280' }}>Track your orders and manage shipments</p>
+              <p style={{ color: '#5B6B7D', fontSize: '14px' }}>Track your battery orders and shipments</p>
             </div>
 
             {/* Search and filters */}
@@ -182,7 +191,7 @@ export default function CustomerOrdersPage() {
                     left: '12px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    color: '#6b7280'
+                    color: '#5B6B7D'
                   }} />
                   <input
                     type="text"
@@ -191,28 +200,29 @@ export default function CustomerOrdersPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{
                       width: '100%',
-                      padding: '10px 10px 10px 40px',
-                      border: '1px solid #e5e7eb',
+                      padding: '12px 12px 12px 44px',
+                      border: '2px solid #E6F4FF',
                       borderRadius: '8px',
                       fontSize: '14px',
                       outline: 'none',
-                      transition: 'all 0.2s'
+                      transition: 'all 0.2s',
+                      backgroundColor: 'white'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#6366f1'
+                      e.target.style.borderColor = '#006FEE'
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = '#e5e7eb'
+                      e.target.style.borderColor = '#E6F4FF'
                     }}
                   />
                 </div>
                 <button
                   style={{
-                    padding: '10px 16px',
-                    border: '1px solid #e5e7eb',
+                    padding: '12px 20px',
+                    border: '2px solid #E6F4FF',
                     borderRadius: '8px',
                     backgroundColor: 'white',
-                    color: '#374151',
+                    color: '#5B6B7D',
                     fontSize: '14px',
                     fontWeight: '500',
                     cursor: 'pointer',
@@ -222,10 +232,12 @@ export default function CustomerOrdersPage() {
                     transition: 'all 0.2s'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#f9fafb'
+                    e.currentTarget.style.backgroundColor = '#F8FAFC'
+                    e.currentTarget.style.borderColor = '#006FEE'
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'white'
+                    e.currentTarget.style.borderColor = '#E6F4FF'
                   }}
                 >
                   <Filter size={16} />
@@ -240,14 +252,14 @@ export default function CustomerOrdersPage() {
                     key={status}
                     onClick={() => setSelectedStatus(status)}
                     style={{
-                      padding: '8px 16px',
+                      padding: '8px 20px',
                       borderRadius: '8px',
-                      border: '1px solid',
-                      borderColor: selectedStatus === status ? '#6366f1' : '#e5e7eb',
-                      backgroundColor: selectedStatus === status ? '#6366f1' : 'white',
-                      color: selectedStatus === status ? 'white' : '#374151',
+                      border: '2px solid',
+                      borderColor: selectedStatus === status ? '#006FEE' : '#E6F4FF',
+                      backgroundColor: selectedStatus === status ? '#006FEE' : 'white',
+                      color: selectedStatus === status ? 'white' : '#5B6B7D',
                       fontSize: '14px',
-                      fontWeight: '500',
+                      fontWeight: '600',
                       textTransform: 'capitalize',
                       cursor: 'pointer',
                       transition: 'all 0.2s'
@@ -260,69 +272,76 @@ export default function CustomerOrdersPage() {
             </div>
 
             {/* Orders list */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {filteredOrders.map((order) => (
                 <div key={order.id} style={{
                   backgroundColor: 'white',
                   borderRadius: '12px',
-                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-                  overflow: 'hidden'
-                }}>
+                  border: '2px solid #E6F4FF',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  transform: hoveredCard === order.id ? 'translateY(-4px)' : 'translateY(0)',
+                  boxShadow: hoveredCard === order.id ? '0 12px 24px rgba(0, 111, 238, 0.15)' : 'none'
+                }}
+                onMouseEnter={() => setHoveredCard(order.id)}
+                onMouseLeave={() => setHoveredCard(null)}>
                   <div style={{
-                    padding: '20px',
-                    borderBottom: expandedOrder === order.id ? '1px solid #e5e7eb' : 'none',
+                    padding: '24px',
+                    borderBottom: expandedOrder === order.id ? '2px solid #E6F4FF' : 'none',
                     cursor: 'pointer'
                   }}
                   onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
                       <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
-                          <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111827' }}>{order.id}</h3>
+                          <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827' }}>{order.id}</h3>
                           <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            padding: '4px 12px',
+                            padding: '6px 16px',
                             borderRadius: '9999px',
                             fontSize: '12px',
-                            fontWeight: '500',
-                            backgroundColor: order.status === 'Delivered' ? '#d1fae5' : 
-                                           order.status === 'In Transit' ? '#fef3c7' : 
-                                           order.status === 'Processing' ? '#dbeafe' : '#f3f4f6',
-                            color: order.status === 'Delivered' ? '#065f46' : 
-                                  order.status === 'In Transit' ? '#78350f' : 
-                                  order.status === 'Processing' ? '#1e40af' : '#6b7280'
+                            fontWeight: '600',
+                            backgroundColor: order.status === 'Delivered' ? '#F0FDF4' : 
+                                           order.status === 'In Transit' ? '#FFF7ED' : 
+                                           order.status === 'Processing' ? '#EFF6FF' : '#F3F4F6',
+                            color: order.status === 'Delivered' ? '#16A34A' : 
+                                  order.status === 'In Transit' ? '#EA580C' : 
+                                  order.status === 'Processing' ? '#006FEE' : '#6B7280'
                           }}>
                             {order.status}
                           </span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#6b7280' }}>{order.date}</p>
+                        <p style={{ fontSize: '14px', color: '#5B6B7D' }}>{order.date}</p>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <p style={{ fontSize: '18px', fontWeight: '600', color: '#111827' }}>{order.total}</p>
-                        <p style={{ fontSize: '14px', color: '#6b7280' }}>{order.items.length} items</p>
+                        <p style={{ fontSize: '20px', fontWeight: '700', color: '#006FEE' }}>{order.total}</p>
+                        <p style={{ fontSize: '14px', color: '#5B6B7D' }}>{order.items.length} items</p>
                       </div>
                     </div>
 
                     {/* Order items preview */}
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
                       {order.items.slice(0, 2).map((item, index) => (
                         <span key={index} style={{
-                          padding: '6px 12px',
-                          backgroundColor: '#f3f4f6',
-                          borderRadius: '9999px',
-                          fontSize: '14px',
-                          color: '#374151'
+                          padding: '8px 16px',
+                          backgroundColor: '#E6F4FF',
+                          borderRadius: '8px',
+                          fontSize: '13px',
+                          color: '#006FEE',
+                          fontWeight: '500'
                         }}>
                           {item.name}
                         </span>
                       ))}
                       {order.items.length > 2 && (
                         <span style={{
-                          padding: '6px 12px',
-                          backgroundColor: '#f3f4f6',
-                          borderRadius: '9999px',
-                          fontSize: '14px',
-                          color: '#374151'
+                          padding: '8px 16px',
+                          backgroundColor: '#F8FAFC',
+                          borderRadius: '8px',
+                          fontSize: '13px',
+                          color: '#5B6B7D',
+                          fontWeight: '500'
                         }}>
                           +{order.items.length - 2} more
                         </span>
@@ -338,24 +357,24 @@ export default function CustomerOrdersPage() {
                             handleTrackShipment(order.trackingNumber!)
                           }}
                           style={{
-                            padding: '8px 16px',
-                            backgroundColor: '#6366f1',
+                            padding: '10px 20px',
+                            backgroundColor: '#006FEE',
                             color: 'white',
                             border: 'none',
-                            borderRadius: '6px',
+                            borderRadius: '8px',
                             fontSize: '14px',
-                            fontWeight: '500',
+                            fontWeight: '600',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '6px',
-                            transition: 'all 0.2s'
+                            gap: '8px',
+                            transition: 'all 0.2s ease'
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#4f46e5'
+                            e.currentTarget.style.backgroundColor = '#0050B3'
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = '#6366f1'
+                            e.currentTarget.style.backgroundColor = '#006FEE'
                           }}
                         >
                           <Truck size={16} />
@@ -368,24 +387,26 @@ export default function CustomerOrdersPage() {
                           handleReorder(order.id)
                         }}
                         style={{
-                          padding: '8px 16px',
-                          border: '1px solid #e5e7eb',
+                          padding: '10px 20px',
+                          border: '2px solid #E6F4FF',
                           backgroundColor: 'white',
-                          color: '#374151',
-                          borderRadius: '6px',
+                          color: '#006FEE',
+                          borderRadius: '8px',
                           fontSize: '14px',
-                          fontWeight: '500',
+                          fontWeight: '600',
                           cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '6px',
+                          gap: '8px',
                           transition: 'all 0.2s'
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#f9fafb'
+                          e.currentTarget.style.backgroundColor = '#F8FAFC'
+                          e.currentTarget.style.borderColor = '#006FEE'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'white'
+                          e.currentTarget.style.borderColor = '#E6F4FF'
                         }}
                       >
                         <RefreshCw size={16} />
@@ -396,21 +417,21 @@ export default function CustomerOrdersPage() {
                           e.stopPropagation()
                         }}
                         style={{
-                          padding: '8px 16px',
-                          border: '1px solid #e5e7eb',
+                          padding: '10px 20px',
+                          border: '2px solid #E6F4FF',
                           backgroundColor: 'white',
-                          color: '#374151',
-                          borderRadius: '6px',
+                          color: '#5B6B7D',
+                          borderRadius: '8px',
                           fontSize: '14px',
-                          fontWeight: '500',
+                          fontWeight: '600',
                           cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '6px',
+                          gap: '8px',
                           transition: 'all 0.2s'
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#f9fafb'
+                          e.currentTarget.style.backgroundColor = '#F8FAFC'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'white'
@@ -424,7 +445,7 @@ export default function CustomerOrdersPage() {
 
                   {/* Expanded order details */}
                   {expandedOrder === order.id && (
-                    <div style={{ padding: '20px', backgroundColor: '#f9fafb' }}>
+                    <div style={{ padding: '24px', backgroundColor: '#F8FAFC' }}>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
                         {/* Order items */}
                         <div>
@@ -436,16 +457,16 @@ export default function CustomerOrdersPage() {
                               <div key={index} style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                padding: '12px',
+                                padding: '16px',
                                 backgroundColor: 'white',
                                 borderRadius: '8px',
-                                border: '1px solid #e5e7eb'
+                                border: '2px solid #E6F4FF'
                               }}>
                                 <div>
-                                  <p style={{ fontSize: '14px', fontWeight: '500', color: '#111827' }}>{item.name}</p>
-                                  <p style={{ fontSize: '14px', color: '#6b7280' }}>Quantity: {item.quantity}</p>
+                                  <p style={{ fontSize: '14px', fontWeight: '600', color: '#111827' }}>{item.name}</p>
+                                  <p style={{ fontSize: '13px', color: '#5B6B7D' }}>Quantity: {item.quantity}</p>
                                 </div>
-                                <p style={{ fontSize: '14px', fontWeight: '600', color: '#111827' }}>{item.price}</p>
+                                <p style={{ fontSize: '16px', fontWeight: '700', color: '#006FEE' }}>{item.price}</p>
                               </div>
                             ))}
                           </div>
@@ -457,26 +478,26 @@ export default function CustomerOrdersPage() {
                             Shipping Information
                           </h4>
                           <div style={{
-                            padding: '16px',
+                            padding: '20px',
                             backgroundColor: 'white',
                             borderRadius: '8px',
-                            border: '1px solid #e5e7eb'
+                            border: '2px solid #E6F4FF'
                           }}>
-                            <div style={{ marginBottom: '12px' }}>
-                              <p style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>Shipping Address</p>
-                              <p style={{ fontSize: '14px', color: '#111827' }}>{order.shippingAddress}</p>
+                            <div style={{ marginBottom: '16px' }}>
+                              <p style={{ fontSize: '12px', color: '#5B6B7D', marginBottom: '4px' }}>Shipping Address</p>
+                              <p style={{ fontSize: '14px', color: '#111827', fontWeight: '500' }}>{order.shippingAddress}</p>
                             </div>
                             {order.trackingNumber && (
-                              <div style={{ marginBottom: '12px' }}>
-                                <p style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>Tracking Number</p>
-                                <p style={{ fontSize: '14px', color: '#111827', fontFamily: 'monospace' }}>{order.trackingNumber}</p>
+                              <div style={{ marginBottom: '16px' }}>
+                                <p style={{ fontSize: '12px', color: '#5B6B7D', marginBottom: '4px' }}>Tracking Number</p>
+                                <p style={{ fontSize: '14px', color: '#006FEE', fontFamily: 'monospace', fontWeight: '600' }}>{order.trackingNumber}</p>
                               </div>
                             )}
                             <div>
-                              <p style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
+                              <p style={{ fontSize: '12px', color: '#5B6B7D', marginBottom: '4px' }}>
                                 {order.status === 'Delivered' ? 'Delivered On' : 'Estimated Delivery'}
                               </p>
-                              <p style={{ fontSize: '14px', color: '#111827' }}>
+                              <p style={{ fontSize: '14px', color: '#111827', fontWeight: '500' }}>
                                 {order.deliveryDate || order.estimatedDelivery}
                               </p>
                             </div>
@@ -488,6 +509,24 @@ export default function CustomerOrdersPage() {
                 </div>
               ))}
             </div>
+
+            {filteredOrders.length === 0 && (
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                border: '2px solid #E6F4FF',
+                padding: '48px',
+                textAlign: 'center'
+              }}>
+                <Package size={48} style={{ color: '#E6F4FF', margin: '0 auto 16px' }} />
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>
+                  No orders found
+                </h3>
+                <p style={{ color: '#5B6B7D' }}>
+                  {searchTerm ? `No orders matching "${searchTerm}"` : 'You haven\'t placed any orders yet'}
+                </p>
+              </div>
+            )}
           </div>
         </main>
       </div>
