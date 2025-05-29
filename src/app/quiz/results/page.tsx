@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { 
   CheckCircle, 
@@ -50,7 +50,7 @@ interface BatteryRecommendation {
   savingsPercentage: number
 }
 
-export default function QuizResultsPage() {
+function QuizResultsContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session')
@@ -507,5 +507,20 @@ export default function QuizResultsPage() {
       {/* Bottom spacing for fixed footer */}
       <div className="h-48"></div>
     </div>
+  )
+}
+
+export default function QuizResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading your results...</p>
+        </div>
+      </div>
+    }>
+      <QuizResultsContent />
+    </Suspense>
   )
 }
