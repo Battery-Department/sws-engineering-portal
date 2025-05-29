@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
-    "start": "next start",
+    "start": "next start", 
     "lint": "next lint",
-    "postinstall": "npx prisma generate",
+    "postinstall": "prisma generate",
     "db:seed": "tsx prisma/seed.ts",
     "db:push": "npx prisma db push",
     "seed:quiz": "node scripts/seed-quiz-data.js",

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { 
   Users, 
   TrendingUp, 
@@ -18,7 +19,10 @@ import {
   Download,
   Settings,
   ToggleLeft,
-  ToggleRight
+  ToggleRight,
+  Sparkles,
+  Image,
+  Wand2
 } from 'lucide-react'
 import AnalyticsCard from './components/AnalyticsCard'
 import UserProfileViewer from './components/UserProfileViewer'
@@ -92,19 +96,19 @@ export default function CRMDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <div className="p-6 max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">CRM Dashboard</h1>
-              <p className="text-gray-600 mt-1">Track user behavior, engagement, and conversions</p>
+              <h1 className="text-3xl font-bold text-[#111827]">CRM Dashboard</h1>
+              <p className="text-[#6B7280] mt-1">Track user behavior, engagement, and conversions</p>
             </div>
             <div className="flex gap-3">
               {/* Meta Data Toggle */}
-              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Show Meta Data</span>
+              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E5E7EB] rounded-lg">
+                <span className="text-sm font-medium text-[#374151]">Show Meta Data</span>
                 <button
                   onClick={() => setShowMetaData(!showMetaData)}
                   className="text-[#006FEE] hover:text-[#005fd4] transition-colors"
@@ -112,11 +116,11 @@ export default function CRMDashboard() {
                   {showMetaData ? <ToggleRight size={24} /> : <ToggleLeft size={24} />}
                 </button>
               </div>
-              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E5E7EB] rounded-lg hover:bg-[#F9FAFB] transition-colors">
                 <Calendar size={18} />
                 <span>Last 7 days</span>
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E5E7EB] rounded-lg hover:bg-[#F9FAFB] transition-colors">
                 <Filter size={18} />
                 <span>Filters</span>
               </button>
@@ -129,6 +133,49 @@ export default function CRMDashboard() {
 
           {/* Meta Integration Status */}
           <MetaIntegrationStatus showMetaData={showMetaData} />
+          
+          {/* Quick Actions */}
+          <div className="flex gap-4 mt-4">
+            <Link href="/dealer-portal/crm/content-studio" className="flex-1">
+              <div className="p-4 bg-white border-2 border-[#E5E7EB] rounded-lg hover:border-[#006FEE] transition-all cursor-pointer group">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#EFF6FF] rounded-lg group-hover:bg-[#006FEE] transition-colors">
+                    <Sparkles className="w-5 h-5 text-[#006FEE] group-hover:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#111827]">Content Studio</h3>
+                    <p className="text-sm text-[#6B7280]">Create AI-powered content</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href="/dealer-portal/crm/assets" className="flex-1">
+              <div className="p-4 bg-white border-2 border-[#E5E7EB] rounded-lg hover:border-[#006FEE] transition-all cursor-pointer group">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#EFF6FF] rounded-lg group-hover:bg-[#006FEE] transition-colors">
+                    <Image className="w-5 h-5 text-[#006FEE] group-hover:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#111827]">Asset Library</h3>
+                    <p className="text-sm text-[#6B7280]">Manage marketing assets</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href="/dealer-portal/crm/generate" className="flex-1">
+              <div className="p-4 bg-white border-2 border-[#E5E7EB] rounded-lg hover:border-[#006FEE] transition-all cursor-pointer group">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#EFF6FF] rounded-lg group-hover:bg-[#006FEE] transition-colors">
+                    <Wand2 className="w-5 h-5 text-[#006FEE] group-hover:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#111827]">Quick Generate</h3>
+                    <p className="text-sm text-[#6B7280]">Generate content instantly</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* Main Analytics Grid */}
@@ -168,8 +215,8 @@ export default function CRMDashboard() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl p-6 shadow-sm">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">User Behavior Analytics</h2>
-                <div className="text-sm text-gray-500">150+ data points tracked</div>
+                <h2 className="text-xl font-semibold text-[#111827]">User Behavior Analytics</h2>
+                <div className="text-sm text-[#6B7280]">150+ data points tracked</div>
               </div>
               <ContentPerformanceChart />
             </div>
@@ -187,10 +234,10 @@ export default function CRMDashboard() {
 
         {/* Meta Data Preview Section */}
         {showMetaData && (
-          <div className="bg-gray-900 text-white rounded-xl p-6 mb-8">
+          <div className="bg-[#111827] text-white rounded-xl p-6 mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-semibold">Meta Pixel Data Preview</h3>
-              <span className="text-sm bg-green-500/20 text-green-400 px-3 py-1 rounded-full">
+              <span className="text-sm bg-[#10B981]/20 text-[#10B981] px-3 py-1 rounded-full">
                 Live Simulation
               </span>
             </div>
@@ -199,16 +246,16 @@ export default function CRMDashboard() {
             </div>
             <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
               <div>
-                <span className="text-gray-400">Event Format:</span>
+                <span className="text-[#9CA3AF]">Event Format:</span>
                 <span className="ml-2">Meta Conversions API</span>
               </div>
               <div>
-                <span className="text-gray-400">Hashing:</span>
+                <span className="text-[#9CA3AF]">Hashing:</span>
                 <span className="ml-2">SHA-256 (PII Protected)</span>
               </div>
               <div>
-                <span className="text-gray-400">Test Mode:</span>
-                <span className="ml-2 text-yellow-400">Enabled</span>
+                <span className="text-[#9CA3AF]">Test Mode:</span>
+                <span className="ml-2 text-[#F59E0B]">Enabled</span>
               </div>
             </div>
           </div>
@@ -217,7 +264,7 @@ export default function CRMDashboard() {
         {/* User Profile Section */}
         <div className="bg-white rounded-xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">User Profiles</h2>
+            <h2 className="text-xl font-semibold text-[#111827]">User Profiles</h2>
             <button className="text-[#006FEE] hover:text-[#005fd4] font-medium">
               View All Users
             </button>

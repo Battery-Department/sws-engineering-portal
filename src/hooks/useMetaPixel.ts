@@ -1,3 +1,5 @@
+'use client'
+
 // React hook for Meta Pixel integration
 import { useEffect, useCallback, useRef } from 'react';
 import { MetaPixelService } from '../services/meta/pixel';

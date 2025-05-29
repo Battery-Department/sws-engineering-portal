@@ -1,3 +1,5 @@
+'use client'
+
 // Meta Pixel script loader component
 import React, { useEffect } from 'react';
 import { useMetaPixel } from '../hooks/useMetaPixel';

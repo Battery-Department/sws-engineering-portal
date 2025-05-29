@@ -1,3 +1,8 @@
 # Temporarily ignore problematic files during build
 src/app/api/analytics/export/route.ts
 src/app/api/queue/jobs/route.ts
+src/app/dealer-portal/crm/assets/
+src/app/dealer-portal/crm/content-studio/
+src/app/dealer-portal/crm/generate/
+scripts/
+*.sql

@@ -1,3 +1,5 @@
+'use client'
+
 // React hook for unified Meta event tracking
 import { useEffect, useCallback, useRef } from 'react';
 import { MetaEventManager } from '../services/meta/event-manager';
