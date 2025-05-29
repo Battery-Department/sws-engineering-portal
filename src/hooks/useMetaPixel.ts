@@ -2,7 +2,7 @@
 
 // React hook for Meta Pixel integration
 import { useEffect, useCallback, useRef } from 'react';
-import { MetaPixelService } from '../services/meta/pixel';
+import { MetaPixel as MetaPixelService } from '../services/meta/pixel';
 import { EventData, UserData } from '../services/meta/types';
 
 interface UseMetaPixelOptions {

@@ -691,3 +691,156 @@ model AnalyticsReport {
   @@index([type])
   @@index([createdBy])
 }
+
+// Quiz Intelligence System Models
+model QuizSession {
+  id                String    @id @default(cuid())
+  sessionId         String    @unique
+  quizId            String
+  source            String?
+  utmSource         String?
+  utmMedium         String?
+  utmCampaign       String?
+  utmContent        String?
+  contentId         String?
+  campaignId        String?
+  deviceInfo        Json?
+  landingPage       String?
+  ipAddress         String?
+  userAgent         String?
+  status            String    @default("in_progress")
+  createdAt         DateTime  @default(now())
+  startTime         DateTime  @default(now())
+  endTime           DateTime?
+  completionRate    Float?
+  userName          String?
+  email             String?
+  phoneNumber       String?
+  companyName       String?   // Added for B2B
+  userType          String?   // 'professional' or 'personal'
+  selectedBrand     String?   // Brand they selected
+  userSegment       String?   // Trade for professionals
+  crewSize          Int?      // Team size for professionals
+  leadQualityScore  Float?    // 0.0 to 1.0 scoring
+  version           String?   // Quiz version tracking
+  responses         QuizResponse[]
+  interactions      BehavioralInteraction[]
+  conversions       QuizConversion[]
+  
+  @@index([sessionId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([selectedBrand])
+  @@index([userType])
+  @@index([leadQualityScore])
+}
+
+model QuizResponse {
+  id               String    @id @default(cuid())
+  sessionId        String
+  session          QuizSession @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  questionId       String
+  questionType     String
+  responseValue    Json
+  responseTime     Int?      // milliseconds to answer
+  createdAt        DateTime  @default(now())
+  
+  @@index([sessionId])
+  @@index([questionId])
+}
+
+model BehavioralInteraction {
+  id               String    @id @default(cuid())
+  sessionId        String
+  session          QuizSession @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  interactionType  String    // click, hover, scroll, hesitation, etc
+  element          String?
+  position         Json?     // {x, y} coordinates
+  viewport         Json?     // {width, height}
+  duration         Int?      // milliseconds
+  metadata         Json?
+  timestamp        DateTime  @default(now())
+  
+  @@index([sessionId])
+  @@index([interactionType])
+  @@index([timestamp])
+}
+
+model QuizConversion {
+  id               String    @id @default(cuid())
+  sessionId        String
+  session          QuizSession @relation(fields: [sessionId], references: [sessionId])
+  conversionType   String    // 'lead', 'purchase', 'portal_signup'
+  conversionValue  Float?
+  orderId          String?
+  metadata         Json?
+  createdAt        DateTime  @default(now())
+  
+  @@index([sessionId])
+  @@index([conversionType])
+}
+
+model ABTestExperiment {
+  id               String    @id @default(cuid())
+  name             String
+  status           String    @default("draft") // draft, running, paused, completed
+  startDate        DateTime?
+  endDate          DateTime?
+  testType         String    // question_order, wording, design, flow
+  control          Json      // Control configuration
+  variants         Json      // Array of variant configurations
+  allocation       Json      // Traffic allocation percentages
+  metrics          Json      // Tracked metrics and goals
+  results          Json?     // Experiment results
+  winner           String?   // Winning variant ID
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  
+  @@index([status])
+}
+
+model QuizBrand {
+  id               String    @id @default(cuid())
+  brandId          String    @unique
+  name             String
+  displayName      String
+  color            String
+  voltage          String
+  voltageOptions   Json      // Array of voltage platforms
+  marketShare      Float?
+  popularWith      Json?     // Array of trades
+  category         String?   // professional, diy, outdoor
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  
+  @@index([brandId])
+  @@index([category])
+}
+
+model QuizRoutingRule {
+  id               String    @id @default(cuid())
+  userType         String?
+  brand            String?
+  trade            String?
+  nextQuestionId   String
+  condition        Json?     // Complex routing conditions
+  priority         Int       @default(0)
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  
+  @@index([userType, brand, trade])
+}
+
+model QuizIntervention {
+  id               String    @id @default(cuid())
+  sessionId        String
+  interventionType String
+  triggerReason    String
+  questionId       String?
+  shownAt          DateTime  @default(now())
+  userAction       String?   // engaged, dismissed, ignored
+  actionTimestamp  DateTime?
+  
+  @@index([sessionId])
+  @@index([interventionType])
+}

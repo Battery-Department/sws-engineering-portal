@@ -148,6 +148,46 @@ export type AnalyticsSegment = $Result.DefaultSelection<Prisma.$AnalyticsSegment
  * 
  */
 export type AnalyticsReport = $Result.DefaultSelection<Prisma.$AnalyticsReportPayload>
+/**
+ * Model QuizSession
+ * 
+ */
+export type QuizSession = $Result.DefaultSelection<Prisma.$QuizSessionPayload>
+/**
+ * Model QuizResponse
+ * 
+ */
+export type QuizResponse = $Result.DefaultSelection<Prisma.$QuizResponsePayload>
+/**
+ * Model BehavioralInteraction
+ * 
+ */
+export type BehavioralInteraction = $Result.DefaultSelection<Prisma.$BehavioralInteractionPayload>
+/**
+ * Model QuizConversion
+ * 
+ */
+export type QuizConversion = $Result.DefaultSelection<Prisma.$QuizConversionPayload>
+/**
+ * Model ABTestExperiment
+ * 
+ */
+export type ABTestExperiment = $Result.DefaultSelection<Prisma.$ABTestExperimentPayload>
+/**
+ * Model QuizBrand
+ * 
+ */
+export type QuizBrand = $Result.DefaultSelection<Prisma.$QuizBrandPayload>
+/**
+ * Model QuizRoutingRule
+ * 
+ */
+export type QuizRoutingRule = $Result.DefaultSelection<Prisma.$QuizRoutingRulePayload>
+/**
+ * Model QuizIntervention
+ * 
+ */
+export type QuizIntervention = $Result.DefaultSelection<Prisma.$QuizInterventionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -543,6 +583,86 @@ export class PrismaClient<
     * ```
     */
   get analyticsReport(): Prisma.AnalyticsReportDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizSession`: Exposes CRUD operations for the **QuizSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizSessions
+    * const quizSessions = await prisma.quizSession.findMany()
+    * ```
+    */
+  get quizSession(): Prisma.QuizSessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizResponse`: Exposes CRUD operations for the **QuizResponse** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizResponses
+    * const quizResponses = await prisma.quizResponse.findMany()
+    * ```
+    */
+  get quizResponse(): Prisma.QuizResponseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.behavioralInteraction`: Exposes CRUD operations for the **BehavioralInteraction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BehavioralInteractions
+    * const behavioralInteractions = await prisma.behavioralInteraction.findMany()
+    * ```
+    */
+  get behavioralInteraction(): Prisma.BehavioralInteractionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizConversion`: Exposes CRUD operations for the **QuizConversion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizConversions
+    * const quizConversions = await prisma.quizConversion.findMany()
+    * ```
+    */
+  get quizConversion(): Prisma.QuizConversionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aBTestExperiment`: Exposes CRUD operations for the **ABTestExperiment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ABTestExperiments
+    * const aBTestExperiments = await prisma.aBTestExperiment.findMany()
+    * ```
+    */
+  get aBTestExperiment(): Prisma.ABTestExperimentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizBrand`: Exposes CRUD operations for the **QuizBrand** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizBrands
+    * const quizBrands = await prisma.quizBrand.findMany()
+    * ```
+    */
+  get quizBrand(): Prisma.QuizBrandDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizRoutingRule`: Exposes CRUD operations for the **QuizRoutingRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizRoutingRules
+    * const quizRoutingRules = await prisma.quizRoutingRule.findMany()
+    * ```
+    */
+  get quizRoutingRule(): Prisma.QuizRoutingRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizIntervention`: Exposes CRUD operations for the **QuizIntervention** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuizInterventions
+    * const quizInterventions = await prisma.quizIntervention.findMany()
+    * ```
+    */
+  get quizIntervention(): Prisma.QuizInterventionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1009,7 +1129,15 @@ export namespace Prisma {
     AnalyticsFunnel: 'AnalyticsFunnel',
     AnalyticsAttribution: 'AnalyticsAttribution',
     AnalyticsSegment: 'AnalyticsSegment',
-    AnalyticsReport: 'AnalyticsReport'
+    AnalyticsReport: 'AnalyticsReport',
+    QuizSession: 'QuizSession',
+    QuizResponse: 'QuizResponse',
+    BehavioralInteraction: 'BehavioralInteraction',
+    QuizConversion: 'QuizConversion',
+    ABTestExperiment: 'ABTestExperiment',
+    QuizBrand: 'QuizBrand',
+    QuizRoutingRule: 'QuizRoutingRule',
+    QuizIntervention: 'QuizIntervention'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1028,7 +1156,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "chatSession" | "message" | "sessionTag" | "mondaySync" | "customer" | "product" | "order" | "orderItem" | "subscription" | "subscriptionPlan" | "invoice" | "paymentMethod" | "inventory" | "cart" | "cartItem" | "priceHistory" | "systemHealth" | "notification" | "analyticsEvent" | "analyticsSession" | "analyticsMetric" | "analyticsCohort" | "analyticsFunnel" | "analyticsAttribution" | "analyticsSegment" | "analyticsReport"
+      modelProps: "user" | "chatSession" | "message" | "sessionTag" | "mondaySync" | "customer" | "product" | "order" | "orderItem" | "subscription" | "subscriptionPlan" | "invoice" | "paymentMethod" | "inventory" | "cart" | "cartItem" | "priceHistory" | "systemHealth" | "notification" | "analyticsEvent" | "analyticsSession" | "analyticsMetric" | "analyticsCohort" | "analyticsFunnel" | "analyticsAttribution" | "analyticsSegment" | "analyticsReport" | "quizSession" | "quizResponse" | "behavioralInteraction" | "quizConversion" | "aBTestExperiment" | "quizBrand" | "quizRoutingRule" | "quizIntervention"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3030,6 +3158,598 @@ export namespace Prisma {
           }
         }
       }
+      QuizSession: {
+        payload: Prisma.$QuizSessionPayload<ExtArgs>
+        fields: Prisma.QuizSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.QuizSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          findMany: {
+            args: Prisma.QuizSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>[]
+          }
+          create: {
+            args: Prisma.QuizSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          createMany: {
+            args: Prisma.QuizSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizSessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>[]
+          }
+          delete: {
+            args: Prisma.QuizSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          update: {
+            args: Prisma.QuizSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizSessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.QuizSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizSession>
+          }
+          groupBy: {
+            args: Prisma.QuizSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizSessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuizResponse: {
+        payload: Prisma.$QuizResponsePayload<ExtArgs>
+        fields: Prisma.QuizResponseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizResponseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizResponseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          findFirst: {
+            args: Prisma.QuizResponseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizResponseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          findMany: {
+            args: Prisma.QuizResponseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>[]
+          }
+          create: {
+            args: Prisma.QuizResponseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          createMany: {
+            args: Prisma.QuizResponseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizResponseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>[]
+          }
+          delete: {
+            args: Prisma.QuizResponseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          update: {
+            args: Prisma.QuizResponseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizResponseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizResponseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizResponseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizResponseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizResponsePayload>
+          }
+          aggregate: {
+            args: Prisma.QuizResponseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizResponse>
+          }
+          groupBy: {
+            args: Prisma.QuizResponseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizResponseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizResponseCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizResponseCountAggregateOutputType> | number
+          }
+        }
+      }
+      BehavioralInteraction: {
+        payload: Prisma.$BehavioralInteractionPayload<ExtArgs>
+        fields: Prisma.BehavioralInteractionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BehavioralInteractionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BehavioralInteractionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          findFirst: {
+            args: Prisma.BehavioralInteractionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BehavioralInteractionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          findMany: {
+            args: Prisma.BehavioralInteractionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>[]
+          }
+          create: {
+            args: Prisma.BehavioralInteractionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          createMany: {
+            args: Prisma.BehavioralInteractionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BehavioralInteractionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>[]
+          }
+          delete: {
+            args: Prisma.BehavioralInteractionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          update: {
+            args: Prisma.BehavioralInteractionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          deleteMany: {
+            args: Prisma.BehavioralInteractionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BehavioralInteractionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BehavioralInteractionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>[]
+          }
+          upsert: {
+            args: Prisma.BehavioralInteractionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BehavioralInteractionPayload>
+          }
+          aggregate: {
+            args: Prisma.BehavioralInteractionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBehavioralInteraction>
+          }
+          groupBy: {
+            args: Prisma.BehavioralInteractionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BehavioralInteractionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BehavioralInteractionCountArgs<ExtArgs>
+            result: $Utils.Optional<BehavioralInteractionCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuizConversion: {
+        payload: Prisma.$QuizConversionPayload<ExtArgs>
+        fields: Prisma.QuizConversionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizConversionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizConversionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          findFirst: {
+            args: Prisma.QuizConversionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizConversionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          findMany: {
+            args: Prisma.QuizConversionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>[]
+          }
+          create: {
+            args: Prisma.QuizConversionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          createMany: {
+            args: Prisma.QuizConversionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizConversionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>[]
+          }
+          delete: {
+            args: Prisma.QuizConversionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          update: {
+            args: Prisma.QuizConversionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizConversionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizConversionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizConversionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizConversionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizConversionPayload>
+          }
+          aggregate: {
+            args: Prisma.QuizConversionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizConversion>
+          }
+          groupBy: {
+            args: Prisma.QuizConversionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizConversionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizConversionCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizConversionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ABTestExperiment: {
+        payload: Prisma.$ABTestExperimentPayload<ExtArgs>
+        fields: Prisma.ABTestExperimentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ABTestExperimentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ABTestExperimentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          findFirst: {
+            args: Prisma.ABTestExperimentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ABTestExperimentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          findMany: {
+            args: Prisma.ABTestExperimentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>[]
+          }
+          create: {
+            args: Prisma.ABTestExperimentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          createMany: {
+            args: Prisma.ABTestExperimentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ABTestExperimentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>[]
+          }
+          delete: {
+            args: Prisma.ABTestExperimentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          update: {
+            args: Prisma.ABTestExperimentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          deleteMany: {
+            args: Prisma.ABTestExperimentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ABTestExperimentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ABTestExperimentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>[]
+          }
+          upsert: {
+            args: Prisma.ABTestExperimentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestExperimentPayload>
+          }
+          aggregate: {
+            args: Prisma.ABTestExperimentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateABTestExperiment>
+          }
+          groupBy: {
+            args: Prisma.ABTestExperimentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ABTestExperimentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ABTestExperimentCountArgs<ExtArgs>
+            result: $Utils.Optional<ABTestExperimentCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuizBrand: {
+        payload: Prisma.$QuizBrandPayload<ExtArgs>
+        fields: Prisma.QuizBrandFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizBrandFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizBrandFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          findFirst: {
+            args: Prisma.QuizBrandFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizBrandFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          findMany: {
+            args: Prisma.QuizBrandFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>[]
+          }
+          create: {
+            args: Prisma.QuizBrandCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          createMany: {
+            args: Prisma.QuizBrandCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizBrandCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>[]
+          }
+          delete: {
+            args: Prisma.QuizBrandDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          update: {
+            args: Prisma.QuizBrandUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizBrandDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizBrandUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizBrandUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizBrandUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizBrandPayload>
+          }
+          aggregate: {
+            args: Prisma.QuizBrandAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizBrand>
+          }
+          groupBy: {
+            args: Prisma.QuizBrandGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizBrandGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizBrandCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizBrandCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuizRoutingRule: {
+        payload: Prisma.$QuizRoutingRulePayload<ExtArgs>
+        fields: Prisma.QuizRoutingRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizRoutingRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizRoutingRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          findFirst: {
+            args: Prisma.QuizRoutingRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizRoutingRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          findMany: {
+            args: Prisma.QuizRoutingRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>[]
+          }
+          create: {
+            args: Prisma.QuizRoutingRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          createMany: {
+            args: Prisma.QuizRoutingRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizRoutingRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>[]
+          }
+          delete: {
+            args: Prisma.QuizRoutingRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          update: {
+            args: Prisma.QuizRoutingRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizRoutingRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizRoutingRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizRoutingRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizRoutingRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizRoutingRulePayload>
+          }
+          aggregate: {
+            args: Prisma.QuizRoutingRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizRoutingRule>
+          }
+          groupBy: {
+            args: Prisma.QuizRoutingRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizRoutingRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizRoutingRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizRoutingRuleCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuizIntervention: {
+        payload: Prisma.$QuizInterventionPayload<ExtArgs>
+        fields: Prisma.QuizInterventionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuizInterventionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuizInterventionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          findFirst: {
+            args: Prisma.QuizInterventionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuizInterventionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          findMany: {
+            args: Prisma.QuizInterventionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>[]
+          }
+          create: {
+            args: Prisma.QuizInterventionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          createMany: {
+            args: Prisma.QuizInterventionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuizInterventionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>[]
+          }
+          delete: {
+            args: Prisma.QuizInterventionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          update: {
+            args: Prisma.QuizInterventionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuizInterventionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuizInterventionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuizInterventionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuizInterventionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuizInterventionPayload>
+          }
+          aggregate: {
+            args: Prisma.QuizInterventionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizIntervention>
+          }
+          groupBy: {
+            args: Prisma.QuizInterventionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizInterventionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuizInterventionCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizInterventionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3141,6 +3861,14 @@ export namespace Prisma {
     analyticsAttribution?: AnalyticsAttributionOmit
     analyticsSegment?: AnalyticsSegmentOmit
     analyticsReport?: AnalyticsReportOmit
+    quizSession?: QuizSessionOmit
+    quizResponse?: QuizResponseOmit
+    behavioralInteraction?: BehavioralInteractionOmit
+    quizConversion?: QuizConversionOmit
+    aBTestExperiment?: ABTestExperimentOmit
+    quizBrand?: QuizBrandOmit
+    quizRoutingRule?: QuizRoutingRuleOmit
+    quizIntervention?: QuizInterventionOmit
   }
 
   /* Types for Logging */
@@ -3547,6 +4275,55 @@ export namespace Prisma {
    */
   export type CartCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CartItemWhereInput
+  }
+
+
+  /**
+   * Count Type QuizSessionCountOutputType
+   */
+
+  export type QuizSessionCountOutputType = {
+    responses: number
+    interactions: number
+    conversions: number
+  }
+
+  export type QuizSessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    responses?: boolean | QuizSessionCountOutputTypeCountResponsesArgs
+    interactions?: boolean | QuizSessionCountOutputTypeCountInteractionsArgs
+    conversions?: boolean | QuizSessionCountOutputTypeCountConversionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QuizSessionCountOutputType without action
+   */
+  export type QuizSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSessionCountOutputType
+     */
+    select?: QuizSessionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QuizSessionCountOutputType without action
+   */
+  export type QuizSessionCountOutputTypeCountResponsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizResponseWhereInput
+  }
+
+  /**
+   * QuizSessionCountOutputType without action
+   */
+  export type QuizSessionCountOutputTypeCountInteractionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BehavioralInteractionWhereInput
+  }
+
+  /**
+   * QuizSessionCountOutputType without action
+   */
+  export type QuizSessionCountOutputTypeCountConversionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizConversionWhereInput
   }
 
 
@@ -34748,6 +35525,9157 @@ export namespace Prisma {
 
 
   /**
+   * Model QuizSession
+   */
+
+  export type AggregateQuizSession = {
+    _count: QuizSessionCountAggregateOutputType | null
+    _avg: QuizSessionAvgAggregateOutputType | null
+    _sum: QuizSessionSumAggregateOutputType | null
+    _min: QuizSessionMinAggregateOutputType | null
+    _max: QuizSessionMaxAggregateOutputType | null
+  }
+
+  export type QuizSessionAvgAggregateOutputType = {
+    completionRate: number | null
+    crewSize: number | null
+    leadQualityScore: number | null
+  }
+
+  export type QuizSessionSumAggregateOutputType = {
+    completionRate: number | null
+    crewSize: number | null
+    leadQualityScore: number | null
+  }
+
+  export type QuizSessionMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    quizId: string | null
+    source: string | null
+    utmSource: string | null
+    utmMedium: string | null
+    utmCampaign: string | null
+    utmContent: string | null
+    contentId: string | null
+    campaignId: string | null
+    landingPage: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    status: string | null
+    createdAt: Date | null
+    startTime: Date | null
+    endTime: Date | null
+    completionRate: number | null
+    userName: string | null
+    email: string | null
+    phoneNumber: string | null
+    companyName: string | null
+    userType: string | null
+    selectedBrand: string | null
+    userSegment: string | null
+    crewSize: number | null
+    leadQualityScore: number | null
+    version: string | null
+  }
+
+  export type QuizSessionMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    quizId: string | null
+    source: string | null
+    utmSource: string | null
+    utmMedium: string | null
+    utmCampaign: string | null
+    utmContent: string | null
+    contentId: string | null
+    campaignId: string | null
+    landingPage: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    status: string | null
+    createdAt: Date | null
+    startTime: Date | null
+    endTime: Date | null
+    completionRate: number | null
+    userName: string | null
+    email: string | null
+    phoneNumber: string | null
+    companyName: string | null
+    userType: string | null
+    selectedBrand: string | null
+    userSegment: string | null
+    crewSize: number | null
+    leadQualityScore: number | null
+    version: string | null
+  }
+
+  export type QuizSessionCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    quizId: number
+    source: number
+    utmSource: number
+    utmMedium: number
+    utmCampaign: number
+    utmContent: number
+    contentId: number
+    campaignId: number
+    deviceInfo: number
+    landingPage: number
+    ipAddress: number
+    userAgent: number
+    status: number
+    createdAt: number
+    startTime: number
+    endTime: number
+    completionRate: number
+    userName: number
+    email: number
+    phoneNumber: number
+    companyName: number
+    userType: number
+    selectedBrand: number
+    userSegment: number
+    crewSize: number
+    leadQualityScore: number
+    version: number
+    _all: number
+  }
+
+
+  export type QuizSessionAvgAggregateInputType = {
+    completionRate?: true
+    crewSize?: true
+    leadQualityScore?: true
+  }
+
+  export type QuizSessionSumAggregateInputType = {
+    completionRate?: true
+    crewSize?: true
+    leadQualityScore?: true
+  }
+
+  export type QuizSessionMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    quizId?: true
+    source?: true
+    utmSource?: true
+    utmMedium?: true
+    utmCampaign?: true
+    utmContent?: true
+    contentId?: true
+    campaignId?: true
+    landingPage?: true
+    ipAddress?: true
+    userAgent?: true
+    status?: true
+    createdAt?: true
+    startTime?: true
+    endTime?: true
+    completionRate?: true
+    userName?: true
+    email?: true
+    phoneNumber?: true
+    companyName?: true
+    userType?: true
+    selectedBrand?: true
+    userSegment?: true
+    crewSize?: true
+    leadQualityScore?: true
+    version?: true
+  }
+
+  export type QuizSessionMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    quizId?: true
+    source?: true
+    utmSource?: true
+    utmMedium?: true
+    utmCampaign?: true
+    utmContent?: true
+    contentId?: true
+    campaignId?: true
+    landingPage?: true
+    ipAddress?: true
+    userAgent?: true
+    status?: true
+    createdAt?: true
+    startTime?: true
+    endTime?: true
+    completionRate?: true
+    userName?: true
+    email?: true
+    phoneNumber?: true
+    companyName?: true
+    userType?: true
+    selectedBrand?: true
+    userSegment?: true
+    crewSize?: true
+    leadQualityScore?: true
+    version?: true
+  }
+
+  export type QuizSessionCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    quizId?: true
+    source?: true
+    utmSource?: true
+    utmMedium?: true
+    utmCampaign?: true
+    utmContent?: true
+    contentId?: true
+    campaignId?: true
+    deviceInfo?: true
+    landingPage?: true
+    ipAddress?: true
+    userAgent?: true
+    status?: true
+    createdAt?: true
+    startTime?: true
+    endTime?: true
+    completionRate?: true
+    userName?: true
+    email?: true
+    phoneNumber?: true
+    companyName?: true
+    userType?: true
+    selectedBrand?: true
+    userSegment?: true
+    crewSize?: true
+    leadQualityScore?: true
+    version?: true
+    _all?: true
+  }
+
+  export type QuizSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizSession to aggregate.
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizSessions to fetch.
+     */
+    orderBy?: QuizSessionOrderByWithRelationInput | QuizSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizSessions
+    **/
+    _count?: true | QuizSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuizSessionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuizSessionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizSessionMaxAggregateInputType
+  }
+
+  export type GetQuizSessionAggregateType<T extends QuizSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizSession[P]>
+      : GetScalarType<T[P], AggregateQuizSession[P]>
+  }
+
+
+
+
+  export type QuizSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizSessionWhereInput
+    orderBy?: QuizSessionOrderByWithAggregationInput | QuizSessionOrderByWithAggregationInput[]
+    by: QuizSessionScalarFieldEnum[] | QuizSessionScalarFieldEnum
+    having?: QuizSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizSessionCountAggregateInputType | true
+    _avg?: QuizSessionAvgAggregateInputType
+    _sum?: QuizSessionSumAggregateInputType
+    _min?: QuizSessionMinAggregateInputType
+    _max?: QuizSessionMaxAggregateInputType
+  }
+
+  export type QuizSessionGroupByOutputType = {
+    id: string
+    sessionId: string
+    quizId: string
+    source: string | null
+    utmSource: string | null
+    utmMedium: string | null
+    utmCampaign: string | null
+    utmContent: string | null
+    contentId: string | null
+    campaignId: string | null
+    deviceInfo: JsonValue | null
+    landingPage: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    status: string
+    createdAt: Date
+    startTime: Date
+    endTime: Date | null
+    completionRate: number | null
+    userName: string | null
+    email: string | null
+    phoneNumber: string | null
+    companyName: string | null
+    userType: string | null
+    selectedBrand: string | null
+    userSegment: string | null
+    crewSize: number | null
+    leadQualityScore: number | null
+    version: string | null
+    _count: QuizSessionCountAggregateOutputType | null
+    _avg: QuizSessionAvgAggregateOutputType | null
+    _sum: QuizSessionSumAggregateOutputType | null
+    _min: QuizSessionMinAggregateOutputType | null
+    _max: QuizSessionMaxAggregateOutputType | null
+  }
+
+  type GetQuizSessionGroupByPayload<T extends QuizSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    quizId?: boolean
+    source?: boolean
+    utmSource?: boolean
+    utmMedium?: boolean
+    utmCampaign?: boolean
+    utmContent?: boolean
+    contentId?: boolean
+    campaignId?: boolean
+    deviceInfo?: boolean
+    landingPage?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    completionRate?: boolean
+    userName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    companyName?: boolean
+    userType?: boolean
+    selectedBrand?: boolean
+    userSegment?: boolean
+    crewSize?: boolean
+    leadQualityScore?: boolean
+    version?: boolean
+    responses?: boolean | QuizSession$responsesArgs<ExtArgs>
+    interactions?: boolean | QuizSession$interactionsArgs<ExtArgs>
+    conversions?: boolean | QuizSession$conversionsArgs<ExtArgs>
+    _count?: boolean | QuizSessionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizSession"]>
+
+  export type QuizSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    quizId?: boolean
+    source?: boolean
+    utmSource?: boolean
+    utmMedium?: boolean
+    utmCampaign?: boolean
+    utmContent?: boolean
+    contentId?: boolean
+    campaignId?: boolean
+    deviceInfo?: boolean
+    landingPage?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    completionRate?: boolean
+    userName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    companyName?: boolean
+    userType?: boolean
+    selectedBrand?: boolean
+    userSegment?: boolean
+    crewSize?: boolean
+    leadQualityScore?: boolean
+    version?: boolean
+  }, ExtArgs["result"]["quizSession"]>
+
+  export type QuizSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    quizId?: boolean
+    source?: boolean
+    utmSource?: boolean
+    utmMedium?: boolean
+    utmCampaign?: boolean
+    utmContent?: boolean
+    contentId?: boolean
+    campaignId?: boolean
+    deviceInfo?: boolean
+    landingPage?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    completionRate?: boolean
+    userName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    companyName?: boolean
+    userType?: boolean
+    selectedBrand?: boolean
+    userSegment?: boolean
+    crewSize?: boolean
+    leadQualityScore?: boolean
+    version?: boolean
+  }, ExtArgs["result"]["quizSession"]>
+
+  export type QuizSessionSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    quizId?: boolean
+    source?: boolean
+    utmSource?: boolean
+    utmMedium?: boolean
+    utmCampaign?: boolean
+    utmContent?: boolean
+    contentId?: boolean
+    campaignId?: boolean
+    deviceInfo?: boolean
+    landingPage?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    status?: boolean
+    createdAt?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    completionRate?: boolean
+    userName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    companyName?: boolean
+    userType?: boolean
+    selectedBrand?: boolean
+    userSegment?: boolean
+    crewSize?: boolean
+    leadQualityScore?: boolean
+    version?: boolean
+  }
+
+  export type QuizSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "quizId" | "source" | "utmSource" | "utmMedium" | "utmCampaign" | "utmContent" | "contentId" | "campaignId" | "deviceInfo" | "landingPage" | "ipAddress" | "userAgent" | "status" | "createdAt" | "startTime" | "endTime" | "completionRate" | "userName" | "email" | "phoneNumber" | "companyName" | "userType" | "selectedBrand" | "userSegment" | "crewSize" | "leadQualityScore" | "version", ExtArgs["result"]["quizSession"]>
+  export type QuizSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    responses?: boolean | QuizSession$responsesArgs<ExtArgs>
+    interactions?: boolean | QuizSession$interactionsArgs<ExtArgs>
+    conversions?: boolean | QuizSession$conversionsArgs<ExtArgs>
+    _count?: boolean | QuizSessionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type QuizSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type QuizSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $QuizSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizSession"
+    objects: {
+      responses: Prisma.$QuizResponsePayload<ExtArgs>[]
+      interactions: Prisma.$BehavioralInteractionPayload<ExtArgs>[]
+      conversions: Prisma.$QuizConversionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      quizId: string
+      source: string | null
+      utmSource: string | null
+      utmMedium: string | null
+      utmCampaign: string | null
+      utmContent: string | null
+      contentId: string | null
+      campaignId: string | null
+      deviceInfo: Prisma.JsonValue | null
+      landingPage: string | null
+      ipAddress: string | null
+      userAgent: string | null
+      status: string
+      createdAt: Date
+      startTime: Date
+      endTime: Date | null
+      completionRate: number | null
+      userName: string | null
+      email: string | null
+      phoneNumber: string | null
+      companyName: string | null
+      userType: string | null
+      selectedBrand: string | null
+      userSegment: string | null
+      crewSize: number | null
+      leadQualityScore: number | null
+      version: string | null
+    }, ExtArgs["result"]["quizSession"]>
+    composites: {}
+  }
+
+  type QuizSessionGetPayload<S extends boolean | null | undefined | QuizSessionDefaultArgs> = $Result.GetResult<Prisma.$QuizSessionPayload, S>
+
+  type QuizSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizSessionCountAggregateInputType | true
+    }
+
+  export interface QuizSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizSession'], meta: { name: 'QuizSession' } }
+    /**
+     * Find zero or one QuizSession that matches the filter.
+     * @param {QuizSessionFindUniqueArgs} args - Arguments to find a QuizSession
+     * @example
+     * // Get one QuizSession
+     * const quizSession = await prisma.quizSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizSessionFindUniqueArgs>(args: SelectSubset<T, QuizSessionFindUniqueArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizSessionFindUniqueOrThrowArgs} args - Arguments to find a QuizSession
+     * @example
+     * // Get one QuizSession
+     * const quizSession = await prisma.quizSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionFindFirstArgs} args - Arguments to find a QuizSession
+     * @example
+     * // Get one QuizSession
+     * const quizSession = await prisma.quizSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizSessionFindFirstArgs>(args?: SelectSubset<T, QuizSessionFindFirstArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionFindFirstOrThrowArgs} args - Arguments to find a QuizSession
+     * @example
+     * // Get one QuizSession
+     * const quizSession = await prisma.quizSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizSessions
+     * const quizSessions = await prisma.quizSession.findMany()
+     * 
+     * // Get first 10 QuizSessions
+     * const quizSessions = await prisma.quizSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizSessionWithIdOnly = await prisma.quizSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizSessionFindManyArgs>(args?: SelectSubset<T, QuizSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizSession.
+     * @param {QuizSessionCreateArgs} args - Arguments to create a QuizSession.
+     * @example
+     * // Create one QuizSession
+     * const QuizSession = await prisma.quizSession.create({
+     *   data: {
+     *     // ... data to create a QuizSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizSessionCreateArgs>(args: SelectSubset<T, QuizSessionCreateArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizSessions.
+     * @param {QuizSessionCreateManyArgs} args - Arguments to create many QuizSessions.
+     * @example
+     * // Create many QuizSessions
+     * const quizSession = await prisma.quizSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizSessionCreateManyArgs>(args?: SelectSubset<T, QuizSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizSessions and returns the data saved in the database.
+     * @param {QuizSessionCreateManyAndReturnArgs} args - Arguments to create many QuizSessions.
+     * @example
+     * // Create many QuizSessions
+     * const quizSession = await prisma.quizSession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizSessions and only return the `id`
+     * const quizSessionWithIdOnly = await prisma.quizSession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizSession.
+     * @param {QuizSessionDeleteArgs} args - Arguments to delete one QuizSession.
+     * @example
+     * // Delete one QuizSession
+     * const QuizSession = await prisma.quizSession.delete({
+     *   where: {
+     *     // ... filter to delete one QuizSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizSessionDeleteArgs>(args: SelectSubset<T, QuizSessionDeleteArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizSession.
+     * @param {QuizSessionUpdateArgs} args - Arguments to update one QuizSession.
+     * @example
+     * // Update one QuizSession
+     * const quizSession = await prisma.quizSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizSessionUpdateArgs>(args: SelectSubset<T, QuizSessionUpdateArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizSessions.
+     * @param {QuizSessionDeleteManyArgs} args - Arguments to filter QuizSessions to delete.
+     * @example
+     * // Delete a few QuizSessions
+     * const { count } = await prisma.quizSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizSessionDeleteManyArgs>(args?: SelectSubset<T, QuizSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizSessions
+     * const quizSession = await prisma.quizSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizSessionUpdateManyArgs>(args: SelectSubset<T, QuizSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizSessions and returns the data updated in the database.
+     * @param {QuizSessionUpdateManyAndReturnArgs} args - Arguments to update many QuizSessions.
+     * @example
+     * // Update many QuizSessions
+     * const quizSession = await prisma.quizSession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizSessions and only return the `id`
+     * const quizSessionWithIdOnly = await prisma.quizSession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizSession.
+     * @param {QuizSessionUpsertArgs} args - Arguments to update or create a QuizSession.
+     * @example
+     * // Update or create a QuizSession
+     * const quizSession = await prisma.quizSession.upsert({
+     *   create: {
+     *     // ... data to create a QuizSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizSessionUpsertArgs>(args: SelectSubset<T, QuizSessionUpsertArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionCountArgs} args - Arguments to filter QuizSessions to count.
+     * @example
+     * // Count the number of QuizSessions
+     * const count = await prisma.quizSession.count({
+     *   where: {
+     *     // ... the filter for the QuizSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizSessionCountArgs>(
+      args?: Subset<T, QuizSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizSessionAggregateArgs>(args: Subset<T, QuizSessionAggregateArgs>): Prisma.PrismaPromise<GetQuizSessionAggregateType<T>>
+
+    /**
+     * Group by QuizSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizSessionGroupByArgs['orderBy'] }
+        : { orderBy?: QuizSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizSession model
+   */
+  readonly fields: QuizSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    responses<T extends QuizSession$responsesArgs<ExtArgs> = {}>(args?: Subset<T, QuizSession$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    interactions<T extends QuizSession$interactionsArgs<ExtArgs> = {}>(args?: Subset<T, QuizSession$interactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    conversions<T extends QuizSession$conversionsArgs<ExtArgs> = {}>(args?: Subset<T, QuizSession$conversionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizSession model
+   */
+  interface QuizSessionFieldRefs {
+    readonly id: FieldRef<"QuizSession", 'String'>
+    readonly sessionId: FieldRef<"QuizSession", 'String'>
+    readonly quizId: FieldRef<"QuizSession", 'String'>
+    readonly source: FieldRef<"QuizSession", 'String'>
+    readonly utmSource: FieldRef<"QuizSession", 'String'>
+    readonly utmMedium: FieldRef<"QuizSession", 'String'>
+    readonly utmCampaign: FieldRef<"QuizSession", 'String'>
+    readonly utmContent: FieldRef<"QuizSession", 'String'>
+    readonly contentId: FieldRef<"QuizSession", 'String'>
+    readonly campaignId: FieldRef<"QuizSession", 'String'>
+    readonly deviceInfo: FieldRef<"QuizSession", 'Json'>
+    readonly landingPage: FieldRef<"QuizSession", 'String'>
+    readonly ipAddress: FieldRef<"QuizSession", 'String'>
+    readonly userAgent: FieldRef<"QuizSession", 'String'>
+    readonly status: FieldRef<"QuizSession", 'String'>
+    readonly createdAt: FieldRef<"QuizSession", 'DateTime'>
+    readonly startTime: FieldRef<"QuizSession", 'DateTime'>
+    readonly endTime: FieldRef<"QuizSession", 'DateTime'>
+    readonly completionRate: FieldRef<"QuizSession", 'Float'>
+    readonly userName: FieldRef<"QuizSession", 'String'>
+    readonly email: FieldRef<"QuizSession", 'String'>
+    readonly phoneNumber: FieldRef<"QuizSession", 'String'>
+    readonly companyName: FieldRef<"QuizSession", 'String'>
+    readonly userType: FieldRef<"QuizSession", 'String'>
+    readonly selectedBrand: FieldRef<"QuizSession", 'String'>
+    readonly userSegment: FieldRef<"QuizSession", 'String'>
+    readonly crewSize: FieldRef<"QuizSession", 'Int'>
+    readonly leadQualityScore: FieldRef<"QuizSession", 'Float'>
+    readonly version: FieldRef<"QuizSession", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizSession findUnique
+   */
+  export type QuizSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizSession to fetch.
+     */
+    where: QuizSessionWhereUniqueInput
+  }
+
+  /**
+   * QuizSession findUniqueOrThrow
+   */
+  export type QuizSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizSession to fetch.
+     */
+    where: QuizSessionWhereUniqueInput
+  }
+
+  /**
+   * QuizSession findFirst
+   */
+  export type QuizSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizSession to fetch.
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizSessions to fetch.
+     */
+    orderBy?: QuizSessionOrderByWithRelationInput | QuizSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizSessions.
+     */
+    cursor?: QuizSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizSessions.
+     */
+    distinct?: QuizSessionScalarFieldEnum | QuizSessionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession findFirstOrThrow
+   */
+  export type QuizSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizSession to fetch.
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizSessions to fetch.
+     */
+    orderBy?: QuizSessionOrderByWithRelationInput | QuizSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizSessions.
+     */
+    cursor?: QuizSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizSessions.
+     */
+    distinct?: QuizSessionScalarFieldEnum | QuizSessionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession findMany
+   */
+  export type QuizSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizSessions to fetch.
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizSessions to fetch.
+     */
+    orderBy?: QuizSessionOrderByWithRelationInput | QuizSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizSessions.
+     */
+    cursor?: QuizSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizSessions.
+     */
+    skip?: number
+    distinct?: QuizSessionScalarFieldEnum | QuizSessionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession create
+   */
+  export type QuizSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuizSession.
+     */
+    data: XOR<QuizSessionCreateInput, QuizSessionUncheckedCreateInput>
+  }
+
+  /**
+   * QuizSession createMany
+   */
+  export type QuizSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizSessions.
+     */
+    data: QuizSessionCreateManyInput | QuizSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizSession createManyAndReturn
+   */
+  export type QuizSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizSessions.
+     */
+    data: QuizSessionCreateManyInput | QuizSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizSession update
+   */
+  export type QuizSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuizSession.
+     */
+    data: XOR<QuizSessionUpdateInput, QuizSessionUncheckedUpdateInput>
+    /**
+     * Choose, which QuizSession to update.
+     */
+    where: QuizSessionWhereUniqueInput
+  }
+
+  /**
+   * QuizSession updateMany
+   */
+  export type QuizSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizSessions.
+     */
+    data: XOR<QuizSessionUpdateManyMutationInput, QuizSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizSessions to update
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * Limit how many QuizSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizSession updateManyAndReturn
+   */
+  export type QuizSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizSessions.
+     */
+    data: XOR<QuizSessionUpdateManyMutationInput, QuizSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizSessions to update
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * Limit how many QuizSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizSession upsert
+   */
+  export type QuizSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuizSession to update in case it exists.
+     */
+    where: QuizSessionWhereUniqueInput
+    /**
+     * In case the QuizSession found by the `where` argument doesn't exist, create a new QuizSession with this data.
+     */
+    create: XOR<QuizSessionCreateInput, QuizSessionUncheckedCreateInput>
+    /**
+     * In case the QuizSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizSessionUpdateInput, QuizSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizSession delete
+   */
+  export type QuizSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+    /**
+     * Filter which QuizSession to delete.
+     */
+    where: QuizSessionWhereUniqueInput
+  }
+
+  /**
+   * QuizSession deleteMany
+   */
+  export type QuizSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizSessions to delete
+     */
+    where?: QuizSessionWhereInput
+    /**
+     * Limit how many QuizSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizSession.responses
+   */
+  export type QuizSession$responsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    where?: QuizResponseWhereInput
+    orderBy?: QuizResponseOrderByWithRelationInput | QuizResponseOrderByWithRelationInput[]
+    cursor?: QuizResponseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuizResponseScalarFieldEnum | QuizResponseScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession.interactions
+   */
+  export type QuizSession$interactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    where?: BehavioralInteractionWhereInput
+    orderBy?: BehavioralInteractionOrderByWithRelationInput | BehavioralInteractionOrderByWithRelationInput[]
+    cursor?: BehavioralInteractionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BehavioralInteractionScalarFieldEnum | BehavioralInteractionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession.conversions
+   */
+  export type QuizSession$conversionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    where?: QuizConversionWhereInput
+    orderBy?: QuizConversionOrderByWithRelationInput | QuizConversionOrderByWithRelationInput[]
+    cursor?: QuizConversionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuizConversionScalarFieldEnum | QuizConversionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizSession without action
+   */
+  export type QuizSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizSession
+     */
+    select?: QuizSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizSession
+     */
+    omit?: QuizSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizSessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuizResponse
+   */
+
+  export type AggregateQuizResponse = {
+    _count: QuizResponseCountAggregateOutputType | null
+    _avg: QuizResponseAvgAggregateOutputType | null
+    _sum: QuizResponseSumAggregateOutputType | null
+    _min: QuizResponseMinAggregateOutputType | null
+    _max: QuizResponseMaxAggregateOutputType | null
+  }
+
+  export type QuizResponseAvgAggregateOutputType = {
+    responseTime: number | null
+  }
+
+  export type QuizResponseSumAggregateOutputType = {
+    responseTime: number | null
+  }
+
+  export type QuizResponseMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    questionId: string | null
+    questionType: string | null
+    responseTime: number | null
+    createdAt: Date | null
+  }
+
+  export type QuizResponseMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    questionId: string | null
+    questionType: string | null
+    responseTime: number | null
+    createdAt: Date | null
+  }
+
+  export type QuizResponseCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    questionId: number
+    questionType: number
+    responseValue: number
+    responseTime: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type QuizResponseAvgAggregateInputType = {
+    responseTime?: true
+  }
+
+  export type QuizResponseSumAggregateInputType = {
+    responseTime?: true
+  }
+
+  export type QuizResponseMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    questionId?: true
+    questionType?: true
+    responseTime?: true
+    createdAt?: true
+  }
+
+  export type QuizResponseMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    questionId?: true
+    questionType?: true
+    responseTime?: true
+    createdAt?: true
+  }
+
+  export type QuizResponseCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    questionId?: true
+    questionType?: true
+    responseValue?: true
+    responseTime?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type QuizResponseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizResponse to aggregate.
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizResponses to fetch.
+     */
+    orderBy?: QuizResponseOrderByWithRelationInput | QuizResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizResponses
+    **/
+    _count?: true | QuizResponseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuizResponseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuizResponseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizResponseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizResponseMaxAggregateInputType
+  }
+
+  export type GetQuizResponseAggregateType<T extends QuizResponseAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizResponse]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizResponse[P]>
+      : GetScalarType<T[P], AggregateQuizResponse[P]>
+  }
+
+
+
+
+  export type QuizResponseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizResponseWhereInput
+    orderBy?: QuizResponseOrderByWithAggregationInput | QuizResponseOrderByWithAggregationInput[]
+    by: QuizResponseScalarFieldEnum[] | QuizResponseScalarFieldEnum
+    having?: QuizResponseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizResponseCountAggregateInputType | true
+    _avg?: QuizResponseAvgAggregateInputType
+    _sum?: QuizResponseSumAggregateInputType
+    _min?: QuizResponseMinAggregateInputType
+    _max?: QuizResponseMaxAggregateInputType
+  }
+
+  export type QuizResponseGroupByOutputType = {
+    id: string
+    sessionId: string
+    questionId: string
+    questionType: string
+    responseValue: JsonValue
+    responseTime: number | null
+    createdAt: Date
+    _count: QuizResponseCountAggregateOutputType | null
+    _avg: QuizResponseAvgAggregateOutputType | null
+    _sum: QuizResponseSumAggregateOutputType | null
+    _min: QuizResponseMinAggregateOutputType | null
+    _max: QuizResponseMaxAggregateOutputType | null
+  }
+
+  type GetQuizResponseGroupByPayload<T extends QuizResponseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizResponseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizResponseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizResponseGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizResponseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizResponseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    questionId?: boolean
+    questionType?: boolean
+    responseValue?: boolean
+    responseTime?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizResponse"]>
+
+  export type QuizResponseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    questionId?: boolean
+    questionType?: boolean
+    responseValue?: boolean
+    responseTime?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizResponse"]>
+
+  export type QuizResponseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    questionId?: boolean
+    questionType?: boolean
+    responseValue?: boolean
+    responseTime?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizResponse"]>
+
+  export type QuizResponseSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    questionId?: boolean
+    questionType?: boolean
+    responseValue?: boolean
+    responseTime?: boolean
+    createdAt?: boolean
+  }
+
+  export type QuizResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "questionId" | "questionType" | "responseValue" | "responseTime" | "createdAt", ExtArgs["result"]["quizResponse"]>
+  export type QuizResponseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type QuizResponseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type QuizResponseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+
+  export type $QuizResponsePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizResponse"
+    objects: {
+      session: Prisma.$QuizSessionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      questionId: string
+      questionType: string
+      responseValue: Prisma.JsonValue
+      responseTime: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["quizResponse"]>
+    composites: {}
+  }
+
+  type QuizResponseGetPayload<S extends boolean | null | undefined | QuizResponseDefaultArgs> = $Result.GetResult<Prisma.$QuizResponsePayload, S>
+
+  type QuizResponseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizResponseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizResponseCountAggregateInputType | true
+    }
+
+  export interface QuizResponseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizResponse'], meta: { name: 'QuizResponse' } }
+    /**
+     * Find zero or one QuizResponse that matches the filter.
+     * @param {QuizResponseFindUniqueArgs} args - Arguments to find a QuizResponse
+     * @example
+     * // Get one QuizResponse
+     * const quizResponse = await prisma.quizResponse.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizResponseFindUniqueArgs>(args: SelectSubset<T, QuizResponseFindUniqueArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizResponse that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizResponseFindUniqueOrThrowArgs} args - Arguments to find a QuizResponse
+     * @example
+     * // Get one QuizResponse
+     * const quizResponse = await prisma.quizResponse.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizResponseFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizResponseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizResponse that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseFindFirstArgs} args - Arguments to find a QuizResponse
+     * @example
+     * // Get one QuizResponse
+     * const quizResponse = await prisma.quizResponse.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizResponseFindFirstArgs>(args?: SelectSubset<T, QuizResponseFindFirstArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizResponse that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseFindFirstOrThrowArgs} args - Arguments to find a QuizResponse
+     * @example
+     * // Get one QuizResponse
+     * const quizResponse = await prisma.quizResponse.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizResponseFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizResponseFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizResponses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizResponses
+     * const quizResponses = await prisma.quizResponse.findMany()
+     * 
+     * // Get first 10 QuizResponses
+     * const quizResponses = await prisma.quizResponse.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizResponseWithIdOnly = await prisma.quizResponse.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizResponseFindManyArgs>(args?: SelectSubset<T, QuizResponseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizResponse.
+     * @param {QuizResponseCreateArgs} args - Arguments to create a QuizResponse.
+     * @example
+     * // Create one QuizResponse
+     * const QuizResponse = await prisma.quizResponse.create({
+     *   data: {
+     *     // ... data to create a QuizResponse
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizResponseCreateArgs>(args: SelectSubset<T, QuizResponseCreateArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizResponses.
+     * @param {QuizResponseCreateManyArgs} args - Arguments to create many QuizResponses.
+     * @example
+     * // Create many QuizResponses
+     * const quizResponse = await prisma.quizResponse.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizResponseCreateManyArgs>(args?: SelectSubset<T, QuizResponseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizResponses and returns the data saved in the database.
+     * @param {QuizResponseCreateManyAndReturnArgs} args - Arguments to create many QuizResponses.
+     * @example
+     * // Create many QuizResponses
+     * const quizResponse = await prisma.quizResponse.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizResponses and only return the `id`
+     * const quizResponseWithIdOnly = await prisma.quizResponse.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizResponseCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizResponseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizResponse.
+     * @param {QuizResponseDeleteArgs} args - Arguments to delete one QuizResponse.
+     * @example
+     * // Delete one QuizResponse
+     * const QuizResponse = await prisma.quizResponse.delete({
+     *   where: {
+     *     // ... filter to delete one QuizResponse
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizResponseDeleteArgs>(args: SelectSubset<T, QuizResponseDeleteArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizResponse.
+     * @param {QuizResponseUpdateArgs} args - Arguments to update one QuizResponse.
+     * @example
+     * // Update one QuizResponse
+     * const quizResponse = await prisma.quizResponse.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizResponseUpdateArgs>(args: SelectSubset<T, QuizResponseUpdateArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizResponses.
+     * @param {QuizResponseDeleteManyArgs} args - Arguments to filter QuizResponses to delete.
+     * @example
+     * // Delete a few QuizResponses
+     * const { count } = await prisma.quizResponse.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizResponseDeleteManyArgs>(args?: SelectSubset<T, QuizResponseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizResponses
+     * const quizResponse = await prisma.quizResponse.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizResponseUpdateManyArgs>(args: SelectSubset<T, QuizResponseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizResponses and returns the data updated in the database.
+     * @param {QuizResponseUpdateManyAndReturnArgs} args - Arguments to update many QuizResponses.
+     * @example
+     * // Update many QuizResponses
+     * const quizResponse = await prisma.quizResponse.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizResponses and only return the `id`
+     * const quizResponseWithIdOnly = await prisma.quizResponse.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizResponseUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizResponseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizResponse.
+     * @param {QuizResponseUpsertArgs} args - Arguments to update or create a QuizResponse.
+     * @example
+     * // Update or create a QuizResponse
+     * const quizResponse = await prisma.quizResponse.upsert({
+     *   create: {
+     *     // ... data to create a QuizResponse
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizResponse we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizResponseUpsertArgs>(args: SelectSubset<T, QuizResponseUpsertArgs<ExtArgs>>): Prisma__QuizResponseClient<$Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseCountArgs} args - Arguments to filter QuizResponses to count.
+     * @example
+     * // Count the number of QuizResponses
+     * const count = await prisma.quizResponse.count({
+     *   where: {
+     *     // ... the filter for the QuizResponses we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizResponseCountArgs>(
+      args?: Subset<T, QuizResponseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizResponseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizResponseAggregateArgs>(args: Subset<T, QuizResponseAggregateArgs>): Prisma.PrismaPromise<GetQuizResponseAggregateType<T>>
+
+    /**
+     * Group by QuizResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizResponseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizResponseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizResponseGroupByArgs['orderBy'] }
+        : { orderBy?: QuizResponseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizResponseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizResponseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizResponse model
+   */
+  readonly fields: QuizResponseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizResponse.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizResponseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    session<T extends QuizSessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuizSessionDefaultArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizResponse model
+   */
+  interface QuizResponseFieldRefs {
+    readonly id: FieldRef<"QuizResponse", 'String'>
+    readonly sessionId: FieldRef<"QuizResponse", 'String'>
+    readonly questionId: FieldRef<"QuizResponse", 'String'>
+    readonly questionType: FieldRef<"QuizResponse", 'String'>
+    readonly responseValue: FieldRef<"QuizResponse", 'Json'>
+    readonly responseTime: FieldRef<"QuizResponse", 'Int'>
+    readonly createdAt: FieldRef<"QuizResponse", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizResponse findUnique
+   */
+  export type QuizResponseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizResponse to fetch.
+     */
+    where: QuizResponseWhereUniqueInput
+  }
+
+  /**
+   * QuizResponse findUniqueOrThrow
+   */
+  export type QuizResponseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizResponse to fetch.
+     */
+    where: QuizResponseWhereUniqueInput
+  }
+
+  /**
+   * QuizResponse findFirst
+   */
+  export type QuizResponseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizResponse to fetch.
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizResponses to fetch.
+     */
+    orderBy?: QuizResponseOrderByWithRelationInput | QuizResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizResponses.
+     */
+    cursor?: QuizResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizResponses.
+     */
+    distinct?: QuizResponseScalarFieldEnum | QuizResponseScalarFieldEnum[]
+  }
+
+  /**
+   * QuizResponse findFirstOrThrow
+   */
+  export type QuizResponseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizResponse to fetch.
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizResponses to fetch.
+     */
+    orderBy?: QuizResponseOrderByWithRelationInput | QuizResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizResponses.
+     */
+    cursor?: QuizResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizResponses.
+     */
+    distinct?: QuizResponseScalarFieldEnum | QuizResponseScalarFieldEnum[]
+  }
+
+  /**
+   * QuizResponse findMany
+   */
+  export type QuizResponseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizResponses to fetch.
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizResponses to fetch.
+     */
+    orderBy?: QuizResponseOrderByWithRelationInput | QuizResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizResponses.
+     */
+    cursor?: QuizResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizResponses.
+     */
+    skip?: number
+    distinct?: QuizResponseScalarFieldEnum | QuizResponseScalarFieldEnum[]
+  }
+
+  /**
+   * QuizResponse create
+   */
+  export type QuizResponseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuizResponse.
+     */
+    data: XOR<QuizResponseCreateInput, QuizResponseUncheckedCreateInput>
+  }
+
+  /**
+   * QuizResponse createMany
+   */
+  export type QuizResponseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizResponses.
+     */
+    data: QuizResponseCreateManyInput | QuizResponseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizResponse createManyAndReturn
+   */
+  export type QuizResponseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizResponses.
+     */
+    data: QuizResponseCreateManyInput | QuizResponseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuizResponse update
+   */
+  export type QuizResponseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuizResponse.
+     */
+    data: XOR<QuizResponseUpdateInput, QuizResponseUncheckedUpdateInput>
+    /**
+     * Choose, which QuizResponse to update.
+     */
+    where: QuizResponseWhereUniqueInput
+  }
+
+  /**
+   * QuizResponse updateMany
+   */
+  export type QuizResponseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizResponses.
+     */
+    data: XOR<QuizResponseUpdateManyMutationInput, QuizResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizResponses to update
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * Limit how many QuizResponses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizResponse updateManyAndReturn
+   */
+  export type QuizResponseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizResponses.
+     */
+    data: XOR<QuizResponseUpdateManyMutationInput, QuizResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizResponses to update
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * Limit how many QuizResponses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuizResponse upsert
+   */
+  export type QuizResponseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuizResponse to update in case it exists.
+     */
+    where: QuizResponseWhereUniqueInput
+    /**
+     * In case the QuizResponse found by the `where` argument doesn't exist, create a new QuizResponse with this data.
+     */
+    create: XOR<QuizResponseCreateInput, QuizResponseUncheckedCreateInput>
+    /**
+     * In case the QuizResponse was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizResponseUpdateInput, QuizResponseUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizResponse delete
+   */
+  export type QuizResponseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+    /**
+     * Filter which QuizResponse to delete.
+     */
+    where: QuizResponseWhereUniqueInput
+  }
+
+  /**
+   * QuizResponse deleteMany
+   */
+  export type QuizResponseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizResponses to delete
+     */
+    where?: QuizResponseWhereInput
+    /**
+     * Limit how many QuizResponses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizResponse without action
+   */
+  export type QuizResponseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizResponse
+     */
+    select?: QuizResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizResponse
+     */
+    omit?: QuizResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizResponseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BehavioralInteraction
+   */
+
+  export type AggregateBehavioralInteraction = {
+    _count: BehavioralInteractionCountAggregateOutputType | null
+    _avg: BehavioralInteractionAvgAggregateOutputType | null
+    _sum: BehavioralInteractionSumAggregateOutputType | null
+    _min: BehavioralInteractionMinAggregateOutputType | null
+    _max: BehavioralInteractionMaxAggregateOutputType | null
+  }
+
+  export type BehavioralInteractionAvgAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type BehavioralInteractionSumAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type BehavioralInteractionMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    interactionType: string | null
+    element: string | null
+    duration: number | null
+    timestamp: Date | null
+  }
+
+  export type BehavioralInteractionMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    interactionType: string | null
+    element: string | null
+    duration: number | null
+    timestamp: Date | null
+  }
+
+  export type BehavioralInteractionCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    interactionType: number
+    element: number
+    position: number
+    viewport: number
+    duration: number
+    metadata: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type BehavioralInteractionAvgAggregateInputType = {
+    duration?: true
+  }
+
+  export type BehavioralInteractionSumAggregateInputType = {
+    duration?: true
+  }
+
+  export type BehavioralInteractionMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interactionType?: true
+    element?: true
+    duration?: true
+    timestamp?: true
+  }
+
+  export type BehavioralInteractionMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interactionType?: true
+    element?: true
+    duration?: true
+    timestamp?: true
+  }
+
+  export type BehavioralInteractionCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interactionType?: true
+    element?: true
+    position?: true
+    viewport?: true
+    duration?: true
+    metadata?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type BehavioralInteractionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BehavioralInteraction to aggregate.
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BehavioralInteractions to fetch.
+     */
+    orderBy?: BehavioralInteractionOrderByWithRelationInput | BehavioralInteractionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BehavioralInteractionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BehavioralInteractions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BehavioralInteractions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BehavioralInteractions
+    **/
+    _count?: true | BehavioralInteractionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BehavioralInteractionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BehavioralInteractionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BehavioralInteractionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BehavioralInteractionMaxAggregateInputType
+  }
+
+  export type GetBehavioralInteractionAggregateType<T extends BehavioralInteractionAggregateArgs> = {
+        [P in keyof T & keyof AggregateBehavioralInteraction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBehavioralInteraction[P]>
+      : GetScalarType<T[P], AggregateBehavioralInteraction[P]>
+  }
+
+
+
+
+  export type BehavioralInteractionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BehavioralInteractionWhereInput
+    orderBy?: BehavioralInteractionOrderByWithAggregationInput | BehavioralInteractionOrderByWithAggregationInput[]
+    by: BehavioralInteractionScalarFieldEnum[] | BehavioralInteractionScalarFieldEnum
+    having?: BehavioralInteractionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BehavioralInteractionCountAggregateInputType | true
+    _avg?: BehavioralInteractionAvgAggregateInputType
+    _sum?: BehavioralInteractionSumAggregateInputType
+    _min?: BehavioralInteractionMinAggregateInputType
+    _max?: BehavioralInteractionMaxAggregateInputType
+  }
+
+  export type BehavioralInteractionGroupByOutputType = {
+    id: string
+    sessionId: string
+    interactionType: string
+    element: string | null
+    position: JsonValue | null
+    viewport: JsonValue | null
+    duration: number | null
+    metadata: JsonValue | null
+    timestamp: Date
+    _count: BehavioralInteractionCountAggregateOutputType | null
+    _avg: BehavioralInteractionAvgAggregateOutputType | null
+    _sum: BehavioralInteractionSumAggregateOutputType | null
+    _min: BehavioralInteractionMinAggregateOutputType | null
+    _max: BehavioralInteractionMaxAggregateOutputType | null
+  }
+
+  type GetBehavioralInteractionGroupByPayload<T extends BehavioralInteractionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BehavioralInteractionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BehavioralInteractionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BehavioralInteractionGroupByOutputType[P]>
+            : GetScalarType<T[P], BehavioralInteractionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BehavioralInteractionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interactionType?: boolean
+    element?: boolean
+    position?: boolean
+    viewport?: boolean
+    duration?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["behavioralInteraction"]>
+
+  export type BehavioralInteractionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interactionType?: boolean
+    element?: boolean
+    position?: boolean
+    viewport?: boolean
+    duration?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["behavioralInteraction"]>
+
+  export type BehavioralInteractionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interactionType?: boolean
+    element?: boolean
+    position?: boolean
+    viewport?: boolean
+    duration?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["behavioralInteraction"]>
+
+  export type BehavioralInteractionSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    interactionType?: boolean
+    element?: boolean
+    position?: boolean
+    viewport?: boolean
+    duration?: boolean
+    metadata?: boolean
+    timestamp?: boolean
+  }
+
+  export type BehavioralInteractionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "interactionType" | "element" | "position" | "viewport" | "duration" | "metadata" | "timestamp", ExtArgs["result"]["behavioralInteraction"]>
+  export type BehavioralInteractionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type BehavioralInteractionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type BehavioralInteractionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+
+  export type $BehavioralInteractionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BehavioralInteraction"
+    objects: {
+      session: Prisma.$QuizSessionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      interactionType: string
+      element: string | null
+      position: Prisma.JsonValue | null
+      viewport: Prisma.JsonValue | null
+      duration: number | null
+      metadata: Prisma.JsonValue | null
+      timestamp: Date
+    }, ExtArgs["result"]["behavioralInteraction"]>
+    composites: {}
+  }
+
+  type BehavioralInteractionGetPayload<S extends boolean | null | undefined | BehavioralInteractionDefaultArgs> = $Result.GetResult<Prisma.$BehavioralInteractionPayload, S>
+
+  type BehavioralInteractionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BehavioralInteractionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BehavioralInteractionCountAggregateInputType | true
+    }
+
+  export interface BehavioralInteractionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BehavioralInteraction'], meta: { name: 'BehavioralInteraction' } }
+    /**
+     * Find zero or one BehavioralInteraction that matches the filter.
+     * @param {BehavioralInteractionFindUniqueArgs} args - Arguments to find a BehavioralInteraction
+     * @example
+     * // Get one BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BehavioralInteractionFindUniqueArgs>(args: SelectSubset<T, BehavioralInteractionFindUniqueArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BehavioralInteraction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BehavioralInteractionFindUniqueOrThrowArgs} args - Arguments to find a BehavioralInteraction
+     * @example
+     * // Get one BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BehavioralInteractionFindUniqueOrThrowArgs>(args: SelectSubset<T, BehavioralInteractionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BehavioralInteraction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionFindFirstArgs} args - Arguments to find a BehavioralInteraction
+     * @example
+     * // Get one BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BehavioralInteractionFindFirstArgs>(args?: SelectSubset<T, BehavioralInteractionFindFirstArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BehavioralInteraction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionFindFirstOrThrowArgs} args - Arguments to find a BehavioralInteraction
+     * @example
+     * // Get one BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BehavioralInteractionFindFirstOrThrowArgs>(args?: SelectSubset<T, BehavioralInteractionFindFirstOrThrowArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BehavioralInteractions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BehavioralInteractions
+     * const behavioralInteractions = await prisma.behavioralInteraction.findMany()
+     * 
+     * // Get first 10 BehavioralInteractions
+     * const behavioralInteractions = await prisma.behavioralInteraction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const behavioralInteractionWithIdOnly = await prisma.behavioralInteraction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BehavioralInteractionFindManyArgs>(args?: SelectSubset<T, BehavioralInteractionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BehavioralInteraction.
+     * @param {BehavioralInteractionCreateArgs} args - Arguments to create a BehavioralInteraction.
+     * @example
+     * // Create one BehavioralInteraction
+     * const BehavioralInteraction = await prisma.behavioralInteraction.create({
+     *   data: {
+     *     // ... data to create a BehavioralInteraction
+     *   }
+     * })
+     * 
+     */
+    create<T extends BehavioralInteractionCreateArgs>(args: SelectSubset<T, BehavioralInteractionCreateArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BehavioralInteractions.
+     * @param {BehavioralInteractionCreateManyArgs} args - Arguments to create many BehavioralInteractions.
+     * @example
+     * // Create many BehavioralInteractions
+     * const behavioralInteraction = await prisma.behavioralInteraction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BehavioralInteractionCreateManyArgs>(args?: SelectSubset<T, BehavioralInteractionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BehavioralInteractions and returns the data saved in the database.
+     * @param {BehavioralInteractionCreateManyAndReturnArgs} args - Arguments to create many BehavioralInteractions.
+     * @example
+     * // Create many BehavioralInteractions
+     * const behavioralInteraction = await prisma.behavioralInteraction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BehavioralInteractions and only return the `id`
+     * const behavioralInteractionWithIdOnly = await prisma.behavioralInteraction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BehavioralInteractionCreateManyAndReturnArgs>(args?: SelectSubset<T, BehavioralInteractionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BehavioralInteraction.
+     * @param {BehavioralInteractionDeleteArgs} args - Arguments to delete one BehavioralInteraction.
+     * @example
+     * // Delete one BehavioralInteraction
+     * const BehavioralInteraction = await prisma.behavioralInteraction.delete({
+     *   where: {
+     *     // ... filter to delete one BehavioralInteraction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BehavioralInteractionDeleteArgs>(args: SelectSubset<T, BehavioralInteractionDeleteArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BehavioralInteraction.
+     * @param {BehavioralInteractionUpdateArgs} args - Arguments to update one BehavioralInteraction.
+     * @example
+     * // Update one BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BehavioralInteractionUpdateArgs>(args: SelectSubset<T, BehavioralInteractionUpdateArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BehavioralInteractions.
+     * @param {BehavioralInteractionDeleteManyArgs} args - Arguments to filter BehavioralInteractions to delete.
+     * @example
+     * // Delete a few BehavioralInteractions
+     * const { count } = await prisma.behavioralInteraction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BehavioralInteractionDeleteManyArgs>(args?: SelectSubset<T, BehavioralInteractionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BehavioralInteractions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BehavioralInteractions
+     * const behavioralInteraction = await prisma.behavioralInteraction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BehavioralInteractionUpdateManyArgs>(args: SelectSubset<T, BehavioralInteractionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BehavioralInteractions and returns the data updated in the database.
+     * @param {BehavioralInteractionUpdateManyAndReturnArgs} args - Arguments to update many BehavioralInteractions.
+     * @example
+     * // Update many BehavioralInteractions
+     * const behavioralInteraction = await prisma.behavioralInteraction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BehavioralInteractions and only return the `id`
+     * const behavioralInteractionWithIdOnly = await prisma.behavioralInteraction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BehavioralInteractionUpdateManyAndReturnArgs>(args: SelectSubset<T, BehavioralInteractionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BehavioralInteraction.
+     * @param {BehavioralInteractionUpsertArgs} args - Arguments to update or create a BehavioralInteraction.
+     * @example
+     * // Update or create a BehavioralInteraction
+     * const behavioralInteraction = await prisma.behavioralInteraction.upsert({
+     *   create: {
+     *     // ... data to create a BehavioralInteraction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BehavioralInteraction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BehavioralInteractionUpsertArgs>(args: SelectSubset<T, BehavioralInteractionUpsertArgs<ExtArgs>>): Prisma__BehavioralInteractionClient<$Result.GetResult<Prisma.$BehavioralInteractionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BehavioralInteractions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionCountArgs} args - Arguments to filter BehavioralInteractions to count.
+     * @example
+     * // Count the number of BehavioralInteractions
+     * const count = await prisma.behavioralInteraction.count({
+     *   where: {
+     *     // ... the filter for the BehavioralInteractions we want to count
+     *   }
+     * })
+    **/
+    count<T extends BehavioralInteractionCountArgs>(
+      args?: Subset<T, BehavioralInteractionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BehavioralInteractionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BehavioralInteraction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BehavioralInteractionAggregateArgs>(args: Subset<T, BehavioralInteractionAggregateArgs>): Prisma.PrismaPromise<GetBehavioralInteractionAggregateType<T>>
+
+    /**
+     * Group by BehavioralInteraction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BehavioralInteractionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BehavioralInteractionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BehavioralInteractionGroupByArgs['orderBy'] }
+        : { orderBy?: BehavioralInteractionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BehavioralInteractionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBehavioralInteractionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BehavioralInteraction model
+   */
+  readonly fields: BehavioralInteractionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BehavioralInteraction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BehavioralInteractionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    session<T extends QuizSessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuizSessionDefaultArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BehavioralInteraction model
+   */
+  interface BehavioralInteractionFieldRefs {
+    readonly id: FieldRef<"BehavioralInteraction", 'String'>
+    readonly sessionId: FieldRef<"BehavioralInteraction", 'String'>
+    readonly interactionType: FieldRef<"BehavioralInteraction", 'String'>
+    readonly element: FieldRef<"BehavioralInteraction", 'String'>
+    readonly position: FieldRef<"BehavioralInteraction", 'Json'>
+    readonly viewport: FieldRef<"BehavioralInteraction", 'Json'>
+    readonly duration: FieldRef<"BehavioralInteraction", 'Int'>
+    readonly metadata: FieldRef<"BehavioralInteraction", 'Json'>
+    readonly timestamp: FieldRef<"BehavioralInteraction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BehavioralInteraction findUnique
+   */
+  export type BehavioralInteractionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter, which BehavioralInteraction to fetch.
+     */
+    where: BehavioralInteractionWhereUniqueInput
+  }
+
+  /**
+   * BehavioralInteraction findUniqueOrThrow
+   */
+  export type BehavioralInteractionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter, which BehavioralInteraction to fetch.
+     */
+    where: BehavioralInteractionWhereUniqueInput
+  }
+
+  /**
+   * BehavioralInteraction findFirst
+   */
+  export type BehavioralInteractionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter, which BehavioralInteraction to fetch.
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BehavioralInteractions to fetch.
+     */
+    orderBy?: BehavioralInteractionOrderByWithRelationInput | BehavioralInteractionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BehavioralInteractions.
+     */
+    cursor?: BehavioralInteractionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BehavioralInteractions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BehavioralInteractions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BehavioralInteractions.
+     */
+    distinct?: BehavioralInteractionScalarFieldEnum | BehavioralInteractionScalarFieldEnum[]
+  }
+
+  /**
+   * BehavioralInteraction findFirstOrThrow
+   */
+  export type BehavioralInteractionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter, which BehavioralInteraction to fetch.
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BehavioralInteractions to fetch.
+     */
+    orderBy?: BehavioralInteractionOrderByWithRelationInput | BehavioralInteractionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BehavioralInteractions.
+     */
+    cursor?: BehavioralInteractionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BehavioralInteractions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BehavioralInteractions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BehavioralInteractions.
+     */
+    distinct?: BehavioralInteractionScalarFieldEnum | BehavioralInteractionScalarFieldEnum[]
+  }
+
+  /**
+   * BehavioralInteraction findMany
+   */
+  export type BehavioralInteractionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter, which BehavioralInteractions to fetch.
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BehavioralInteractions to fetch.
+     */
+    orderBy?: BehavioralInteractionOrderByWithRelationInput | BehavioralInteractionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BehavioralInteractions.
+     */
+    cursor?: BehavioralInteractionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BehavioralInteractions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BehavioralInteractions.
+     */
+    skip?: number
+    distinct?: BehavioralInteractionScalarFieldEnum | BehavioralInteractionScalarFieldEnum[]
+  }
+
+  /**
+   * BehavioralInteraction create
+   */
+  export type BehavioralInteractionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BehavioralInteraction.
+     */
+    data: XOR<BehavioralInteractionCreateInput, BehavioralInteractionUncheckedCreateInput>
+  }
+
+  /**
+   * BehavioralInteraction createMany
+   */
+  export type BehavioralInteractionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BehavioralInteractions.
+     */
+    data: BehavioralInteractionCreateManyInput | BehavioralInteractionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BehavioralInteraction createManyAndReturn
+   */
+  export type BehavioralInteractionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * The data used to create many BehavioralInteractions.
+     */
+    data: BehavioralInteractionCreateManyInput | BehavioralInteractionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BehavioralInteraction update
+   */
+  export type BehavioralInteractionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BehavioralInteraction.
+     */
+    data: XOR<BehavioralInteractionUpdateInput, BehavioralInteractionUncheckedUpdateInput>
+    /**
+     * Choose, which BehavioralInteraction to update.
+     */
+    where: BehavioralInteractionWhereUniqueInput
+  }
+
+  /**
+   * BehavioralInteraction updateMany
+   */
+  export type BehavioralInteractionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BehavioralInteractions.
+     */
+    data: XOR<BehavioralInteractionUpdateManyMutationInput, BehavioralInteractionUncheckedUpdateManyInput>
+    /**
+     * Filter which BehavioralInteractions to update
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * Limit how many BehavioralInteractions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BehavioralInteraction updateManyAndReturn
+   */
+  export type BehavioralInteractionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * The data used to update BehavioralInteractions.
+     */
+    data: XOR<BehavioralInteractionUpdateManyMutationInput, BehavioralInteractionUncheckedUpdateManyInput>
+    /**
+     * Filter which BehavioralInteractions to update
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * Limit how many BehavioralInteractions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BehavioralInteraction upsert
+   */
+  export type BehavioralInteractionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BehavioralInteraction to update in case it exists.
+     */
+    where: BehavioralInteractionWhereUniqueInput
+    /**
+     * In case the BehavioralInteraction found by the `where` argument doesn't exist, create a new BehavioralInteraction with this data.
+     */
+    create: XOR<BehavioralInteractionCreateInput, BehavioralInteractionUncheckedCreateInput>
+    /**
+     * In case the BehavioralInteraction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BehavioralInteractionUpdateInput, BehavioralInteractionUncheckedUpdateInput>
+  }
+
+  /**
+   * BehavioralInteraction delete
+   */
+  export type BehavioralInteractionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+    /**
+     * Filter which BehavioralInteraction to delete.
+     */
+    where: BehavioralInteractionWhereUniqueInput
+  }
+
+  /**
+   * BehavioralInteraction deleteMany
+   */
+  export type BehavioralInteractionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BehavioralInteractions to delete
+     */
+    where?: BehavioralInteractionWhereInput
+    /**
+     * Limit how many BehavioralInteractions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BehavioralInteraction without action
+   */
+  export type BehavioralInteractionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BehavioralInteraction
+     */
+    select?: BehavioralInteractionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BehavioralInteraction
+     */
+    omit?: BehavioralInteractionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BehavioralInteractionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuizConversion
+   */
+
+  export type AggregateQuizConversion = {
+    _count: QuizConversionCountAggregateOutputType | null
+    _avg: QuizConversionAvgAggregateOutputType | null
+    _sum: QuizConversionSumAggregateOutputType | null
+    _min: QuizConversionMinAggregateOutputType | null
+    _max: QuizConversionMaxAggregateOutputType | null
+  }
+
+  export type QuizConversionAvgAggregateOutputType = {
+    conversionValue: number | null
+  }
+
+  export type QuizConversionSumAggregateOutputType = {
+    conversionValue: number | null
+  }
+
+  export type QuizConversionMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    conversionType: string | null
+    conversionValue: number | null
+    orderId: string | null
+    createdAt: Date | null
+  }
+
+  export type QuizConversionMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    conversionType: string | null
+    conversionValue: number | null
+    orderId: string | null
+    createdAt: Date | null
+  }
+
+  export type QuizConversionCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    conversionType: number
+    conversionValue: number
+    orderId: number
+    metadata: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type QuizConversionAvgAggregateInputType = {
+    conversionValue?: true
+  }
+
+  export type QuizConversionSumAggregateInputType = {
+    conversionValue?: true
+  }
+
+  export type QuizConversionMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    conversionType?: true
+    conversionValue?: true
+    orderId?: true
+    createdAt?: true
+  }
+
+  export type QuizConversionMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    conversionType?: true
+    conversionValue?: true
+    orderId?: true
+    createdAt?: true
+  }
+
+  export type QuizConversionCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    conversionType?: true
+    conversionValue?: true
+    orderId?: true
+    metadata?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type QuizConversionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizConversion to aggregate.
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizConversions to fetch.
+     */
+    orderBy?: QuizConversionOrderByWithRelationInput | QuizConversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizConversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizConversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizConversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizConversions
+    **/
+    _count?: true | QuizConversionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuizConversionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuizConversionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizConversionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizConversionMaxAggregateInputType
+  }
+
+  export type GetQuizConversionAggregateType<T extends QuizConversionAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizConversion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizConversion[P]>
+      : GetScalarType<T[P], AggregateQuizConversion[P]>
+  }
+
+
+
+
+  export type QuizConversionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizConversionWhereInput
+    orderBy?: QuizConversionOrderByWithAggregationInput | QuizConversionOrderByWithAggregationInput[]
+    by: QuizConversionScalarFieldEnum[] | QuizConversionScalarFieldEnum
+    having?: QuizConversionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizConversionCountAggregateInputType | true
+    _avg?: QuizConversionAvgAggregateInputType
+    _sum?: QuizConversionSumAggregateInputType
+    _min?: QuizConversionMinAggregateInputType
+    _max?: QuizConversionMaxAggregateInputType
+  }
+
+  export type QuizConversionGroupByOutputType = {
+    id: string
+    sessionId: string
+    conversionType: string
+    conversionValue: number | null
+    orderId: string | null
+    metadata: JsonValue | null
+    createdAt: Date
+    _count: QuizConversionCountAggregateOutputType | null
+    _avg: QuizConversionAvgAggregateOutputType | null
+    _sum: QuizConversionSumAggregateOutputType | null
+    _min: QuizConversionMinAggregateOutputType | null
+    _max: QuizConversionMaxAggregateOutputType | null
+  }
+
+  type GetQuizConversionGroupByPayload<T extends QuizConversionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizConversionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizConversionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizConversionGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizConversionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizConversionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    conversionType?: boolean
+    conversionValue?: boolean
+    orderId?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizConversion"]>
+
+  export type QuizConversionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    conversionType?: boolean
+    conversionValue?: boolean
+    orderId?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizConversion"]>
+
+  export type QuizConversionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    conversionType?: boolean
+    conversionValue?: boolean
+    orderId?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizConversion"]>
+
+  export type QuizConversionSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    conversionType?: boolean
+    conversionValue?: boolean
+    orderId?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+  }
+
+  export type QuizConversionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "conversionType" | "conversionValue" | "orderId" | "metadata" | "createdAt", ExtArgs["result"]["quizConversion"]>
+  export type QuizConversionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type QuizConversionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+  export type QuizConversionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | QuizSessionDefaultArgs<ExtArgs>
+  }
+
+  export type $QuizConversionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizConversion"
+    objects: {
+      session: Prisma.$QuizSessionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      conversionType: string
+      conversionValue: number | null
+      orderId: string | null
+      metadata: Prisma.JsonValue | null
+      createdAt: Date
+    }, ExtArgs["result"]["quizConversion"]>
+    composites: {}
+  }
+
+  type QuizConversionGetPayload<S extends boolean | null | undefined | QuizConversionDefaultArgs> = $Result.GetResult<Prisma.$QuizConversionPayload, S>
+
+  type QuizConversionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizConversionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizConversionCountAggregateInputType | true
+    }
+
+  export interface QuizConversionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizConversion'], meta: { name: 'QuizConversion' } }
+    /**
+     * Find zero or one QuizConversion that matches the filter.
+     * @param {QuizConversionFindUniqueArgs} args - Arguments to find a QuizConversion
+     * @example
+     * // Get one QuizConversion
+     * const quizConversion = await prisma.quizConversion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizConversionFindUniqueArgs>(args: SelectSubset<T, QuizConversionFindUniqueArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizConversion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizConversionFindUniqueOrThrowArgs} args - Arguments to find a QuizConversion
+     * @example
+     * // Get one QuizConversion
+     * const quizConversion = await prisma.quizConversion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizConversionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizConversionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizConversion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionFindFirstArgs} args - Arguments to find a QuizConversion
+     * @example
+     * // Get one QuizConversion
+     * const quizConversion = await prisma.quizConversion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizConversionFindFirstArgs>(args?: SelectSubset<T, QuizConversionFindFirstArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizConversion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionFindFirstOrThrowArgs} args - Arguments to find a QuizConversion
+     * @example
+     * // Get one QuizConversion
+     * const quizConversion = await prisma.quizConversion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizConversionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizConversionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizConversions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizConversions
+     * const quizConversions = await prisma.quizConversion.findMany()
+     * 
+     * // Get first 10 QuizConversions
+     * const quizConversions = await prisma.quizConversion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizConversionWithIdOnly = await prisma.quizConversion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizConversionFindManyArgs>(args?: SelectSubset<T, QuizConversionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizConversion.
+     * @param {QuizConversionCreateArgs} args - Arguments to create a QuizConversion.
+     * @example
+     * // Create one QuizConversion
+     * const QuizConversion = await prisma.quizConversion.create({
+     *   data: {
+     *     // ... data to create a QuizConversion
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizConversionCreateArgs>(args: SelectSubset<T, QuizConversionCreateArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizConversions.
+     * @param {QuizConversionCreateManyArgs} args - Arguments to create many QuizConversions.
+     * @example
+     * // Create many QuizConversions
+     * const quizConversion = await prisma.quizConversion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizConversionCreateManyArgs>(args?: SelectSubset<T, QuizConversionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizConversions and returns the data saved in the database.
+     * @param {QuizConversionCreateManyAndReturnArgs} args - Arguments to create many QuizConversions.
+     * @example
+     * // Create many QuizConversions
+     * const quizConversion = await prisma.quizConversion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizConversions and only return the `id`
+     * const quizConversionWithIdOnly = await prisma.quizConversion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizConversionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizConversionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizConversion.
+     * @param {QuizConversionDeleteArgs} args - Arguments to delete one QuizConversion.
+     * @example
+     * // Delete one QuizConversion
+     * const QuizConversion = await prisma.quizConversion.delete({
+     *   where: {
+     *     // ... filter to delete one QuizConversion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizConversionDeleteArgs>(args: SelectSubset<T, QuizConversionDeleteArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizConversion.
+     * @param {QuizConversionUpdateArgs} args - Arguments to update one QuizConversion.
+     * @example
+     * // Update one QuizConversion
+     * const quizConversion = await prisma.quizConversion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizConversionUpdateArgs>(args: SelectSubset<T, QuizConversionUpdateArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizConversions.
+     * @param {QuizConversionDeleteManyArgs} args - Arguments to filter QuizConversions to delete.
+     * @example
+     * // Delete a few QuizConversions
+     * const { count } = await prisma.quizConversion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizConversionDeleteManyArgs>(args?: SelectSubset<T, QuizConversionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizConversions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizConversions
+     * const quizConversion = await prisma.quizConversion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizConversionUpdateManyArgs>(args: SelectSubset<T, QuizConversionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizConversions and returns the data updated in the database.
+     * @param {QuizConversionUpdateManyAndReturnArgs} args - Arguments to update many QuizConversions.
+     * @example
+     * // Update many QuizConversions
+     * const quizConversion = await prisma.quizConversion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizConversions and only return the `id`
+     * const quizConversionWithIdOnly = await prisma.quizConversion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizConversionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizConversionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizConversion.
+     * @param {QuizConversionUpsertArgs} args - Arguments to update or create a QuizConversion.
+     * @example
+     * // Update or create a QuizConversion
+     * const quizConversion = await prisma.quizConversion.upsert({
+     *   create: {
+     *     // ... data to create a QuizConversion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizConversion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizConversionUpsertArgs>(args: SelectSubset<T, QuizConversionUpsertArgs<ExtArgs>>): Prisma__QuizConversionClient<$Result.GetResult<Prisma.$QuizConversionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizConversions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionCountArgs} args - Arguments to filter QuizConversions to count.
+     * @example
+     * // Count the number of QuizConversions
+     * const count = await prisma.quizConversion.count({
+     *   where: {
+     *     // ... the filter for the QuizConversions we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizConversionCountArgs>(
+      args?: Subset<T, QuizConversionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizConversionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizConversion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizConversionAggregateArgs>(args: Subset<T, QuizConversionAggregateArgs>): Prisma.PrismaPromise<GetQuizConversionAggregateType<T>>
+
+    /**
+     * Group by QuizConversion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizConversionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizConversionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizConversionGroupByArgs['orderBy'] }
+        : { orderBy?: QuizConversionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizConversionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizConversionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizConversion model
+   */
+  readonly fields: QuizConversionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizConversion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizConversionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    session<T extends QuizSessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuizSessionDefaultArgs<ExtArgs>>): Prisma__QuizSessionClient<$Result.GetResult<Prisma.$QuizSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizConversion model
+   */
+  interface QuizConversionFieldRefs {
+    readonly id: FieldRef<"QuizConversion", 'String'>
+    readonly sessionId: FieldRef<"QuizConversion", 'String'>
+    readonly conversionType: FieldRef<"QuizConversion", 'String'>
+    readonly conversionValue: FieldRef<"QuizConversion", 'Float'>
+    readonly orderId: FieldRef<"QuizConversion", 'String'>
+    readonly metadata: FieldRef<"QuizConversion", 'Json'>
+    readonly createdAt: FieldRef<"QuizConversion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizConversion findUnique
+   */
+  export type QuizConversionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizConversion to fetch.
+     */
+    where: QuizConversionWhereUniqueInput
+  }
+
+  /**
+   * QuizConversion findUniqueOrThrow
+   */
+  export type QuizConversionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizConversion to fetch.
+     */
+    where: QuizConversionWhereUniqueInput
+  }
+
+  /**
+   * QuizConversion findFirst
+   */
+  export type QuizConversionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizConversion to fetch.
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizConversions to fetch.
+     */
+    orderBy?: QuizConversionOrderByWithRelationInput | QuizConversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizConversions.
+     */
+    cursor?: QuizConversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizConversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizConversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizConversions.
+     */
+    distinct?: QuizConversionScalarFieldEnum | QuizConversionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizConversion findFirstOrThrow
+   */
+  export type QuizConversionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizConversion to fetch.
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizConversions to fetch.
+     */
+    orderBy?: QuizConversionOrderByWithRelationInput | QuizConversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizConversions.
+     */
+    cursor?: QuizConversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizConversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizConversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizConversions.
+     */
+    distinct?: QuizConversionScalarFieldEnum | QuizConversionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizConversion findMany
+   */
+  export type QuizConversionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuizConversions to fetch.
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizConversions to fetch.
+     */
+    orderBy?: QuizConversionOrderByWithRelationInput | QuizConversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizConversions.
+     */
+    cursor?: QuizConversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizConversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizConversions.
+     */
+    skip?: number
+    distinct?: QuizConversionScalarFieldEnum | QuizConversionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizConversion create
+   */
+  export type QuizConversionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuizConversion.
+     */
+    data: XOR<QuizConversionCreateInput, QuizConversionUncheckedCreateInput>
+  }
+
+  /**
+   * QuizConversion createMany
+   */
+  export type QuizConversionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizConversions.
+     */
+    data: QuizConversionCreateManyInput | QuizConversionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizConversion createManyAndReturn
+   */
+  export type QuizConversionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizConversions.
+     */
+    data: QuizConversionCreateManyInput | QuizConversionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuizConversion update
+   */
+  export type QuizConversionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuizConversion.
+     */
+    data: XOR<QuizConversionUpdateInput, QuizConversionUncheckedUpdateInput>
+    /**
+     * Choose, which QuizConversion to update.
+     */
+    where: QuizConversionWhereUniqueInput
+  }
+
+  /**
+   * QuizConversion updateMany
+   */
+  export type QuizConversionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizConversions.
+     */
+    data: XOR<QuizConversionUpdateManyMutationInput, QuizConversionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizConversions to update
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * Limit how many QuizConversions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizConversion updateManyAndReturn
+   */
+  export type QuizConversionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizConversions.
+     */
+    data: XOR<QuizConversionUpdateManyMutationInput, QuizConversionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizConversions to update
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * Limit how many QuizConversions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuizConversion upsert
+   */
+  export type QuizConversionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuizConversion to update in case it exists.
+     */
+    where: QuizConversionWhereUniqueInput
+    /**
+     * In case the QuizConversion found by the `where` argument doesn't exist, create a new QuizConversion with this data.
+     */
+    create: XOR<QuizConversionCreateInput, QuizConversionUncheckedCreateInput>
+    /**
+     * In case the QuizConversion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizConversionUpdateInput, QuizConversionUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizConversion delete
+   */
+  export type QuizConversionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+    /**
+     * Filter which QuizConversion to delete.
+     */
+    where: QuizConversionWhereUniqueInput
+  }
+
+  /**
+   * QuizConversion deleteMany
+   */
+  export type QuizConversionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizConversions to delete
+     */
+    where?: QuizConversionWhereInput
+    /**
+     * Limit how many QuizConversions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizConversion without action
+   */
+  export type QuizConversionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizConversion
+     */
+    select?: QuizConversionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizConversion
+     */
+    omit?: QuizConversionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuizConversionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ABTestExperiment
+   */
+
+  export type AggregateABTestExperiment = {
+    _count: ABTestExperimentCountAggregateOutputType | null
+    _min: ABTestExperimentMinAggregateOutputType | null
+    _max: ABTestExperimentMaxAggregateOutputType | null
+  }
+
+  export type ABTestExperimentMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    status: string | null
+    startDate: Date | null
+    endDate: Date | null
+    testType: string | null
+    winner: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ABTestExperimentMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    status: string | null
+    startDate: Date | null
+    endDate: Date | null
+    testType: string | null
+    winner: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ABTestExperimentCountAggregateOutputType = {
+    id: number
+    name: number
+    status: number
+    startDate: number
+    endDate: number
+    testType: number
+    control: number
+    variants: number
+    allocation: number
+    metrics: number
+    results: number
+    winner: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ABTestExperimentMinAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    testType?: true
+    winner?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ABTestExperimentMaxAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    testType?: true
+    winner?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ABTestExperimentCountAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    startDate?: true
+    endDate?: true
+    testType?: true
+    control?: true
+    variants?: true
+    allocation?: true
+    metrics?: true
+    results?: true
+    winner?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ABTestExperimentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ABTestExperiment to aggregate.
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTestExperiments to fetch.
+     */
+    orderBy?: ABTestExperimentOrderByWithRelationInput | ABTestExperimentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ABTestExperimentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTestExperiments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTestExperiments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ABTestExperiments
+    **/
+    _count?: true | ABTestExperimentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ABTestExperimentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ABTestExperimentMaxAggregateInputType
+  }
+
+  export type GetABTestExperimentAggregateType<T extends ABTestExperimentAggregateArgs> = {
+        [P in keyof T & keyof AggregateABTestExperiment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateABTestExperiment[P]>
+      : GetScalarType<T[P], AggregateABTestExperiment[P]>
+  }
+
+
+
+
+  export type ABTestExperimentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ABTestExperimentWhereInput
+    orderBy?: ABTestExperimentOrderByWithAggregationInput | ABTestExperimentOrderByWithAggregationInput[]
+    by: ABTestExperimentScalarFieldEnum[] | ABTestExperimentScalarFieldEnum
+    having?: ABTestExperimentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ABTestExperimentCountAggregateInputType | true
+    _min?: ABTestExperimentMinAggregateInputType
+    _max?: ABTestExperimentMaxAggregateInputType
+  }
+
+  export type ABTestExperimentGroupByOutputType = {
+    id: string
+    name: string
+    status: string
+    startDate: Date | null
+    endDate: Date | null
+    testType: string
+    control: JsonValue
+    variants: JsonValue
+    allocation: JsonValue
+    metrics: JsonValue
+    results: JsonValue | null
+    winner: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ABTestExperimentCountAggregateOutputType | null
+    _min: ABTestExperimentMinAggregateOutputType | null
+    _max: ABTestExperimentMaxAggregateOutputType | null
+  }
+
+  type GetABTestExperimentGroupByPayload<T extends ABTestExperimentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ABTestExperimentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ABTestExperimentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ABTestExperimentGroupByOutputType[P]>
+            : GetScalarType<T[P], ABTestExperimentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ABTestExperimentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    testType?: boolean
+    control?: boolean
+    variants?: boolean
+    allocation?: boolean
+    metrics?: boolean
+    results?: boolean
+    winner?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aBTestExperiment"]>
+
+  export type ABTestExperimentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    testType?: boolean
+    control?: boolean
+    variants?: boolean
+    allocation?: boolean
+    metrics?: boolean
+    results?: boolean
+    winner?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aBTestExperiment"]>
+
+  export type ABTestExperimentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    testType?: boolean
+    control?: boolean
+    variants?: boolean
+    allocation?: boolean
+    metrics?: boolean
+    results?: boolean
+    winner?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aBTestExperiment"]>
+
+  export type ABTestExperimentSelectScalar = {
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    testType?: boolean
+    control?: boolean
+    variants?: boolean
+    allocation?: boolean
+    metrics?: boolean
+    results?: boolean
+    winner?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ABTestExperimentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "startDate" | "endDate" | "testType" | "control" | "variants" | "allocation" | "metrics" | "results" | "winner" | "createdAt" | "updatedAt", ExtArgs["result"]["aBTestExperiment"]>
+
+  export type $ABTestExperimentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ABTestExperiment"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      status: string
+      startDate: Date | null
+      endDate: Date | null
+      testType: string
+      control: Prisma.JsonValue
+      variants: Prisma.JsonValue
+      allocation: Prisma.JsonValue
+      metrics: Prisma.JsonValue
+      results: Prisma.JsonValue | null
+      winner: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aBTestExperiment"]>
+    composites: {}
+  }
+
+  type ABTestExperimentGetPayload<S extends boolean | null | undefined | ABTestExperimentDefaultArgs> = $Result.GetResult<Prisma.$ABTestExperimentPayload, S>
+
+  type ABTestExperimentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ABTestExperimentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ABTestExperimentCountAggregateInputType | true
+    }
+
+  export interface ABTestExperimentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ABTestExperiment'], meta: { name: 'ABTestExperiment' } }
+    /**
+     * Find zero or one ABTestExperiment that matches the filter.
+     * @param {ABTestExperimentFindUniqueArgs} args - Arguments to find a ABTestExperiment
+     * @example
+     * // Get one ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ABTestExperimentFindUniqueArgs>(args: SelectSubset<T, ABTestExperimentFindUniqueArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ABTestExperiment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ABTestExperimentFindUniqueOrThrowArgs} args - Arguments to find a ABTestExperiment
+     * @example
+     * // Get one ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ABTestExperimentFindUniqueOrThrowArgs>(args: SelectSubset<T, ABTestExperimentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ABTestExperiment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentFindFirstArgs} args - Arguments to find a ABTestExperiment
+     * @example
+     * // Get one ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ABTestExperimentFindFirstArgs>(args?: SelectSubset<T, ABTestExperimentFindFirstArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ABTestExperiment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentFindFirstOrThrowArgs} args - Arguments to find a ABTestExperiment
+     * @example
+     * // Get one ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ABTestExperimentFindFirstOrThrowArgs>(args?: SelectSubset<T, ABTestExperimentFindFirstOrThrowArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ABTestExperiments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ABTestExperiments
+     * const aBTestExperiments = await prisma.aBTestExperiment.findMany()
+     * 
+     * // Get first 10 ABTestExperiments
+     * const aBTestExperiments = await prisma.aBTestExperiment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aBTestExperimentWithIdOnly = await prisma.aBTestExperiment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ABTestExperimentFindManyArgs>(args?: SelectSubset<T, ABTestExperimentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ABTestExperiment.
+     * @param {ABTestExperimentCreateArgs} args - Arguments to create a ABTestExperiment.
+     * @example
+     * // Create one ABTestExperiment
+     * const ABTestExperiment = await prisma.aBTestExperiment.create({
+     *   data: {
+     *     // ... data to create a ABTestExperiment
+     *   }
+     * })
+     * 
+     */
+    create<T extends ABTestExperimentCreateArgs>(args: SelectSubset<T, ABTestExperimentCreateArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ABTestExperiments.
+     * @param {ABTestExperimentCreateManyArgs} args - Arguments to create many ABTestExperiments.
+     * @example
+     * // Create many ABTestExperiments
+     * const aBTestExperiment = await prisma.aBTestExperiment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ABTestExperimentCreateManyArgs>(args?: SelectSubset<T, ABTestExperimentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ABTestExperiments and returns the data saved in the database.
+     * @param {ABTestExperimentCreateManyAndReturnArgs} args - Arguments to create many ABTestExperiments.
+     * @example
+     * // Create many ABTestExperiments
+     * const aBTestExperiment = await prisma.aBTestExperiment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ABTestExperiments and only return the `id`
+     * const aBTestExperimentWithIdOnly = await prisma.aBTestExperiment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ABTestExperimentCreateManyAndReturnArgs>(args?: SelectSubset<T, ABTestExperimentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ABTestExperiment.
+     * @param {ABTestExperimentDeleteArgs} args - Arguments to delete one ABTestExperiment.
+     * @example
+     * // Delete one ABTestExperiment
+     * const ABTestExperiment = await prisma.aBTestExperiment.delete({
+     *   where: {
+     *     // ... filter to delete one ABTestExperiment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ABTestExperimentDeleteArgs>(args: SelectSubset<T, ABTestExperimentDeleteArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ABTestExperiment.
+     * @param {ABTestExperimentUpdateArgs} args - Arguments to update one ABTestExperiment.
+     * @example
+     * // Update one ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ABTestExperimentUpdateArgs>(args: SelectSubset<T, ABTestExperimentUpdateArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ABTestExperiments.
+     * @param {ABTestExperimentDeleteManyArgs} args - Arguments to filter ABTestExperiments to delete.
+     * @example
+     * // Delete a few ABTestExperiments
+     * const { count } = await prisma.aBTestExperiment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ABTestExperimentDeleteManyArgs>(args?: SelectSubset<T, ABTestExperimentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ABTestExperiments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ABTestExperiments
+     * const aBTestExperiment = await prisma.aBTestExperiment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ABTestExperimentUpdateManyArgs>(args: SelectSubset<T, ABTestExperimentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ABTestExperiments and returns the data updated in the database.
+     * @param {ABTestExperimentUpdateManyAndReturnArgs} args - Arguments to update many ABTestExperiments.
+     * @example
+     * // Update many ABTestExperiments
+     * const aBTestExperiment = await prisma.aBTestExperiment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ABTestExperiments and only return the `id`
+     * const aBTestExperimentWithIdOnly = await prisma.aBTestExperiment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ABTestExperimentUpdateManyAndReturnArgs>(args: SelectSubset<T, ABTestExperimentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ABTestExperiment.
+     * @param {ABTestExperimentUpsertArgs} args - Arguments to update or create a ABTestExperiment.
+     * @example
+     * // Update or create a ABTestExperiment
+     * const aBTestExperiment = await prisma.aBTestExperiment.upsert({
+     *   create: {
+     *     // ... data to create a ABTestExperiment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ABTestExperiment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ABTestExperimentUpsertArgs>(args: SelectSubset<T, ABTestExperimentUpsertArgs<ExtArgs>>): Prisma__ABTestExperimentClient<$Result.GetResult<Prisma.$ABTestExperimentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ABTestExperiments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentCountArgs} args - Arguments to filter ABTestExperiments to count.
+     * @example
+     * // Count the number of ABTestExperiments
+     * const count = await prisma.aBTestExperiment.count({
+     *   where: {
+     *     // ... the filter for the ABTestExperiments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ABTestExperimentCountArgs>(
+      args?: Subset<T, ABTestExperimentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ABTestExperimentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ABTestExperiment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ABTestExperimentAggregateArgs>(args: Subset<T, ABTestExperimentAggregateArgs>): Prisma.PrismaPromise<GetABTestExperimentAggregateType<T>>
+
+    /**
+     * Group by ABTestExperiment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestExperimentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ABTestExperimentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ABTestExperimentGroupByArgs['orderBy'] }
+        : { orderBy?: ABTestExperimentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ABTestExperimentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetABTestExperimentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ABTestExperiment model
+   */
+  readonly fields: ABTestExperimentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ABTestExperiment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ABTestExperimentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ABTestExperiment model
+   */
+  interface ABTestExperimentFieldRefs {
+    readonly id: FieldRef<"ABTestExperiment", 'String'>
+    readonly name: FieldRef<"ABTestExperiment", 'String'>
+    readonly status: FieldRef<"ABTestExperiment", 'String'>
+    readonly startDate: FieldRef<"ABTestExperiment", 'DateTime'>
+    readonly endDate: FieldRef<"ABTestExperiment", 'DateTime'>
+    readonly testType: FieldRef<"ABTestExperiment", 'String'>
+    readonly control: FieldRef<"ABTestExperiment", 'Json'>
+    readonly variants: FieldRef<"ABTestExperiment", 'Json'>
+    readonly allocation: FieldRef<"ABTestExperiment", 'Json'>
+    readonly metrics: FieldRef<"ABTestExperiment", 'Json'>
+    readonly results: FieldRef<"ABTestExperiment", 'Json'>
+    readonly winner: FieldRef<"ABTestExperiment", 'String'>
+    readonly createdAt: FieldRef<"ABTestExperiment", 'DateTime'>
+    readonly updatedAt: FieldRef<"ABTestExperiment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ABTestExperiment findUnique
+   */
+  export type ABTestExperimentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter, which ABTestExperiment to fetch.
+     */
+    where: ABTestExperimentWhereUniqueInput
+  }
+
+  /**
+   * ABTestExperiment findUniqueOrThrow
+   */
+  export type ABTestExperimentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter, which ABTestExperiment to fetch.
+     */
+    where: ABTestExperimentWhereUniqueInput
+  }
+
+  /**
+   * ABTestExperiment findFirst
+   */
+  export type ABTestExperimentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter, which ABTestExperiment to fetch.
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTestExperiments to fetch.
+     */
+    orderBy?: ABTestExperimentOrderByWithRelationInput | ABTestExperimentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ABTestExperiments.
+     */
+    cursor?: ABTestExperimentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTestExperiments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTestExperiments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ABTestExperiments.
+     */
+    distinct?: ABTestExperimentScalarFieldEnum | ABTestExperimentScalarFieldEnum[]
+  }
+
+  /**
+   * ABTestExperiment findFirstOrThrow
+   */
+  export type ABTestExperimentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter, which ABTestExperiment to fetch.
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTestExperiments to fetch.
+     */
+    orderBy?: ABTestExperimentOrderByWithRelationInput | ABTestExperimentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ABTestExperiments.
+     */
+    cursor?: ABTestExperimentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTestExperiments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTestExperiments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ABTestExperiments.
+     */
+    distinct?: ABTestExperimentScalarFieldEnum | ABTestExperimentScalarFieldEnum[]
+  }
+
+  /**
+   * ABTestExperiment findMany
+   */
+  export type ABTestExperimentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter, which ABTestExperiments to fetch.
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTestExperiments to fetch.
+     */
+    orderBy?: ABTestExperimentOrderByWithRelationInput | ABTestExperimentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ABTestExperiments.
+     */
+    cursor?: ABTestExperimentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTestExperiments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTestExperiments.
+     */
+    skip?: number
+    distinct?: ABTestExperimentScalarFieldEnum | ABTestExperimentScalarFieldEnum[]
+  }
+
+  /**
+   * ABTestExperiment create
+   */
+  export type ABTestExperimentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ABTestExperiment.
+     */
+    data: XOR<ABTestExperimentCreateInput, ABTestExperimentUncheckedCreateInput>
+  }
+
+  /**
+   * ABTestExperiment createMany
+   */
+  export type ABTestExperimentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ABTestExperiments.
+     */
+    data: ABTestExperimentCreateManyInput | ABTestExperimentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ABTestExperiment createManyAndReturn
+   */
+  export type ABTestExperimentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * The data used to create many ABTestExperiments.
+     */
+    data: ABTestExperimentCreateManyInput | ABTestExperimentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ABTestExperiment update
+   */
+  export type ABTestExperimentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ABTestExperiment.
+     */
+    data: XOR<ABTestExperimentUpdateInput, ABTestExperimentUncheckedUpdateInput>
+    /**
+     * Choose, which ABTestExperiment to update.
+     */
+    where: ABTestExperimentWhereUniqueInput
+  }
+
+  /**
+   * ABTestExperiment updateMany
+   */
+  export type ABTestExperimentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ABTestExperiments.
+     */
+    data: XOR<ABTestExperimentUpdateManyMutationInput, ABTestExperimentUncheckedUpdateManyInput>
+    /**
+     * Filter which ABTestExperiments to update
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * Limit how many ABTestExperiments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ABTestExperiment updateManyAndReturn
+   */
+  export type ABTestExperimentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * The data used to update ABTestExperiments.
+     */
+    data: XOR<ABTestExperimentUpdateManyMutationInput, ABTestExperimentUncheckedUpdateManyInput>
+    /**
+     * Filter which ABTestExperiments to update
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * Limit how many ABTestExperiments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ABTestExperiment upsert
+   */
+  export type ABTestExperimentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ABTestExperiment to update in case it exists.
+     */
+    where: ABTestExperimentWhereUniqueInput
+    /**
+     * In case the ABTestExperiment found by the `where` argument doesn't exist, create a new ABTestExperiment with this data.
+     */
+    create: XOR<ABTestExperimentCreateInput, ABTestExperimentUncheckedCreateInput>
+    /**
+     * In case the ABTestExperiment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ABTestExperimentUpdateInput, ABTestExperimentUncheckedUpdateInput>
+  }
+
+  /**
+   * ABTestExperiment delete
+   */
+  export type ABTestExperimentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+    /**
+     * Filter which ABTestExperiment to delete.
+     */
+    where: ABTestExperimentWhereUniqueInput
+  }
+
+  /**
+   * ABTestExperiment deleteMany
+   */
+  export type ABTestExperimentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ABTestExperiments to delete
+     */
+    where?: ABTestExperimentWhereInput
+    /**
+     * Limit how many ABTestExperiments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ABTestExperiment without action
+   */
+  export type ABTestExperimentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTestExperiment
+     */
+    select?: ABTestExperimentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTestExperiment
+     */
+    omit?: ABTestExperimentOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuizBrand
+   */
+
+  export type AggregateQuizBrand = {
+    _count: QuizBrandCountAggregateOutputType | null
+    _avg: QuizBrandAvgAggregateOutputType | null
+    _sum: QuizBrandSumAggregateOutputType | null
+    _min: QuizBrandMinAggregateOutputType | null
+    _max: QuizBrandMaxAggregateOutputType | null
+  }
+
+  export type QuizBrandAvgAggregateOutputType = {
+    marketShare: number | null
+  }
+
+  export type QuizBrandSumAggregateOutputType = {
+    marketShare: number | null
+  }
+
+  export type QuizBrandMinAggregateOutputType = {
+    id: string | null
+    brandId: string | null
+    name: string | null
+    displayName: string | null
+    color: string | null
+    voltage: string | null
+    marketShare: number | null
+    category: string | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type QuizBrandMaxAggregateOutputType = {
+    id: string | null
+    brandId: string | null
+    name: string | null
+    displayName: string | null
+    color: string | null
+    voltage: string | null
+    marketShare: number | null
+    category: string | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type QuizBrandCountAggregateOutputType = {
+    id: number
+    brandId: number
+    name: number
+    displayName: number
+    color: number
+    voltage: number
+    voltageOptions: number
+    marketShare: number
+    popularWith: number
+    category: number
+    active: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type QuizBrandAvgAggregateInputType = {
+    marketShare?: true
+  }
+
+  export type QuizBrandSumAggregateInputType = {
+    marketShare?: true
+  }
+
+  export type QuizBrandMinAggregateInputType = {
+    id?: true
+    brandId?: true
+    name?: true
+    displayName?: true
+    color?: true
+    voltage?: true
+    marketShare?: true
+    category?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type QuizBrandMaxAggregateInputType = {
+    id?: true
+    brandId?: true
+    name?: true
+    displayName?: true
+    color?: true
+    voltage?: true
+    marketShare?: true
+    category?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type QuizBrandCountAggregateInputType = {
+    id?: true
+    brandId?: true
+    name?: true
+    displayName?: true
+    color?: true
+    voltage?: true
+    voltageOptions?: true
+    marketShare?: true
+    popularWith?: true
+    category?: true
+    active?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type QuizBrandAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizBrand to aggregate.
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizBrands to fetch.
+     */
+    orderBy?: QuizBrandOrderByWithRelationInput | QuizBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizBrands
+    **/
+    _count?: true | QuizBrandCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuizBrandAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuizBrandSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizBrandMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizBrandMaxAggregateInputType
+  }
+
+  export type GetQuizBrandAggregateType<T extends QuizBrandAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizBrand]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizBrand[P]>
+      : GetScalarType<T[P], AggregateQuizBrand[P]>
+  }
+
+
+
+
+  export type QuizBrandGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizBrandWhereInput
+    orderBy?: QuizBrandOrderByWithAggregationInput | QuizBrandOrderByWithAggregationInput[]
+    by: QuizBrandScalarFieldEnum[] | QuizBrandScalarFieldEnum
+    having?: QuizBrandScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizBrandCountAggregateInputType | true
+    _avg?: QuizBrandAvgAggregateInputType
+    _sum?: QuizBrandSumAggregateInputType
+    _min?: QuizBrandMinAggregateInputType
+    _max?: QuizBrandMaxAggregateInputType
+  }
+
+  export type QuizBrandGroupByOutputType = {
+    id: string
+    brandId: string
+    name: string
+    displayName: string
+    color: string
+    voltage: string
+    voltageOptions: JsonValue
+    marketShare: number | null
+    popularWith: JsonValue | null
+    category: string | null
+    active: boolean
+    createdAt: Date
+    _count: QuizBrandCountAggregateOutputType | null
+    _avg: QuizBrandAvgAggregateOutputType | null
+    _sum: QuizBrandSumAggregateOutputType | null
+    _min: QuizBrandMinAggregateOutputType | null
+    _max: QuizBrandMaxAggregateOutputType | null
+  }
+
+  type GetQuizBrandGroupByPayload<T extends QuizBrandGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizBrandGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizBrandGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizBrandGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizBrandGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizBrandSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brandId?: boolean
+    name?: boolean
+    displayName?: boolean
+    color?: boolean
+    voltage?: boolean
+    voltageOptions?: boolean
+    marketShare?: boolean
+    popularWith?: boolean
+    category?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizBrand"]>
+
+  export type QuizBrandSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brandId?: boolean
+    name?: boolean
+    displayName?: boolean
+    color?: boolean
+    voltage?: boolean
+    voltageOptions?: boolean
+    marketShare?: boolean
+    popularWith?: boolean
+    category?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizBrand"]>
+
+  export type QuizBrandSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brandId?: boolean
+    name?: boolean
+    displayName?: boolean
+    color?: boolean
+    voltage?: boolean
+    voltageOptions?: boolean
+    marketShare?: boolean
+    popularWith?: boolean
+    category?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizBrand"]>
+
+  export type QuizBrandSelectScalar = {
+    id?: boolean
+    brandId?: boolean
+    name?: boolean
+    displayName?: boolean
+    color?: boolean
+    voltage?: boolean
+    voltageOptions?: boolean
+    marketShare?: boolean
+    popularWith?: boolean
+    category?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }
+
+  export type QuizBrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brandId" | "name" | "displayName" | "color" | "voltage" | "voltageOptions" | "marketShare" | "popularWith" | "category" | "active" | "createdAt", ExtArgs["result"]["quizBrand"]>
+
+  export type $QuizBrandPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizBrand"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      brandId: string
+      name: string
+      displayName: string
+      color: string
+      voltage: string
+      voltageOptions: Prisma.JsonValue
+      marketShare: number | null
+      popularWith: Prisma.JsonValue | null
+      category: string | null
+      active: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["quizBrand"]>
+    composites: {}
+  }
+
+  type QuizBrandGetPayload<S extends boolean | null | undefined | QuizBrandDefaultArgs> = $Result.GetResult<Prisma.$QuizBrandPayload, S>
+
+  type QuizBrandCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizBrandFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizBrandCountAggregateInputType | true
+    }
+
+  export interface QuizBrandDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizBrand'], meta: { name: 'QuizBrand' } }
+    /**
+     * Find zero or one QuizBrand that matches the filter.
+     * @param {QuizBrandFindUniqueArgs} args - Arguments to find a QuizBrand
+     * @example
+     * // Get one QuizBrand
+     * const quizBrand = await prisma.quizBrand.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizBrandFindUniqueArgs>(args: SelectSubset<T, QuizBrandFindUniqueArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizBrand that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizBrandFindUniqueOrThrowArgs} args - Arguments to find a QuizBrand
+     * @example
+     * // Get one QuizBrand
+     * const quizBrand = await prisma.quizBrand.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizBrandFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizBrandFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizBrand that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandFindFirstArgs} args - Arguments to find a QuizBrand
+     * @example
+     * // Get one QuizBrand
+     * const quizBrand = await prisma.quizBrand.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizBrandFindFirstArgs>(args?: SelectSubset<T, QuizBrandFindFirstArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizBrand that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandFindFirstOrThrowArgs} args - Arguments to find a QuizBrand
+     * @example
+     * // Get one QuizBrand
+     * const quizBrand = await prisma.quizBrand.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizBrandFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizBrandFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizBrands that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizBrands
+     * const quizBrands = await prisma.quizBrand.findMany()
+     * 
+     * // Get first 10 QuizBrands
+     * const quizBrands = await prisma.quizBrand.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizBrandWithIdOnly = await prisma.quizBrand.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizBrandFindManyArgs>(args?: SelectSubset<T, QuizBrandFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizBrand.
+     * @param {QuizBrandCreateArgs} args - Arguments to create a QuizBrand.
+     * @example
+     * // Create one QuizBrand
+     * const QuizBrand = await prisma.quizBrand.create({
+     *   data: {
+     *     // ... data to create a QuizBrand
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizBrandCreateArgs>(args: SelectSubset<T, QuizBrandCreateArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizBrands.
+     * @param {QuizBrandCreateManyArgs} args - Arguments to create many QuizBrands.
+     * @example
+     * // Create many QuizBrands
+     * const quizBrand = await prisma.quizBrand.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizBrandCreateManyArgs>(args?: SelectSubset<T, QuizBrandCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizBrands and returns the data saved in the database.
+     * @param {QuizBrandCreateManyAndReturnArgs} args - Arguments to create many QuizBrands.
+     * @example
+     * // Create many QuizBrands
+     * const quizBrand = await prisma.quizBrand.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizBrands and only return the `id`
+     * const quizBrandWithIdOnly = await prisma.quizBrand.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizBrandCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizBrandCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizBrand.
+     * @param {QuizBrandDeleteArgs} args - Arguments to delete one QuizBrand.
+     * @example
+     * // Delete one QuizBrand
+     * const QuizBrand = await prisma.quizBrand.delete({
+     *   where: {
+     *     // ... filter to delete one QuizBrand
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizBrandDeleteArgs>(args: SelectSubset<T, QuizBrandDeleteArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizBrand.
+     * @param {QuizBrandUpdateArgs} args - Arguments to update one QuizBrand.
+     * @example
+     * // Update one QuizBrand
+     * const quizBrand = await prisma.quizBrand.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizBrandUpdateArgs>(args: SelectSubset<T, QuizBrandUpdateArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizBrands.
+     * @param {QuizBrandDeleteManyArgs} args - Arguments to filter QuizBrands to delete.
+     * @example
+     * // Delete a few QuizBrands
+     * const { count } = await prisma.quizBrand.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizBrandDeleteManyArgs>(args?: SelectSubset<T, QuizBrandDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizBrands.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizBrands
+     * const quizBrand = await prisma.quizBrand.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizBrandUpdateManyArgs>(args: SelectSubset<T, QuizBrandUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizBrands and returns the data updated in the database.
+     * @param {QuizBrandUpdateManyAndReturnArgs} args - Arguments to update many QuizBrands.
+     * @example
+     * // Update many QuizBrands
+     * const quizBrand = await prisma.quizBrand.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizBrands and only return the `id`
+     * const quizBrandWithIdOnly = await prisma.quizBrand.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizBrandUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizBrandUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizBrand.
+     * @param {QuizBrandUpsertArgs} args - Arguments to update or create a QuizBrand.
+     * @example
+     * // Update or create a QuizBrand
+     * const quizBrand = await prisma.quizBrand.upsert({
+     *   create: {
+     *     // ... data to create a QuizBrand
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizBrand we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizBrandUpsertArgs>(args: SelectSubset<T, QuizBrandUpsertArgs<ExtArgs>>): Prisma__QuizBrandClient<$Result.GetResult<Prisma.$QuizBrandPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizBrands.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandCountArgs} args - Arguments to filter QuizBrands to count.
+     * @example
+     * // Count the number of QuizBrands
+     * const count = await prisma.quizBrand.count({
+     *   where: {
+     *     // ... the filter for the QuizBrands we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizBrandCountArgs>(
+      args?: Subset<T, QuizBrandCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizBrandCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizBrand.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizBrandAggregateArgs>(args: Subset<T, QuizBrandAggregateArgs>): Prisma.PrismaPromise<GetQuizBrandAggregateType<T>>
+
+    /**
+     * Group by QuizBrand.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizBrandGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizBrandGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizBrandGroupByArgs['orderBy'] }
+        : { orderBy?: QuizBrandGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizBrandGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizBrandGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizBrand model
+   */
+  readonly fields: QuizBrandFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizBrand.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizBrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizBrand model
+   */
+  interface QuizBrandFieldRefs {
+    readonly id: FieldRef<"QuizBrand", 'String'>
+    readonly brandId: FieldRef<"QuizBrand", 'String'>
+    readonly name: FieldRef<"QuizBrand", 'String'>
+    readonly displayName: FieldRef<"QuizBrand", 'String'>
+    readonly color: FieldRef<"QuizBrand", 'String'>
+    readonly voltage: FieldRef<"QuizBrand", 'String'>
+    readonly voltageOptions: FieldRef<"QuizBrand", 'Json'>
+    readonly marketShare: FieldRef<"QuizBrand", 'Float'>
+    readonly popularWith: FieldRef<"QuizBrand", 'Json'>
+    readonly category: FieldRef<"QuizBrand", 'String'>
+    readonly active: FieldRef<"QuizBrand", 'Boolean'>
+    readonly createdAt: FieldRef<"QuizBrand", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizBrand findUnique
+   */
+  export type QuizBrandFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizBrand to fetch.
+     */
+    where: QuizBrandWhereUniqueInput
+  }
+
+  /**
+   * QuizBrand findUniqueOrThrow
+   */
+  export type QuizBrandFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizBrand to fetch.
+     */
+    where: QuizBrandWhereUniqueInput
+  }
+
+  /**
+   * QuizBrand findFirst
+   */
+  export type QuizBrandFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizBrand to fetch.
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizBrands to fetch.
+     */
+    orderBy?: QuizBrandOrderByWithRelationInput | QuizBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizBrands.
+     */
+    cursor?: QuizBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizBrands.
+     */
+    distinct?: QuizBrandScalarFieldEnum | QuizBrandScalarFieldEnum[]
+  }
+
+  /**
+   * QuizBrand findFirstOrThrow
+   */
+  export type QuizBrandFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizBrand to fetch.
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizBrands to fetch.
+     */
+    orderBy?: QuizBrandOrderByWithRelationInput | QuizBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizBrands.
+     */
+    cursor?: QuizBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizBrands.
+     */
+    distinct?: QuizBrandScalarFieldEnum | QuizBrandScalarFieldEnum[]
+  }
+
+  /**
+   * QuizBrand findMany
+   */
+  export type QuizBrandFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizBrands to fetch.
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizBrands to fetch.
+     */
+    orderBy?: QuizBrandOrderByWithRelationInput | QuizBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizBrands.
+     */
+    cursor?: QuizBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizBrands.
+     */
+    skip?: number
+    distinct?: QuizBrandScalarFieldEnum | QuizBrandScalarFieldEnum[]
+  }
+
+  /**
+   * QuizBrand create
+   */
+  export type QuizBrandCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * The data needed to create a QuizBrand.
+     */
+    data: XOR<QuizBrandCreateInput, QuizBrandUncheckedCreateInput>
+  }
+
+  /**
+   * QuizBrand createMany
+   */
+  export type QuizBrandCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizBrands.
+     */
+    data: QuizBrandCreateManyInput | QuizBrandCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizBrand createManyAndReturn
+   */
+  export type QuizBrandCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizBrands.
+     */
+    data: QuizBrandCreateManyInput | QuizBrandCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizBrand update
+   */
+  export type QuizBrandUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * The data needed to update a QuizBrand.
+     */
+    data: XOR<QuizBrandUpdateInput, QuizBrandUncheckedUpdateInput>
+    /**
+     * Choose, which QuizBrand to update.
+     */
+    where: QuizBrandWhereUniqueInput
+  }
+
+  /**
+   * QuizBrand updateMany
+   */
+  export type QuizBrandUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizBrands.
+     */
+    data: XOR<QuizBrandUpdateManyMutationInput, QuizBrandUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizBrands to update
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * Limit how many QuizBrands to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizBrand updateManyAndReturn
+   */
+  export type QuizBrandUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizBrands.
+     */
+    data: XOR<QuizBrandUpdateManyMutationInput, QuizBrandUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizBrands to update
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * Limit how many QuizBrands to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizBrand upsert
+   */
+  export type QuizBrandUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * The filter to search for the QuizBrand to update in case it exists.
+     */
+    where: QuizBrandWhereUniqueInput
+    /**
+     * In case the QuizBrand found by the `where` argument doesn't exist, create a new QuizBrand with this data.
+     */
+    create: XOR<QuizBrandCreateInput, QuizBrandUncheckedCreateInput>
+    /**
+     * In case the QuizBrand was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizBrandUpdateInput, QuizBrandUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizBrand delete
+   */
+  export type QuizBrandDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+    /**
+     * Filter which QuizBrand to delete.
+     */
+    where: QuizBrandWhereUniqueInput
+  }
+
+  /**
+   * QuizBrand deleteMany
+   */
+  export type QuizBrandDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizBrands to delete
+     */
+    where?: QuizBrandWhereInput
+    /**
+     * Limit how many QuizBrands to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizBrand without action
+   */
+  export type QuizBrandDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizBrand
+     */
+    select?: QuizBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizBrand
+     */
+    omit?: QuizBrandOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuizRoutingRule
+   */
+
+  export type AggregateQuizRoutingRule = {
+    _count: QuizRoutingRuleCountAggregateOutputType | null
+    _avg: QuizRoutingRuleAvgAggregateOutputType | null
+    _sum: QuizRoutingRuleSumAggregateOutputType | null
+    _min: QuizRoutingRuleMinAggregateOutputType | null
+    _max: QuizRoutingRuleMaxAggregateOutputType | null
+  }
+
+  export type QuizRoutingRuleAvgAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type QuizRoutingRuleSumAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type QuizRoutingRuleMinAggregateOutputType = {
+    id: string | null
+    userType: string | null
+    brand: string | null
+    trade: string | null
+    nextQuestionId: string | null
+    priority: number | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type QuizRoutingRuleMaxAggregateOutputType = {
+    id: string | null
+    userType: string | null
+    brand: string | null
+    trade: string | null
+    nextQuestionId: string | null
+    priority: number | null
+    active: boolean | null
+    createdAt: Date | null
+  }
+
+  export type QuizRoutingRuleCountAggregateOutputType = {
+    id: number
+    userType: number
+    brand: number
+    trade: number
+    nextQuestionId: number
+    condition: number
+    priority: number
+    active: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type QuizRoutingRuleAvgAggregateInputType = {
+    priority?: true
+  }
+
+  export type QuizRoutingRuleSumAggregateInputType = {
+    priority?: true
+  }
+
+  export type QuizRoutingRuleMinAggregateInputType = {
+    id?: true
+    userType?: true
+    brand?: true
+    trade?: true
+    nextQuestionId?: true
+    priority?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type QuizRoutingRuleMaxAggregateInputType = {
+    id?: true
+    userType?: true
+    brand?: true
+    trade?: true
+    nextQuestionId?: true
+    priority?: true
+    active?: true
+    createdAt?: true
+  }
+
+  export type QuizRoutingRuleCountAggregateInputType = {
+    id?: true
+    userType?: true
+    brand?: true
+    trade?: true
+    nextQuestionId?: true
+    condition?: true
+    priority?: true
+    active?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type QuizRoutingRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizRoutingRule to aggregate.
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizRoutingRules to fetch.
+     */
+    orderBy?: QuizRoutingRuleOrderByWithRelationInput | QuizRoutingRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizRoutingRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizRoutingRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizRoutingRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizRoutingRules
+    **/
+    _count?: true | QuizRoutingRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuizRoutingRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuizRoutingRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizRoutingRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizRoutingRuleMaxAggregateInputType
+  }
+
+  export type GetQuizRoutingRuleAggregateType<T extends QuizRoutingRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizRoutingRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizRoutingRule[P]>
+      : GetScalarType<T[P], AggregateQuizRoutingRule[P]>
+  }
+
+
+
+
+  export type QuizRoutingRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizRoutingRuleWhereInput
+    orderBy?: QuizRoutingRuleOrderByWithAggregationInput | QuizRoutingRuleOrderByWithAggregationInput[]
+    by: QuizRoutingRuleScalarFieldEnum[] | QuizRoutingRuleScalarFieldEnum
+    having?: QuizRoutingRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizRoutingRuleCountAggregateInputType | true
+    _avg?: QuizRoutingRuleAvgAggregateInputType
+    _sum?: QuizRoutingRuleSumAggregateInputType
+    _min?: QuizRoutingRuleMinAggregateInputType
+    _max?: QuizRoutingRuleMaxAggregateInputType
+  }
+
+  export type QuizRoutingRuleGroupByOutputType = {
+    id: string
+    userType: string | null
+    brand: string | null
+    trade: string | null
+    nextQuestionId: string
+    condition: JsonValue | null
+    priority: number
+    active: boolean
+    createdAt: Date
+    _count: QuizRoutingRuleCountAggregateOutputType | null
+    _avg: QuizRoutingRuleAvgAggregateOutputType | null
+    _sum: QuizRoutingRuleSumAggregateOutputType | null
+    _min: QuizRoutingRuleMinAggregateOutputType | null
+    _max: QuizRoutingRuleMaxAggregateOutputType | null
+  }
+
+  type GetQuizRoutingRuleGroupByPayload<T extends QuizRoutingRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizRoutingRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizRoutingRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizRoutingRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizRoutingRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizRoutingRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userType?: boolean
+    brand?: boolean
+    trade?: boolean
+    nextQuestionId?: boolean
+    condition?: boolean
+    priority?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizRoutingRule"]>
+
+  export type QuizRoutingRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userType?: boolean
+    brand?: boolean
+    trade?: boolean
+    nextQuestionId?: boolean
+    condition?: boolean
+    priority?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizRoutingRule"]>
+
+  export type QuizRoutingRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userType?: boolean
+    brand?: boolean
+    trade?: boolean
+    nextQuestionId?: boolean
+    condition?: boolean
+    priority?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["quizRoutingRule"]>
+
+  export type QuizRoutingRuleSelectScalar = {
+    id?: boolean
+    userType?: boolean
+    brand?: boolean
+    trade?: boolean
+    nextQuestionId?: boolean
+    condition?: boolean
+    priority?: boolean
+    active?: boolean
+    createdAt?: boolean
+  }
+
+  export type QuizRoutingRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "brand" | "trade" | "nextQuestionId" | "condition" | "priority" | "active" | "createdAt", ExtArgs["result"]["quizRoutingRule"]>
+
+  export type $QuizRoutingRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizRoutingRule"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userType: string | null
+      brand: string | null
+      trade: string | null
+      nextQuestionId: string
+      condition: Prisma.JsonValue | null
+      priority: number
+      active: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["quizRoutingRule"]>
+    composites: {}
+  }
+
+  type QuizRoutingRuleGetPayload<S extends boolean | null | undefined | QuizRoutingRuleDefaultArgs> = $Result.GetResult<Prisma.$QuizRoutingRulePayload, S>
+
+  type QuizRoutingRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizRoutingRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizRoutingRuleCountAggregateInputType | true
+    }
+
+  export interface QuizRoutingRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizRoutingRule'], meta: { name: 'QuizRoutingRule' } }
+    /**
+     * Find zero or one QuizRoutingRule that matches the filter.
+     * @param {QuizRoutingRuleFindUniqueArgs} args - Arguments to find a QuizRoutingRule
+     * @example
+     * // Get one QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizRoutingRuleFindUniqueArgs>(args: SelectSubset<T, QuizRoutingRuleFindUniqueArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizRoutingRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizRoutingRuleFindUniqueOrThrowArgs} args - Arguments to find a QuizRoutingRule
+     * @example
+     * // Get one QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizRoutingRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizRoutingRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizRoutingRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleFindFirstArgs} args - Arguments to find a QuizRoutingRule
+     * @example
+     * // Get one QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizRoutingRuleFindFirstArgs>(args?: SelectSubset<T, QuizRoutingRuleFindFirstArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizRoutingRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleFindFirstOrThrowArgs} args - Arguments to find a QuizRoutingRule
+     * @example
+     * // Get one QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizRoutingRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizRoutingRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizRoutingRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizRoutingRules
+     * const quizRoutingRules = await prisma.quizRoutingRule.findMany()
+     * 
+     * // Get first 10 QuizRoutingRules
+     * const quizRoutingRules = await prisma.quizRoutingRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizRoutingRuleWithIdOnly = await prisma.quizRoutingRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizRoutingRuleFindManyArgs>(args?: SelectSubset<T, QuizRoutingRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizRoutingRule.
+     * @param {QuizRoutingRuleCreateArgs} args - Arguments to create a QuizRoutingRule.
+     * @example
+     * // Create one QuizRoutingRule
+     * const QuizRoutingRule = await prisma.quizRoutingRule.create({
+     *   data: {
+     *     // ... data to create a QuizRoutingRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizRoutingRuleCreateArgs>(args: SelectSubset<T, QuizRoutingRuleCreateArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizRoutingRules.
+     * @param {QuizRoutingRuleCreateManyArgs} args - Arguments to create many QuizRoutingRules.
+     * @example
+     * // Create many QuizRoutingRules
+     * const quizRoutingRule = await prisma.quizRoutingRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizRoutingRuleCreateManyArgs>(args?: SelectSubset<T, QuizRoutingRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizRoutingRules and returns the data saved in the database.
+     * @param {QuizRoutingRuleCreateManyAndReturnArgs} args - Arguments to create many QuizRoutingRules.
+     * @example
+     * // Create many QuizRoutingRules
+     * const quizRoutingRule = await prisma.quizRoutingRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizRoutingRules and only return the `id`
+     * const quizRoutingRuleWithIdOnly = await prisma.quizRoutingRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizRoutingRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizRoutingRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizRoutingRule.
+     * @param {QuizRoutingRuleDeleteArgs} args - Arguments to delete one QuizRoutingRule.
+     * @example
+     * // Delete one QuizRoutingRule
+     * const QuizRoutingRule = await prisma.quizRoutingRule.delete({
+     *   where: {
+     *     // ... filter to delete one QuizRoutingRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizRoutingRuleDeleteArgs>(args: SelectSubset<T, QuizRoutingRuleDeleteArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizRoutingRule.
+     * @param {QuizRoutingRuleUpdateArgs} args - Arguments to update one QuizRoutingRule.
+     * @example
+     * // Update one QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizRoutingRuleUpdateArgs>(args: SelectSubset<T, QuizRoutingRuleUpdateArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizRoutingRules.
+     * @param {QuizRoutingRuleDeleteManyArgs} args - Arguments to filter QuizRoutingRules to delete.
+     * @example
+     * // Delete a few QuizRoutingRules
+     * const { count } = await prisma.quizRoutingRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizRoutingRuleDeleteManyArgs>(args?: SelectSubset<T, QuizRoutingRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizRoutingRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizRoutingRules
+     * const quizRoutingRule = await prisma.quizRoutingRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizRoutingRuleUpdateManyArgs>(args: SelectSubset<T, QuizRoutingRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizRoutingRules and returns the data updated in the database.
+     * @param {QuizRoutingRuleUpdateManyAndReturnArgs} args - Arguments to update many QuizRoutingRules.
+     * @example
+     * // Update many QuizRoutingRules
+     * const quizRoutingRule = await prisma.quizRoutingRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizRoutingRules and only return the `id`
+     * const quizRoutingRuleWithIdOnly = await prisma.quizRoutingRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizRoutingRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizRoutingRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizRoutingRule.
+     * @param {QuizRoutingRuleUpsertArgs} args - Arguments to update or create a QuizRoutingRule.
+     * @example
+     * // Update or create a QuizRoutingRule
+     * const quizRoutingRule = await prisma.quizRoutingRule.upsert({
+     *   create: {
+     *     // ... data to create a QuizRoutingRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizRoutingRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizRoutingRuleUpsertArgs>(args: SelectSubset<T, QuizRoutingRuleUpsertArgs<ExtArgs>>): Prisma__QuizRoutingRuleClient<$Result.GetResult<Prisma.$QuizRoutingRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizRoutingRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleCountArgs} args - Arguments to filter QuizRoutingRules to count.
+     * @example
+     * // Count the number of QuizRoutingRules
+     * const count = await prisma.quizRoutingRule.count({
+     *   where: {
+     *     // ... the filter for the QuizRoutingRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizRoutingRuleCountArgs>(
+      args?: Subset<T, QuizRoutingRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizRoutingRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizRoutingRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizRoutingRuleAggregateArgs>(args: Subset<T, QuizRoutingRuleAggregateArgs>): Prisma.PrismaPromise<GetQuizRoutingRuleAggregateType<T>>
+
+    /**
+     * Group by QuizRoutingRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizRoutingRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizRoutingRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizRoutingRuleGroupByArgs['orderBy'] }
+        : { orderBy?: QuizRoutingRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizRoutingRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizRoutingRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizRoutingRule model
+   */
+  readonly fields: QuizRoutingRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizRoutingRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizRoutingRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizRoutingRule model
+   */
+  interface QuizRoutingRuleFieldRefs {
+    readonly id: FieldRef<"QuizRoutingRule", 'String'>
+    readonly userType: FieldRef<"QuizRoutingRule", 'String'>
+    readonly brand: FieldRef<"QuizRoutingRule", 'String'>
+    readonly trade: FieldRef<"QuizRoutingRule", 'String'>
+    readonly nextQuestionId: FieldRef<"QuizRoutingRule", 'String'>
+    readonly condition: FieldRef<"QuizRoutingRule", 'Json'>
+    readonly priority: FieldRef<"QuizRoutingRule", 'Int'>
+    readonly active: FieldRef<"QuizRoutingRule", 'Boolean'>
+    readonly createdAt: FieldRef<"QuizRoutingRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizRoutingRule findUnique
+   */
+  export type QuizRoutingRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizRoutingRule to fetch.
+     */
+    where: QuizRoutingRuleWhereUniqueInput
+  }
+
+  /**
+   * QuizRoutingRule findUniqueOrThrow
+   */
+  export type QuizRoutingRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizRoutingRule to fetch.
+     */
+    where: QuizRoutingRuleWhereUniqueInput
+  }
+
+  /**
+   * QuizRoutingRule findFirst
+   */
+  export type QuizRoutingRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizRoutingRule to fetch.
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizRoutingRules to fetch.
+     */
+    orderBy?: QuizRoutingRuleOrderByWithRelationInput | QuizRoutingRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizRoutingRules.
+     */
+    cursor?: QuizRoutingRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizRoutingRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizRoutingRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizRoutingRules.
+     */
+    distinct?: QuizRoutingRuleScalarFieldEnum | QuizRoutingRuleScalarFieldEnum[]
+  }
+
+  /**
+   * QuizRoutingRule findFirstOrThrow
+   */
+  export type QuizRoutingRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizRoutingRule to fetch.
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizRoutingRules to fetch.
+     */
+    orderBy?: QuizRoutingRuleOrderByWithRelationInput | QuizRoutingRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizRoutingRules.
+     */
+    cursor?: QuizRoutingRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizRoutingRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizRoutingRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizRoutingRules.
+     */
+    distinct?: QuizRoutingRuleScalarFieldEnum | QuizRoutingRuleScalarFieldEnum[]
+  }
+
+  /**
+   * QuizRoutingRule findMany
+   */
+  export type QuizRoutingRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizRoutingRules to fetch.
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizRoutingRules to fetch.
+     */
+    orderBy?: QuizRoutingRuleOrderByWithRelationInput | QuizRoutingRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizRoutingRules.
+     */
+    cursor?: QuizRoutingRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizRoutingRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizRoutingRules.
+     */
+    skip?: number
+    distinct?: QuizRoutingRuleScalarFieldEnum | QuizRoutingRuleScalarFieldEnum[]
+  }
+
+  /**
+   * QuizRoutingRule create
+   */
+  export type QuizRoutingRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a QuizRoutingRule.
+     */
+    data: XOR<QuizRoutingRuleCreateInput, QuizRoutingRuleUncheckedCreateInput>
+  }
+
+  /**
+   * QuizRoutingRule createMany
+   */
+  export type QuizRoutingRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizRoutingRules.
+     */
+    data: QuizRoutingRuleCreateManyInput | QuizRoutingRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizRoutingRule createManyAndReturn
+   */
+  export type QuizRoutingRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizRoutingRules.
+     */
+    data: QuizRoutingRuleCreateManyInput | QuizRoutingRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizRoutingRule update
+   */
+  export type QuizRoutingRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a QuizRoutingRule.
+     */
+    data: XOR<QuizRoutingRuleUpdateInput, QuizRoutingRuleUncheckedUpdateInput>
+    /**
+     * Choose, which QuizRoutingRule to update.
+     */
+    where: QuizRoutingRuleWhereUniqueInput
+  }
+
+  /**
+   * QuizRoutingRule updateMany
+   */
+  export type QuizRoutingRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizRoutingRules.
+     */
+    data: XOR<QuizRoutingRuleUpdateManyMutationInput, QuizRoutingRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizRoutingRules to update
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * Limit how many QuizRoutingRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizRoutingRule updateManyAndReturn
+   */
+  export type QuizRoutingRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizRoutingRules.
+     */
+    data: XOR<QuizRoutingRuleUpdateManyMutationInput, QuizRoutingRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizRoutingRules to update
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * Limit how many QuizRoutingRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizRoutingRule upsert
+   */
+  export type QuizRoutingRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the QuizRoutingRule to update in case it exists.
+     */
+    where: QuizRoutingRuleWhereUniqueInput
+    /**
+     * In case the QuizRoutingRule found by the `where` argument doesn't exist, create a new QuizRoutingRule with this data.
+     */
+    create: XOR<QuizRoutingRuleCreateInput, QuizRoutingRuleUncheckedCreateInput>
+    /**
+     * In case the QuizRoutingRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizRoutingRuleUpdateInput, QuizRoutingRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizRoutingRule delete
+   */
+  export type QuizRoutingRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+    /**
+     * Filter which QuizRoutingRule to delete.
+     */
+    where: QuizRoutingRuleWhereUniqueInput
+  }
+
+  /**
+   * QuizRoutingRule deleteMany
+   */
+  export type QuizRoutingRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizRoutingRules to delete
+     */
+    where?: QuizRoutingRuleWhereInput
+    /**
+     * Limit how many QuizRoutingRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizRoutingRule without action
+   */
+  export type QuizRoutingRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizRoutingRule
+     */
+    select?: QuizRoutingRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizRoutingRule
+     */
+    omit?: QuizRoutingRuleOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuizIntervention
+   */
+
+  export type AggregateQuizIntervention = {
+    _count: QuizInterventionCountAggregateOutputType | null
+    _min: QuizInterventionMinAggregateOutputType | null
+    _max: QuizInterventionMaxAggregateOutputType | null
+  }
+
+  export type QuizInterventionMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    interventionType: string | null
+    triggerReason: string | null
+    questionId: string | null
+    shownAt: Date | null
+    userAction: string | null
+    actionTimestamp: Date | null
+  }
+
+  export type QuizInterventionMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    interventionType: string | null
+    triggerReason: string | null
+    questionId: string | null
+    shownAt: Date | null
+    userAction: string | null
+    actionTimestamp: Date | null
+  }
+
+  export type QuizInterventionCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    interventionType: number
+    triggerReason: number
+    questionId: number
+    shownAt: number
+    userAction: number
+    actionTimestamp: number
+    _all: number
+  }
+
+
+  export type QuizInterventionMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interventionType?: true
+    triggerReason?: true
+    questionId?: true
+    shownAt?: true
+    userAction?: true
+    actionTimestamp?: true
+  }
+
+  export type QuizInterventionMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interventionType?: true
+    triggerReason?: true
+    questionId?: true
+    shownAt?: true
+    userAction?: true
+    actionTimestamp?: true
+  }
+
+  export type QuizInterventionCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    interventionType?: true
+    triggerReason?: true
+    questionId?: true
+    shownAt?: true
+    userAction?: true
+    actionTimestamp?: true
+    _all?: true
+  }
+
+  export type QuizInterventionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizIntervention to aggregate.
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizInterventions to fetch.
+     */
+    orderBy?: QuizInterventionOrderByWithRelationInput | QuizInterventionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuizInterventionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizInterventions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizInterventions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuizInterventions
+    **/
+    _count?: true | QuizInterventionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizInterventionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizInterventionMaxAggregateInputType
+  }
+
+  export type GetQuizInterventionAggregateType<T extends QuizInterventionAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizIntervention]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizIntervention[P]>
+      : GetScalarType<T[P], AggregateQuizIntervention[P]>
+  }
+
+
+
+
+  export type QuizInterventionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuizInterventionWhereInput
+    orderBy?: QuizInterventionOrderByWithAggregationInput | QuizInterventionOrderByWithAggregationInput[]
+    by: QuizInterventionScalarFieldEnum[] | QuizInterventionScalarFieldEnum
+    having?: QuizInterventionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizInterventionCountAggregateInputType | true
+    _min?: QuizInterventionMinAggregateInputType
+    _max?: QuizInterventionMaxAggregateInputType
+  }
+
+  export type QuizInterventionGroupByOutputType = {
+    id: string
+    sessionId: string
+    interventionType: string
+    triggerReason: string
+    questionId: string | null
+    shownAt: Date
+    userAction: string | null
+    actionTimestamp: Date | null
+    _count: QuizInterventionCountAggregateOutputType | null
+    _min: QuizInterventionMinAggregateOutputType | null
+    _max: QuizInterventionMaxAggregateOutputType | null
+  }
+
+  type GetQuizInterventionGroupByPayload<T extends QuizInterventionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizInterventionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizInterventionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizInterventionGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizInterventionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuizInterventionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interventionType?: boolean
+    triggerReason?: boolean
+    questionId?: boolean
+    shownAt?: boolean
+    userAction?: boolean
+    actionTimestamp?: boolean
+  }, ExtArgs["result"]["quizIntervention"]>
+
+  export type QuizInterventionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interventionType?: boolean
+    triggerReason?: boolean
+    questionId?: boolean
+    shownAt?: boolean
+    userAction?: boolean
+    actionTimestamp?: boolean
+  }, ExtArgs["result"]["quizIntervention"]>
+
+  export type QuizInterventionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    interventionType?: boolean
+    triggerReason?: boolean
+    questionId?: boolean
+    shownAt?: boolean
+    userAction?: boolean
+    actionTimestamp?: boolean
+  }, ExtArgs["result"]["quizIntervention"]>
+
+  export type QuizInterventionSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    interventionType?: boolean
+    triggerReason?: boolean
+    questionId?: boolean
+    shownAt?: boolean
+    userAction?: boolean
+    actionTimestamp?: boolean
+  }
+
+  export type QuizInterventionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "interventionType" | "triggerReason" | "questionId" | "shownAt" | "userAction" | "actionTimestamp", ExtArgs["result"]["quizIntervention"]>
+
+  export type $QuizInterventionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuizIntervention"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      interventionType: string
+      triggerReason: string
+      questionId: string | null
+      shownAt: Date
+      userAction: string | null
+      actionTimestamp: Date | null
+    }, ExtArgs["result"]["quizIntervention"]>
+    composites: {}
+  }
+
+  type QuizInterventionGetPayload<S extends boolean | null | undefined | QuizInterventionDefaultArgs> = $Result.GetResult<Prisma.$QuizInterventionPayload, S>
+
+  type QuizInterventionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuizInterventionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizInterventionCountAggregateInputType | true
+    }
+
+  export interface QuizInterventionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuizIntervention'], meta: { name: 'QuizIntervention' } }
+    /**
+     * Find zero or one QuizIntervention that matches the filter.
+     * @param {QuizInterventionFindUniqueArgs} args - Arguments to find a QuizIntervention
+     * @example
+     * // Get one QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuizInterventionFindUniqueArgs>(args: SelectSubset<T, QuizInterventionFindUniqueArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuizIntervention that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuizInterventionFindUniqueOrThrowArgs} args - Arguments to find a QuizIntervention
+     * @example
+     * // Get one QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuizInterventionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuizInterventionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizIntervention that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionFindFirstArgs} args - Arguments to find a QuizIntervention
+     * @example
+     * // Get one QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuizInterventionFindFirstArgs>(args?: SelectSubset<T, QuizInterventionFindFirstArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuizIntervention that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionFindFirstOrThrowArgs} args - Arguments to find a QuizIntervention
+     * @example
+     * // Get one QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuizInterventionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuizInterventionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuizInterventions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuizInterventions
+     * const quizInterventions = await prisma.quizIntervention.findMany()
+     * 
+     * // Get first 10 QuizInterventions
+     * const quizInterventions = await prisma.quizIntervention.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizInterventionWithIdOnly = await prisma.quizIntervention.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuizInterventionFindManyArgs>(args?: SelectSubset<T, QuizInterventionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuizIntervention.
+     * @param {QuizInterventionCreateArgs} args - Arguments to create a QuizIntervention.
+     * @example
+     * // Create one QuizIntervention
+     * const QuizIntervention = await prisma.quizIntervention.create({
+     *   data: {
+     *     // ... data to create a QuizIntervention
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuizInterventionCreateArgs>(args: SelectSubset<T, QuizInterventionCreateArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuizInterventions.
+     * @param {QuizInterventionCreateManyArgs} args - Arguments to create many QuizInterventions.
+     * @example
+     * // Create many QuizInterventions
+     * const quizIntervention = await prisma.quizIntervention.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuizInterventionCreateManyArgs>(args?: SelectSubset<T, QuizInterventionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuizInterventions and returns the data saved in the database.
+     * @param {QuizInterventionCreateManyAndReturnArgs} args - Arguments to create many QuizInterventions.
+     * @example
+     * // Create many QuizInterventions
+     * const quizIntervention = await prisma.quizIntervention.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuizInterventions and only return the `id`
+     * const quizInterventionWithIdOnly = await prisma.quizIntervention.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuizInterventionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuizInterventionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuizIntervention.
+     * @param {QuizInterventionDeleteArgs} args - Arguments to delete one QuizIntervention.
+     * @example
+     * // Delete one QuizIntervention
+     * const QuizIntervention = await prisma.quizIntervention.delete({
+     *   where: {
+     *     // ... filter to delete one QuizIntervention
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuizInterventionDeleteArgs>(args: SelectSubset<T, QuizInterventionDeleteArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuizIntervention.
+     * @param {QuizInterventionUpdateArgs} args - Arguments to update one QuizIntervention.
+     * @example
+     * // Update one QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuizInterventionUpdateArgs>(args: SelectSubset<T, QuizInterventionUpdateArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuizInterventions.
+     * @param {QuizInterventionDeleteManyArgs} args - Arguments to filter QuizInterventions to delete.
+     * @example
+     * // Delete a few QuizInterventions
+     * const { count } = await prisma.quizIntervention.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuizInterventionDeleteManyArgs>(args?: SelectSubset<T, QuizInterventionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizInterventions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuizInterventions
+     * const quizIntervention = await prisma.quizIntervention.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuizInterventionUpdateManyArgs>(args: SelectSubset<T, QuizInterventionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuizInterventions and returns the data updated in the database.
+     * @param {QuizInterventionUpdateManyAndReturnArgs} args - Arguments to update many QuizInterventions.
+     * @example
+     * // Update many QuizInterventions
+     * const quizIntervention = await prisma.quizIntervention.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuizInterventions and only return the `id`
+     * const quizInterventionWithIdOnly = await prisma.quizIntervention.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuizInterventionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuizInterventionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuizIntervention.
+     * @param {QuizInterventionUpsertArgs} args - Arguments to update or create a QuizIntervention.
+     * @example
+     * // Update or create a QuizIntervention
+     * const quizIntervention = await prisma.quizIntervention.upsert({
+     *   create: {
+     *     // ... data to create a QuizIntervention
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuizIntervention we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuizInterventionUpsertArgs>(args: SelectSubset<T, QuizInterventionUpsertArgs<ExtArgs>>): Prisma__QuizInterventionClient<$Result.GetResult<Prisma.$QuizInterventionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuizInterventions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionCountArgs} args - Arguments to filter QuizInterventions to count.
+     * @example
+     * // Count the number of QuizInterventions
+     * const count = await prisma.quizIntervention.count({
+     *   where: {
+     *     // ... the filter for the QuizInterventions we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuizInterventionCountArgs>(
+      args?: Subset<T, QuizInterventionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizInterventionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuizIntervention.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizInterventionAggregateArgs>(args: Subset<T, QuizInterventionAggregateArgs>): Prisma.PrismaPromise<GetQuizInterventionAggregateType<T>>
+
+    /**
+     * Group by QuizIntervention.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizInterventionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuizInterventionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuizInterventionGroupByArgs['orderBy'] }
+        : { orderBy?: QuizInterventionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuizInterventionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizInterventionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuizIntervention model
+   */
+  readonly fields: QuizInterventionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuizIntervention.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuizInterventionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuizIntervention model
+   */
+  interface QuizInterventionFieldRefs {
+    readonly id: FieldRef<"QuizIntervention", 'String'>
+    readonly sessionId: FieldRef<"QuizIntervention", 'String'>
+    readonly interventionType: FieldRef<"QuizIntervention", 'String'>
+    readonly triggerReason: FieldRef<"QuizIntervention", 'String'>
+    readonly questionId: FieldRef<"QuizIntervention", 'String'>
+    readonly shownAt: FieldRef<"QuizIntervention", 'DateTime'>
+    readonly userAction: FieldRef<"QuizIntervention", 'String'>
+    readonly actionTimestamp: FieldRef<"QuizIntervention", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuizIntervention findUnique
+   */
+  export type QuizInterventionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizIntervention to fetch.
+     */
+    where: QuizInterventionWhereUniqueInput
+  }
+
+  /**
+   * QuizIntervention findUniqueOrThrow
+   */
+  export type QuizInterventionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizIntervention to fetch.
+     */
+    where: QuizInterventionWhereUniqueInput
+  }
+
+  /**
+   * QuizIntervention findFirst
+   */
+  export type QuizInterventionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizIntervention to fetch.
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizInterventions to fetch.
+     */
+    orderBy?: QuizInterventionOrderByWithRelationInput | QuizInterventionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizInterventions.
+     */
+    cursor?: QuizInterventionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizInterventions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizInterventions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizInterventions.
+     */
+    distinct?: QuizInterventionScalarFieldEnum | QuizInterventionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizIntervention findFirstOrThrow
+   */
+  export type QuizInterventionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizIntervention to fetch.
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizInterventions to fetch.
+     */
+    orderBy?: QuizInterventionOrderByWithRelationInput | QuizInterventionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuizInterventions.
+     */
+    cursor?: QuizInterventionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizInterventions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizInterventions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuizInterventions.
+     */
+    distinct?: QuizInterventionScalarFieldEnum | QuizInterventionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizIntervention findMany
+   */
+  export type QuizInterventionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter, which QuizInterventions to fetch.
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuizInterventions to fetch.
+     */
+    orderBy?: QuizInterventionOrderByWithRelationInput | QuizInterventionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuizInterventions.
+     */
+    cursor?: QuizInterventionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuizInterventions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuizInterventions.
+     */
+    skip?: number
+    distinct?: QuizInterventionScalarFieldEnum | QuizInterventionScalarFieldEnum[]
+  }
+
+  /**
+   * QuizIntervention create
+   */
+  export type QuizInterventionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a QuizIntervention.
+     */
+    data: XOR<QuizInterventionCreateInput, QuizInterventionUncheckedCreateInput>
+  }
+
+  /**
+   * QuizIntervention createMany
+   */
+  export type QuizInterventionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuizInterventions.
+     */
+    data: QuizInterventionCreateManyInput | QuizInterventionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizIntervention createManyAndReturn
+   */
+  export type QuizInterventionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuizInterventions.
+     */
+    data: QuizInterventionCreateManyInput | QuizInterventionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuizIntervention update
+   */
+  export type QuizInterventionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a QuizIntervention.
+     */
+    data: XOR<QuizInterventionUpdateInput, QuizInterventionUncheckedUpdateInput>
+    /**
+     * Choose, which QuizIntervention to update.
+     */
+    where: QuizInterventionWhereUniqueInput
+  }
+
+  /**
+   * QuizIntervention updateMany
+   */
+  export type QuizInterventionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuizInterventions.
+     */
+    data: XOR<QuizInterventionUpdateManyMutationInput, QuizInterventionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizInterventions to update
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * Limit how many QuizInterventions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizIntervention updateManyAndReturn
+   */
+  export type QuizInterventionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * The data used to update QuizInterventions.
+     */
+    data: XOR<QuizInterventionUpdateManyMutationInput, QuizInterventionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuizInterventions to update
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * Limit how many QuizInterventions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizIntervention upsert
+   */
+  export type QuizInterventionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the QuizIntervention to update in case it exists.
+     */
+    where: QuizInterventionWhereUniqueInput
+    /**
+     * In case the QuizIntervention found by the `where` argument doesn't exist, create a new QuizIntervention with this data.
+     */
+    create: XOR<QuizInterventionCreateInput, QuizInterventionUncheckedCreateInput>
+    /**
+     * In case the QuizIntervention was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuizInterventionUpdateInput, QuizInterventionUncheckedUpdateInput>
+  }
+
+  /**
+   * QuizIntervention delete
+   */
+  export type QuizInterventionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+    /**
+     * Filter which QuizIntervention to delete.
+     */
+    where: QuizInterventionWhereUniqueInput
+  }
+
+  /**
+   * QuizIntervention deleteMany
+   */
+  export type QuizInterventionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuizInterventions to delete
+     */
+    where?: QuizInterventionWhereInput
+    /**
+     * Limit how many QuizInterventions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuizIntervention without action
+   */
+  export type QuizInterventionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizIntervention
+     */
+    select?: QuizInterventionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuizIntervention
+     */
+    omit?: QuizInterventionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -35230,6 +45158,149 @@ export namespace Prisma {
   };
 
   export type AnalyticsReportScalarFieldEnum = (typeof AnalyticsReportScalarFieldEnum)[keyof typeof AnalyticsReportScalarFieldEnum]
+
+
+  export const QuizSessionScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    quizId: 'quizId',
+    source: 'source',
+    utmSource: 'utmSource',
+    utmMedium: 'utmMedium',
+    utmCampaign: 'utmCampaign',
+    utmContent: 'utmContent',
+    contentId: 'contentId',
+    campaignId: 'campaignId',
+    deviceInfo: 'deviceInfo',
+    landingPage: 'landingPage',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    status: 'status',
+    createdAt: 'createdAt',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    completionRate: 'completionRate',
+    userName: 'userName',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    companyName: 'companyName',
+    userType: 'userType',
+    selectedBrand: 'selectedBrand',
+    userSegment: 'userSegment',
+    crewSize: 'crewSize',
+    leadQualityScore: 'leadQualityScore',
+    version: 'version'
+  };
+
+  export type QuizSessionScalarFieldEnum = (typeof QuizSessionScalarFieldEnum)[keyof typeof QuizSessionScalarFieldEnum]
+
+
+  export const QuizResponseScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    questionId: 'questionId',
+    questionType: 'questionType',
+    responseValue: 'responseValue',
+    responseTime: 'responseTime',
+    createdAt: 'createdAt'
+  };
+
+  export type QuizResponseScalarFieldEnum = (typeof QuizResponseScalarFieldEnum)[keyof typeof QuizResponseScalarFieldEnum]
+
+
+  export const BehavioralInteractionScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    interactionType: 'interactionType',
+    element: 'element',
+    position: 'position',
+    viewport: 'viewport',
+    duration: 'duration',
+    metadata: 'metadata',
+    timestamp: 'timestamp'
+  };
+
+  export type BehavioralInteractionScalarFieldEnum = (typeof BehavioralInteractionScalarFieldEnum)[keyof typeof BehavioralInteractionScalarFieldEnum]
+
+
+  export const QuizConversionScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    conversionType: 'conversionType',
+    conversionValue: 'conversionValue',
+    orderId: 'orderId',
+    metadata: 'metadata',
+    createdAt: 'createdAt'
+  };
+
+  export type QuizConversionScalarFieldEnum = (typeof QuizConversionScalarFieldEnum)[keyof typeof QuizConversionScalarFieldEnum]
+
+
+  export const ABTestExperimentScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    status: 'status',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    testType: 'testType',
+    control: 'control',
+    variants: 'variants',
+    allocation: 'allocation',
+    metrics: 'metrics',
+    results: 'results',
+    winner: 'winner',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ABTestExperimentScalarFieldEnum = (typeof ABTestExperimentScalarFieldEnum)[keyof typeof ABTestExperimentScalarFieldEnum]
+
+
+  export const QuizBrandScalarFieldEnum: {
+    id: 'id',
+    brandId: 'brandId',
+    name: 'name',
+    displayName: 'displayName',
+    color: 'color',
+    voltage: 'voltage',
+    voltageOptions: 'voltageOptions',
+    marketShare: 'marketShare',
+    popularWith: 'popularWith',
+    category: 'category',
+    active: 'active',
+    createdAt: 'createdAt'
+  };
+
+  export type QuizBrandScalarFieldEnum = (typeof QuizBrandScalarFieldEnum)[keyof typeof QuizBrandScalarFieldEnum]
+
+
+  export const QuizRoutingRuleScalarFieldEnum: {
+    id: 'id',
+    userType: 'userType',
+    brand: 'brand',
+    trade: 'trade',
+    nextQuestionId: 'nextQuestionId',
+    condition: 'condition',
+    priority: 'priority',
+    active: 'active',
+    createdAt: 'createdAt'
+  };
+
+  export type QuizRoutingRuleScalarFieldEnum = (typeof QuizRoutingRuleScalarFieldEnum)[keyof typeof QuizRoutingRuleScalarFieldEnum]
+
+
+  export const QuizInterventionScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    interventionType: 'interventionType',
+    triggerReason: 'triggerReason',
+    questionId: 'questionId',
+    shownAt: 'shownAt',
+    userAction: 'userAction',
+    actionTimestamp: 'actionTimestamp'
+  };
+
+  export type QuizInterventionScalarFieldEnum = (typeof QuizInterventionScalarFieldEnum)[keyof typeof QuizInterventionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -37782,6 +47853,727 @@ export namespace Prisma {
     createdBy?: StringNullableWithAggregatesFilter<"AnalyticsReport"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"AnalyticsReport"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AnalyticsReport"> | Date | string
+  }
+
+  export type QuizSessionWhereInput = {
+    AND?: QuizSessionWhereInput | QuizSessionWhereInput[]
+    OR?: QuizSessionWhereInput[]
+    NOT?: QuizSessionWhereInput | QuizSessionWhereInput[]
+    id?: StringFilter<"QuizSession"> | string
+    sessionId?: StringFilter<"QuizSession"> | string
+    quizId?: StringFilter<"QuizSession"> | string
+    source?: StringNullableFilter<"QuizSession"> | string | null
+    utmSource?: StringNullableFilter<"QuizSession"> | string | null
+    utmMedium?: StringNullableFilter<"QuizSession"> | string | null
+    utmCampaign?: StringNullableFilter<"QuizSession"> | string | null
+    utmContent?: StringNullableFilter<"QuizSession"> | string | null
+    contentId?: StringNullableFilter<"QuizSession"> | string | null
+    campaignId?: StringNullableFilter<"QuizSession"> | string | null
+    deviceInfo?: JsonNullableFilter<"QuizSession">
+    landingPage?: StringNullableFilter<"QuizSession"> | string | null
+    ipAddress?: StringNullableFilter<"QuizSession"> | string | null
+    userAgent?: StringNullableFilter<"QuizSession"> | string | null
+    status?: StringFilter<"QuizSession"> | string
+    createdAt?: DateTimeFilter<"QuizSession"> | Date | string
+    startTime?: DateTimeFilter<"QuizSession"> | Date | string
+    endTime?: DateTimeNullableFilter<"QuizSession"> | Date | string | null
+    completionRate?: FloatNullableFilter<"QuizSession"> | number | null
+    userName?: StringNullableFilter<"QuizSession"> | string | null
+    email?: StringNullableFilter<"QuizSession"> | string | null
+    phoneNumber?: StringNullableFilter<"QuizSession"> | string | null
+    companyName?: StringNullableFilter<"QuizSession"> | string | null
+    userType?: StringNullableFilter<"QuizSession"> | string | null
+    selectedBrand?: StringNullableFilter<"QuizSession"> | string | null
+    userSegment?: StringNullableFilter<"QuizSession"> | string | null
+    crewSize?: IntNullableFilter<"QuizSession"> | number | null
+    leadQualityScore?: FloatNullableFilter<"QuizSession"> | number | null
+    version?: StringNullableFilter<"QuizSession"> | string | null
+    responses?: QuizResponseListRelationFilter
+    interactions?: BehavioralInteractionListRelationFilter
+    conversions?: QuizConversionListRelationFilter
+  }
+
+  export type QuizSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    quizId?: SortOrder
+    source?: SortOrderInput | SortOrder
+    utmSource?: SortOrderInput | SortOrder
+    utmMedium?: SortOrderInput | SortOrder
+    utmCampaign?: SortOrderInput | SortOrder
+    utmContent?: SortOrderInput | SortOrder
+    contentId?: SortOrderInput | SortOrder
+    campaignId?: SortOrderInput | SortOrder
+    deviceInfo?: SortOrderInput | SortOrder
+    landingPage?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    completionRate?: SortOrderInput | SortOrder
+    userName?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    companyName?: SortOrderInput | SortOrder
+    userType?: SortOrderInput | SortOrder
+    selectedBrand?: SortOrderInput | SortOrder
+    userSegment?: SortOrderInput | SortOrder
+    crewSize?: SortOrderInput | SortOrder
+    leadQualityScore?: SortOrderInput | SortOrder
+    version?: SortOrderInput | SortOrder
+    responses?: QuizResponseOrderByRelationAggregateInput
+    interactions?: BehavioralInteractionOrderByRelationAggregateInput
+    conversions?: QuizConversionOrderByRelationAggregateInput
+  }
+
+  export type QuizSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    sessionId?: string
+    AND?: QuizSessionWhereInput | QuizSessionWhereInput[]
+    OR?: QuizSessionWhereInput[]
+    NOT?: QuizSessionWhereInput | QuizSessionWhereInput[]
+    quizId?: StringFilter<"QuizSession"> | string
+    source?: StringNullableFilter<"QuizSession"> | string | null
+    utmSource?: StringNullableFilter<"QuizSession"> | string | null
+    utmMedium?: StringNullableFilter<"QuizSession"> | string | null
+    utmCampaign?: StringNullableFilter<"QuizSession"> | string | null
+    utmContent?: StringNullableFilter<"QuizSession"> | string | null
+    contentId?: StringNullableFilter<"QuizSession"> | string | null
+    campaignId?: StringNullableFilter<"QuizSession"> | string | null
+    deviceInfo?: JsonNullableFilter<"QuizSession">
+    landingPage?: StringNullableFilter<"QuizSession"> | string | null
+    ipAddress?: StringNullableFilter<"QuizSession"> | string | null
+    userAgent?: StringNullableFilter<"QuizSession"> | string | null
+    status?: StringFilter<"QuizSession"> | string
+    createdAt?: DateTimeFilter<"QuizSession"> | Date | string
+    startTime?: DateTimeFilter<"QuizSession"> | Date | string
+    endTime?: DateTimeNullableFilter<"QuizSession"> | Date | string | null
+    completionRate?: FloatNullableFilter<"QuizSession"> | number | null
+    userName?: StringNullableFilter<"QuizSession"> | string | null
+    email?: StringNullableFilter<"QuizSession"> | string | null
+    phoneNumber?: StringNullableFilter<"QuizSession"> | string | null
+    companyName?: StringNullableFilter<"QuizSession"> | string | null
+    userType?: StringNullableFilter<"QuizSession"> | string | null
+    selectedBrand?: StringNullableFilter<"QuizSession"> | string | null
+    userSegment?: StringNullableFilter<"QuizSession"> | string | null
+    crewSize?: IntNullableFilter<"QuizSession"> | number | null
+    leadQualityScore?: FloatNullableFilter<"QuizSession"> | number | null
+    version?: StringNullableFilter<"QuizSession"> | string | null
+    responses?: QuizResponseListRelationFilter
+    interactions?: BehavioralInteractionListRelationFilter
+    conversions?: QuizConversionListRelationFilter
+  }, "id" | "sessionId">
+
+  export type QuizSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    quizId?: SortOrder
+    source?: SortOrderInput | SortOrder
+    utmSource?: SortOrderInput | SortOrder
+    utmMedium?: SortOrderInput | SortOrder
+    utmCampaign?: SortOrderInput | SortOrder
+    utmContent?: SortOrderInput | SortOrder
+    contentId?: SortOrderInput | SortOrder
+    campaignId?: SortOrderInput | SortOrder
+    deviceInfo?: SortOrderInput | SortOrder
+    landingPage?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    completionRate?: SortOrderInput | SortOrder
+    userName?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    companyName?: SortOrderInput | SortOrder
+    userType?: SortOrderInput | SortOrder
+    selectedBrand?: SortOrderInput | SortOrder
+    userSegment?: SortOrderInput | SortOrder
+    crewSize?: SortOrderInput | SortOrder
+    leadQualityScore?: SortOrderInput | SortOrder
+    version?: SortOrderInput | SortOrder
+    _count?: QuizSessionCountOrderByAggregateInput
+    _avg?: QuizSessionAvgOrderByAggregateInput
+    _max?: QuizSessionMaxOrderByAggregateInput
+    _min?: QuizSessionMinOrderByAggregateInput
+    _sum?: QuizSessionSumOrderByAggregateInput
+  }
+
+  export type QuizSessionScalarWhereWithAggregatesInput = {
+    AND?: QuizSessionScalarWhereWithAggregatesInput | QuizSessionScalarWhereWithAggregatesInput[]
+    OR?: QuizSessionScalarWhereWithAggregatesInput[]
+    NOT?: QuizSessionScalarWhereWithAggregatesInput | QuizSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizSession"> | string
+    sessionId?: StringWithAggregatesFilter<"QuizSession"> | string
+    quizId?: StringWithAggregatesFilter<"QuizSession"> | string
+    source?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    utmSource?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    utmMedium?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    utmCampaign?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    utmContent?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    contentId?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    campaignId?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    deviceInfo?: JsonNullableWithAggregatesFilter<"QuizSession">
+    landingPage?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    ipAddress?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    status?: StringWithAggregatesFilter<"QuizSession"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"QuizSession"> | Date | string
+    startTime?: DateTimeWithAggregatesFilter<"QuizSession"> | Date | string
+    endTime?: DateTimeNullableWithAggregatesFilter<"QuizSession"> | Date | string | null
+    completionRate?: FloatNullableWithAggregatesFilter<"QuizSession"> | number | null
+    userName?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    email?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    companyName?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    userType?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    selectedBrand?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    userSegment?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+    crewSize?: IntNullableWithAggregatesFilter<"QuizSession"> | number | null
+    leadQualityScore?: FloatNullableWithAggregatesFilter<"QuizSession"> | number | null
+    version?: StringNullableWithAggregatesFilter<"QuizSession"> | string | null
+  }
+
+  export type QuizResponseWhereInput = {
+    AND?: QuizResponseWhereInput | QuizResponseWhereInput[]
+    OR?: QuizResponseWhereInput[]
+    NOT?: QuizResponseWhereInput | QuizResponseWhereInput[]
+    id?: StringFilter<"QuizResponse"> | string
+    sessionId?: StringFilter<"QuizResponse"> | string
+    questionId?: StringFilter<"QuizResponse"> | string
+    questionType?: StringFilter<"QuizResponse"> | string
+    responseValue?: JsonFilter<"QuizResponse">
+    responseTime?: IntNullableFilter<"QuizResponse"> | number | null
+    createdAt?: DateTimeFilter<"QuizResponse"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }
+
+  export type QuizResponseOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    questionId?: SortOrder
+    questionType?: SortOrder
+    responseValue?: SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    session?: QuizSessionOrderByWithRelationInput
+  }
+
+  export type QuizResponseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuizResponseWhereInput | QuizResponseWhereInput[]
+    OR?: QuizResponseWhereInput[]
+    NOT?: QuizResponseWhereInput | QuizResponseWhereInput[]
+    sessionId?: StringFilter<"QuizResponse"> | string
+    questionId?: StringFilter<"QuizResponse"> | string
+    questionType?: StringFilter<"QuizResponse"> | string
+    responseValue?: JsonFilter<"QuizResponse">
+    responseTime?: IntNullableFilter<"QuizResponse"> | number | null
+    createdAt?: DateTimeFilter<"QuizResponse"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }, "id">
+
+  export type QuizResponseOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    questionId?: SortOrder
+    questionType?: SortOrder
+    responseValue?: SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: QuizResponseCountOrderByAggregateInput
+    _avg?: QuizResponseAvgOrderByAggregateInput
+    _max?: QuizResponseMaxOrderByAggregateInput
+    _min?: QuizResponseMinOrderByAggregateInput
+    _sum?: QuizResponseSumOrderByAggregateInput
+  }
+
+  export type QuizResponseScalarWhereWithAggregatesInput = {
+    AND?: QuizResponseScalarWhereWithAggregatesInput | QuizResponseScalarWhereWithAggregatesInput[]
+    OR?: QuizResponseScalarWhereWithAggregatesInput[]
+    NOT?: QuizResponseScalarWhereWithAggregatesInput | QuizResponseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizResponse"> | string
+    sessionId?: StringWithAggregatesFilter<"QuizResponse"> | string
+    questionId?: StringWithAggregatesFilter<"QuizResponse"> | string
+    questionType?: StringWithAggregatesFilter<"QuizResponse"> | string
+    responseValue?: JsonWithAggregatesFilter<"QuizResponse">
+    responseTime?: IntNullableWithAggregatesFilter<"QuizResponse"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"QuizResponse"> | Date | string
+  }
+
+  export type BehavioralInteractionWhereInput = {
+    AND?: BehavioralInteractionWhereInput | BehavioralInteractionWhereInput[]
+    OR?: BehavioralInteractionWhereInput[]
+    NOT?: BehavioralInteractionWhereInput | BehavioralInteractionWhereInput[]
+    id?: StringFilter<"BehavioralInteraction"> | string
+    sessionId?: StringFilter<"BehavioralInteraction"> | string
+    interactionType?: StringFilter<"BehavioralInteraction"> | string
+    element?: StringNullableFilter<"BehavioralInteraction"> | string | null
+    position?: JsonNullableFilter<"BehavioralInteraction">
+    viewport?: JsonNullableFilter<"BehavioralInteraction">
+    duration?: IntNullableFilter<"BehavioralInteraction"> | number | null
+    metadata?: JsonNullableFilter<"BehavioralInteraction">
+    timestamp?: DateTimeFilter<"BehavioralInteraction"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }
+
+  export type BehavioralInteractionOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interactionType?: SortOrder
+    element?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    viewport?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    session?: QuizSessionOrderByWithRelationInput
+  }
+
+  export type BehavioralInteractionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BehavioralInteractionWhereInput | BehavioralInteractionWhereInput[]
+    OR?: BehavioralInteractionWhereInput[]
+    NOT?: BehavioralInteractionWhereInput | BehavioralInteractionWhereInput[]
+    sessionId?: StringFilter<"BehavioralInteraction"> | string
+    interactionType?: StringFilter<"BehavioralInteraction"> | string
+    element?: StringNullableFilter<"BehavioralInteraction"> | string | null
+    position?: JsonNullableFilter<"BehavioralInteraction">
+    viewport?: JsonNullableFilter<"BehavioralInteraction">
+    duration?: IntNullableFilter<"BehavioralInteraction"> | number | null
+    metadata?: JsonNullableFilter<"BehavioralInteraction">
+    timestamp?: DateTimeFilter<"BehavioralInteraction"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }, "id">
+
+  export type BehavioralInteractionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interactionType?: SortOrder
+    element?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    viewport?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    _count?: BehavioralInteractionCountOrderByAggregateInput
+    _avg?: BehavioralInteractionAvgOrderByAggregateInput
+    _max?: BehavioralInteractionMaxOrderByAggregateInput
+    _min?: BehavioralInteractionMinOrderByAggregateInput
+    _sum?: BehavioralInteractionSumOrderByAggregateInput
+  }
+
+  export type BehavioralInteractionScalarWhereWithAggregatesInput = {
+    AND?: BehavioralInteractionScalarWhereWithAggregatesInput | BehavioralInteractionScalarWhereWithAggregatesInput[]
+    OR?: BehavioralInteractionScalarWhereWithAggregatesInput[]
+    NOT?: BehavioralInteractionScalarWhereWithAggregatesInput | BehavioralInteractionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BehavioralInteraction"> | string
+    sessionId?: StringWithAggregatesFilter<"BehavioralInteraction"> | string
+    interactionType?: StringWithAggregatesFilter<"BehavioralInteraction"> | string
+    element?: StringNullableWithAggregatesFilter<"BehavioralInteraction"> | string | null
+    position?: JsonNullableWithAggregatesFilter<"BehavioralInteraction">
+    viewport?: JsonNullableWithAggregatesFilter<"BehavioralInteraction">
+    duration?: IntNullableWithAggregatesFilter<"BehavioralInteraction"> | number | null
+    metadata?: JsonNullableWithAggregatesFilter<"BehavioralInteraction">
+    timestamp?: DateTimeWithAggregatesFilter<"BehavioralInteraction"> | Date | string
+  }
+
+  export type QuizConversionWhereInput = {
+    AND?: QuizConversionWhereInput | QuizConversionWhereInput[]
+    OR?: QuizConversionWhereInput[]
+    NOT?: QuizConversionWhereInput | QuizConversionWhereInput[]
+    id?: StringFilter<"QuizConversion"> | string
+    sessionId?: StringFilter<"QuizConversion"> | string
+    conversionType?: StringFilter<"QuizConversion"> | string
+    conversionValue?: FloatNullableFilter<"QuizConversion"> | number | null
+    orderId?: StringNullableFilter<"QuizConversion"> | string | null
+    metadata?: JsonNullableFilter<"QuizConversion">
+    createdAt?: DateTimeFilter<"QuizConversion"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }
+
+  export type QuizConversionOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    conversionType?: SortOrder
+    conversionValue?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    session?: QuizSessionOrderByWithRelationInput
+  }
+
+  export type QuizConversionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuizConversionWhereInput | QuizConversionWhereInput[]
+    OR?: QuizConversionWhereInput[]
+    NOT?: QuizConversionWhereInput | QuizConversionWhereInput[]
+    sessionId?: StringFilter<"QuizConversion"> | string
+    conversionType?: StringFilter<"QuizConversion"> | string
+    conversionValue?: FloatNullableFilter<"QuizConversion"> | number | null
+    orderId?: StringNullableFilter<"QuizConversion"> | string | null
+    metadata?: JsonNullableFilter<"QuizConversion">
+    createdAt?: DateTimeFilter<"QuizConversion"> | Date | string
+    session?: XOR<QuizSessionScalarRelationFilter, QuizSessionWhereInput>
+  }, "id">
+
+  export type QuizConversionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    conversionType?: SortOrder
+    conversionValue?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: QuizConversionCountOrderByAggregateInput
+    _avg?: QuizConversionAvgOrderByAggregateInput
+    _max?: QuizConversionMaxOrderByAggregateInput
+    _min?: QuizConversionMinOrderByAggregateInput
+    _sum?: QuizConversionSumOrderByAggregateInput
+  }
+
+  export type QuizConversionScalarWhereWithAggregatesInput = {
+    AND?: QuizConversionScalarWhereWithAggregatesInput | QuizConversionScalarWhereWithAggregatesInput[]
+    OR?: QuizConversionScalarWhereWithAggregatesInput[]
+    NOT?: QuizConversionScalarWhereWithAggregatesInput | QuizConversionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizConversion"> | string
+    sessionId?: StringWithAggregatesFilter<"QuizConversion"> | string
+    conversionType?: StringWithAggregatesFilter<"QuizConversion"> | string
+    conversionValue?: FloatNullableWithAggregatesFilter<"QuizConversion"> | number | null
+    orderId?: StringNullableWithAggregatesFilter<"QuizConversion"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"QuizConversion">
+    createdAt?: DateTimeWithAggregatesFilter<"QuizConversion"> | Date | string
+  }
+
+  export type ABTestExperimentWhereInput = {
+    AND?: ABTestExperimentWhereInput | ABTestExperimentWhereInput[]
+    OR?: ABTestExperimentWhereInput[]
+    NOT?: ABTestExperimentWhereInput | ABTestExperimentWhereInput[]
+    id?: StringFilter<"ABTestExperiment"> | string
+    name?: StringFilter<"ABTestExperiment"> | string
+    status?: StringFilter<"ABTestExperiment"> | string
+    startDate?: DateTimeNullableFilter<"ABTestExperiment"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"ABTestExperiment"> | Date | string | null
+    testType?: StringFilter<"ABTestExperiment"> | string
+    control?: JsonFilter<"ABTestExperiment">
+    variants?: JsonFilter<"ABTestExperiment">
+    allocation?: JsonFilter<"ABTestExperiment">
+    metrics?: JsonFilter<"ABTestExperiment">
+    results?: JsonNullableFilter<"ABTestExperiment">
+    winner?: StringNullableFilter<"ABTestExperiment"> | string | null
+    createdAt?: DateTimeFilter<"ABTestExperiment"> | Date | string
+    updatedAt?: DateTimeFilter<"ABTestExperiment"> | Date | string
+  }
+
+  export type ABTestExperimentOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    testType?: SortOrder
+    control?: SortOrder
+    variants?: SortOrder
+    allocation?: SortOrder
+    metrics?: SortOrder
+    results?: SortOrderInput | SortOrder
+    winner?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ABTestExperimentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ABTestExperimentWhereInput | ABTestExperimentWhereInput[]
+    OR?: ABTestExperimentWhereInput[]
+    NOT?: ABTestExperimentWhereInput | ABTestExperimentWhereInput[]
+    name?: StringFilter<"ABTestExperiment"> | string
+    status?: StringFilter<"ABTestExperiment"> | string
+    startDate?: DateTimeNullableFilter<"ABTestExperiment"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"ABTestExperiment"> | Date | string | null
+    testType?: StringFilter<"ABTestExperiment"> | string
+    control?: JsonFilter<"ABTestExperiment">
+    variants?: JsonFilter<"ABTestExperiment">
+    allocation?: JsonFilter<"ABTestExperiment">
+    metrics?: JsonFilter<"ABTestExperiment">
+    results?: JsonNullableFilter<"ABTestExperiment">
+    winner?: StringNullableFilter<"ABTestExperiment"> | string | null
+    createdAt?: DateTimeFilter<"ABTestExperiment"> | Date | string
+    updatedAt?: DateTimeFilter<"ABTestExperiment"> | Date | string
+  }, "id">
+
+  export type ABTestExperimentOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    testType?: SortOrder
+    control?: SortOrder
+    variants?: SortOrder
+    allocation?: SortOrder
+    metrics?: SortOrder
+    results?: SortOrderInput | SortOrder
+    winner?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ABTestExperimentCountOrderByAggregateInput
+    _max?: ABTestExperimentMaxOrderByAggregateInput
+    _min?: ABTestExperimentMinOrderByAggregateInput
+  }
+
+  export type ABTestExperimentScalarWhereWithAggregatesInput = {
+    AND?: ABTestExperimentScalarWhereWithAggregatesInput | ABTestExperimentScalarWhereWithAggregatesInput[]
+    OR?: ABTestExperimentScalarWhereWithAggregatesInput[]
+    NOT?: ABTestExperimentScalarWhereWithAggregatesInput | ABTestExperimentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ABTestExperiment"> | string
+    name?: StringWithAggregatesFilter<"ABTestExperiment"> | string
+    status?: StringWithAggregatesFilter<"ABTestExperiment"> | string
+    startDate?: DateTimeNullableWithAggregatesFilter<"ABTestExperiment"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"ABTestExperiment"> | Date | string | null
+    testType?: StringWithAggregatesFilter<"ABTestExperiment"> | string
+    control?: JsonWithAggregatesFilter<"ABTestExperiment">
+    variants?: JsonWithAggregatesFilter<"ABTestExperiment">
+    allocation?: JsonWithAggregatesFilter<"ABTestExperiment">
+    metrics?: JsonWithAggregatesFilter<"ABTestExperiment">
+    results?: JsonNullableWithAggregatesFilter<"ABTestExperiment">
+    winner?: StringNullableWithAggregatesFilter<"ABTestExperiment"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ABTestExperiment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ABTestExperiment"> | Date | string
+  }
+
+  export type QuizBrandWhereInput = {
+    AND?: QuizBrandWhereInput | QuizBrandWhereInput[]
+    OR?: QuizBrandWhereInput[]
+    NOT?: QuizBrandWhereInput | QuizBrandWhereInput[]
+    id?: StringFilter<"QuizBrand"> | string
+    brandId?: StringFilter<"QuizBrand"> | string
+    name?: StringFilter<"QuizBrand"> | string
+    displayName?: StringFilter<"QuizBrand"> | string
+    color?: StringFilter<"QuizBrand"> | string
+    voltage?: StringFilter<"QuizBrand"> | string
+    voltageOptions?: JsonFilter<"QuizBrand">
+    marketShare?: FloatNullableFilter<"QuizBrand"> | number | null
+    popularWith?: JsonNullableFilter<"QuizBrand">
+    category?: StringNullableFilter<"QuizBrand"> | string | null
+    active?: BoolFilter<"QuizBrand"> | boolean
+    createdAt?: DateTimeFilter<"QuizBrand"> | Date | string
+  }
+
+  export type QuizBrandOrderByWithRelationInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    color?: SortOrder
+    voltage?: SortOrder
+    voltageOptions?: SortOrder
+    marketShare?: SortOrderInput | SortOrder
+    popularWith?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizBrandWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    brandId?: string
+    AND?: QuizBrandWhereInput | QuizBrandWhereInput[]
+    OR?: QuizBrandWhereInput[]
+    NOT?: QuizBrandWhereInput | QuizBrandWhereInput[]
+    name?: StringFilter<"QuizBrand"> | string
+    displayName?: StringFilter<"QuizBrand"> | string
+    color?: StringFilter<"QuizBrand"> | string
+    voltage?: StringFilter<"QuizBrand"> | string
+    voltageOptions?: JsonFilter<"QuizBrand">
+    marketShare?: FloatNullableFilter<"QuizBrand"> | number | null
+    popularWith?: JsonNullableFilter<"QuizBrand">
+    category?: StringNullableFilter<"QuizBrand"> | string | null
+    active?: BoolFilter<"QuizBrand"> | boolean
+    createdAt?: DateTimeFilter<"QuizBrand"> | Date | string
+  }, "id" | "brandId">
+
+  export type QuizBrandOrderByWithAggregationInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    color?: SortOrder
+    voltage?: SortOrder
+    voltageOptions?: SortOrder
+    marketShare?: SortOrderInput | SortOrder
+    popularWith?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    _count?: QuizBrandCountOrderByAggregateInput
+    _avg?: QuizBrandAvgOrderByAggregateInput
+    _max?: QuizBrandMaxOrderByAggregateInput
+    _min?: QuizBrandMinOrderByAggregateInput
+    _sum?: QuizBrandSumOrderByAggregateInput
+  }
+
+  export type QuizBrandScalarWhereWithAggregatesInput = {
+    AND?: QuizBrandScalarWhereWithAggregatesInput | QuizBrandScalarWhereWithAggregatesInput[]
+    OR?: QuizBrandScalarWhereWithAggregatesInput[]
+    NOT?: QuizBrandScalarWhereWithAggregatesInput | QuizBrandScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizBrand"> | string
+    brandId?: StringWithAggregatesFilter<"QuizBrand"> | string
+    name?: StringWithAggregatesFilter<"QuizBrand"> | string
+    displayName?: StringWithAggregatesFilter<"QuizBrand"> | string
+    color?: StringWithAggregatesFilter<"QuizBrand"> | string
+    voltage?: StringWithAggregatesFilter<"QuizBrand"> | string
+    voltageOptions?: JsonWithAggregatesFilter<"QuizBrand">
+    marketShare?: FloatNullableWithAggregatesFilter<"QuizBrand"> | number | null
+    popularWith?: JsonNullableWithAggregatesFilter<"QuizBrand">
+    category?: StringNullableWithAggregatesFilter<"QuizBrand"> | string | null
+    active?: BoolWithAggregatesFilter<"QuizBrand"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"QuizBrand"> | Date | string
+  }
+
+  export type QuizRoutingRuleWhereInput = {
+    AND?: QuizRoutingRuleWhereInput | QuizRoutingRuleWhereInput[]
+    OR?: QuizRoutingRuleWhereInput[]
+    NOT?: QuizRoutingRuleWhereInput | QuizRoutingRuleWhereInput[]
+    id?: StringFilter<"QuizRoutingRule"> | string
+    userType?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    brand?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    trade?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    nextQuestionId?: StringFilter<"QuizRoutingRule"> | string
+    condition?: JsonNullableFilter<"QuizRoutingRule">
+    priority?: IntFilter<"QuizRoutingRule"> | number
+    active?: BoolFilter<"QuizRoutingRule"> | boolean
+    createdAt?: DateTimeFilter<"QuizRoutingRule"> | Date | string
+  }
+
+  export type QuizRoutingRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    userType?: SortOrderInput | SortOrder
+    brand?: SortOrderInput | SortOrder
+    trade?: SortOrderInput | SortOrder
+    nextQuestionId?: SortOrder
+    condition?: SortOrderInput | SortOrder
+    priority?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizRoutingRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuizRoutingRuleWhereInput | QuizRoutingRuleWhereInput[]
+    OR?: QuizRoutingRuleWhereInput[]
+    NOT?: QuizRoutingRuleWhereInput | QuizRoutingRuleWhereInput[]
+    userType?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    brand?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    trade?: StringNullableFilter<"QuizRoutingRule"> | string | null
+    nextQuestionId?: StringFilter<"QuizRoutingRule"> | string
+    condition?: JsonNullableFilter<"QuizRoutingRule">
+    priority?: IntFilter<"QuizRoutingRule"> | number
+    active?: BoolFilter<"QuizRoutingRule"> | boolean
+    createdAt?: DateTimeFilter<"QuizRoutingRule"> | Date | string
+  }, "id">
+
+  export type QuizRoutingRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    userType?: SortOrderInput | SortOrder
+    brand?: SortOrderInput | SortOrder
+    trade?: SortOrderInput | SortOrder
+    nextQuestionId?: SortOrder
+    condition?: SortOrderInput | SortOrder
+    priority?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    _count?: QuizRoutingRuleCountOrderByAggregateInput
+    _avg?: QuizRoutingRuleAvgOrderByAggregateInput
+    _max?: QuizRoutingRuleMaxOrderByAggregateInput
+    _min?: QuizRoutingRuleMinOrderByAggregateInput
+    _sum?: QuizRoutingRuleSumOrderByAggregateInput
+  }
+
+  export type QuizRoutingRuleScalarWhereWithAggregatesInput = {
+    AND?: QuizRoutingRuleScalarWhereWithAggregatesInput | QuizRoutingRuleScalarWhereWithAggregatesInput[]
+    OR?: QuizRoutingRuleScalarWhereWithAggregatesInput[]
+    NOT?: QuizRoutingRuleScalarWhereWithAggregatesInput | QuizRoutingRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizRoutingRule"> | string
+    userType?: StringNullableWithAggregatesFilter<"QuizRoutingRule"> | string | null
+    brand?: StringNullableWithAggregatesFilter<"QuizRoutingRule"> | string | null
+    trade?: StringNullableWithAggregatesFilter<"QuizRoutingRule"> | string | null
+    nextQuestionId?: StringWithAggregatesFilter<"QuizRoutingRule"> | string
+    condition?: JsonNullableWithAggregatesFilter<"QuizRoutingRule">
+    priority?: IntWithAggregatesFilter<"QuizRoutingRule"> | number
+    active?: BoolWithAggregatesFilter<"QuizRoutingRule"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"QuizRoutingRule"> | Date | string
+  }
+
+  export type QuizInterventionWhereInput = {
+    AND?: QuizInterventionWhereInput | QuizInterventionWhereInput[]
+    OR?: QuizInterventionWhereInput[]
+    NOT?: QuizInterventionWhereInput | QuizInterventionWhereInput[]
+    id?: StringFilter<"QuizIntervention"> | string
+    sessionId?: StringFilter<"QuizIntervention"> | string
+    interventionType?: StringFilter<"QuizIntervention"> | string
+    triggerReason?: StringFilter<"QuizIntervention"> | string
+    questionId?: StringNullableFilter<"QuizIntervention"> | string | null
+    shownAt?: DateTimeFilter<"QuizIntervention"> | Date | string
+    userAction?: StringNullableFilter<"QuizIntervention"> | string | null
+    actionTimestamp?: DateTimeNullableFilter<"QuizIntervention"> | Date | string | null
+  }
+
+  export type QuizInterventionOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interventionType?: SortOrder
+    triggerReason?: SortOrder
+    questionId?: SortOrderInput | SortOrder
+    shownAt?: SortOrder
+    userAction?: SortOrderInput | SortOrder
+    actionTimestamp?: SortOrderInput | SortOrder
+  }
+
+  export type QuizInterventionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuizInterventionWhereInput | QuizInterventionWhereInput[]
+    OR?: QuizInterventionWhereInput[]
+    NOT?: QuizInterventionWhereInput | QuizInterventionWhereInput[]
+    sessionId?: StringFilter<"QuizIntervention"> | string
+    interventionType?: StringFilter<"QuizIntervention"> | string
+    triggerReason?: StringFilter<"QuizIntervention"> | string
+    questionId?: StringNullableFilter<"QuizIntervention"> | string | null
+    shownAt?: DateTimeFilter<"QuizIntervention"> | Date | string
+    userAction?: StringNullableFilter<"QuizIntervention"> | string | null
+    actionTimestamp?: DateTimeNullableFilter<"QuizIntervention"> | Date | string | null
+  }, "id">
+
+  export type QuizInterventionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interventionType?: SortOrder
+    triggerReason?: SortOrder
+    questionId?: SortOrderInput | SortOrder
+    shownAt?: SortOrder
+    userAction?: SortOrderInput | SortOrder
+    actionTimestamp?: SortOrderInput | SortOrder
+    _count?: QuizInterventionCountOrderByAggregateInput
+    _max?: QuizInterventionMaxOrderByAggregateInput
+    _min?: QuizInterventionMinOrderByAggregateInput
+  }
+
+  export type QuizInterventionScalarWhereWithAggregatesInput = {
+    AND?: QuizInterventionScalarWhereWithAggregatesInput | QuizInterventionScalarWhereWithAggregatesInput[]
+    OR?: QuizInterventionScalarWhereWithAggregatesInput[]
+    NOT?: QuizInterventionScalarWhereWithAggregatesInput | QuizInterventionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuizIntervention"> | string
+    sessionId?: StringWithAggregatesFilter<"QuizIntervention"> | string
+    interventionType?: StringWithAggregatesFilter<"QuizIntervention"> | string
+    triggerReason?: StringWithAggregatesFilter<"QuizIntervention"> | string
+    questionId?: StringNullableWithAggregatesFilter<"QuizIntervention"> | string | null
+    shownAt?: DateTimeWithAggregatesFilter<"QuizIntervention"> | Date | string
+    userAction?: StringNullableWithAggregatesFilter<"QuizIntervention"> | string | null
+    actionTimestamp?: DateTimeNullableWithAggregatesFilter<"QuizIntervention"> | Date | string | null
   }
 
   export type UserCreateInput = {
@@ -40571,6 +51363,848 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type QuizSessionCreateInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseCreateNestedManyWithoutSessionInput
+    interactions?: BehavioralInteractionCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseUncheckedCreateNestedManyWithoutSessionInput
+    interactions?: BehavioralInteractionUncheckedCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUpdateManyWithoutSessionNestedInput
+    interactions?: BehavioralInteractionUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUncheckedUpdateManyWithoutSessionNestedInput
+    interactions?: BehavioralInteractionUncheckedUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionCreateManyInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+  }
+
+  export type QuizSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QuizSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QuizResponseCreateInput = {
+    id?: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+    session: QuizSessionCreateNestedOneWithoutResponsesInput
+  }
+
+  export type QuizResponseUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+  }
+
+  export type QuizResponseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: QuizSessionUpdateOneRequiredWithoutResponsesNestedInput
+  }
+
+  export type QuizResponseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizResponseCreateManyInput = {
+    id?: string
+    sessionId: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+  }
+
+  export type QuizResponseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizResponseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionCreateInput = {
+    id?: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+    session: QuizSessionCreateNestedOneWithoutInteractionsInput
+  }
+
+  export type BehavioralInteractionUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type BehavioralInteractionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: QuizSessionUpdateOneRequiredWithoutInteractionsNestedInput
+  }
+
+  export type BehavioralInteractionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionCreateManyInput = {
+    id?: string
+    sessionId: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type BehavioralInteractionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionCreateInput = {
+    id?: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    session: QuizSessionCreateNestedOneWithoutConversionsInput
+  }
+
+  export type QuizConversionUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type QuizConversionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: QuizSessionUpdateOneRequiredWithoutConversionsNestedInput
+  }
+
+  export type QuizConversionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionCreateManyInput = {
+    id?: string
+    sessionId: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type QuizConversionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestExperimentCreateInput = {
+    id?: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    testType: string
+    control: JsonNullValueInput | InputJsonValue
+    variants: JsonNullValueInput | InputJsonValue
+    allocation: JsonNullValueInput | InputJsonValue
+    metrics: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ABTestExperimentUncheckedCreateInput = {
+    id?: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    testType: string
+    control: JsonNullValueInput | InputJsonValue
+    variants: JsonNullValueInput | InputJsonValue
+    allocation: JsonNullValueInput | InputJsonValue
+    metrics: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ABTestExperimentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    testType?: StringFieldUpdateOperationsInput | string
+    control?: JsonNullValueInput | InputJsonValue
+    variants?: JsonNullValueInput | InputJsonValue
+    allocation?: JsonNullValueInput | InputJsonValue
+    metrics?: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestExperimentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    testType?: StringFieldUpdateOperationsInput | string
+    control?: JsonNullValueInput | InputJsonValue
+    variants?: JsonNullValueInput | InputJsonValue
+    allocation?: JsonNullValueInput | InputJsonValue
+    metrics?: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestExperimentCreateManyInput = {
+    id?: string
+    name: string
+    status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    testType: string
+    control: JsonNullValueInput | InputJsonValue
+    variants: JsonNullValueInput | InputJsonValue
+    allocation: JsonNullValueInput | InputJsonValue
+    metrics: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ABTestExperimentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    testType?: StringFieldUpdateOperationsInput | string
+    control?: JsonNullValueInput | InputJsonValue
+    variants?: JsonNullValueInput | InputJsonValue
+    allocation?: JsonNullValueInput | InputJsonValue
+    metrics?: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestExperimentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    testType?: StringFieldUpdateOperationsInput | string
+    control?: JsonNullValueInput | InputJsonValue
+    variants?: JsonNullValueInput | InputJsonValue
+    allocation?: JsonNullValueInput | InputJsonValue
+    metrics?: JsonNullValueInput | InputJsonValue
+    results?: NullableJsonNullValueInput | InputJsonValue
+    winner?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizBrandCreateInput = {
+    id?: string
+    brandId: string
+    name: string
+    displayName: string
+    color: string
+    voltage: string
+    voltageOptions: JsonNullValueInput | InputJsonValue
+    marketShare?: number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: string | null
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizBrandUncheckedCreateInput = {
+    id?: string
+    brandId: string
+    name: string
+    displayName: string
+    color: string
+    voltage: string
+    voltageOptions: JsonNullValueInput | InputJsonValue
+    marketShare?: number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: string | null
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizBrandUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    voltage?: StringFieldUpdateOperationsInput | string
+    voltageOptions?: JsonNullValueInput | InputJsonValue
+    marketShare?: NullableFloatFieldUpdateOperationsInput | number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizBrandUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    voltage?: StringFieldUpdateOperationsInput | string
+    voltageOptions?: JsonNullValueInput | InputJsonValue
+    marketShare?: NullableFloatFieldUpdateOperationsInput | number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizBrandCreateManyInput = {
+    id?: string
+    brandId: string
+    name: string
+    displayName: string
+    color: string
+    voltage: string
+    voltageOptions: JsonNullValueInput | InputJsonValue
+    marketShare?: number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: string | null
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizBrandUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    voltage?: StringFieldUpdateOperationsInput | string
+    voltageOptions?: JsonNullValueInput | InputJsonValue
+    marketShare?: NullableFloatFieldUpdateOperationsInput | number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizBrandUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    brandId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    voltage?: StringFieldUpdateOperationsInput | string
+    voltageOptions?: JsonNullValueInput | InputJsonValue
+    marketShare?: NullableFloatFieldUpdateOperationsInput | number | null
+    popularWith?: NullableJsonNullValueInput | InputJsonValue
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizRoutingRuleCreateInput = {
+    id?: string
+    userType?: string | null
+    brand?: string | null
+    trade?: string | null
+    nextQuestionId: string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: number
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizRoutingRuleUncheckedCreateInput = {
+    id?: string
+    userType?: string | null
+    brand?: string | null
+    trade?: string | null
+    nextQuestionId: string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: number
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizRoutingRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    trade?: NullableStringFieldUpdateOperationsInput | string | null
+    nextQuestionId?: StringFieldUpdateOperationsInput | string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizRoutingRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    trade?: NullableStringFieldUpdateOperationsInput | string | null
+    nextQuestionId?: StringFieldUpdateOperationsInput | string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizRoutingRuleCreateManyInput = {
+    id?: string
+    userType?: string | null
+    brand?: string | null
+    trade?: string | null
+    nextQuestionId: string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: number
+    active?: boolean
+    createdAt?: Date | string
+  }
+
+  export type QuizRoutingRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    trade?: NullableStringFieldUpdateOperationsInput | string | null
+    nextQuestionId?: StringFieldUpdateOperationsInput | string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizRoutingRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    trade?: NullableStringFieldUpdateOperationsInput | string | null
+    nextQuestionId?: StringFieldUpdateOperationsInput | string
+    condition?: NullableJsonNullValueInput | InputJsonValue
+    priority?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizInterventionCreateInput = {
+    id?: string
+    sessionId: string
+    interventionType: string
+    triggerReason: string
+    questionId?: string | null
+    shownAt?: Date | string
+    userAction?: string | null
+    actionTimestamp?: Date | string | null
+  }
+
+  export type QuizInterventionUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    interventionType: string
+    triggerReason: string
+    questionId?: string | null
+    shownAt?: Date | string
+    userAction?: string | null
+    actionTimestamp?: Date | string | null
+  }
+
+  export type QuizInterventionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interventionType?: StringFieldUpdateOperationsInput | string
+    triggerReason?: StringFieldUpdateOperationsInput | string
+    questionId?: NullableStringFieldUpdateOperationsInput | string | null
+    shownAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAction?: NullableStringFieldUpdateOperationsInput | string | null
+    actionTimestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type QuizInterventionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interventionType?: StringFieldUpdateOperationsInput | string
+    triggerReason?: StringFieldUpdateOperationsInput | string
+    questionId?: NullableStringFieldUpdateOperationsInput | string | null
+    shownAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAction?: NullableStringFieldUpdateOperationsInput | string | null
+    actionTimestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type QuizInterventionCreateManyInput = {
+    id?: string
+    sessionId: string
+    interventionType: string
+    triggerReason: string
+    questionId?: string | null
+    shownAt?: Date | string
+    userAction?: string | null
+    actionTimestamp?: Date | string | null
+  }
+
+  export type QuizInterventionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interventionType?: StringFieldUpdateOperationsInput | string
+    triggerReason?: StringFieldUpdateOperationsInput | string
+    questionId?: NullableStringFieldUpdateOperationsInput | string | null
+    shownAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAction?: NullableStringFieldUpdateOperationsInput | string | null
+    actionTimestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type QuizInterventionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    interventionType?: StringFieldUpdateOperationsInput | string
+    triggerReason?: StringFieldUpdateOperationsInput | string
+    questionId?: NullableStringFieldUpdateOperationsInput | string | null
+    shownAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAction?: NullableStringFieldUpdateOperationsInput | string | null
+    actionTimestamp?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -42376,6 +54010,422 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type QuizResponseListRelationFilter = {
+    every?: QuizResponseWhereInput
+    some?: QuizResponseWhereInput
+    none?: QuizResponseWhereInput
+  }
+
+  export type BehavioralInteractionListRelationFilter = {
+    every?: BehavioralInteractionWhereInput
+    some?: BehavioralInteractionWhereInput
+    none?: BehavioralInteractionWhereInput
+  }
+
+  export type QuizConversionListRelationFilter = {
+    every?: QuizConversionWhereInput
+    some?: QuizConversionWhereInput
+    none?: QuizConversionWhereInput
+  }
+
+  export type QuizResponseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BehavioralInteractionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuizConversionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuizSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    quizId?: SortOrder
+    source?: SortOrder
+    utmSource?: SortOrder
+    utmMedium?: SortOrder
+    utmCampaign?: SortOrder
+    utmContent?: SortOrder
+    contentId?: SortOrder
+    campaignId?: SortOrder
+    deviceInfo?: SortOrder
+    landingPage?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    completionRate?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    companyName?: SortOrder
+    userType?: SortOrder
+    selectedBrand?: SortOrder
+    userSegment?: SortOrder
+    crewSize?: SortOrder
+    leadQualityScore?: SortOrder
+    version?: SortOrder
+  }
+
+  export type QuizSessionAvgOrderByAggregateInput = {
+    completionRate?: SortOrder
+    crewSize?: SortOrder
+    leadQualityScore?: SortOrder
+  }
+
+  export type QuizSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    quizId?: SortOrder
+    source?: SortOrder
+    utmSource?: SortOrder
+    utmMedium?: SortOrder
+    utmCampaign?: SortOrder
+    utmContent?: SortOrder
+    contentId?: SortOrder
+    campaignId?: SortOrder
+    landingPage?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    completionRate?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    companyName?: SortOrder
+    userType?: SortOrder
+    selectedBrand?: SortOrder
+    userSegment?: SortOrder
+    crewSize?: SortOrder
+    leadQualityScore?: SortOrder
+    version?: SortOrder
+  }
+
+  export type QuizSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    quizId?: SortOrder
+    source?: SortOrder
+    utmSource?: SortOrder
+    utmMedium?: SortOrder
+    utmCampaign?: SortOrder
+    utmContent?: SortOrder
+    contentId?: SortOrder
+    campaignId?: SortOrder
+    landingPage?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    completionRate?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    companyName?: SortOrder
+    userType?: SortOrder
+    selectedBrand?: SortOrder
+    userSegment?: SortOrder
+    crewSize?: SortOrder
+    leadQualityScore?: SortOrder
+    version?: SortOrder
+  }
+
+  export type QuizSessionSumOrderByAggregateInput = {
+    completionRate?: SortOrder
+    crewSize?: SortOrder
+    leadQualityScore?: SortOrder
+  }
+
+  export type QuizSessionScalarRelationFilter = {
+    is?: QuizSessionWhereInput
+    isNot?: QuizSessionWhereInput
+  }
+
+  export type QuizResponseCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    questionId?: SortOrder
+    questionType?: SortOrder
+    responseValue?: SortOrder
+    responseTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizResponseAvgOrderByAggregateInput = {
+    responseTime?: SortOrder
+  }
+
+  export type QuizResponseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    questionId?: SortOrder
+    questionType?: SortOrder
+    responseTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizResponseMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    questionId?: SortOrder
+    questionType?: SortOrder
+    responseTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizResponseSumOrderByAggregateInput = {
+    responseTime?: SortOrder
+  }
+
+  export type BehavioralInteractionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interactionType?: SortOrder
+    element?: SortOrder
+    position?: SortOrder
+    viewport?: SortOrder
+    duration?: SortOrder
+    metadata?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type BehavioralInteractionAvgOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
+  export type BehavioralInteractionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interactionType?: SortOrder
+    element?: SortOrder
+    duration?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type BehavioralInteractionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interactionType?: SortOrder
+    element?: SortOrder
+    duration?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type BehavioralInteractionSumOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
+  export type QuizConversionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    conversionType?: SortOrder
+    conversionValue?: SortOrder
+    orderId?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizConversionAvgOrderByAggregateInput = {
+    conversionValue?: SortOrder
+  }
+
+  export type QuizConversionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    conversionType?: SortOrder
+    conversionValue?: SortOrder
+    orderId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizConversionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    conversionType?: SortOrder
+    conversionValue?: SortOrder
+    orderId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizConversionSumOrderByAggregateInput = {
+    conversionValue?: SortOrder
+  }
+
+  export type ABTestExperimentCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    testType?: SortOrder
+    control?: SortOrder
+    variants?: SortOrder
+    allocation?: SortOrder
+    metrics?: SortOrder
+    results?: SortOrder
+    winner?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ABTestExperimentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    testType?: SortOrder
+    winner?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ABTestExperimentMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    testType?: SortOrder
+    winner?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QuizBrandCountOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    color?: SortOrder
+    voltage?: SortOrder
+    voltageOptions?: SortOrder
+    marketShare?: SortOrder
+    popularWith?: SortOrder
+    category?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizBrandAvgOrderByAggregateInput = {
+    marketShare?: SortOrder
+  }
+
+  export type QuizBrandMaxOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    color?: SortOrder
+    voltage?: SortOrder
+    marketShare?: SortOrder
+    category?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizBrandMinOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    name?: SortOrder
+    displayName?: SortOrder
+    color?: SortOrder
+    voltage?: SortOrder
+    marketShare?: SortOrder
+    category?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizBrandSumOrderByAggregateInput = {
+    marketShare?: SortOrder
+  }
+
+  export type QuizRoutingRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    userType?: SortOrder
+    brand?: SortOrder
+    trade?: SortOrder
+    nextQuestionId?: SortOrder
+    condition?: SortOrder
+    priority?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizRoutingRuleAvgOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type QuizRoutingRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userType?: SortOrder
+    brand?: SortOrder
+    trade?: SortOrder
+    nextQuestionId?: SortOrder
+    priority?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizRoutingRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    userType?: SortOrder
+    brand?: SortOrder
+    trade?: SortOrder
+    nextQuestionId?: SortOrder
+    priority?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type QuizRoutingRuleSumOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type QuizInterventionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interventionType?: SortOrder
+    triggerReason?: SortOrder
+    questionId?: SortOrder
+    shownAt?: SortOrder
+    userAction?: SortOrder
+    actionTimestamp?: SortOrder
+  }
+
+  export type QuizInterventionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interventionType?: SortOrder
+    triggerReason?: SortOrder
+    questionId?: SortOrder
+    shownAt?: SortOrder
+    userAction?: SortOrder
+    actionTimestamp?: SortOrder
+  }
+
+  export type QuizInterventionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    interventionType?: SortOrder
+    triggerReason?: SortOrder
+    questionId?: SortOrder
+    shownAt?: SortOrder
+    userAction?: SortOrder
+    actionTimestamp?: SortOrder
+  }
+
   export type ChatSessionCreateNestedManyWithoutUserInput = {
     create?: XOR<ChatSessionCreateWithoutUserInput, ChatSessionUncheckedCreateWithoutUserInput> | ChatSessionCreateWithoutUserInput[] | ChatSessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ChatSessionCreateOrConnectWithoutUserInput | ChatSessionCreateOrConnectWithoutUserInput[]
@@ -43474,6 +55524,174 @@ export namespace Prisma {
     upsert?: ProductUpsertWithoutPriceHistoryInput
     connect?: ProductWhereUniqueInput
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutPriceHistoryInput, ProductUpdateWithoutPriceHistoryInput>, ProductUncheckedUpdateWithoutPriceHistoryInput>
+  }
+
+  export type QuizResponseCreateNestedManyWithoutSessionInput = {
+    create?: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput> | QuizResponseCreateWithoutSessionInput[] | QuizResponseUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizResponseCreateOrConnectWithoutSessionInput | QuizResponseCreateOrConnectWithoutSessionInput[]
+    createMany?: QuizResponseCreateManySessionInputEnvelope
+    connect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+  }
+
+  export type BehavioralInteractionCreateNestedManyWithoutSessionInput = {
+    create?: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput> | BehavioralInteractionCreateWithoutSessionInput[] | BehavioralInteractionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: BehavioralInteractionCreateOrConnectWithoutSessionInput | BehavioralInteractionCreateOrConnectWithoutSessionInput[]
+    createMany?: BehavioralInteractionCreateManySessionInputEnvelope
+    connect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+  }
+
+  export type QuizConversionCreateNestedManyWithoutSessionInput = {
+    create?: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput> | QuizConversionCreateWithoutSessionInput[] | QuizConversionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizConversionCreateOrConnectWithoutSessionInput | QuizConversionCreateOrConnectWithoutSessionInput[]
+    createMany?: QuizConversionCreateManySessionInputEnvelope
+    connect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+  }
+
+  export type QuizResponseUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput> | QuizResponseCreateWithoutSessionInput[] | QuizResponseUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizResponseCreateOrConnectWithoutSessionInput | QuizResponseCreateOrConnectWithoutSessionInput[]
+    createMany?: QuizResponseCreateManySessionInputEnvelope
+    connect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+  }
+
+  export type BehavioralInteractionUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput> | BehavioralInteractionCreateWithoutSessionInput[] | BehavioralInteractionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: BehavioralInteractionCreateOrConnectWithoutSessionInput | BehavioralInteractionCreateOrConnectWithoutSessionInput[]
+    createMany?: BehavioralInteractionCreateManySessionInputEnvelope
+    connect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+  }
+
+  export type QuizConversionUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput> | QuizConversionCreateWithoutSessionInput[] | QuizConversionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizConversionCreateOrConnectWithoutSessionInput | QuizConversionCreateOrConnectWithoutSessionInput[]
+    createMany?: QuizConversionCreateManySessionInputEnvelope
+    connect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+  }
+
+  export type QuizResponseUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput> | QuizResponseCreateWithoutSessionInput[] | QuizResponseUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizResponseCreateOrConnectWithoutSessionInput | QuizResponseCreateOrConnectWithoutSessionInput[]
+    upsert?: QuizResponseUpsertWithWhereUniqueWithoutSessionInput | QuizResponseUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: QuizResponseCreateManySessionInputEnvelope
+    set?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    disconnect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    delete?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    connect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    update?: QuizResponseUpdateWithWhereUniqueWithoutSessionInput | QuizResponseUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: QuizResponseUpdateManyWithWhereWithoutSessionInput | QuizResponseUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: QuizResponseScalarWhereInput | QuizResponseScalarWhereInput[]
+  }
+
+  export type BehavioralInteractionUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput> | BehavioralInteractionCreateWithoutSessionInput[] | BehavioralInteractionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: BehavioralInteractionCreateOrConnectWithoutSessionInput | BehavioralInteractionCreateOrConnectWithoutSessionInput[]
+    upsert?: BehavioralInteractionUpsertWithWhereUniqueWithoutSessionInput | BehavioralInteractionUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: BehavioralInteractionCreateManySessionInputEnvelope
+    set?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    disconnect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    delete?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    connect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    update?: BehavioralInteractionUpdateWithWhereUniqueWithoutSessionInput | BehavioralInteractionUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: BehavioralInteractionUpdateManyWithWhereWithoutSessionInput | BehavioralInteractionUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: BehavioralInteractionScalarWhereInput | BehavioralInteractionScalarWhereInput[]
+  }
+
+  export type QuizConversionUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput> | QuizConversionCreateWithoutSessionInput[] | QuizConversionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizConversionCreateOrConnectWithoutSessionInput | QuizConversionCreateOrConnectWithoutSessionInput[]
+    upsert?: QuizConversionUpsertWithWhereUniqueWithoutSessionInput | QuizConversionUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: QuizConversionCreateManySessionInputEnvelope
+    set?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    disconnect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    delete?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    connect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    update?: QuizConversionUpdateWithWhereUniqueWithoutSessionInput | QuizConversionUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: QuizConversionUpdateManyWithWhereWithoutSessionInput | QuizConversionUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: QuizConversionScalarWhereInput | QuizConversionScalarWhereInput[]
+  }
+
+  export type QuizResponseUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput> | QuizResponseCreateWithoutSessionInput[] | QuizResponseUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizResponseCreateOrConnectWithoutSessionInput | QuizResponseCreateOrConnectWithoutSessionInput[]
+    upsert?: QuizResponseUpsertWithWhereUniqueWithoutSessionInput | QuizResponseUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: QuizResponseCreateManySessionInputEnvelope
+    set?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    disconnect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    delete?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    connect?: QuizResponseWhereUniqueInput | QuizResponseWhereUniqueInput[]
+    update?: QuizResponseUpdateWithWhereUniqueWithoutSessionInput | QuizResponseUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: QuizResponseUpdateManyWithWhereWithoutSessionInput | QuizResponseUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: QuizResponseScalarWhereInput | QuizResponseScalarWhereInput[]
+  }
+
+  export type BehavioralInteractionUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput> | BehavioralInteractionCreateWithoutSessionInput[] | BehavioralInteractionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: BehavioralInteractionCreateOrConnectWithoutSessionInput | BehavioralInteractionCreateOrConnectWithoutSessionInput[]
+    upsert?: BehavioralInteractionUpsertWithWhereUniqueWithoutSessionInput | BehavioralInteractionUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: BehavioralInteractionCreateManySessionInputEnvelope
+    set?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    disconnect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    delete?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    connect?: BehavioralInteractionWhereUniqueInput | BehavioralInteractionWhereUniqueInput[]
+    update?: BehavioralInteractionUpdateWithWhereUniqueWithoutSessionInput | BehavioralInteractionUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: BehavioralInteractionUpdateManyWithWhereWithoutSessionInput | BehavioralInteractionUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: BehavioralInteractionScalarWhereInput | BehavioralInteractionScalarWhereInput[]
+  }
+
+  export type QuizConversionUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput> | QuizConversionCreateWithoutSessionInput[] | QuizConversionUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: QuizConversionCreateOrConnectWithoutSessionInput | QuizConversionCreateOrConnectWithoutSessionInput[]
+    upsert?: QuizConversionUpsertWithWhereUniqueWithoutSessionInput | QuizConversionUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: QuizConversionCreateManySessionInputEnvelope
+    set?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    disconnect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    delete?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    connect?: QuizConversionWhereUniqueInput | QuizConversionWhereUniqueInput[]
+    update?: QuizConversionUpdateWithWhereUniqueWithoutSessionInput | QuizConversionUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: QuizConversionUpdateManyWithWhereWithoutSessionInput | QuizConversionUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: QuizConversionScalarWhereInput | QuizConversionScalarWhereInput[]
+  }
+
+  export type QuizSessionCreateNestedOneWithoutResponsesInput = {
+    create?: XOR<QuizSessionCreateWithoutResponsesInput, QuizSessionUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutResponsesInput
+    connect?: QuizSessionWhereUniqueInput
+  }
+
+  export type QuizSessionUpdateOneRequiredWithoutResponsesNestedInput = {
+    create?: XOR<QuizSessionCreateWithoutResponsesInput, QuizSessionUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutResponsesInput
+    upsert?: QuizSessionUpsertWithoutResponsesInput
+    connect?: QuizSessionWhereUniqueInput
+    update?: XOR<XOR<QuizSessionUpdateToOneWithWhereWithoutResponsesInput, QuizSessionUpdateWithoutResponsesInput>, QuizSessionUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type QuizSessionCreateNestedOneWithoutInteractionsInput = {
+    create?: XOR<QuizSessionCreateWithoutInteractionsInput, QuizSessionUncheckedCreateWithoutInteractionsInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutInteractionsInput
+    connect?: QuizSessionWhereUniqueInput
+  }
+
+  export type QuizSessionUpdateOneRequiredWithoutInteractionsNestedInput = {
+    create?: XOR<QuizSessionCreateWithoutInteractionsInput, QuizSessionUncheckedCreateWithoutInteractionsInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutInteractionsInput
+    upsert?: QuizSessionUpsertWithoutInteractionsInput
+    connect?: QuizSessionWhereUniqueInput
+    update?: XOR<XOR<QuizSessionUpdateToOneWithWhereWithoutInteractionsInput, QuizSessionUpdateWithoutInteractionsInput>, QuizSessionUncheckedUpdateWithoutInteractionsInput>
+  }
+
+  export type QuizSessionCreateNestedOneWithoutConversionsInput = {
+    create?: XOR<QuizSessionCreateWithoutConversionsInput, QuizSessionUncheckedCreateWithoutConversionsInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutConversionsInput
+    connect?: QuizSessionWhereUniqueInput
+  }
+
+  export type QuizSessionUpdateOneRequiredWithoutConversionsNestedInput = {
+    create?: XOR<QuizSessionCreateWithoutConversionsInput, QuizSessionUncheckedCreateWithoutConversionsInput>
+    connectOrCreate?: QuizSessionCreateOrConnectWithoutConversionsInput
+    upsert?: QuizSessionUpsertWithoutConversionsInput
+    connect?: QuizSessionWhereUniqueInput
+    update?: XOR<XOR<QuizSessionUpdateToOneWithWhereWithoutConversionsInput, QuizSessionUpdateWithoutConversionsInput>, QuizSessionUncheckedUpdateWithoutConversionsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -46708,6 +58926,639 @@ export namespace Prisma {
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
   }
 
+  export type QuizResponseCreateWithoutSessionInput = {
+    id?: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+  }
+
+  export type QuizResponseUncheckedCreateWithoutSessionInput = {
+    id?: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+  }
+
+  export type QuizResponseCreateOrConnectWithoutSessionInput = {
+    where: QuizResponseWhereUniqueInput
+    create: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput>
+  }
+
+  export type QuizResponseCreateManySessionInputEnvelope = {
+    data: QuizResponseCreateManySessionInput | QuizResponseCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BehavioralInteractionCreateWithoutSessionInput = {
+    id?: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type BehavioralInteractionUncheckedCreateWithoutSessionInput = {
+    id?: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type BehavioralInteractionCreateOrConnectWithoutSessionInput = {
+    where: BehavioralInteractionWhereUniqueInput
+    create: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput>
+  }
+
+  export type BehavioralInteractionCreateManySessionInputEnvelope = {
+    data: BehavioralInteractionCreateManySessionInput | BehavioralInteractionCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type QuizConversionCreateWithoutSessionInput = {
+    id?: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type QuizConversionUncheckedCreateWithoutSessionInput = {
+    id?: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type QuizConversionCreateOrConnectWithoutSessionInput = {
+    where: QuizConversionWhereUniqueInput
+    create: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput>
+  }
+
+  export type QuizConversionCreateManySessionInputEnvelope = {
+    data: QuizConversionCreateManySessionInput | QuizConversionCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type QuizResponseUpsertWithWhereUniqueWithoutSessionInput = {
+    where: QuizResponseWhereUniqueInput
+    update: XOR<QuizResponseUpdateWithoutSessionInput, QuizResponseUncheckedUpdateWithoutSessionInput>
+    create: XOR<QuizResponseCreateWithoutSessionInput, QuizResponseUncheckedCreateWithoutSessionInput>
+  }
+
+  export type QuizResponseUpdateWithWhereUniqueWithoutSessionInput = {
+    where: QuizResponseWhereUniqueInput
+    data: XOR<QuizResponseUpdateWithoutSessionInput, QuizResponseUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type QuizResponseUpdateManyWithWhereWithoutSessionInput = {
+    where: QuizResponseScalarWhereInput
+    data: XOR<QuizResponseUpdateManyMutationInput, QuizResponseUncheckedUpdateManyWithoutSessionInput>
+  }
+
+  export type QuizResponseScalarWhereInput = {
+    AND?: QuizResponseScalarWhereInput | QuizResponseScalarWhereInput[]
+    OR?: QuizResponseScalarWhereInput[]
+    NOT?: QuizResponseScalarWhereInput | QuizResponseScalarWhereInput[]
+    id?: StringFilter<"QuizResponse"> | string
+    sessionId?: StringFilter<"QuizResponse"> | string
+    questionId?: StringFilter<"QuizResponse"> | string
+    questionType?: StringFilter<"QuizResponse"> | string
+    responseValue?: JsonFilter<"QuizResponse">
+    responseTime?: IntNullableFilter<"QuizResponse"> | number | null
+    createdAt?: DateTimeFilter<"QuizResponse"> | Date | string
+  }
+
+  export type BehavioralInteractionUpsertWithWhereUniqueWithoutSessionInput = {
+    where: BehavioralInteractionWhereUniqueInput
+    update: XOR<BehavioralInteractionUpdateWithoutSessionInput, BehavioralInteractionUncheckedUpdateWithoutSessionInput>
+    create: XOR<BehavioralInteractionCreateWithoutSessionInput, BehavioralInteractionUncheckedCreateWithoutSessionInput>
+  }
+
+  export type BehavioralInteractionUpdateWithWhereUniqueWithoutSessionInput = {
+    where: BehavioralInteractionWhereUniqueInput
+    data: XOR<BehavioralInteractionUpdateWithoutSessionInput, BehavioralInteractionUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type BehavioralInteractionUpdateManyWithWhereWithoutSessionInput = {
+    where: BehavioralInteractionScalarWhereInput
+    data: XOR<BehavioralInteractionUpdateManyMutationInput, BehavioralInteractionUncheckedUpdateManyWithoutSessionInput>
+  }
+
+  export type BehavioralInteractionScalarWhereInput = {
+    AND?: BehavioralInteractionScalarWhereInput | BehavioralInteractionScalarWhereInput[]
+    OR?: BehavioralInteractionScalarWhereInput[]
+    NOT?: BehavioralInteractionScalarWhereInput | BehavioralInteractionScalarWhereInput[]
+    id?: StringFilter<"BehavioralInteraction"> | string
+    sessionId?: StringFilter<"BehavioralInteraction"> | string
+    interactionType?: StringFilter<"BehavioralInteraction"> | string
+    element?: StringNullableFilter<"BehavioralInteraction"> | string | null
+    position?: JsonNullableFilter<"BehavioralInteraction">
+    viewport?: JsonNullableFilter<"BehavioralInteraction">
+    duration?: IntNullableFilter<"BehavioralInteraction"> | number | null
+    metadata?: JsonNullableFilter<"BehavioralInteraction">
+    timestamp?: DateTimeFilter<"BehavioralInteraction"> | Date | string
+  }
+
+  export type QuizConversionUpsertWithWhereUniqueWithoutSessionInput = {
+    where: QuizConversionWhereUniqueInput
+    update: XOR<QuizConversionUpdateWithoutSessionInput, QuizConversionUncheckedUpdateWithoutSessionInput>
+    create: XOR<QuizConversionCreateWithoutSessionInput, QuizConversionUncheckedCreateWithoutSessionInput>
+  }
+
+  export type QuizConversionUpdateWithWhereUniqueWithoutSessionInput = {
+    where: QuizConversionWhereUniqueInput
+    data: XOR<QuizConversionUpdateWithoutSessionInput, QuizConversionUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type QuizConversionUpdateManyWithWhereWithoutSessionInput = {
+    where: QuizConversionScalarWhereInput
+    data: XOR<QuizConversionUpdateManyMutationInput, QuizConversionUncheckedUpdateManyWithoutSessionInput>
+  }
+
+  export type QuizConversionScalarWhereInput = {
+    AND?: QuizConversionScalarWhereInput | QuizConversionScalarWhereInput[]
+    OR?: QuizConversionScalarWhereInput[]
+    NOT?: QuizConversionScalarWhereInput | QuizConversionScalarWhereInput[]
+    id?: StringFilter<"QuizConversion"> | string
+    sessionId?: StringFilter<"QuizConversion"> | string
+    conversionType?: StringFilter<"QuizConversion"> | string
+    conversionValue?: FloatNullableFilter<"QuizConversion"> | number | null
+    orderId?: StringNullableFilter<"QuizConversion"> | string | null
+    metadata?: JsonNullableFilter<"QuizConversion">
+    createdAt?: DateTimeFilter<"QuizConversion"> | Date | string
+  }
+
+  export type QuizSessionCreateWithoutResponsesInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    interactions?: BehavioralInteractionCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionUncheckedCreateWithoutResponsesInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    interactions?: BehavioralInteractionUncheckedCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionCreateOrConnectWithoutResponsesInput = {
+    where: QuizSessionWhereUniqueInput
+    create: XOR<QuizSessionCreateWithoutResponsesInput, QuizSessionUncheckedCreateWithoutResponsesInput>
+  }
+
+  export type QuizSessionUpsertWithoutResponsesInput = {
+    update: XOR<QuizSessionUpdateWithoutResponsesInput, QuizSessionUncheckedUpdateWithoutResponsesInput>
+    create: XOR<QuizSessionCreateWithoutResponsesInput, QuizSessionUncheckedCreateWithoutResponsesInput>
+    where?: QuizSessionWhereInput
+  }
+
+  export type QuizSessionUpdateToOneWithWhereWithoutResponsesInput = {
+    where?: QuizSessionWhereInput
+    data: XOR<QuizSessionUpdateWithoutResponsesInput, QuizSessionUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type QuizSessionUpdateWithoutResponsesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    interactions?: BehavioralInteractionUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionUncheckedUpdateWithoutResponsesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    interactions?: BehavioralInteractionUncheckedUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionCreateWithoutInteractionsInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionUncheckedCreateWithoutInteractionsInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseUncheckedCreateNestedManyWithoutSessionInput
+    conversions?: QuizConversionUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionCreateOrConnectWithoutInteractionsInput = {
+    where: QuizSessionWhereUniqueInput
+    create: XOR<QuizSessionCreateWithoutInteractionsInput, QuizSessionUncheckedCreateWithoutInteractionsInput>
+  }
+
+  export type QuizSessionUpsertWithoutInteractionsInput = {
+    update: XOR<QuizSessionUpdateWithoutInteractionsInput, QuizSessionUncheckedUpdateWithoutInteractionsInput>
+    create: XOR<QuizSessionCreateWithoutInteractionsInput, QuizSessionUncheckedCreateWithoutInteractionsInput>
+    where?: QuizSessionWhereInput
+  }
+
+  export type QuizSessionUpdateToOneWithWhereWithoutInteractionsInput = {
+    where?: QuizSessionWhereInput
+    data: XOR<QuizSessionUpdateWithoutInteractionsInput, QuizSessionUncheckedUpdateWithoutInteractionsInput>
+  }
+
+  export type QuizSessionUpdateWithoutInteractionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionUncheckedUpdateWithoutInteractionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUncheckedUpdateManyWithoutSessionNestedInput
+    conversions?: QuizConversionUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionCreateWithoutConversionsInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseCreateNestedManyWithoutSessionInput
+    interactions?: BehavioralInteractionCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionUncheckedCreateWithoutConversionsInput = {
+    id?: string
+    sessionId: string
+    quizId: string
+    source?: string | null
+    utmSource?: string | null
+    utmMedium?: string | null
+    utmCampaign?: string | null
+    utmContent?: string | null
+    contentId?: string | null
+    campaignId?: string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: string | null
+    ipAddress?: string | null
+    userAgent?: string | null
+    status?: string
+    createdAt?: Date | string
+    startTime?: Date | string
+    endTime?: Date | string | null
+    completionRate?: number | null
+    userName?: string | null
+    email?: string | null
+    phoneNumber?: string | null
+    companyName?: string | null
+    userType?: string | null
+    selectedBrand?: string | null
+    userSegment?: string | null
+    crewSize?: number | null
+    leadQualityScore?: number | null
+    version?: string | null
+    responses?: QuizResponseUncheckedCreateNestedManyWithoutSessionInput
+    interactions?: BehavioralInteractionUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type QuizSessionCreateOrConnectWithoutConversionsInput = {
+    where: QuizSessionWhereUniqueInput
+    create: XOR<QuizSessionCreateWithoutConversionsInput, QuizSessionUncheckedCreateWithoutConversionsInput>
+  }
+
+  export type QuizSessionUpsertWithoutConversionsInput = {
+    update: XOR<QuizSessionUpdateWithoutConversionsInput, QuizSessionUncheckedUpdateWithoutConversionsInput>
+    create: XOR<QuizSessionCreateWithoutConversionsInput, QuizSessionUncheckedCreateWithoutConversionsInput>
+    where?: QuizSessionWhereInput
+  }
+
+  export type QuizSessionUpdateToOneWithWhereWithoutConversionsInput = {
+    where?: QuizSessionWhereInput
+    data: XOR<QuizSessionUpdateWithoutConversionsInput, QuizSessionUncheckedUpdateWithoutConversionsInput>
+  }
+
+  export type QuizSessionUpdateWithoutConversionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUpdateManyWithoutSessionNestedInput
+    interactions?: BehavioralInteractionUpdateManyWithoutSessionNestedInput
+  }
+
+  export type QuizSessionUncheckedUpdateWithoutConversionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    quizId?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    utmSource?: NullableStringFieldUpdateOperationsInput | string | null
+    utmMedium?: NullableStringFieldUpdateOperationsInput | string | null
+    utmCampaign?: NullableStringFieldUpdateOperationsInput | string | null
+    utmContent?: NullableStringFieldUpdateOperationsInput | string | null
+    contentId?: NullableStringFieldUpdateOperationsInput | string | null
+    campaignId?: NullableStringFieldUpdateOperationsInput | string | null
+    deviceInfo?: NullableJsonNullValueInput | InputJsonValue
+    landingPage?: NullableStringFieldUpdateOperationsInput | string | null
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completionRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    userType?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedBrand?: NullableStringFieldUpdateOperationsInput | string | null
+    userSegment?: NullableStringFieldUpdateOperationsInput | string | null
+    crewSize?: NullableIntFieldUpdateOperationsInput | number | null
+    leadQualityScore?: NullableFloatFieldUpdateOperationsInput | number | null
+    version?: NullableStringFieldUpdateOperationsInput | string | null
+    responses?: QuizResponseUncheckedUpdateManyWithoutSessionNestedInput
+    interactions?: BehavioralInteractionUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
   export type ChatSessionCreateManyUserInput = {
     id: string
     title: string
@@ -47592,6 +60443,122 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizResponseCreateManySessionInput = {
+    id?: string
+    questionId: string
+    questionType: string
+    responseValue: JsonNullValueInput | InputJsonValue
+    responseTime?: number | null
+    createdAt?: Date | string
+  }
+
+  export type BehavioralInteractionCreateManySessionInput = {
+    id?: string
+    interactionType: string
+    element?: string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: Date | string
+  }
+
+  export type QuizConversionCreateManySessionInput = {
+    id?: string
+    conversionType: string
+    conversionValue?: number | null
+    orderId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type QuizResponseUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizResponseUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizResponseUncheckedUpdateManyWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    questionId?: StringFieldUpdateOperationsInput | string
+    questionType?: StringFieldUpdateOperationsInput | string
+    responseValue?: JsonNullValueInput | InputJsonValue
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BehavioralInteractionUncheckedUpdateManyWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interactionType?: StringFieldUpdateOperationsInput | string
+    element?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableJsonNullValueInput | InputJsonValue
+    viewport?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuizConversionUncheckedUpdateManyWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conversionType?: StringFieldUpdateOperationsInput | string
+    conversionValue?: NullableFloatFieldUpdateOperationsInput | number | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

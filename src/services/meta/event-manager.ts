@@ -1,6 +1,6 @@
 // Unified event manager for client-server event matching and deduplication
-import { MetaPixelService } from './pixel';
-import { ConversionsAPIService } from './conversions-api';
+import { MetaPixel as MetaPixelService } from './pixel';
+import { ConversionsAPI as ConversionsAPIService } from './conversions-api';
 import { EventData, ServerEvent, EventMatchResult, UserData } from './types';
 import { DataEnrichmentService } from './data-enrichment';
 

@@ -510,6 +510,125 @@ exports.Prisma.AnalyticsReportScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.QuizSessionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  quizId: 'quizId',
+  source: 'source',
+  utmSource: 'utmSource',
+  utmMedium: 'utmMedium',
+  utmCampaign: 'utmCampaign',
+  utmContent: 'utmContent',
+  contentId: 'contentId',
+  campaignId: 'campaignId',
+  deviceInfo: 'deviceInfo',
+  landingPage: 'landingPage',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  status: 'status',
+  createdAt: 'createdAt',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  completionRate: 'completionRate',
+  userName: 'userName',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  companyName: 'companyName',
+  userType: 'userType',
+  selectedBrand: 'selectedBrand',
+  userSegment: 'userSegment',
+  crewSize: 'crewSize',
+  leadQualityScore: 'leadQualityScore',
+  version: 'version'
+};
+
+exports.Prisma.QuizResponseScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  questionId: 'questionId',
+  questionType: 'questionType',
+  responseValue: 'responseValue',
+  responseTime: 'responseTime',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BehavioralInteractionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  interactionType: 'interactionType',
+  element: 'element',
+  position: 'position',
+  viewport: 'viewport',
+  duration: 'duration',
+  metadata: 'metadata',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.QuizConversionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  conversionType: 'conversionType',
+  conversionValue: 'conversionValue',
+  orderId: 'orderId',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ABTestExperimentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  testType: 'testType',
+  control: 'control',
+  variants: 'variants',
+  allocation: 'allocation',
+  metrics: 'metrics',
+  results: 'results',
+  winner: 'winner',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuizBrandScalarFieldEnum = {
+  id: 'id',
+  brandId: 'brandId',
+  name: 'name',
+  displayName: 'displayName',
+  color: 'color',
+  voltage: 'voltage',
+  voltageOptions: 'voltageOptions',
+  marketShare: 'marketShare',
+  popularWith: 'popularWith',
+  category: 'category',
+  active: 'active',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.QuizRoutingRuleScalarFieldEnum = {
+  id: 'id',
+  userType: 'userType',
+  brand: 'brand',
+  trade: 'trade',
+  nextQuestionId: 'nextQuestionId',
+  condition: 'condition',
+  priority: 'priority',
+  active: 'active',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.QuizInterventionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  interventionType: 'interventionType',
+  triggerReason: 'triggerReason',
+  questionId: 'questionId',
+  shownAt: 'shownAt',
+  userAction: 'userAction',
+  actionTimestamp: 'actionTimestamp'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -568,7 +687,15 @@ exports.Prisma.ModelName = {
   AnalyticsFunnel: 'AnalyticsFunnel',
   AnalyticsAttribution: 'AnalyticsAttribution',
   AnalyticsSegment: 'AnalyticsSegment',
-  AnalyticsReport: 'AnalyticsReport'
+  AnalyticsReport: 'AnalyticsReport',
+  QuizSession: 'QuizSession',
+  QuizResponse: 'QuizResponse',
+  BehavioralInteraction: 'BehavioralInteraction',
+  QuizConversion: 'QuizConversion',
+  ABTestExperiment: 'ABTestExperiment',
+  QuizBrand: 'QuizBrand',
+  QuizRoutingRule: 'QuizRoutingRule',
+  QuizIntervention: 'QuizIntervention'
 };
 
 /**

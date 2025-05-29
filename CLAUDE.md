@@ -1,7 +1,12 @@
 # Claude Code Instructions - Battery Department Project
 
-## IMPORTANT: Read DESIGN_SYSTEM.md First
-Before making ANY UI changes, you MUST read the complete design system documentation at `/Users/oliver/Lithi_AI/battery-dashboard/DESIGN_SYSTEM.md`
+## CRITICAL: READ THESE FILES FIRST
+1. **LITHI_AI_PROJECT_CONTEXT.md** - Comprehensive project documentation (READ ENTIRE FILE)
+2. **DESIGN_SYSTEM.md** - Complete design system specifications
+3. **This file (CLAUDE.md)** - Quick reference and reminders
+
+Before making ANY changes, you MUST read the comprehensive project context at:
+`/Users/oliver/Lithi_AI/battery-dashboard/LITHI_AI_PROJECT_CONTEXT.md`
 
 ## Project Overview
 This is the Battery Department e-commerce platform specializing in FlexVolt batteries for contractors. The platform uses a consistent, modern design language throughout.
