@@ -1,132 +1,153 @@
-/**
- * Health Check API
- * Provides health status for the dashboard service
- */
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { getConversionsAPI } from '@/services/meta/conversions-api';
+import { getMetaPixel } from '@/services/meta/pixel';
+import { getAudienceManager } from '@/services/meta/audience-manager';
 
-import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
-import { healthMonitor } from '@/services/monitoring/health-monitor'
-
-export async function GET(request: NextRequest) {
-  const startTime = Date.now()
-  
-  try {
-    // Check database connection
-    const dbCheck = await checkDatabase()
-    
-    // Check external services
-    const servicesCheck = await checkExternalServices()
-    
-    // Get system metrics
-    const systemHealth = await healthMonitor.getSystemHealth()
-    
-    const responseTime = Date.now() - startTime
-    
-    const health = {
-      status: systemHealth.status,
-      timestamp: new Date().toISOString(),
-      responseTime,
-      checks: {
-        database: dbCheck,
-        services: servicesCheck,
-        system: systemHealth
-      },
-      environment: {
-        nodeVersion: process.version,
-        environment: process.env.NODE_ENV,
-        uptime: process.uptime()
-      }
-    }
-    
-    const statusCode = health.status === 'healthy' ? 200 : 
-                       health.status === 'degraded' ? 200 : 503
-    
-    return NextResponse.json(health, { status: statusCode })
-  } catch (error: any) {
-    return NextResponse.json({
-      status: 'error',
-      timestamp: new Date().toISOString(),
-      responseTime: Date.now() - startTime,
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-    }, { status: 503 })
-  }
-}
-
-async function checkDatabase(): Promise<{
-  status: 'healthy' | 'degraded' | 'down'
-  responseTime: number
-  message?: string
-}> {
-  const startTime = Date.now()
-  
-  try {
-    // Simple query to check database connection
-    await prisma.$queryRaw`SELECT 1`
-    
-    const responseTime = Date.now() - startTime
-    
-    return {
-      status: responseTime < 100 ? 'healthy' : 'degraded',
-      responseTime
-    }
-  } catch (error: any) {
-    return {
-      status: 'down',
-      responseTime: Date.now() - startTime,
-      message: error.message
-    }
-  }
-}
-
-async function checkExternalServices(): Promise<Record<string, {
-  status: 'healthy' | 'degraded' | 'down'
-  responseTime: number
-  message?: string
-}>> {
-  const services: Record<string, () => Promise<any>> = {
-    openai: async () => {
-      // Check OpenAI API availability
-      const response = await fetch('https://api.openai.com/v1/models', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-        }
-      })
-      if (!response.ok) throw new Error('OpenAI API error')
+export async function GET() {
+  const health = {
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    version: process.env.npm_package_version || '1.0.0',
+    services: {
+      database: { status: 'unknown', latency: 0 },
+      meta_pixel: { status: 'unknown', test_mode: true },
+      conversions_api: { status: 'unknown', queue_size: 0 },
+      audience_manager: { status: 'unknown', audience_count: 0 },
+      redis: { status: 'unknown', latency: 0 }
     },
-    monday: async () => {
-      // Check Monday.com API availability  
-      const response = await fetch('https://api.monday.com/v2', {
-        method: 'POST',
-        headers: {
-          'Authorization': process.env.MONDAY_API_KEY || '',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query: '{ me { name } }' })
-      })
-      if (!response.ok) throw new Error('Monday API error')
+    metrics: {
+      memory: process.memoryUsage(),
+      uptime: process.uptime()
     }
+  };
+
+  // Check database
+  try {
+    const start = Date.now();
+    await prisma.$queryRaw`SELECT 1`;
+    health.services.database = {
+      status: 'healthy',
+      latency: Date.now() - start
+    };
+  } catch (error) {
+    health.status = 'degraded';
+    health.services.database = {
+      status: 'unhealthy',
+      latency: 0,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
   }
-  
-  const results: Record<string, any> = {}
-  
-  for (const [name, checkFn] of Object.entries(services)) {
-    const startTime = Date.now()
-    try {
-      await checkFn()
-      results[name] = {
+
+  // Check Meta Pixel
+  try {
+    const pixel = getMetaPixel();
+    health.services.meta_pixel = {
+      status: pixel ? 'healthy' : 'not_initialized',
+      test_mode: true,
+      events_tracked: pixel?.getTestEvents().length || 0
+    };
+  } catch (error) {
+    health.services.meta_pixel = {
+      status: 'unhealthy',
+      test_mode: true,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
+  }
+
+  // Check Conversions API
+  try {
+    const capi = getConversionsAPI();
+    if (capi) {
+      const queueStatus = capi.getQueueStatus();
+      const connectionTest = await capi.testConnection();
+      
+      health.services.conversions_api = {
+        status: connectionTest.success ? 'healthy' : 'degraded',
+        queue_size: queueStatus.queueLength,
+        test_mode: true,
+        message: connectionTest.message
+      };
+    } else {
+      health.services.conversions_api = {
+        status: 'not_initialized',
+        queue_size: 0,
+        test_mode: true
+      };
+    }
+  } catch (error) {
+    health.services.conversions_api = {
+      status: 'unhealthy',
+      queue_size: 0,
+      test_mode: true,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
+  }
+
+  // Check Audience Manager
+  try {
+    const audienceManager = getAudienceManager();
+    if (audienceManager) {
+      const audiences = audienceManager.getAudiences();
+      health.services.audience_manager = {
         status: 'healthy',
-        responseTime: Date.now() - startTime
-      }
-    } catch (error: any) {
-      results[name] = {
-        status: 'down',
-        responseTime: Date.now() - startTime,
-        message: error.message
-      }
+        audience_count: audiences.length,
+        synced: audiences.filter(a => a.syncStatus === 'synced').length,
+        pending: audiences.filter(a => a.syncStatus === 'pending').length
+      };
+    } else {
+      health.services.audience_manager = {
+        status: 'not_initialized',
+        audience_count: 0
+      };
     }
+  } catch (error) {
+    health.services.audience_manager = {
+      status: 'unhealthy',
+      audience_count: 0,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
   }
-  
-  return results
+
+  // Check Redis (Vercel KV)
+  if (process.env.KV_REST_API_URL) {
+    try {
+      const start = Date.now();
+      const response = await fetch(`${process.env.KV_REST_API_URL}/ping`, {
+        headers: {
+          Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`
+        }
+      });
+      
+      health.services.redis = {
+        status: response.ok ? 'healthy' : 'unhealthy',
+        latency: Date.now() - start
+      };
+    } catch (error) {
+      health.services.redis = {
+        status: 'unhealthy',
+        latency: 0,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
+    }
+  } else {
+    health.services.redis = {
+      status: 'not_configured',
+      latency: 0
+    };
+  }
+
+  // Determine overall health
+  const unhealthyServices = Object.values(health.services).filter(
+    s => s.status === 'unhealthy'
+  ).length;
+
+  if (unhealthyServices > 0) {
+    health.status = unhealthyServices > 2 ? 'unhealthy' : 'degraded';
+  }
+
+  const statusCode = health.status === 'healthy' ? 200 : 
+                     health.status === 'degraded' ? 200 : 503;
+
+  return NextResponse.json(health, { status: statusCode });
 }

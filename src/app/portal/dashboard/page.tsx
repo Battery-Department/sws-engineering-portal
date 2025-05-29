@@ -19,7 +19,8 @@ import {
   X,
   Bell,
   Search,
-  BarChart
+  BarChart,
+  Brain
 } from 'lucide-react'
 
 const navigation = [
@@ -29,6 +30,7 @@ const navigation = [
   { name: 'Inventory', href: '/portal/inventory', icon: Package, current: false },
   { name: 'Shipping', href: '/portal/shipping', icon: Truck, current: false },
   { name: 'Analytics', href: '/portal/analytics', icon: BarChart, current: false },
+  { name: 'Quiz Intelligence', href: '/portal/quiz-intelligence', icon: Brain, current: false },
   { name: 'Settings', href: '/portal/settings', icon: Settings, current: false },
 ]
 

@@ -509,3 +509,186 @@ model Notification {
   @@index([read])
   @@index([createdAt])
 }
+
+// Enhanced Analytics Models
+model AnalyticsEvent {
+  id            String   @id @default(uuid())
+  sessionId     String
+  userId        String?
+  eventName     String
+  eventCategory String
+  eventData     Json // Compressed event-specific data
+  dataPoints    Json // Compressed data points (150+ tracked)
+  context       Json // Page, referrer, device info, etc.
+  timestamp     DateTime
+  createdAt     DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([userId])
+  @@index([eventName])
+  @@index([eventCategory])
+  @@index([timestamp])
+  @@index([createdAt])
+}
+
+model AnalyticsSession {
+  id        String    @id @default(uuid())
+  userId    String?
+  visitorId String? // For anonymous users
+  startTime DateTime
+  endTime   DateTime?
+  duration  Int? // In seconds
+  pageViews Int       @default(0)
+  events    Int       @default(0)
+  bounced   Boolean   @default(false)
+
+  // Attribution data
+  source   String? // utm_source or referrer
+  medium   String? // utm_medium
+  campaign String? // utm_campaign
+  content  String? // utm_content
+  term     String? // utm_term
+
+  // Device/Browser
+  deviceType       String?
+  deviceBrand      String?
+  browser          String?
+  os               String?
+  screenResolution String?
+
+  // Geographic
+  country String?
+  region  String?
+  city    String?
+
+  // Aggregated metrics
+  engagementScore Float?
+  conversionValue Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([visitorId])
+  @@index([startTime])
+  @@index([source])
+  @@index([country])
+}
+
+model AnalyticsMetric {
+  id          String @id @default(uuid())
+  name        String @unique
+  type        String // count, sum, average, etc.
+  category    String // engagement, conversion, technical, etc.
+  calculation Json // Metric calculation definition
+
+  // Cached aggregations for performance
+  dailyValues   Json? // Last 30 days
+  weeklyValues  Json? // Last 12 weeks
+  monthlyValues Json? // Last 12 months
+
+  lastCalculated DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([name])
+  @@index([category])
+}
+
+model AnalyticsCohort {
+  id         String @id @default(uuid())
+  name       String @unique
+  definition Json // Cohort definition (filters, conditions)
+  userCount  Int    @default(0)
+
+  // Cached metrics
+  retentionData  Json? // Retention by day/week/month
+  engagementData Json? // Average engagement metrics
+  revenueData    Json? // Revenue metrics
+
+  lastUpdated DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([name])
+}
+
+model AnalyticsFunnel {
+  id    String @id @default(uuid())
+  name  String @unique
+  steps Json // Funnel step definitions
+
+  // Cached conversion data
+  conversionRates Json? // Conversion rate per step
+  dropoffRates    Json? // Dropoff rate per step
+  avgTimePerStep  Json? // Average time per step
+
+  lastCalculated DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([name])
+}
+
+model AnalyticsAttribution {
+  id              String  @id @default(uuid())
+  userId          String
+  conversionId    String? // Order ID, subscription ID, etc.
+  conversionType  String // purchase, subscription, lead, etc.
+  conversionValue Float?
+
+  // Attribution data
+  touchpoints    Json // Array of touchpoints with timestamps
+  model          String // firstTouch, lastTouch, linear, etc.
+  channelWeights Json // Weight per channel based on model
+
+  convertedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([userId])
+  @@index([conversionType])
+  @@index([convertedAt])
+}
+
+model AnalyticsSegment {
+  id         String @id @default(uuid())
+  name       String @unique
+  type       String // behavioral, demographic, technographic, etc.
+  conditions Json // Segment conditions
+  userCount  Int    @default(0)
+
+  // Performance metrics
+  avgEngagement  Float?
+  avgRevenue     Float?
+  conversionRate Float?
+
+  lastUpdated DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([name])
+  @@index([type])
+}
+
+model AnalyticsReport {
+  id         String @id @default(uuid())
+  name       String
+  type       String // dashboard, export, scheduled, etc.
+  definition Json // Report configuration
+
+  // Scheduling
+  schedule String? // cron expression
+  lastRun  DateTime?
+  nextRun  DateTime?
+
+  // Distribution
+  recipients Json? // Email addresses
+  format     String @default("pdf") // pdf, csv, excel
+
+  createdBy String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([type])
+  @@index([createdBy])
+}

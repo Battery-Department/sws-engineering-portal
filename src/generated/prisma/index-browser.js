@@ -384,6 +384,129 @@ exports.Prisma.NotificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AnalyticsEventScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  eventName: 'eventName',
+  eventCategory: 'eventCategory',
+  eventData: 'eventData',
+  dataPoints: 'dataPoints',
+  context: 'context',
+  timestamp: 'timestamp',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AnalyticsSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  visitorId: 'visitorId',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  duration: 'duration',
+  pageViews: 'pageViews',
+  events: 'events',
+  bounced: 'bounced',
+  source: 'source',
+  medium: 'medium',
+  campaign: 'campaign',
+  content: 'content',
+  term: 'term',
+  deviceType: 'deviceType',
+  deviceBrand: 'deviceBrand',
+  browser: 'browser',
+  os: 'os',
+  screenResolution: 'screenResolution',
+  country: 'country',
+  region: 'region',
+  city: 'city',
+  engagementScore: 'engagementScore',
+  conversionValue: 'conversionValue',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnalyticsMetricScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  category: 'category',
+  calculation: 'calculation',
+  dailyValues: 'dailyValues',
+  weeklyValues: 'weeklyValues',
+  monthlyValues: 'monthlyValues',
+  lastCalculated: 'lastCalculated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnalyticsCohortScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  definition: 'definition',
+  userCount: 'userCount',
+  retentionData: 'retentionData',
+  engagementData: 'engagementData',
+  revenueData: 'revenueData',
+  lastUpdated: 'lastUpdated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnalyticsFunnelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  steps: 'steps',
+  conversionRates: 'conversionRates',
+  dropoffRates: 'dropoffRates',
+  avgTimePerStep: 'avgTimePerStep',
+  lastCalculated: 'lastCalculated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnalyticsAttributionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  conversionId: 'conversionId',
+  conversionType: 'conversionType',
+  conversionValue: 'conversionValue',
+  touchpoints: 'touchpoints',
+  model: 'model',
+  channelWeights: 'channelWeights',
+  convertedAt: 'convertedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AnalyticsSegmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  conditions: 'conditions',
+  userCount: 'userCount',
+  avgEngagement: 'avgEngagement',
+  avgRevenue: 'avgRevenue',
+  conversionRate: 'conversionRate',
+  lastUpdated: 'lastUpdated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnalyticsReportScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  definition: 'definition',
+  schedule: 'schedule',
+  lastRun: 'lastRun',
+  nextRun: 'nextRun',
+  recipients: 'recipients',
+  format: 'format',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -391,6 +514,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -430,7 +557,15 @@ exports.Prisma.ModelName = {
   CartItem: 'CartItem',
   PriceHistory: 'PriceHistory',
   SystemHealth: 'SystemHealth',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  AnalyticsEvent: 'AnalyticsEvent',
+  AnalyticsSession: 'AnalyticsSession',
+  AnalyticsMetric: 'AnalyticsMetric',
+  AnalyticsCohort: 'AnalyticsCohort',
+  AnalyticsFunnel: 'AnalyticsFunnel',
+  AnalyticsAttribution: 'AnalyticsAttribution',
+  AnalyticsSegment: 'AnalyticsSegment',
+  AnalyticsReport: 'AnalyticsReport'
 };
 
 /**

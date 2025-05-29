@@ -83,6 +83,12 @@ export default function Sidebar({ open, setOpen, activeRoute = "Dashboard" }: Si
       badge: null,
     },
     {
+      name: "CRM Intelligence",
+      icon: Users,
+      href: "/dealer-portal/crm",
+      badge: { text: "NEW", variant: "default" as const },
+    },
+    {
       name: "Support",
       icon: MessageSquare,
       href: "/portal/chat",
