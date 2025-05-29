@@ -16,13 +16,6 @@
     "QUIZ_RETENTION_DAYS": "90",
     "QUIZ_SAMPLE_DATA_MODE": "true"
   },
-  "build": {
-    "env": {
-      "DATABASE_URL": "@database_url",
-      "NEXTAUTH_URL": "@nextauth_url",
-      "NEXTAUTH_SECRET": "@nextauth_secret"
-    }
-  },
   "functions": {
     "src/app/api/quiz/intelligence/live/route.ts": {
       "maxDuration": 30
