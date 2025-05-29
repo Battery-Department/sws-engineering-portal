@@ -126,8 +126,10 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST /api/analytics/sessions/recording/start - Start recording
-export async function POST(request: NextRequest) {
+// Recording start functionality is handled by the PUT endpoint above
+// This duplicate has been commented out to fix build error
+/*
+export async function PUT(request: NextRequest) {
   try {
     analytics.startRecording();
 
@@ -143,6 +145,7 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+*/
 
 // POST /api/analytics/sessions/recording/stop - Stop recording
 export async function DELETE(request: NextRequest) {

@@ -310,7 +310,7 @@ export class ContentJobQueue extends EventEmitter {
       await job.updateProgress(10);
 
       // Import Meta API service
-      const { metaApiService } = await import('@/services/meta-api');
+      const { metaApiService } = await import('@/services/meta');
 
       await job.updateProgress(30);
 
