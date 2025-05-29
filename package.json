@@ -9,7 +9,9 @@
     "lint": "next lint",
     "postinstall": "npx prisma generate",
     "db:seed": "tsx prisma/seed.ts",
-    "db:push": "npx prisma db push"
+    "db:push": "npx prisma db push",
+    "seed:quiz": "node scripts/seed-quiz-data.js",
+    "test:deployment": "node scripts/test-quiz-deployment.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.51.0",
