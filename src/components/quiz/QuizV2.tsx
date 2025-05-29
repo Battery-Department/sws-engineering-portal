@@ -242,7 +242,9 @@ export default function QuizV2({ utmParams = {} }: QuizV2Props) {
           color: brand.color
         }))
       }
-      setQuestions([USER_TYPE_QUESTION, brandQuestion, ...pathQuestions])
+      const newQuestions = [USER_TYPE_QUESTION, brandQuestion, ...pathQuestions]
+      setQuestions(newQuestions)
+      console.log('Updated questions array:', newQuestions.length, 'questions')
     }
     
     // Handle brand selection
@@ -278,22 +280,50 @@ export default function QuizV2({ utmParams = {} }: QuizV2Props) {
       }).catch(console.error)
     }
     
-    // Auto-advance for single choice questions
-    if (currentQuestion.type === 'single-choice' || currentQuestion.type === 'visual-cards') {
+    // Auto-advance for single choice questions (but not for user-type, brand-grid which need manual continue)
+    if ((currentQuestion.type === 'single-choice' || currentQuestion.type === 'visual-cards') && 
+        currentQuestion.id !== 'user-type' && currentQuestion.type !== 'brand-grid') {
       setTimeout(() => {
         handleNext(updatedSession)
       }, 500)
+    } else if (currentQuestion.id === 'user-type') {
+      // For user type, pass the newly built questions array directly to handleNext
+      const pathQuestions = getQuestionsForPath(updatedSession.userType!)
+      const brandQuestion: QuizQuestion = {
+        id: 'battery-brand',
+        type: 'brand-grid',
+        question: updatedSession.userType === 'professional' 
+          ? "What's your crew's main battery platform?"
+          : "Which battery system do you use?",
+        subtitle: "We carry all major brands with guaranteed compatibility",
+        options: sortBrandsByRelevance(updatedSession.userType as 'professional' | 'personal').map(brand => ({
+          id: brand.id,
+          value: brand.id,
+          label: brand.displayName,
+          description: brand.voltage,
+          color: brand.color
+        }))
+      }
+      const newQuestions = [USER_TYPE_QUESTION, brandQuestion, ...pathQuestions]
+      
+      setTimeout(() => {
+        handleNext(updatedSession, newQuestions)
+      }, 800)
     }
   }
   
-  const handleNext = (sessionToUse = session) => {
-    if (sessionToUse.currentStep < questions.length - 1) {
+  const handleNext = (sessionToUse = session, questionsArray = questions) => {
+    console.log(`handleNext: step ${sessionToUse.currentStep}, total questions: ${questionsArray.length}`)
+    
+    if (sessionToUse.currentStep < questionsArray.length - 1) {
       const nextStep = sessionToUse.currentStep + 1
-      const nextQuestion = questions[nextStep]
+      const nextQuestion = questionsArray[nextStep]
       
+      console.log(`Moving to step ${nextStep}: ${nextQuestion.id}`)
       setCurrentQuestion(nextQuestion)
       setSession({ ...sessionToUse, currentStep: nextStep })
     } else {
+      console.log('Quiz complete, moving to contact capture')
       // Save quiz state to localStorage before navigating
       if (typeof window !== 'undefined') {
         localStorage.setItem('quiz-user-type', sessionToUse.userType || '')
@@ -655,7 +685,7 @@ export default function QuizV2({ utmParams = {} }: QuizV2Props) {
       </main>
       
       {/* Bottom Navigation */}
-      {currentQuestion.type === 'multi-choice' && (
+      {(currentQuestion.type === 'multi-choice' || currentQuestion.type === 'brand-grid') && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
           <div className="max-w-2xl mx-auto">
             <button
