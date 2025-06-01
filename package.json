@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
+    "build": "prisma generate --schema=./prisma/schema.prisma && next build",
+    "vercel-build": "prisma generate --schema=./prisma/schema.prisma && prisma db push --skip-seed && next build",
     "build:vercel": "./build-for-vercel.sh",
     "start": "next start",
     "lint": "next lint",
