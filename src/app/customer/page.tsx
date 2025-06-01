@@ -3,15 +3,15 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { 
-  Battery, 
-  Zap, 
+  Train, 
+  Cog, 
   ShieldCheck, 
   Award, 
   ArrowRight,
   Star,
   TrendingUp,
   Users,
-  Package
+  Factory
 } from 'lucide-react'
 
 export default function CustomerPage() {
@@ -24,40 +24,40 @@ export default function CustomerPage() {
 
   const features = [
     {
-      icon: Battery,
-      title: 'Premium FlexVolt Batteries',
-      description: 'Industry-leading battery technology with up to 10 hours runtime',
+      icon: Train,
+      title: 'Steam Locomotive Restoration',
+      description: 'Expert restoration of heritage railway locomotives and rolling stock',
       color: '#3B82F6',
       gradient: 'linear-gradient(135deg, #E6F4FF 0%, #F0F9FF 100%)'
     },
     {
-      icon: ShieldCheck,
-      title: '12-Month Warranty',
-      description: 'Full coverage warranty on all battery products',
+      icon: Cog,
+      title: '3D CAD Design Services',
+      description: 'Professional engineering drawings and technical specifications',
       color: '#10B981',
       gradient: 'linear-gradient(135deg, #E6FFF9 0%, #F0FFF8 100%)'
     },
     {
-      icon: Zap,
-      title: 'Fast Charging',
-      description: 'Quick charge technology - 80% in just 60 minutes',
+      icon: Factory,
+      title: 'Plant & Machinery Repair',
+      description: 'Industrial equipment maintenance and repair services',
       color: '#F59E0B',
       gradient: 'linear-gradient(135deg, #FFF7E6 0%, #FFF9F0 100%)'
     },
     {
       icon: Award,
-      title: 'Rewards Program',
-      description: 'Earn points with every purchase and unlock exclusive discounts',
+      title: '20+ Years Experience',
+      description: 'Trusted engineering expertise serving Cornwall and beyond',
       color: '#7C3AED',
       gradient: 'linear-gradient(135deg, #F3E6FF 0%, #F9F0FF 100%)'
     }
   ]
 
   const stats = [
-    { value: '50K+', label: 'Happy Customers' },
-    { value: '99.9%', label: 'Uptime Guarantee' },
-    { value: '24/7', label: 'Customer Support' },
-    { value: '45%', label: 'Average Savings' }
+    { value: '300+', label: 'Projects Completed' },
+    { value: '20+', label: 'Years Experience' },
+    { value: '100%', label: 'UK Based' },
+    { value: '7/14"', label: 'Gauge Specialists' }
   ]
 
   return (
@@ -108,9 +108,9 @@ export default function CustomerPage() {
             marginBottom: '24px',
             backdropFilter: 'blur(10px)'
           }}>
-            <Zap size={18} />
+            <Train size={18} />
             <span style={{ fontWeight: '600', fontSize: '14px' }}>
-              Welcome to Lithi Battery Hub
+              Welcome to South West Steam Engineering
             </span>
           </div>
 
@@ -121,8 +121,8 @@ export default function CustomerPage() {
             lineHeight: '1.1',
             animation: 'slideUp 0.8s ease-out'
           }}>
-            Power Your Business<br />
-            <span style={{ color: '#FFB800' }}>Forward</span>
+            Engineering Excellence<br />
+            <span style={{ color: '#FFB800' }}>Since 2004</span>
           </h1>
 
           <p style={{
@@ -133,7 +133,7 @@ export default function CustomerPage() {
             opacity: 0.9,
             lineHeight: '1.6'
           }}>
-            Get premium FlexVolt batteries at wholesale prices with bulk discounts up to 20% off
+            Professional engineering services for steam restoration, CAD design, and bespoke fabrication
           </p>
 
           <div style={{
@@ -168,12 +168,12 @@ export default function CustomerPage() {
                 e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)'
               }}
             >
-              Shop Now
+              View Services
               <ArrowRight size={20} />
             </button>
 
             <button
-              onClick={() => router.push('/customer/dashboard')}
+              onClick={() => router.push('/customer/account')}
               style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.15)',
                 color: 'white',

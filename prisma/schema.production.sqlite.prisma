@@ -1,0 +1,208 @@
+// This is your Prisma schema file for production SQLite deployment
+// Use this for initial Vercel deployment, then migrate to PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./prod.db"
+}
+
+// ============== Core Models ==============
+
+model User {
+  id            String      @id @default(uuid())
+  email         String      @unique
+  password      String
+  name          String?
+  role          String      @default("user")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relationships
+  messages      Message[]
+  projects      Project[]   @relation("ProjectCreator")
+  requirements  RequirementSubmission[]
+  sessions      Session[]
+  client        Client?
+}
+
+model Session {
+  id            String   @id @default(uuid())
+  userId        String
+  token         String   @unique
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model Client {
+  id            String      @id @default(uuid())
+  userId        String      @unique
+  businessName  String?
+  industry      String?
+  phoneNumber   String?
+  address       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relationships
+  user          User        @relation(fields: [userId], references: [id])
+  projects      Project[]
+}
+
+model Project {
+  id               String      @id @default(uuid())
+  projectRef       String      @unique
+  name             String
+  description      String?
+  service          String
+  status           String      @default("enquiry")
+  priority         String      @default("normal")
+  estimatedHours   Int?
+  actualHours      Int?
+  quoteAmount      Float?
+  location         String?
+  startDate        DateTime?
+  targetDate       DateTime?
+  completedDate    DateTime?
+  currentStage     String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  createdBy        String?
+  clientId         String?
+
+  // Relationships
+  creator          User?       @relation("ProjectCreator", fields: [createdBy], references: [id])
+  client           Client?     @relation(fields: [clientId], references: [id])
+  stages           ProjectStage[]
+  costs            MaterialCost[]
+  documents        Document[]
+  invoiceLines     InvoiceLine[]
+}
+
+model ProjectStage {
+  id            String      @id @default(uuid())
+  projectId     String
+  stageName     String
+  status        String      @default("pending")
+  order         Int
+  startedAt     DateTime?
+  completedAt   DateTime?
+  notes         String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  project       Project     @relation(fields: [projectId], references: [id])
+}
+
+model MaterialCost {
+  id            String      @id @default(uuid())
+  projectId     String
+  material      String
+  quantity      Float
+  unitPrice     Float
+  totalCost     Float
+  supplier      String?
+  category      String?
+  date          DateTime    @default(now())
+  invoiceId     String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  project       Project     @relation(fields: [projectId], references: [id])
+  invoice       SupplierInvoice? @relation(fields: [invoiceId], references: [id])
+}
+
+model SupplierInvoice {
+  id               String      @id @default(uuid())
+  invoiceNumber    String      @unique
+  supplier         String
+  totalAmount      Float
+  taxAmount        Float
+  netAmount        Float
+  currency         String      @default("GBP")
+  invoiceDate      DateTime
+  dueDate          DateTime?
+  status           String      @default("pending")
+  uploadedFileUrl  String?
+  notes            String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  // Relationships
+  materialCosts    MaterialCost[]
+}
+
+model Document {
+  id            String      @id @default(uuid())
+  projectId     String
+  filename      String
+  originalName  String
+  fileType      String
+  fileSize      Int
+  fileUrl       String?
+  uploadedAt    DateTime    @default(now())
+  isPublic      Boolean     @default(false)
+
+  project       Project     @relation(fields: [projectId], references: [id])
+  generations   DocumentGeneration[]
+}
+
+model DocumentGeneration {
+  id               String      @id @default(uuid())
+  documentId       String
+  documentType     String   
+  documentNumber   String      @unique
+  templateData     String      // JSON data
+  status           String      @default("pending")
+  generatedBy      String?
+  autoSend         Boolean     @default(false)
+  recipientEmail   String?
+  emailSent        Boolean     @default(false)
+  emailSentAt      DateTime?
+  fileUrl          String?
+  generatedAt      DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  
+  document         Document    @relation(fields: [documentId], references: [id])
+}
+
+model Message {
+  id            String      @id @default(uuid())
+  userId        String
+  content       String
+  role          String      // 'user' or 'assistant'
+  createdAt     DateTime    @default(now())
+
+  user          User        @relation(fields: [userId], references: [id])
+}
+
+model RequirementSubmission {
+  id            String      @id @default(uuid())
+  userId        String?
+  projectType   String
+  urgency       String
+  budget        String
+  requirements  String      // JSON data
+  createdAt     DateTime    @default(now())
+
+  user          User?       @relation(fields: [userId], references: [id])
+}
+
+model InvoiceLine {
+  id            String      @id @default(uuid())
+  projectId     String
+  description   String
+  quantity      Float
+  unitPrice     Float
+  totalPrice    Float
+  createdAt     DateTime    @default(now())
+
+  project       Project     @relation(fields: [projectId], references: [id])
+}

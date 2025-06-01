@@ -57,14 +57,15 @@ export const PROFESSIONAL_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 'crew-size',
-    type: 'slider',
+    type: 'single-choice',
     question: "How many people on your crew?",
     subtitle: "This helps us calculate the right battery fleet size",
     options: [
-      { id: 'solo', value: 1, label: 'Solo' },
-      { id: 'small', value: 5, label: '2-5 people' },
-      { id: 'medium', value: 10, label: '6-15 people' },
-      { id: 'large', value: 20, label: '16+ people' }
+      { id: 'solo', value: '1', label: 'Just me', icon: '👤' },
+      { id: 'small', value: '2-3', label: '2-3 people', icon: '👥' },
+      { id: 'medium', value: '4-5', label: '4-5 people', icon: '👨‍👩‍👧' },
+      { id: 'large', value: '6-10', label: '6-10 people', icon: '👨‍👩‍👧‍👦' },
+      { id: 'xlarge', value: '10+', label: '10+ people', icon: '👥👥' }
     ]
   },
   {

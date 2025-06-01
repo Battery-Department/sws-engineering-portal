@@ -1,422 +1,375 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { useAuth } from '@/contexts/AuthContext'
-import { useRouter } from 'next/navigation'
-import {
-  Package,
-  CreditCard,
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { 
+  Folder, 
+  PoundSterling, 
+  FileText, 
+  AlertTriangle,
   TrendingUp,
-  Users,
-  Home,
-  ShoppingCart,
-  DollarSign,
-  Truck,
-  Settings,
-  HelpCircle,
-  LogOut,
-  Menu,
-  X,
-  Bell,
-  Search,
-  BarChart,
-  Brain
+  Calendar,
+  Clock,
+  User,
+  ChevronRight,
+  Plus,
+  Train,
+  Cog,
+  Factory,
+  Wrench,
+  CheckCircle,
+  Eye,
+  MessageSquare
 } from 'lucide-react'
+import { SERVICE_TYPES, PROJECT_STATUS, PRIORITY_LEVELS } from '@/config/navigation'
 
-const navigation = [
-  { name: 'Dashboard', href: '/portal/dashboard', icon: Home, current: true },
-  { name: 'Orders', href: '/portal/orders', icon: ShoppingCart, current: false },
-  { name: 'Billing', href: '/portal/billing', icon: DollarSign, current: false },
-  { name: 'Inventory', href: '/portal/inventory', icon: Package, current: false },
-  { name: 'Shipping', href: '/portal/shipping', icon: Truck, current: false },
-  { name: 'Analytics', href: '/portal/analytics', icon: BarChart, current: false },
-  { name: 'Quiz Intelligence', href: '/portal/quiz-intelligence', icon: Brain, current: false },
-  { name: 'Settings', href: '/portal/settings', icon: Settings, current: false },
-]
+// Sample data - replace with actual API calls
+const mockStats = {
+  activeProjects: 8,
+  thisMonthRevenue: 42500,
+  outstandingQuotes: 6,
+  overdueProjects: 2
+}
 
-const metrics = [
+const mockActiveProjects = [
   {
-    title: "Active Orders",
-    value: "18",
-    change: "+6 from last month",
-    icon: Package,
-    color: "#3b82f6",
-    bgColor: "#eff6ff"
+    id: 'PROJ-2024-047',
+    name: '7¼" Gauge Steam Locomotive Restoration',
+    client: 'Bodmin & Wenford Railway',
+    service: 'steam',
+    currentStage: 'manufacturing',
+    progress: 65,
+    priority: 'normal',
+    targetDate: '2024-08-30',
+    quotedAmount: 45000,
+    daysUntilDeadline: 45
   },
   {
-    title: "Monthly Revenue",
-    value: "$142,850.00",
-    change: "+18.2% from last month",
-    icon: TrendingUp,
-    color: "#10b981", 
-    bgColor: "#f0fdf4"
+    id: 'PROJ-2024-052',
+    name: 'Pump House Machinery Overhaul',
+    client: 'Cornwall Mining Heritage',
+    service: 'repair',
+    currentStage: 'design_phase',
+    progress: 25,
+    priority: 'urgent',
+    targetDate: '2024-07-20',
+    quotedAmount: 12500,
+    daysUntilDeadline: 15
   },
   {
-    title: "Batteries Deployed",
-    value: "2,847",
-    change: "+89 from last month",
-    icon: CreditCard,
-    color: "#8b5cf6",
-    bgColor: "#f5f3ff"
+    id: 'PROJ-2024-055',
+    name: 'Custom Coupling Assembly Design',
+    client: 'Private Collector',
+    service: 'cad',
+    currentStage: 'quality_check',
+    progress: 85,
+    priority: 'normal',
+    targetDate: '2024-06-10',
+    quotedAmount: 8750,
+    daysUntilDeadline: 5
   },
   {
-    title: "Partner Dealers",
-    value: "67",
-    change: "+23 since last quarter",
-    icon: Users,
-    color: "#f59e0b",
-    bgColor: "#fffbeb"
+    id: 'PROJ-2024-058',
+    name: 'Signal Box Restoration CAD',
+    client: 'Heritage Railway Trust',
+    service: 'cad',
+    currentStage: 'materials_ordered',
+    progress: 40,
+    priority: 'low',
+    targetDate: '2024-09-15',
+    quotedAmount: 15000,
+    daysUntilDeadline: 62
   }
 ]
 
-const recentOrders = [
-  { id: 'ORD-001', customer: 'Turner Construction', product: '9Ah FlexVolt Battery (24 units)', status: 'delivered', amount: '$3,000.00', date: 'May 10, 2025' },
-  { id: 'ORD-002', customer: 'Midwest Contractors LLC', product: 'Mid-Size Crew Package', status: 'in-transit', amount: '$4,425.00', date: 'May 15, 2025' },
-  { id: 'ORD-003', customer: 'Johnson Electric Co.', product: '15Ah FlexVolt Battery (12 units)', status: 'processing', amount: '$2,940.00', date: 'May 16, 2025' },
+const mockRecentActivity = [
+  {
+    id: 1,
+    type: 'stage_completed',
+    project: 'PROJ-2024-047',
+    message: 'Cylinder machining completed',
+    time: '2 hours ago',
+    icon: CheckCircle,
+    color: '#10B981'
+  },
+  {
+    id: 2,
+    type: 'document_uploaded',
+    project: 'PROJ-2024-052',
+    message: 'CAD drawings v3.2 uploaded',
+    time: '5 hours ago',
+    icon: FileText,
+    color: '#3B82F6'
+  },
+  {
+    id: 3,
+    type: 'new_enquiry',
+    project: 'ENQUIRY-2024-089',
+    message: 'New enquiry: Boiler inspection service',
+    time: 'Yesterday',
+    icon: Plus,
+    color: '#F59E0B'
+  },
+  {
+    id: 4,
+    type: 'payment_received',
+    project: 'PROJ-2024-044',
+    message: 'Payment received: £25,000',
+    time: '2 days ago',
+    icon: PoundSterling,
+    color: '#10B981'
+  }
 ]
 
 export default function DashboardPage() {
-  const { user, loading } = useAuth()
-  const router = useRouter()
-  const [sidebarOpen, setSidebarOpen] = React.useState(false)
+  const [selectedTimeframe, setSelectedTimeframe] = useState('week')
 
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/portal/auth/login')
+  const getServiceIcon = (service: string) => {
+    switch (service) {
+      case 'steam': return Train
+      case 'cad': return Cog
+      case 'repair': return Factory
+      case 'fabrication': return Wrench
+      default: return Folder
     }
-  }, [user, loading, router])
-
-  if (loading) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb' }}>
-        <div style={{
-          width: '48px',
-          height: '48px',
-          border: '4px solid #e5e7eb',
-          borderTopColor: '#3b82f6',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }}></div>
-        <style jsx>{`
-          @keyframes spin {
-            to { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
-    )
   }
 
-  if (!user) {
-    return null
+  const getServiceColor = (service: string) => {
+    const serviceType = SERVICE_TYPES.find(s => s.id === service)
+    return serviceType?.color || '#6B7280'
+  }
+
+  const getPriorityColor = (priority: string) => {
+    const priorityLevel = PRIORITY_LEVELS.find(p => p.id === priority)
+    return priorityLevel?.color || '#6B7280'
+  }
+
+  const getProgressColor = (progress: number) => {
+    if (progress >= 75) return '#10B981'
+    if (progress >= 50) return '#F59E0B'
+    return '#3B82F6'
+  }
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP'
+    }).format(amount)
+  }
+
+  const getDaysUntilColor = (days: number) => {
+    if (days <= 7) return 'text-red-600 bg-red-50'
+    if (days <= 30) return 'text-orange-600 bg-orange-50'
+    return 'text-green-600 bg-green-50'
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
-      {/* Sidebar - Mobile */}
-      <div style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 40,
-        display: sidebarOpen ? 'flex' : 'none',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-      }} onClick={() => setSidebarOpen(false)}>
-        <div style={{
-          position: 'relative',
-          flex: '1 1 0%',
-          display: 'flex',
-          flexDirection: 'column',
-          maxWidth: '256px',
-          width: '100%',
-          backgroundColor: '#1f2937'
-        }} onClick={(e) => e.stopPropagation()}>
-          <div style={{ padding: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                style={{
-                  padding: '6px',
-                  borderRadius: '6px',
-                  color: 'white',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                <X size={24} />
-              </button>
-            </div>
-          </div>
-          <nav style={{ flex: 1, padding: '0 8px' }}>
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  router.push(item.href)
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '8px 16px',
-                  margin: '2px 0',
-                  borderRadius: '8px',
-                  color: item.current ? 'white' : '#d1d5db',
-                  backgroundColor: item.current ? '#111827' : 'transparent',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s'
-                }}
-              >
-                <item.icon size={20} style={{ marginRight: '12px' }} />
-                {item.name}
-              </a>
-            ))}
-          </nav>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600">Overview of your engineering projects and business metrics</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <select 
+            value={selectedTimeframe}
+            onChange={(e) => setSelectedTimeframe(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#006FEE] focus:border-transparent"
+          >
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+            <option value="quarter">This Quarter</option>
+          </select>
+          <Link
+            href="/portal/requirements"
+            className="px-4 py-2 bg-[#006FEE] text-white rounded-lg hover:bg-[#0050B3] transition-colors text-sm font-medium flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            New Project
+          </Link>
         </div>
       </div>
 
-      {/* Static sidebar for desktop */}
-      <div style={{
-        display: 'none',
-        position: 'fixed',
-        top: 0,
-        bottom: 0,
-        zIndex: 30,
-        width: '256px',
-        backgroundColor: '#1f2937'
-      }} className="md-show">
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
-          <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>FlexVolt</span>
-          </div>
-          <nav style={{ flex: 1, padding: '0 8px' }}>
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  router.push(item.href)
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '8px 16px',
-                  margin: '2px 0',
-                  borderRadius: '8px',
-                  color: item.current ? 'white' : '#d1d5db',
-                  backgroundColor: item.current ? '#111827' : 'transparent',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s'
-                }}
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            label: 'Active Projects',
+            value: mockStats.activeProjects.toString(),
+            icon: Folder,
+            color: '#3B82F6',
+            href: '/portal/projects/active'
+          },
+          {
+            label: 'This Month Revenue',
+            value: formatCurrency(mockStats.thisMonthRevenue),
+            icon: PoundSterling,
+            color: '#10B981',
+            href: '/portal/financial/overview'
+          },
+          {
+            label: 'Outstanding Quotes',
+            value: mockStats.outstandingQuotes.toString(),
+            icon: FileText,
+            color: '#F59E0B',
+            href: '/portal/projects/quotes'
+          },
+          {
+            label: 'Overdue Projects',
+            value: mockStats.overdueProjects.toString(),
+            icon: AlertTriangle,
+            color: '#EF4444',
+            href: '/portal/projects/active?filter=overdue'
+          }
+        ].map((metric, index) => (
+          <Link
+            key={index}
+            href={metric.href}
+            className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 group"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600 mb-1">{metric.label}</p>
+                <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
+              </div>
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform"
+                style={{ backgroundColor: `${metric.color}15` }}
               >
-                <item.icon size={20} style={{ marginRight: '12px' }} />
-                {item.name}
-              </a>
-            ))}
-          </nav>
-          <div style={{ padding: '16px', borderTop: '1px solid #374151' }}>
-            <a
-              href="/portal/auth/login"
-              onClick={(e) => {
-                e.preventDefault()
-                router.push('/portal/auth/login')
-              }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                padding: '8px 16px',
-                borderRadius: '8px',
-                color: '#d1d5db',
-                textDecoration: 'none',
-                transition: 'all 0.2s'
-              }}
-            >
-              <LogOut size={20} style={{ marginRight: '12px' }} />
-              Sign out
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Content area */}
-      <div style={{ paddingLeft: 0 }} className="md-content">
-        {/* Header */}
-        <header style={{
-          backgroundColor: 'white',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 20
-        }}>
-          <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <button
-              onClick={() => setSidebarOpen(true)}
-              style={{
-                padding: '8px',
-                borderRadius: '8px',
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'block'
-              }}
-              className="md-hide"
-            >
-              <Menu size={24} />
-            </button>
-            <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#111827' }}>Dashboard</h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <button style={{
-                padding: '8px',
-                borderRadius: '8px',
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: 'pointer'
-              }}>
-                <Bell size={20} />
-              </button>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#6b7280',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontWeight: '500'
-              }}>
-                {user?.name?.[0] || 'U'}
+                <metric.icon className="w-6 h-6" style={{ color: metric.color }} />
               </div>
             </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Active Projects */}
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-gray-900">Active Projects</h2>
+            <Link
+              href="/portal/projects/active"
+              className="text-sm text-[#006FEE] hover:text-[#0050B3] font-medium flex items-center gap-1"
+            >
+              View all
+              <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
-        </header>
-
-        {/* Main content */}
-        <main style={{ padding: '24px' }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            {/* Welcome section */}
-            <div style={{ marginBottom: '32px' }}>
-              <h2 style={{ fontSize: '30px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
-                Welcome back, Mike
-              </h2>
-              <p style={{ color: '#6b7280' }}>Here's your Battery Department fleet management overview</p>
-            </div>
-
-            {/* Metrics */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '24px',
-              marginBottom: '32px'
-            }}>
-              {metrics.map((metric) => (
-                <div key={metric.title} style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  padding: '24px',
-                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.2s',
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                    <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280' }}>{metric.title}</h3>
-                    <div style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '8px',
-                      backgroundColor: metric.bgColor,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <metric.icon size={20} style={{ color: metric.color }} />
+          <div className="divide-y divide-gray-100">
+            {mockActiveProjects.map((project) => {
+              const ServiceIcon = getServiceIcon(project.service)
+              const serviceColor = getServiceColor(project.service)
+              const progressColor = getProgressColor(project.progress)
+              
+              return (
+                <div key={project.id} className="p-6 hover:bg-gray-50 transition-colors">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start gap-3">
+                      <div 
+                        className="w-10 h-10 rounded-lg flex items-center justify-center"
+                        style={{ backgroundColor: `${serviceColor}15` }}
+                      >
+                        <ServiceIcon className="w-5 h-5" style={{ color: serviceColor }} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 mb-1">{project.name}</h3>
+                        <p className="text-sm text-gray-600">{project.client}</p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
+                            {project.id}
+                          </span>
+                          <span 
+                            className="px-2 py-1 text-xs font-medium rounded-full"
+                            style={{
+                              backgroundColor: `${getPriorityColor(project.priority)}15`,
+                              color: getPriorityColor(project.priority)
+                            }}
+                          >
+                            {project.priority}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-gray-900">{formatCurrency(project.quotedAmount)}</p>
+                      <p className={`text-xs px-2 py-1 rounded-full mt-1 ${getDaysUntilColor(project.daysUntilDeadline)}`}>
+                        {project.daysUntilDeadline} days left
+                      </p>
                     </div>
                   </div>
-                  <div style={{ fontSize: '24px', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
-                    {metric.value}
+                  
+                  {/* Progress bar */}
+                  <div className="mb-3">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-gray-600">{project.currentStage.replace('_', ' ')}</span>
+                      <span className="text-sm font-medium text-gray-900">{project.progress}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="h-2 rounded-full transition-all duration-300"
+                        style={{
+                          width: `${project.progress}%`,
+                          backgroundColor: progressColor
+                        }}
+                      />
+                    </div>
                   </div>
-                  <p style={{ fontSize: '14px', color: '#10b981' }}>{metric.change}</p>
+                  
+                  {/* Quick actions */}
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href={`/portal/projects/${project.id}`}
+                      className="flex items-center gap-1 px-3 py-1 text-xs text-[#006FEE] hover:bg-blue-50 rounded-md transition-colors"
+                    >
+                      <Eye className="w-3 h-3" />
+                      View
+                    </Link>
+                    <button className="flex items-center gap-1 px-3 py-1 text-xs text-gray-600 hover:bg-gray-100 rounded-md transition-colors">
+                      <MessageSquare className="w-3 h-3" />
+                      Update
+                    </button>
+                    <button 
+                      className="px-3 py-1 text-xs bg-[#006FEE] text-white rounded-md hover:bg-[#0050B3] transition-colors"
+                    >
+                      Quick Status
+                    </button>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Recent Orders */}
-            <div style={{
-              backgroundColor: 'white',
-              borderRadius: '12px',
-              padding: '24px',
-              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-            }}>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
-                Recent Orders
-              </h3>
-              <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Order ID</th>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Customer</th>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Product</th>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Status</th>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Amount</th>
-                      <th style={{ padding: '12px 8px', textAlign: 'left', fontSize: '12px', fontWeight: '600', color: '#6b7280', textTransform: 'uppercase' }}>Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentOrders.map((order) => (
-                      <tr key={order.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
-                        <td style={{ padding: '16px 8px', fontSize: '14px', fontWeight: '500', color: '#111827' }}>{order.id}</td>
-                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.customer}</td>
-                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.product}</td>
-                        <td style={{ padding: '16px 8px' }}>
-                          <span style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            padding: '4px 12px',
-                            borderRadius: '9999px',
-                            fontSize: '12px',
-                            fontWeight: '500',
-                            backgroundColor: order.status === 'delivered' ? '#d1fae5' : order.status === 'in-transit' ? '#fef3c7' : '#dbeafe',
-                            color: order.status === 'delivered' ? '#065f46' : order.status === 'in-transit' ? '#78350f' : '#1e40af'
-                          }}>
-                            {order.status}
-                          </span>
-                        </td>
-                        <td style={{ padding: '16px 8px', fontSize: '14px', fontWeight: '500', color: '#111827' }}>{order.amount}</td>
-                        <td style={{ padding: '16px 8px', fontSize: '14px', color: '#374151' }}>{order.date}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              )
+            })}
           </div>
-        </main>
-      </div>
+        </div>
 
-      <style jsx global>{`
-        @media (min-width: 768px) {
-          .md-show {
-            display: block !important;
-          }
-          .md-hide {
-            display: none !important;
-          }
-          .md-content {
-            padding-left: 256px !important;
-          }
-        }
-      `}</style>
+        {/* Recent Activity */}
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
+          </div>
+          <div className="p-6 space-y-4">
+            {mockRecentActivity.map((activity) => {
+              const IconComponent = activity.icon
+              return (
+                <div key={activity.id} className="flex gap-3">
+                  <div 
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${activity.color}15` }}
+                  >
+                    <IconComponent className="w-4 h-4" style={{ color: activity.color }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 mb-1">{activity.project}</p>
+                    <p className="text-sm text-gray-600 mb-1">{activity.message}</p>
+                    <p className="text-xs text-gray-500">{activity.time}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

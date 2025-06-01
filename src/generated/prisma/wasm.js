@@ -20,11 +20,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.8.1
+ * Prisma Client JS version: 6.8.2
  * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.8.1",
+  client: "6.8.2",
   engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
@@ -629,6 +629,139 @@ exports.Prisma.QuizInterventionScalarFieldEnum = {
   actionTimestamp: 'actionTimestamp'
 };
 
+exports.Prisma.ServiceScalarFieldEnum = {
+  id: 'id',
+  serviceCode: 'serviceCode',
+  name: 'name',
+  description: 'description',
+  category: 'category',
+  basePrice: 'basePrice',
+  pricingModel: 'pricingModel',
+  currency: 'currency',
+  specifications: 'specifications',
+  portfolio: 'portfolio',
+  leadTime: 'leadTime',
+  capacity: 'capacity',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  projectRef: 'projectRef',
+  clientId: 'clientId',
+  name: 'name',
+  description: 'description',
+  service: 'service',
+  status: 'status',
+  currentStage: 'currentStage',
+  stagesCompleted: 'stagesCompleted',
+  quotedAmount: 'quotedAmount',
+  actualCost: 'actualCost',
+  invoicedAmount: 'invoicedAmount',
+  paidAmount: 'paidAmount',
+  startDate: 'startDate',
+  targetDate: 'targetDate',
+  completedDate: 'completedDate',
+  location: 'location',
+  notes: 'notes',
+  priority: 'priority',
+  orderId: 'orderId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  serviceId: 'serviceId'
+};
+
+exports.Prisma.ProjectStageScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  stageName: 'stageName',
+  status: 'status',
+  notes: 'notes',
+  completedAt: 'completedAt',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DocumentScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  filename: 'filename',
+  originalName: 'originalName',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  fileUrl: 'fileUrl',
+  uploadedAt: 'uploadedAt'
+};
+
+exports.Prisma.DocumentGenerationScalarFieldEnum = {
+  id: 'id',
+  documentId: 'documentId',
+  documentType: 'documentType',
+  documentNumber: 'documentNumber',
+  templateData: 'templateData',
+  status: 'status',
+  generatedBy: 'generatedBy',
+  generatedAt: 'generatedAt',
+  autoSend: 'autoSend',
+  emailSent: 'emailSent',
+  emailSentAt: 'emailSentAt',
+  recipientEmail: 'recipientEmail',
+  fileUrl: 'fileUrl',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuoteScalarFieldEnum = {
+  id: 'id',
+  quoteNumber: 'quoteNumber',
+  customerId: 'customerId',
+  title: 'title',
+  description: 'description',
+  services: 'services',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  total: 'total',
+  currency: 'currency',
+  validUntil: 'validUntil',
+  status: 'status',
+  terms: 'terms',
+  notes: 'notes',
+  convertedToProjectId: 'convertedToProjectId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  serviceId: 'serviceId'
+};
+
+exports.Prisma.MaterialCostScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  supplier: 'supplier',
+  material: 'material',
+  quantity: 'quantity',
+  unitCost: 'unitCost',
+  totalCost: 'totalCost',
+  invoiceRef: 'invoiceRef',
+  date: 'date',
+  category: 'category',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SupplierInvoiceScalarFieldEnum = {
+  id: 'id',
+  supplier: 'supplier',
+  invoiceRef: 'invoiceRef',
+  date: 'date',
+  totalAmount: 'totalAmount',
+  items: 'items',
+  fileUrl: 'fileUrl',
+  processed: 'processed',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -695,7 +828,15 @@ exports.Prisma.ModelName = {
   ABTestExperiment: 'ABTestExperiment',
   QuizBrand: 'QuizBrand',
   QuizRoutingRule: 'QuizRoutingRule',
-  QuizIntervention: 'QuizIntervention'
+  QuizIntervention: 'QuizIntervention',
+  Service: 'Service',
+  Project: 'Project',
+  ProjectStage: 'ProjectStage',
+  Document: 'Document',
+  DocumentGeneration: 'DocumentGeneration',
+  Quote: 'Quote',
+  MaterialCost: 'MaterialCost',
+  SupplierInvoice: 'SupplierInvoice'
 };
 
 /**

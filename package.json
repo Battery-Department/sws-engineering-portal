@@ -1,10 +1,11 @@
 {
-  "name": "battery-dashboard",
+  "name": "engineering-dashboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
+    "build:vercel": "./build-for-vercel.sh",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
@@ -54,7 +55,11 @@
     "sharp": "^0.34.2",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.3.0",
+    "jspdf": "^2.5.1",
+    "html2canvas": "^1.4.1",
+    "nodemailer": "^6.9.8",
+    "@types/nodemailer": "^6.4.14"
   },
   "devDependencies": {
     "@types/node": "^20",

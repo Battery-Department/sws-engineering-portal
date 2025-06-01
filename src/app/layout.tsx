@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Battery Department Dashboard",
-  description: "Comprehensive account management for Battery Department",
+  title: "South West Steam Engineering Portal",
+  description: "Engineering project management platform for South West Steam Engineering",
 };
 
 export default function RootLayout({

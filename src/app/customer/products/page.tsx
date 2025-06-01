@@ -12,47 +12,47 @@ import {
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 
-const batteriesData = [
+const servicesData = [
   {
-    id: '6Ah',
-    name: '6Ah FlexVolt Battery',
-    runtime: 'Up to 4 hours',
-    weight: '1.9 lbs',
-    price: 95,
-    msrp: 169,
-    voltage: "20V/60V",
-    features: "Compatible with all DeWalt 20V/60V tools",
-    workOutput: '225 screws / 175 ft cuts',
-    chargingTime: '45 minutes',
-    savings: 44,
-    popular: false
-  },
-  {
-    id: '9Ah',
-    name: '9Ah FlexVolt Battery',
-    runtime: 'Up to 6.5 hours',
-    weight: '2.4 lbs',
-    price: 125,
-    msrp: 249,
-    voltage: "20V/60V",
-    features: "Compatible with all DeWalt 20V/60V tools",
-    workOutput: '340 screws / 260 ft cuts',
-    chargingTime: '55 minutes',
-    savings: 50,
+    id: 'steam',
+    name: 'Steam Locomotive Restoration',
+    description: 'Full restoration services for heritage railway locomotives',
+    capacity: '7/14" gauge specialists',
+    pricing: 'Project-based',
+    leadTime: 'From 3 months',
+    category: "Heritage Railways",
+    features: "Complete mechanical & cosmetic restoration",
+    portfolio: '50+ locomotives restored',
+    timeline: '3-12 months typical',
+    expertise: 'Boilers, cylinders, valve gear',
     popular: true
   },
   {
-    id: '15Ah',
-    name: '15Ah FlexVolt Battery',
-    runtime: 'Up to 10 hours',
-    weight: '3.2 lbs',
-    price: 245,
-    msrp: 379,
-    voltage: "20V/60V",
-    features: "Compatible with all DeWalt 20V/60V tools",
-    workOutput: '560 screws / 430 ft cuts',
-    chargingTime: '90 minutes',
-    savings: 35,
+    id: 'cad',
+    name: '3D CAD Design Services',
+    description: 'Professional engineering drawings and specifications',
+    capacity: 'SolidWorks & AutoCAD',
+    pricing: 'Hourly or fixed',
+    leadTime: 'From 1 week',
+    category: "Engineering Design",
+    features: "Full 3D models, technical drawings, FEA analysis",
+    portfolio: '200+ projects completed',
+    timeline: '1-4 weeks typical',
+    expertise: 'Mechanical design, assemblies',
+    popular: false
+  },
+  {
+    id: 'repair',
+    name: 'Plant & Machinery Repair',
+    description: 'Industrial equipment maintenance and repair',
+    capacity: 'On-site & workshop',
+    pricing: 'Hourly + parts',
+    leadTime: 'Emergency available',
+    category: "Industrial Services",
+    features: "24/7 emergency callout, preventive maintenance",
+    portfolio: '100+ industrial clients',
+    timeline: 'Same day emergency',
+    expertise: 'Pumps, motors, gearboxes',
     popular: false
   }
 ];
@@ -63,63 +63,60 @@ const discountTiers = [
   { threshold: 5000, percentage: 20 }
 ];
 
-const jobsiteSolutions = [
+const engineeringPackages = [
   {
-    id: 'starter',
-    name: "STARTER CREW PACKAGE",
-    teamSize: "1-3 person teams",
-    details: ["2× 6Ah", "2× 9Ah", "2× 15Ah"],
-    price: 1270,
-    msrp: 1649,
-    savings: 379,
-    hours: 64,
-    description: "Most popular for residential contractors",
-    purchases: 127,
+    id: 'heritage',
+    name: "HERITAGE RAILWAY PACKAGE",
+    scope: "Complete restoration",
+    details: ["Mechanical overhaul", "Boiler inspection", "Cosmetic restoration"],
+    pricing: "From £15,000",
+    timeline: "6-12 months",
+    includesCAD: true,
+    description: "Full restoration service for heritage locomotives",
+    completedProjects: 47,
     isPopular: false,
     features: [
-      "64 hours total runtime",
-      "Perfect for small crews",
-      "Covers all tool types"
+      "Complete mechanical rebuild",
+      "Certification included",
+      "12-month warranty"
     ],
-    quantities: { '6Ah': 2, '9Ah': 2, '15Ah': 2 }
+    services: ['steam', 'cad']
   },
   {
-    id: 'midsize',
-    name: "MID-SIZE CREW PACKAGE",
-    teamSize: "4-6 person teams",
-    details: ["10× 6Ah", "10× 9Ah", "5× 15Ah"],
-    price: 4425,
-    msrp: 5530,
-    savings: 1105,
-    hours: 224,
-    description: "Recommended for commercial projects",
-    purchases: 86,
+    id: 'industrial',
+    name: "INDUSTRIAL MAINTENANCE",
+    scope: "Annual contract",
+    details: ["Monthly inspections", "Emergency callout", "Spare parts inventory"],
+    pricing: "From £5,000/year",
+    timeline: "12-month contract",
+    includesCAD: false,
+    description: "Comprehensive maintenance package for industrial clients",
+    completedProjects: 86,
     isPopular: true,
     features: [
-      "224 hours total runtime",
-      "Optimal for medium crews",
-      "Best value per battery"
+      "24/7 emergency support",
+      "Preventive maintenance",
+      "Priority service"
     ],
-    quantities: { '6Ah': 10, '9Ah': 10, '15Ah': 5 }
+    services: ['repair']
   },
   {
-    id: 'workforce',
-    name: "FULL WORKFORCE SOLUTION",
-    teamSize: "7-12 person teams",
-    details: ["15× 6Ah", "20× 9Ah", "15× 15Ah"],
-    price: 8875,
-    msrp: 11095,
-    savings: 2220,
-    hours: 450,
-    description: "Preferred by general contractors",
-    purchases: 42,
+    id: 'bespoke',
+    name: "BESPOKE FABRICATION",
+    scope: "Custom projects",
+    details: ["Design consultation", "CAD modeling", "Manufacturing", "Installation"],
+    pricing: "Quote on request",
+    timeline: "4-16 weeks",
+    includesCAD: true,
+    description: "Custom engineering solutions for unique requirements",
+    completedProjects: 42,
     isPopular: false,
     features: [
-      "450 hours total runtime",
-      "Complete fleet solution",
-      "Maximum savings"
+      "Full project management",
+      "3D CAD included",
+      "Installation support"
     ],
-    quantities: { '6Ah': 15, '9Ah': 20, '15Ah': 15 }
+    services: ['cad', 'steam', 'repair']
   }
 ];
 
@@ -142,7 +139,7 @@ export default function ProductsPage() {
 
   // Calculate totals
   const subtotal = Object.entries(quantities).reduce((sum, [battery, qty]) => {
-    const batteryData = batteriesData.find(b => b.id === battery);
+    const serviceData = servicesData.find(s => s.id === service);
     return sum + (batteryData ? batteryData.price * qty : 0);
   }, 0);
 
@@ -390,7 +387,7 @@ export default function ProductsPage() {
             gap: '24px',
             marginBottom: '32px'
           }}>
-            {batteriesData.map(battery => (
+            {servicesData.map(service => (
               <div
                 key={battery.id}
                 style={{
@@ -617,7 +614,7 @@ export default function ProductsPage() {
             gap: '24px',
             marginBottom: '32px'
           }}>
-            {jobsiteSolutions.map(pkg => (
+            {engineeringPackages.map(pkg => (
               <div
                 key={pkg.id}
                 style={{
@@ -858,7 +855,7 @@ export default function ProductsPage() {
               <div style={{ marginBottom: '24px' }}>
                 {Object.entries(quantities).map(([batteryId, qty]) => {
                   if (qty === 0) return null;
-                  const battery = batteriesData.find(b => b.id === batteryId);
+                  const service = servicesData.find(s => s.id === serviceId);
                   if (!battery) return null;
                   
                   return (

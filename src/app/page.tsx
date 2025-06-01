@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Battery, Shield, Zap, TrendingUp } from 'lucide-react'
+import { Shield, Wrench, Train, Factory, Settings2 } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -10,26 +10,26 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
           <div className="text-center">
             <div className="flex justify-center mb-8">
-              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center">
-                <Battery className="h-8 w-8 text-white" />
+              <div className="w-16 h-16 bg-[#006FEE] rounded-2xl flex items-center justify-center">
+                <Train className="h-8 w-8 text-white" />
               </div>
             </div>
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Battery Department Portal
+              South West Steam Engineering
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Your comprehensive B2B e-commerce platform for battery management,
-              inventory tracking, and order processing.
+              Professional engineering project management for steam restoration,
+              CAD design, and bespoke fabrication. Proudly serving Cornwall for 20+ years.
             </p>
             <div className="flex gap-4 justify-center">
               <Link href="/portal/auth/login">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <Button size="lg" className="bg-[#006FEE] hover:bg-[#0050B3]">
                   Sign In
                 </Button>
               </Link>
-              <Link href="/portal/auth/register">
+              <Link href="/customer">
                 <Button size="lg" variant="outline">
-                  Get Started
+                  Request Quote
                 </Button>
               </Link>
             </div>
@@ -41,59 +41,59 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Everything you need to manage your battery business
+            Complete Engineering Project Management
           </h2>
           <p className="text-lg text-gray-600">
-            Powerful tools and features designed for modern B2B commerce
+            Professional tools for heritage railway restoration and industrial engineering
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="h-6 w-6 text-blue-600" />
+              <Train className="h-6 w-6 text-[#006FEE]" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Real-time Analytics
+              Steam Restoration
             </h3>
             <p className="text-gray-600">
-              Track performance metrics and make data-driven decisions
+              Heritage railway locomotive restoration specialists
             </p>
           </div>
 
           <div className="text-center">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Battery className="h-6 w-6 text-green-600" />
+              <Settings2 className="h-6 w-6 text-green-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Inventory Management
+              CAD Design Services
             </h3>
             <p className="text-gray-600">
-              Monitor battery stock levels and automate reordering
+              Professional 3D engineering drawings and specifications
             </p>
           </div>
 
           <div className="text-center">
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Zap className="h-6 w-6 text-purple-600" />
+              <Factory className="h-6 w-6 text-purple-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Fast Processing
+              Plant Repair
             </h3>
             <p className="text-gray-600">
-              Quick order processing and automated workflows
+              Industrial machinery repair and maintenance services
             </p>
           </div>
 
           <div className="text-center">
             <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Shield className="h-6 w-6 text-yellow-600" />
+              <Wrench className="h-6 w-6 text-yellow-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Secure Platform
+              Bespoke Fabrication
             </h3>
             <p className="text-gray-600">
-              Enterprise-grade security for your business data
+              Custom engineering solutions for unique requirements
             </p>
           </div>
         </div>

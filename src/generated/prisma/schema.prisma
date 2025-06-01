@@ -141,6 +141,10 @@ model Customer {
   subscriptions Subscription[]
   invoices      Invoice[]
 
+  // Engineering additions
+  projects Project[]
+  quotes   Quote[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -216,6 +220,9 @@ model Order {
   // Invoice
   invoiceId String?  @unique
   invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+
+  // Engineering addition - link to project
+  project Project?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -844,4 +851,227 @@ model QuizIntervention {
 
   @@index([sessionId])
   @@index([interventionType])
+}
+
+// ===== ENGINEERING-SPECIFIC MODELS =====
+// These models extend the existing e-commerce platform for engineering project management
+
+model Service {
+  id          String  @id @default(uuid())
+  serviceCode String  @unique
+  name        String
+  description String?
+  category    String // "steam", "cad", "repair", "railway", "fabrication", "consultation"
+
+  // Pricing
+  basePrice    Float? // Base hourly/project rate
+  pricingModel String @default("hourly") // "hourly", "fixed", "milestone", "custom"
+  currency     String @default("GBP")
+
+  // Service Details
+  specifications Json? // Technical capabilities, equipment, certifications
+  portfolio      Json? // Array of past project images/descriptions
+
+  // Availability
+  leadTime Int? // Days
+  capacity Json? // { maxProjects: 5, currentProjects: 3 }
+
+  // Relationships
+  projects Project[]
+  quotes   Quote[]
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([serviceCode])
+}
+
+model Project {
+  id          String  @id @default(uuid())
+  projectRef  String  @unique // e.g., "PROJ-2024-001"
+  clientId    String
+  name        String
+  description String?
+  service     String // "steam", "cad", "repair", "fabrication"
+  status      String  @default("enquiry") // Simple status tracking
+
+  // Stages tracking
+  currentStage    String   @default("initial_contact")
+  stagesCompleted String[] // Array of completed stages
+
+  // Financial
+  quotedAmount   Float?
+  actualCost     Float?
+  invoicedAmount Float?
+  paidAmount     Float?
+
+  // Timeline
+  startDate     DateTime?
+  targetDate    DateTime?
+  completedDate DateTime?
+
+  // Simple fields
+  location String? // Client location in UK
+  notes    String? // General notes
+  priority String  @default("normal") // "urgent", "normal", "low"
+
+  client    Customer       @relation(fields: [clientId], references: [id])
+  documents Document[]
+  stages    ProjectStage[]
+  costs     MaterialCost[]
+
+  // Maintain compatibility with existing order system
+  orderId String? @unique
+  order   Order?  @relation(fields: [orderId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Service   Service? @relation(fields: [serviceId], references: [id])
+  serviceId String?
+
+  @@index([clientId])
+  @@index([status])
+  @@index([service])
+}
+
+model ProjectStage {
+  id          String    @id @default(uuid())
+  projectId   String
+  stageName   String // "Design", "Materials", "Manufacturing", etc.
+  status      String    @default("pending") // "pending", "in_progress", "completed"
+  notes       String?
+  completedAt DateTime?
+  order       Int       @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+}
+
+model Document {
+  id           String   @id @default(uuid())
+  projectId    String
+  filename     String
+  originalName String
+  fileType     String // "cad", "invoice", "quote", "photo", "certificate", "report", "other"
+  fileSize     Int?
+  fileUrl      String?
+  uploadedAt   DateTime @default(now())
+
+  project     Project              @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  generations DocumentGeneration[]
+
+  @@index([projectId])
+  @@index([fileType])
+}
+
+model DocumentGeneration {
+  id             String    @id @default(uuid())
+  documentId     String
+  documentType   String // "invoice", "project_report", "certificate", "quote"
+  documentNumber String    @unique
+  templateData   String // JSON string of template data
+  status         String    @default("pending") // "pending", "generating", "completed", "failed"
+  generatedBy    String?
+  generatedAt    DateTime?
+  autoSend       Boolean   @default(false)
+  emailSent      Boolean   @default(false)
+  emailSentAt    DateTime?
+  recipientEmail String?
+  fileUrl        String?
+  errorMessage   String?
+
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([documentId])
+  @@index([documentType])
+  @@index([status])
+  @@index([documentNumber])
+}
+
+model Quote {
+  id          String @id @default(uuid())
+  quoteNumber String @unique
+
+  // Customer
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  // Quote Details
+  title       String
+  description String?
+  services    Json // Array of services with quantities/specifications
+
+  // Pricing
+  subtotal Float
+  tax      Float
+  total    Float
+  currency String @default("GBP")
+
+  // Validity
+  validUntil DateTime
+  status     String   @default("draft") // draft, sent, accepted, rejected, expired
+
+  // Terms
+  terms String?
+  notes String?
+
+  // Conversion
+  convertedToProjectId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Service   Service? @relation(fields: [serviceId], references: [id])
+  serviceId String?
+
+  @@index([customerId])
+  @@index([status])
+  @@index([quoteNumber])
+}
+
+// Simplified Engineering Cost Tracking Models
+model MaterialCost {
+  id         String   @id @default(uuid())
+  projectId  String?
+  supplier   String
+  material   String
+  quantity   Float
+  unitCost   Float
+  totalCost  Float
+  invoiceRef String?
+  date       DateTime
+  category   String? // "steel", "hardware", "electrical", etc.
+
+  project Project? @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([projectId])
+  @@index([supplier])
+  @@index([category])
+}
+
+model SupplierInvoice {
+  id          String   @id @default(uuid())
+  supplier    String
+  invoiceRef  String
+  date        DateTime
+  totalAmount Float
+  items       Json // Array of line items for cost database
+  fileUrl     String?
+  processed   Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([supplier])
+  @@index([date])
 }

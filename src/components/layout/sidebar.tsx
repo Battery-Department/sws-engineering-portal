@@ -25,7 +25,8 @@ import {
   DollarSign,
   Facebook,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  Wand2
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -106,62 +107,67 @@ export default function Sidebar({ open, setOpen, activeRoute = "Dashboard" }: Si
     {
       name: "CRM Intelligence",
       icon: Brain,
-      href: "/dealer-portal/crm",
+      href: "/portal/crm",
       badge: { text: "NEW", variant: "default" as const },
       subItems: [
         {
           name: "Overview Dashboard",
-          href: "/dealer-portal/crm",
+          href: "/portal/crm",
           icon: LayoutDashboard
         },
         {
           name: "Content Studio",
-          href: "/dealer-portal/crm/content-studio",
+          href: "/portal/crm/content-studio",
           icon: Palette
         },
         {
           name: "Asset Library", 
-          href: "/dealer-portal/crm/assets",
+          href: "/portal/crm/assets",
           icon: Image
+        },
+        {
+          name: "AI Generator",
+          href: "/portal/crm/generate",
+          icon: Wand2
         },
         {
           name: "Analytics Hub",
           icon: TrendingUp,
           subItems: [
-            { name: "Content Performance", href: "/dealer-portal/crm/analytics/content" },
-            { name: "Audience Insights", href: "/dealer-portal/crm/analytics/audience" },
-            { name: "ROI Tracking", href: "/dealer-portal/crm/analytics/roi" },
-            { name: "A/B Test Results", href: "/dealer-portal/crm/analytics/testing" }
+            { name: "Content Performance", href: "/portal/crm/analytics/content" },
+            { name: "Audience Insights", href: "/portal/crm/analytics/audience" },
+            { name: "ROI Tracking", href: "/portal/crm/analytics/roi" },
+            { name: "A/B Test Results", href: "/portal/crm/analytics/testing" }
           ]
         },
         {
           name: "Cost Management",
           icon: DollarSign,
           subItems: [
-            { name: "API Usage & Costs", href: "/dealer-portal/crm/costs/api" },
-            { name: "Cost Per Content", href: "/dealer-portal/crm/costs/content" },
-            { name: "Budget Tracking", href: "/dealer-portal/crm/costs/budget" },
-            { name: "Invoice History", href: "/dealer-portal/crm/costs/invoices" }
+            { name: "API Usage & Costs", href: "/portal/crm/costs/api" },
+            { name: "Cost Per Content", href: "/portal/crm/costs/content" },
+            { name: "Budget Tracking", href: "/portal/crm/costs/budget" },
+            { name: "Invoice History", href: "/portal/crm/costs/invoices" }
           ]
         },
         {
           name: "Operations",
           icon: Settings,
           subItems: [
-            { name: "System Health", href: "/dealer-portal/crm/ops/health" },
-            { name: "Job Queue Monitor", href: "/dealer-portal/crm/ops/queue" },
-            { name: "Error Tracking", href: "/dealer-portal/crm/ops/errors" },
-            { name: "API Keys", href: "/dealer-portal/crm/ops/api-keys" }
+            { name: "System Health", href: "/portal/crm/ops/health" },
+            { name: "Job Queue Monitor", href: "/portal/crm/ops/queue" },
+            { name: "Error Tracking", href: "/portal/crm/ops/errors" },
+            { name: "API Keys", href: "/portal/crm/ops/api-keys" }
           ]
         },
         {
           name: "Meta Integration",
           icon: Facebook,
           subItems: [
-            { name: "Campaign Dashboard", href: "/dealer-portal/crm/meta/campaigns" },
-            { name: "Audience Manager", href: "/dealer-portal/crm/meta/audiences" },
-            { name: "Ad Performance", href: "/dealer-portal/crm/meta/performance" },
-            { name: "Pixel Events", href: "/dealer-portal/crm/meta/events" }
+            { name: "Campaign Dashboard", href: "/portal/crm/meta/campaigns" },
+            { name: "Audience Manager", href: "/portal/crm/meta/audiences" },
+            { name: "Ad Performance", href: "/portal/crm/meta/performance" },
+            { name: "Pixel Events", href: "/portal/crm/meta/events" }
           ]
         }
       ]

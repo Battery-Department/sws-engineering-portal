@@ -3,30 +3,19 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import {
-  Package,
-  ShoppingCart,
-  Heart,
+  FileText,
   Home,
   User,
   MessageCircle,
   LogOut,
   Menu,
   X,
-  CreditCard,
   Bell,
-  Award,
-  Settings
+  Settings,
+  Train,
+  Folder
 } from 'lucide-react'
-
-const navigation = [
-  { name: 'Dashboard', href: '/customer/dashboard', icon: Home },
-  { name: 'Product Config', href: '/customer/products', icon: Package },
-  { name: 'Fleet Calculator', href: '/customer/configure', icon: Settings },
-  { name: 'Order History', href: '/customer/orders', icon: ShoppingCart },
-  { name: 'Saved Items', href: '/customer/favorites', icon: Heart },
-  { name: 'Billing & Invoices', href: '/customer/payment', icon: CreditCard },
-  { name: 'Support Center', href: '/customer/chat', icon: MessageCircle },
-]
+import { CUSTOMER_NAVIGATION } from '@/config/navigation'
 
 export default function CustomerLayout({
   children,
@@ -68,21 +57,21 @@ export default function CustomerLayout({
         left: 0,
         bottom: 0,
         width: '260px',
-        background: 'linear-gradient(180deg, #E6F4FF 0%, #DEEEFF 50%, #EFF8FF 100%)',
-        borderRight: '1px solid rgba(0, 111, 238, 0.1)',
+        background: 'white',
+        borderRight: '1px solid #E5E7EB',
         transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
         transition: 'transform 0.3s ease',
         zIndex: 40,
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: isSidebarOpen ? '4px 0 16px rgba(0, 111, 238, 0.05)' : 'none'
+        boxShadow: isSidebarOpen ? '4px 0 16px rgba(0, 0, 0, 0.1)' : 'none'
       }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '24px',
-          borderBottom: '1px solid rgba(0, 111, 238, 0.1)'
+          borderBottom: '1px solid #E5E7EB'
         }}>
           <div style={{
             display: 'flex',
@@ -92,29 +81,33 @@ export default function CustomerLayout({
             <div style={{
               width: '40px',
               height: '40px',
-              background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+              background: 'linear-gradient(to right, #006FEE, #0050B3)',
               borderRadius: '10px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 4px 12px rgba(0, 111, 238, 0.3)'
             }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                <path d="M13 2L3 14h9l-1 8L21 10h-9l1-8z" />
-              </svg>
+              <Train size={24} color="white" />
             </div>
-            <h2 style={{ 
-              fontSize: '20px', 
-              fontWeight: '700',
-              color: '#003D88'
-            }}>Battery Department</h2>
+            <div>
+              <h2 style={{ 
+                fontSize: '16px', 
+                fontWeight: '700',
+                color: '#111827'
+              }}>SWSE Customer Portal</h2>
+              <p style={{
+                fontSize: '12px',
+                color: '#6B7280'
+              }}>South West Steam Engineering</p>
+            </div>
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}
             style={{
               padding: '8px',
               borderRadius: '8px',
-              color: '#003D88',
+              color: '#374151',
               backgroundColor: 'transparent',
               border: 'none',
               cursor: 'pointer',
@@ -127,9 +120,9 @@ export default function CustomerLayout({
         </div>
         
         <nav style={{ flex: 1, padding: '12px' }}>
-          {navigation.map((item) => (
+          {CUSTOMER_NAVIGATION.map((item) => (
             <a
-              key={item.name}
+              key={item.label}
               href={item.href}
               onClick={(e) => {
                 e.preventDefault()
@@ -141,10 +134,10 @@ export default function CustomerLayout({
                 alignItems: 'center',
                 padding: '12px 16px',
                 margin: '4px 0',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 textDecoration: 'none',
-                color: pathname === item.href ? '#006FEE' : '#5B9FFF',
-                backgroundColor: pathname === item.href ? 'rgba(0, 111, 238, 0.08)' : 'transparent',
+                color: pathname === item.href ? '#006FEE' : '#374151',
+                backgroundColor: pathname === item.href ? '#E6F4FF' : 'transparent',
                 transition: 'all 0.2s',
                 fontSize: '14px',
                 fontWeight: pathname === item.href ? '600' : '500',
@@ -152,19 +145,30 @@ export default function CustomerLayout({
               }}
               onMouseEnter={(e) => {
                 if (pathname !== item.href) {
-                  e.currentTarget.style.backgroundColor = 'rgba(0, 111, 238, 0.04)'
-                  e.currentTarget.style.borderColor = 'rgba(0, 111, 238, 0.08)'
+                  e.currentTarget.style.backgroundColor = '#F3F4F6'
                 }
               }}
               onMouseLeave={(e) => {
                 if (pathname !== item.href) {
                   e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.borderColor = 'transparent'
                 }
               }}
             >
               <item.icon size={20} style={{ marginRight: '12px' }} />
-              {item.name}
+              <span>{item.label}</span>
+              {item.badge && (
+                <span style={{
+                  marginLeft: 'auto',
+                  padding: '2px 8px',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  backgroundColor: '#10B981',
+                  color: 'white',
+                  borderRadius: '12px'
+                }}>
+                  {item.badge}
+                </span>
+              )}
             </a>
           ))}
         </nav>
@@ -211,15 +215,15 @@ export default function CustomerLayout({
       {/* Desktop sidebar */}
       <div style={{
         width: '260px',
-        background: 'linear-gradient(180deg, #E6F4FF 0%, #DEEEFF 50%, #EFF8FF 100%)',
-        borderRight: '1px solid rgba(0, 111, 238, 0.1)',
+        background: 'white',
+        borderRight: '1px solid #E5E7EB',
         display: 'none',
         flexDirection: 'column',
-        boxShadow: '4px 0 16px rgba(0, 111, 238, 0.05)'
+        boxShadow: '2px 0 8px rgba(0, 0, 0, 0.05)'
       }} className="desktop-sidebar">
         <div style={{
           padding: '24px',
-          borderBottom: '1px solid rgba(0, 111, 238, 0.1)'
+          borderBottom: '1px solid #E5E7EB'
         }}>
           <div style={{
             display: 'flex',
@@ -229,37 +233,35 @@ export default function CustomerLayout({
             <div style={{
               width: '50px',
               height: '50px',
-              background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+              background: 'linear-gradient(to right, #006FEE, #0050B3)',
               borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 4px 12px rgba(0, 111, 238, 0.3)'
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                <path d="M13 2L3 14h9l-1 8L21 10h-9l1-8z" />
-              </svg>
+              <Train size={28} color="white" />
             </div>
             <div>
               <h1 style={{ 
-                fontSize: '22px', 
+                fontSize: '18px', 
                 fontWeight: '700',
-                color: '#003D88',
+                color: '#111827',
                 marginBottom: '4px'
-              }}>Battery Department</h1>
+              }}>South West Steam</h1>
               <p style={{
                 fontSize: '13px',
-                color: '#5B9FFF',
+                color: '#6B7280',
                 fontWeight: '500'
-              }}>Partner Portal</p>
+              }}>Customer Portal</p>
             </div>
           </div>
         </div>
         
         <nav style={{ flex: 1, padding: '12px' }}>
-          {navigation.map((item) => (
+          {CUSTOMER_NAVIGATION.map((item) => (
             <a
-              key={item.name}
+              key={item.label}
               href={item.href}
               onClick={(e) => {
                 e.preventDefault()
@@ -270,30 +272,40 @@ export default function CustomerLayout({
                 alignItems: 'center',
                 padding: '12px 16px',
                 margin: '4px 0',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 textDecoration: 'none',
-                color: pathname === item.href ? '#006FEE' : '#5B9FFF',
-                backgroundColor: pathname === item.href ? 'rgba(0, 111, 238, 0.08)' : 'transparent',
+                color: pathname === item.href ? '#006FEE' : '#374151',
+                backgroundColor: pathname === item.href ? '#E6F4FF' : 'transparent',
                 transition: 'all 0.2s',
                 fontSize: '14px',
-                fontWeight: pathname === item.href ? '600' : '500',
-                border: '1px solid transparent'
+                fontWeight: pathname === item.href ? '600' : '500'
               }}
               onMouseEnter={(e) => {
                 if (pathname !== item.href) {
-                  e.currentTarget.style.backgroundColor = 'rgba(0, 111, 238, 0.04)'
-                  e.currentTarget.style.borderColor = 'rgba(0, 111, 238, 0.08)'
+                  e.currentTarget.style.backgroundColor = '#F3F4F6'
                 }
               }}
               onMouseLeave={(e) => {
                 if (pathname !== item.href) {
                   e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.borderColor = 'transparent'
                 }
               }}
             >
               <item.icon size={20} style={{ marginRight: '12px' }} />
-              {item.name}
+              <span>{item.label}</span>
+              {item.badge && (
+                <span style={{
+                  marginLeft: 'auto',
+                  padding: '2px 8px',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  backgroundColor: '#10B981',
+                  color: 'white',
+                  borderRadius: '12px'
+                }}>
+                  {item.badge}
+                </span>
+              )}
             </a>
           ))}
         </nav>
@@ -346,8 +358,8 @@ export default function CustomerLayout({
           justifyContent: 'space-between',
           padding: '16px 24px',
           backgroundColor: '#ffffff',
-          borderBottom: '1px solid #E6F4FF',
-          boxShadow: '0 1px 3px rgba(0, 111, 238, 0.05)'
+          borderBottom: '1px solid #E5E7EB',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
         }} className="mobile-header">
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -357,7 +369,7 @@ export default function CustomerLayout({
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: '#003D88',
+              color: '#374151',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -373,21 +385,19 @@ export default function CustomerLayout({
             <div style={{
               width: '36px',
               height: '36px',
-              background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+              background: 'linear-gradient(to right, #006FEE, #0050B3)',
               borderRadius: '8px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                <path d="M13 2L3 14h9l-1 8L21 10h-9l1-8z" />
-              </svg>
+              <Train size={20} color="white" />
             </div>
             <h1 style={{ 
-              fontSize: '20px', 
+              fontSize: '18px', 
               fontWeight: '700',
-              color: '#003D88'
-            }}>Battery Department</h1>
+              color: '#111827'
+            }}>SWSE Portal</h1>
           </div>
           <button
             onClick={() => router.push('/customer/notifications')}
