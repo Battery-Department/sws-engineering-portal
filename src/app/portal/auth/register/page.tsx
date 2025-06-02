@@ -1,4 +1,7 @@
-'use client';
+'use client'
+
+// Disable static generation for this page
+export const dynamic = 'force-dynamic';
 
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';

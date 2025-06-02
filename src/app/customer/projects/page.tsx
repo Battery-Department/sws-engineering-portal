@@ -10,7 +10,8 @@ import {
   Calendar,
   TrendingUp,
   Wrench,
-  Package
+  Package,
+  MessageCircle
 } from 'lucide-react'
 
 interface CustomerProject {

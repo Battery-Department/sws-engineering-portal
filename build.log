@@ -1,0 +1,90 @@
+
+> engineering-dashboard@0.1.0 build
+> prisma generate --schema=./prisma/schema.prisma && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.8.2) to ./src/generated/prisma in 63ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+
+   ▲ Next.js 15.3.2
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+Stable Diffusion: ❌
+DALL-E 3: ❌
+Claude: ✅
+Midjourney: ❌
+✅ AI Provider Manager initialized
+Total data points defined: 160
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+❌ Failed to initialize job queue: a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+❌ Failed to initialize job queue: a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+   Generating static pages (0/108) ...
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+Error occurred prerendering page "/customer/products". Read more: https://nextjs.org/docs/messages/prerender-error
+ReferenceError: service is not defined
+    at /Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/app/customer/products/page.js:1:5390
+    at Array.find (<anonymous>)
+    at /Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/app/customer/products/page.js:1:5375
+    at Array.reduce (<anonymous>)
+    at w (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/app/customer/products/page.js:1:5354)
+    at nF (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:46843)
+    at nH (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:48618)
+    at nW (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:67762)
+    at nz (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:65337)
+    at nB (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:47195)
+Export encountered an error on /customer/products/page: /customer/products, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

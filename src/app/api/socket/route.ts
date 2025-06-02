@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Server as SocketIOServer } from 'socket.io'
 import { createServer } from 'http'
-import { PrismaClient } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
 
-const prisma = new PrismaClient()
 
 // WebSocket server instance
 let io: SocketIOServer | null = null

@@ -51,3 +51,4 @@ prisma/*.db-journal
 # lithi-chatbot
 lithi-chatbot/prisma/db.sqlite
 lithi-chatbot/prisma/db.sqlite-journal
+.aider*

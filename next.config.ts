@@ -42,6 +42,19 @@ const nextConfig: NextConfig = {
     return `build-${Date.now()}-${Math.random().toString(36).substring(7)}`
   },
   reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
+  async rewrites() {
+    return []
+  },
+  async redirects() {
+    return []
+  },
+  poweredByHeader: false,
+  trailingSlash: false,
+  // Disable static optimization globally for problematic auth pages
+  output: 'standalone',
 };
 
 export default nextConfig;

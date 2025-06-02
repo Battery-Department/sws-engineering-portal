@@ -137,25 +137,27 @@ export default function ProductsPage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Calculate totals
-  const subtotal = Object.entries(quantities).reduce((sum, [battery, qty]) => {
+  // Calculate totals (client-side only)
+  const subtotal = typeof window !== 'undefined' ? Object.entries(quantities).reduce((sum, [battery, qty]) => {
     const serviceData = servicesData.find(s => s.id === service);
     return sum + (batteryData ? batteryData.price * qty : 0);
-  }, 0);
+  }, 0) : 0;
 
   // Calculate discount
   let discountPercentage = 0;
-  for (const tier of discountTiers.reverse()) {
-    if (subtotal >= tier.threshold) {
-      discountPercentage = tier.percentage;
-      break;
+  if (typeof window !== 'undefined') {
+    for (const tier of discountTiers.reverse()) {
+      if (subtotal >= tier.threshold) {
+        discountPercentage = tier.percentage;
+        break;
+      }
     }
+    discountTiers.reverse(); // Reset order
   }
-  discountTiers.reverse(); // Reset order
 
   const discountAmount = subtotal * (discountPercentage / 100);
   const total = subtotal - discountAmount;
-  const totalItems = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+  const totalItems = typeof window !== 'undefined' ? Object.values(quantities).reduce((sum, qty) => sum + qty, 0) : 0;
 
   const updateQuantity = (battery: string, delta: number) => {
     setQuantities(prev => ({

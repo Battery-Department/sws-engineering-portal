@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
 import { PDFGenerator } from '@/lib/pdfGenerator'
 import { EmailService } from '@/lib/emailService'
 
-const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {

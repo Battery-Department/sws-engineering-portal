@@ -1,0 +1,125 @@
+
+> engineering-dashboard@0.1.0 build
+> prisma generate --schema=./prisma/schema.prisma && next build
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.8.2) to ./src/generated/prisma in 66ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+
+   ▲ Next.js 15.3.2
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 6.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+Total data points defined: 160
+Stable Diffusion: ❌
+DALL-E 3: ❌
+Claude: ✅
+Midjourney: ❌
+✅ AI Provider Manager initialized
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+❌ Failed to initialize job queue: a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+❌ Failed to initialize job queue: a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+a: Reached the max retries per request limit (which is 3). Refer to "maxRetriesPerRequest" option for details.
+    at Socket.<anonymous> (.next/server/chunks/2984.js:140:4590)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+   Generating static pages (0/108) ...
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+Stable Diffusion: ❌
+DALL-E 3: ❌
+Claude: ✅
+Midjourney: ❌
+✅ AI Provider Manager initialized
+   Generating static pages (27/108) 
+Total data points defined: 160
+   Generating static pages (54/108) 
+Error occurred prerendering page "/customer/requirements". Read more: https://nextjs.org/docs/messages/prerender-error
+ReferenceError: Calculator is not defined
+    at x (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/chunks/4339.js:9:7072)
+    at /Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/chunks/4339.js:20:111
+    at Array.map (<anonymous>)
+    at /Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/chunks/4339.js:18:410
+    at H (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/chunks/4339.js:28:780)
+    at nF (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:46843)
+    at nH (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:48618)
+    at nW (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:67762)
+    at nz (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:65337)
+    at nY (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:71193)
+Export encountered an error on /customer/requirements/page: /customer/requirements, exiting the build.
+Error occurred prerendering page "/portal/analytics". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: useAuth must be used within an AuthProvider
+    at n (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/app/portal/analytics/page.js:10:2454)
+    at k (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/.next/server/app/portal/analytics/page.js:1:5939)
+    at nF (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:46843)
+    at nH (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:48618)
+    at nW (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:67762)
+    at nz (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:65337)
+    at nB (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:47195)
+    at nH (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:48664)
+    at nH (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:64688)
+    at nW (/Users/oliver/South_West_Steam_Engineering/engineering-dashboard/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:76:67762)
+Export encountered an error on /portal/analytics/page: /portal/analytics, exiting the build.
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+[ioredis] Unhandled error event: Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:128:17)
+ ⨯ Next.js build worker exited with code: 1 and signal: null

@@ -556,3 +556,6 @@ export const PRIORITY_LEVELS = [
   { id: 'normal', name: 'Normal', color: '#6B7280' },
   { id: 'low', name: 'Low', color: '#9CA3AF' }
 ]
+
+// Additional export for customer navigation
+export const CUSTOMER_NAVIGATION = customerNavigation
