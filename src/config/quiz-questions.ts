@@ -1,35 +1,35 @@
 // Dynamic Quiz Questions Configuration
 import { QuizQuestion } from '@/types/quiz-v2';
 
-// Question 1: User Type Selection
-export const USER_TYPE_QUESTION: QuizQuestion = {
-  id: 'user-type',
+// Question 1: Client Type Selection
+export const CLIENT_TYPE_QUESTION: QuizQuestion = {
+  id: 'client-type',
   type: 'visual-cards',
-  question: "Let's start with the basics - who's this for?",
-  subtitle: "This helps us show the right products and pricing",
+  question: "What type of project are you looking for?",
+  subtitle: "This helps us understand your engineering requirements",
   options: [
     {
-      id: 'professional',
-      value: 'professional',
-      title: 'Professional Contractor',
-      label: '🔧 Professional Contractor',
-      description: 'Crew of 2+ • Daily use • Volume pricing',
-      highlights: ['Fleet Pricing', 'Net Terms', 'Dedicated Support'],
+      id: 'heritage-railway',
+      value: 'heritage-railway',
+      title: 'Heritage Railway',
+      label: '🚂 Heritage Railway',
+      description: 'Steam locomotive restoration • 7¼" gauge specialists',
+      highlights: ['Expert Restoration', 'Authentic Materials', 'Period Accuracy'],
       visualCard: {
-        background: 'linear-gradient(135deg, #006FEE 0%, #0050B3 100%)',
+        background: 'linear-gradient(135deg, #8B4513 0%, #654321 100%)',
         hoverEffect: 'translateY(-4px) shadow-xl',
         selectionAnimation: 'pulse-border 0.6s ease-out'
       }
     },
     {
-      id: 'personal',
-      value: 'personal',
-      title: 'DIY/Homeowner',
-      label: '🏠 DIY/Homeowner',
-      description: 'Personal projects • Weekend warrior',
-      highlights: ['Best Value', 'Free Shipping', 'Easy Returns'],
+      id: 'industrial',
+      value: 'industrial',
+      title: 'Industrial Engineering',
+      label: '🏭 Industrial Engineering',
+      description: 'Plant & machinery repair • Custom fabrication',
+      highlights: ['CAD Design', 'FEA Analysis', 'Custom Solutions'],
       visualCard: {
-        background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+        background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
         hoverEffect: 'translateY(-4px) shadow-lg',
         selectionAnimation: 'pulse-border 0.6s ease-out'
       }
@@ -37,243 +37,261 @@ export const USER_TYPE_QUESTION: QuizQuestion = {
   ]
 };
 
-// Professional Path Questions
-export const PROFESSIONAL_QUESTIONS: QuizQuestion[] = [
+// Heritage Railway Path Questions
+export const HERITAGE_RAILWAY_QUESTIONS: QuizQuestion[] = [
   {
-    id: 'trade',
+    id: 'locomotive-type',
     type: 'single-choice',
-    question: "What's your primary trade?",
-    subtitle: "We'll recommend tools and batteries specific to your industry",
+    question: "What type of locomotive restoration?",
+    subtitle: "We specialize in authentic period restorations",
     options: [
-      { id: 'electrical', value: 'electrical', label: '⚡ Electrical', icon: '⚡' },
-      { id: 'plumbing', value: 'plumbing', label: '🔧 Plumbing', icon: '🔧' },
-      { id: 'hvac', value: 'hvac', label: '❄️ HVAC', icon: '❄️' },
-      { id: 'carpentry', value: 'carpentry', label: '🔨 Carpentry', icon: '🔨' },
-      { id: 'general', value: 'general', label: '🏗️ General Contractor', icon: '🏗️' },
-      { id: 'concrete', value: 'concrete', label: '🧱 Concrete/Masonry', icon: '🧱' },
-      { id: 'landscaping', value: 'landscaping', label: '🌿 Landscaping', icon: '🌿' },
-      { id: 'other', value: 'other', label: '📋 Other Trade', icon: '📋' }
+      { id: 'steam-7quarter', value: 'steam-7quarter', label: '🚂 7¼" Gauge Steam', icon: '🚂' },
+      { id: 'steam-other', value: 'steam-other', label: '🚃 Other Gauge Steam', icon: '🚃' },
+      { id: 'diesel', value: 'diesel', label: '🚄 Diesel Locomotive', icon: '🚄' },
+      { id: 'electric', value: 'electric', label: '⚡ Electric Locomotive', icon: '⚡' },
+      { id: 'rolling-stock', value: 'rolling-stock', label: '🚋 Rolling Stock', icon: '🚋' },
+      { id: 'stationary', value: 'stationary', label: '🏭 Stationary Engine', icon: '🏭' },
+      { id: 'track-work', value: 'track-work', label: '🛤️ Track & Infrastructure', icon: '🛤️' },
+      { id: 'other', value: 'other', label: '🔧 Other Heritage Project', icon: '🔧' }
     ]
   },
   {
-    id: 'crew-size',
+    id: 'restoration-scope',
     type: 'single-choice',
-    question: "How many people on your crew?",
-    subtitle: "This helps us calculate the right battery fleet size",
+    question: "What's the scope of restoration needed?",
+    subtitle: "This helps us estimate timeline and resources",
     options: [
-      { id: 'solo', value: '1', label: 'Just me', icon: '👤' },
-      { id: 'small', value: '2-3', label: '2-3 people', icon: '👥' },
-      { id: 'medium', value: '4-5', label: '4-5 people', icon: '👨‍👩‍👧' },
-      { id: 'large', value: '6-10', label: '6-10 people', icon: '👨‍👩‍👧‍👦' },
-      { id: 'xlarge', value: '10+', label: '10+ people', icon: '👥👥' }
+      { id: 'complete', value: 'complete', label: 'Complete restoration', icon: '🔄' },
+      { id: 'major', value: 'major', label: 'Major overhaul', icon: '🔧' },
+      { id: 'boiler', value: 'boiler', label: 'Boiler work', icon: '🔥' },
+      { id: 'mechanical', value: 'mechanical', label: 'Mechanical repairs', icon: '⚙️' },
+      { id: 'cosmetic', value: 'cosmetic', label: 'Cosmetic restoration', icon: '🎨' },
+      { id: 'maintenance', value: 'maintenance', label: 'Routine maintenance', icon: '🛠️' }
     ]
   },
   {
-    id: 'pain-points',
+    id: 'heritage-priorities',
     type: 'ranking',
-    question: "Rank your biggest battery frustrations",
-    subtitle: "Drag to reorder - we'll address your top concerns",
+    question: "Rank your restoration priorities",
+    subtitle: "Drag to reorder - we'll focus on your top concerns",
     options: [
       { 
-        id: 'runtime',
-        value: 'runtime',
-        label: 'Batteries die mid-job',
-        icon: '🔋'
+        id: 'authenticity',
+        value: 'authenticity',
+        label: 'Period authenticity',
+        icon: '📜'
       },
       {
-        id: 'cold-weather',
-        value: 'cold-weather',
-        label: 'Cold weather kills batteries',
-        icon: '❄️'
+        id: 'safety',
+        value: 'safety',
+        label: 'Modern safety standards',
+        icon: '🛡️'
       },
       {
-        id: 'compatibility',
-        value: 'compatibility',
-        label: 'Too many different chargers',
-        icon: '🔌'
+        id: 'performance',
+        value: 'performance',
+        label: 'Operational performance',
+        icon: '⚡'
+      },
+      {
+        id: 'longevity',
+        value: 'longevity',
+        label: 'Long-term durability',
+        icon: '🏗️'
       },
       {
         id: 'cost',
         value: 'cost',
-        label: 'Replacement costs killing budget',
+        label: 'Cost effectiveness',
         icon: '💰'
-      },
-      {
-        id: 'theft',
-        value: 'theft',
-        label: 'Tools/batteries keep getting stolen',
-        icon: '🔒'
       }
     ]
   },
   {
-    id: 'usage-intensity',
+    id: 'project-complexity',
     type: 'single-choice',
-    question: "Daily battery usage?",
-    subtitle: "This determines the battery capacity you need",
+    question: "Project complexity level?",
+    subtitle: "This determines the engineering resources required",
     options: [
       {
-        id: 'light',
-        value: 'light',
-        label: '2-4 hours',
-        description: 'Light usage - occasional tasks'
+        id: 'simple',
+        value: 'simple',
+        label: 'Simple repairs',
+        description: 'Basic maintenance and fixes'
       },
       {
         id: 'moderate',
         value: 'moderate',
-        label: '4-6 hours',
-        description: 'Standard construction day'
+        label: 'Moderate restoration',
+        description: 'Some fabrication required'
       },
       {
-        id: 'heavy',
-        value: 'heavy',
-        label: '6-8 hours',
-        description: 'Full day heavy use',
+        id: 'complex',
+        value: 'complex',
+        label: 'Complex restoration',
+        description: 'Extensive engineering work',
         highlights: ['Most common']
       },
       {
         id: 'extreme',
         value: 'extreme',
-        label: '8+ hours',
-        description: 'Non-stop operations'
+        label: 'Complete rebuild',
+        description: 'From-scratch reconstruction'
       }
     ]
   },
   {
     id: 'timeline',
     type: 'single-choice',
-    question: "When do you need batteries?",
-    subtitle: "We'll prioritize based on your timeline",
+    question: "When do you need the project completed?",
+    subtitle: "We'll schedule resources based on your timeline",
     options: [
-      { id: 'asap', value: 'asap', label: '🚀 ASAP', description: 'Need them now' },
-      { id: 'week', value: 'week', label: '📅 This week', description: 'Quick turnaround' },
-      { id: 'month', value: 'month', label: '📆 This month', description: 'Standard delivery' },
-      { id: 'quarter', value: 'quarter', label: '📊 Next quarter', description: 'Planning ahead' },
+      { id: 'urgent', value: 'urgent', label: '🚀 Urgent', description: 'Emergency repair' },
+      { id: 'season', value: 'season', label: '🌞 This season', description: 'Ready for operating season' },
+      { id: 'year', value: 'year', label: '📅 This year', description: 'Standard timeline' },
+      { id: 'flexible', value: 'flexible', label: '📊 Flexible', description: 'Quality over speed' },
       { id: 'planning', value: 'planning', label: '📋 Just planning', description: 'Research phase' }
     ]
   }
 ];
 
-// DIY/Homeowner Path Questions
-export const PERSONAL_QUESTIONS: QuizQuestion[] = [
+// Industrial Engineering Path Questions
+export const INDUSTRIAL_QUESTIONS: QuizQuestion[] = [
   {
-    id: 'project-type',
+    id: 'industrial-type',
     type: 'multi-choice',
-    question: "What projects do you tackle?",
+    question: "What type of industrial work do you need?",
     subtitle: "Select all that apply",
     options: [
       {
-        id: 'home-repair',
-        value: 'home-repair',
-        label: '🔨 Home Repairs',
-        description: 'Basic maintenance'
+        id: 'cad-design',
+        value: 'cad-design',
+        label: '📐 3D CAD Design',
+        description: 'SolidWorks & AutoCAD'
       },
       {
-        id: 'woodworking',
-        value: 'woodworking',
-        label: '🪵 Woodworking',
-        description: 'Building & crafting'
+        id: 'plant-repair',
+        value: 'plant-repair',
+        label: '🏭 Plant & Machinery Repair',
+        description: 'Industrial equipment'
       },
       {
-        id: 'auto',
-        value: 'auto',
-        label: '🚗 Auto Work',
-        description: 'Car maintenance'
+        id: 'custom-fabrication',
+        value: 'custom-fabrication',
+        label: '🔨 Custom Fabrication',
+        description: 'Bespoke manufacturing'
       },
       {
-        id: 'yard',
-        value: 'yard',
-        label: '🌳 Yard Work',
-        description: 'Outdoor projects'
+        id: 'fea-analysis',
+        value: 'fea-analysis',
+        label: '📊 FEA Analysis',
+        description: 'Stress & thermal analysis'
       },
       {
-        id: 'renovation',
-        value: 'renovation',
-        label: '🏠 Renovations',
-        description: 'Major upgrades'
+        id: 'reverse-engineering',
+        value: 'reverse-engineering',
+        label: '🔄 Reverse Engineering',
+        description: 'Recreate from existing parts'
       }
     ]
   },
   {
-    id: 'experience',
+    id: 'industry-sector',
     type: 'single-choice',
-    question: "How experienced are you?",
-    subtitle: "This helps us recommend the right level of tools",
+    question: "What industry sector?",
+    subtitle: "This helps us understand your specific requirements",
     options: [
-      { id: 'beginner', value: 'beginner', label: '🆕 Just starting', description: 'Learning the basics' },
-      { id: 'intermediate', value: 'intermediate', label: '🔧 Some experience', description: 'Comfortable with tools' },
-      { id: 'advanced', value: 'advanced', label: '🏆 Very experienced', description: 'Pro-level skills' }
+      { id: 'manufacturing', value: 'manufacturing', label: '🏭 Manufacturing', description: 'Production equipment' },
+      { id: 'mining', value: 'mining', label: '⛏️ Mining & Quarrying', description: 'Heavy machinery' },
+      { id: 'marine', value: 'marine', label: '⚓ Marine Engineering', description: 'Ships & offshore' },
+      { id: 'power', value: 'power', label: '⚡ Power Generation', description: 'Energy sector' },
+      { id: 'transport', value: 'transport', label: '🚛 Transport & Logistics', description: 'Fleet equipment' },
+      { id: 'other', value: 'other', label: '🏢 Other Industry', description: 'Tell us more' }
     ]
   },
   {
-    id: 'current-tools',
-    type: 'single-choice',
-    question: "How many tools do you own in this brand?",
-    subtitle: "We'll recommend compatible batteries",
+    id: 'materials-needed',
+    type: 'multi-choice',
+    question: "What materials will be involved?",
+    subtitle: "We work with all engineering materials",
     options: [
-      { id: 'none', value: '0', label: 'None yet', description: 'Starting fresh' },
-      { id: 'few', value: '1-2', label: '1-2 tools', description: 'Just beginning' },
-      { id: 'several', value: '3-5', label: '3-5 tools', description: 'Growing collection' },
-      { id: 'many', value: '6+', label: '6+ tools', description: 'Serious collection' }
+      { id: 'cast-iron', value: 'cast-iron', label: '🔩 Cast Iron', description: 'Traditional strength' },
+      { id: 'steel', value: 'steel', label: '🔧 Steel', description: 'Structural applications' },
+      { id: 'stainless', value: 'stainless', label: '✨ Stainless Steel', description: 'Corrosion resistant' },
+      { id: 'brass', value: 'brass', label: '🟡 Brass', description: 'Precision components' },
+      { id: 'bronze', value: 'bronze', label: '🟤 Bronze', description: 'Bearings & bushings' },
+      { id: 'aluminum', value: 'aluminum', label: '⚪ Aluminum', description: 'Lightweight solutions' }
     ]
   },
   {
     id: 'priority',
     type: 'single-choice',
     question: "What's most important to you?",
-    subtitle: "We'll tailor recommendations to your priorities",
+    subtitle: "We'll tailor our approach to your priorities",
     options: [
       {
-        id: 'price',
-        value: 'price',
-        label: '💰 Best Price',
-        description: 'Maximum value',
+        id: 'cost',
+        value: 'cost',
+        label: '💰 Cost Effectiveness',
+        description: 'Best value solution',
         color: '#10B981'
       },
       {
         id: 'quality',
         value: 'quality',
-        label: '⭐ Best Quality',
-        description: 'Long-lasting',
+        label: '⭐ Premium Quality',
+        description: 'Highest standards',
         color: '#006FEE'
       },
       {
-        id: 'warranty',
-        value: 'warranty',
-        label: '🛡️ Best Warranty',
-        description: 'Peace of mind',
+        id: 'speed',
+        value: 'speed',
+        label: '🚀 Fast Delivery',
+        description: 'Quick turnaround',
+        color: '#F59E0B'
+      },
+      {
+        id: 'innovation',
+        value: 'innovation',
+        label: '🔬 Innovation',
+        description: 'Cutting-edge solutions',
         color: '#8B5CF6'
       }
     ]
   }
 ];
 
-// Helper function to get questions based on user path
-export const getQuestionsForPath = (userType: 'professional' | 'personal'): QuizQuestion[] => {
-  return userType === 'professional' ? PROFESSIONAL_QUESTIONS : PERSONAL_QUESTIONS;
+// Helper function to get questions based on client path
+export const getQuestionsForPath = (clientType: 'heritage-railway' | 'industrial'): QuizQuestion[] => {
+  return clientType === 'heritage-railway' ? HERITAGE_RAILWAY_QUESTIONS : INDUSTRIAL_QUESTIONS;
 };
 
 // Dynamic question routing logic
 export const getNextQuestion = (
   currentQuestionId: string,
-  userType: 'professional' | 'personal',
+  clientType: 'heritage-railway' | 'industrial',
   responses: Record<string, any>
 ): QuizQuestion | null => {
-  const questions = getQuestionsForPath(userType);
+  const questions = getQuestionsForPath(clientType);
   const currentIndex = questions.findIndex(q => q.id === currentQuestionId);
   
   if (currentIndex === -1) {
     // If not found in path questions, check if it's a base question
-    if (currentQuestionId === 'user-type') {
+    if (currentQuestionId === 'client-type') {
       return questions[0]; // Return first question of the path
     }
     return null;
   }
   
   // Special routing logic based on responses
-  if (userType === 'professional' && currentQuestionId === 'trade') {
-    const trade = responses['trade'];
-    // Could add trade-specific questions here
+  if (clientType === 'heritage-railway' && currentQuestionId === 'locomotive-type') {
+    const locomotiveType = responses['locomotive-type'];
+    // Could add locomotive-specific questions here
+  }
+  
+  if (clientType === 'industrial' && currentQuestionId === 'industrial-type') {
+    const industrialTypes = responses['industrial-type'];
+    // Could add service-specific questions here
   }
   
   // Return next question in sequence
