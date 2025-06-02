@@ -2,11 +2,21 @@ import { Queue, Worker, Job, QueueEvents } from 'bullmq';
 import IORedis from 'ioredis';
 import { EventEmitter } from 'events';
 
-// Vercel KV Redis connection
-const connection = new IORedis(process.env.KV_URL || 'redis://localhost:6379', {
-  maxRetriesPerRequest: 3,
-  retryStrategy: (times) => Math.min(times * 50, 2000),
-});
+// Vercel KV Redis connection - make it optional for build
+let connection: IORedis | null = null;
+
+try {
+  if (process.env.KV_URL || process.env.NODE_ENV !== 'production') {
+    connection = new IORedis(process.env.KV_URL || 'redis://localhost:6379', {
+      maxRetriesPerRequest: 3,
+      retryStrategy: (times) => Math.min(times * 50, 2000),
+      enableOfflineQueue: false,
+      lazyConnect: true,
+    });
+  }
+} catch (error) {
+  console.warn('Redis connection failed, running without queue support:', error);
+}
 
 // Job types and their data interfaces
 export interface ImageProcessingJobData {
@@ -94,6 +104,12 @@ export class ContentJobQueue extends EventEmitter {
     if (this.isInitialized) return;
 
     try {
+      // Check if Redis connection exists
+      if (!connection) {
+        console.warn('⚠️ Job queue disabled - no Redis connection');
+        return;
+      }
+
       // Test Redis connection
       await connection.ping();
       console.log('✅ Connected to Vercel KV Redis');
@@ -112,9 +128,11 @@ export class ContentJobQueue extends EventEmitter {
   }
 
   private initializeQueues() {
+    if (!connection) return;
+    
     Object.values(QUEUE_NAMES).forEach(queueName => {
       const queue = new Queue(queueName, {
-        connection,
+        connection: connection as IORedis,
         defaultJobOptions: {
           removeOnComplete: 100, // Keep last 100 completed jobs
           removeOnFail: 50,      // Keep last 50 failed jobs
