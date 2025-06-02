@@ -26,7 +26,8 @@ import {
   Shield,
   HelpCircle,
   PoundSterling,
-  X
+  X,
+  Calculator
 } from 'lucide-react'
 
 import { 
