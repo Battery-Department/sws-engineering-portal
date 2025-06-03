@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "lastUpdate": "2025-01-06T10:00:00Z",
+  "projectRoot": "/Users/oliver/South_West_Steam_Engineering/engineering-dashboard",
+  "trackedFiles": {
+    ".claude-code/state/current-state.json": {
+      "created": "2025-01-06T10:00:00Z",
+      "modified": "2025-01-06T10:00:00Z",
+      "size": 0,
+      "action": "created",
+      "description": "Main project state tracking file"
+    },
+    ".claude-code/state/task-queue.json": {
+      "created": "2025-01-06T10:00:00Z",
+      "modified": "2025-01-06T10:00:00Z",
+      "size": 0,
+      "action": "created",
+      "description": "Task queue management"
+    },
+    ".claude-code/state/file-manifest.json": {
+      "created": "2025-01-06T10:00:00Z",
+      "modified": "2025-01-06T10:00:00Z",
+      "size": 0,
+      "action": "created",
+      "description": "File tracking manifest"
+    }
+  },
+  "statistics": {
+    "totalFilesTracked": 3,
+    "filesCreated": 3,
+    "filesModified": 0,
+    "filesDeleted": 0
+  }
+}

@@ -1,9 +1,8 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { Send, Plus, Search, Menu, X, Trash2, Battery, Sparkles, Upload, Paperclip, Image as ImageIcon, Package, Zap, Clock, Shield, DollarSign, Award, TrendingUp, Wrench } from 'lucide-react'
+import { Send, Plus, Search, Menu, X, Trash2, Train, Sparkles, Upload, Paperclip, Image as ImageIcon, Cog, Factory, Wrench, Shield, PoundSterling, Award, TrendingUp, Clock } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
-import { lithiIntegration } from '@/services/integrations/lithi-integration'
 
 interface Message {
   id: string
@@ -21,7 +20,7 @@ interface Conversation {
   updatedAt: Date
 }
 
-export default function LithiChatPage() {
+export default function SWSEChatPage() {
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null)
   const [inputMessage, setInputMessage] = useState('')
@@ -36,11 +35,8 @@ export default function LithiChatPage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // Load conversations from local storage or API
+    // Load conversations from local storage
     loadConversations()
-    
-    // Initialize Lithi integration
-    lithiIntegration.initialize()
   }, [])
 
   useEffect(() => {
@@ -62,7 +58,7 @@ export default function LithiChatPage() {
 
   const loadConversations = async () => {
     try {
-      const saved = localStorage.getItem('lithiConversations')
+      const saved = localStorage.getItem('swseConversations')
       if (saved) {
         const parsed = JSON.parse(saved)
         setConversations(parsed)
@@ -76,7 +72,7 @@ export default function LithiChatPage() {
   }
 
   const saveConversations = (convs: Conversation[]) => {
-    localStorage.setItem('lithiConversations', JSON.stringify(convs))
+    localStorage.setItem('swseConversations', JSON.stringify(convs))
     setConversations(convs)
   }
 
@@ -128,209 +124,214 @@ export default function LithiChatPage() {
     setIsLoading(true)
 
     try {
-      // Simulate API call with better responses
+      // Simulate API call with SWSE engineering responses
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       // Generate contextual response based on keywords
       let responseContent = ''
       const lowerInput = messageToSend.toLowerCase()
       
-      if (lowerInput.includes('find batteries') || lowerInput.includes('battery') || lowerInput.includes('flexvolt')) {
-        responseContent = `I'd be happy to help you find the perfect FlexVolt battery solution! 🔋
+      if (lowerInput.includes('steam') || lowerInput.includes('locomotive') || lowerInput.includes('boiler')) {
+        responseContent = `I'd be happy to help with your steam locomotive project! 🚂
 
-Based on your needs, here are our **top FlexVolt recommendations**:
+**Steam Locomotive Restoration Services**:
 
-**9Ah FlexVolt Battery** ⭐ Most Popular
-- **Capacity**: 9Ah at 20V/60V MAX
-- **Runtime**: Up to 6.5 hours continuous use
-- **Work Output**: 340 screws / 260 ft cuts
-- **Charging Time**: 55 minutes with fast charger
-- **Price**: $125 (Save $124 off MSRP)
-- **Weight**: Only 2.4 lbs
+**Boiler Restoration** ⭐ Our Specialty
+- **Complete boiler inspection** to 180 PSI standards
+- **Fire tube replacement** - up to 24 tubes per locomotive
+- **Smokebox refurbishment** with heritage certification
+- **Lead time**: 3-6 months
+- **Pricing**: From £15,000
+- **Certification**: Heritage Railway approved
 
-**15Ah FlexVolt Battery** 💪 Maximum Power
-- **Capacity**: 15Ah at 20V/60V MAX
-- **Runtime**: Up to 10 hours heavy-duty use
-- **Work Output**: 560 screws / 430 ft cuts
-- **Charging Time**: 90 minutes
-- **Price**: $245 (Save $134 off MSRP)
-- **Weight**: 3.2 lbs
+**Mechanical Overhaul** 💪 Comprehensive Service
+- **Cylinder rebuilds** with precision boring
+- **Valve gear restoration** to original specifications
+- **Wheel set maintenance** including re-profiling
+- **Lead time**: 2-4 months
+- **Pricing**: From £8,500
 
-**6Ah FlexVolt Battery** 🎯 Compact Power
-- **Capacity**: 6Ah at 20V/60V MAX
-- **Runtime**: Up to 4 hours
-- **Work Output**: 225 screws / 175 ft cuts
-- **Charging Time**: 45 minutes
-- **Price**: $95 (Save $74 off MSRP)
-- **Weight**: 1.9 lbs ultra-light
+**Key SWSE Benefits**:
+- ⚡ **20+ Years Experience** - Cornwall's trusted specialists
+- 🛡️ **Full Insurance Coverage** - £2M public liability
+- 🌡️ **Heritage Certification** - Network Rail approved
+- 📱 **Project Tracking** - Real-time updates
 
-**Key FlexVolt Benefits**:
-- ⚡ **Automatic Voltage Switching** - Works with all 20V and 60V MAX tools
-- 🛡️ **3-Year Warranty** - Industry-leading protection
-- 🌡️ **Temperature Management** - Performs in extreme conditions
-- 📱 **Tool Connect** - Optional Bluetooth tracking
+Would you like me to arrange a site visit for your locomotive?`
+      } else if (lowerInput.includes('cad') || lowerInput.includes('design') || lowerInput.includes('drawing')) {
+        responseContent = `I'll help you with professional CAD design services! 📐
 
-Would you like me to help calculate the exact battery configuration for your crew size?`
-      } else if (lowerInput.includes('help') || lowerInput.includes('support')) {
-        responseContent = `Welcome to Battery Department Support! I'm here to assist you 24/7. 
+**3D CAD Design Capabilities**:
+
+**SolidWorks 3D Modeling** ⭐ Industry Standard
+- **Full assemblies** - complete locomotive components
+- **Technical drawings** to BS 8888 standards
+- **FEA stress analysis** for critical components
+- **Lead time**: 1-3 weeks
+- **Pricing**: From £75/hour
+- **Formats**: STEP, IGES, DWG, PDF
+
+**AutoCAD Technical Drawings** 💪 Precision Documentation
+- **Manufacturing drawings** with full tolerancing
+- **As-built documentation** for heritage projects
+- **Installation drawings** with assembly sequences
+- **Lead time**: 1-2 weeks
+- **Pricing**: From £65/hour
+
+**Recent Projects**:
+- **Ffestiniog Railway** - Complete boiler assembly drawings
+- **Bodmin Railway** - Rolling stock CAD models
+- **West Somerset Railway** - Signal box mechanism design
+
+**SWSE CAD Services Include**:
+- ⚡ **Rapid Prototyping** - 3D printed test parts
+- 🛡️ **IP Protection** - Secure file handling
+- 🌡️ **Legacy Support** - Converting old drawings
+- 📱 **Cloud Access** - Secure file sharing
+
+Need drawings for a specific component? I can connect you with our design team!`
+      } else if (lowerInput.includes('repair') || lowerInput.includes('maintenance') || lowerInput.includes('emergency')) {
+        responseContent = `SWSE Emergency Repair Services - Available 24/7! 🔧
+
+**Plant & Machinery Repair**:
+
+**Emergency Callout** ⚡ 24/7 Available
+- **Response time**: Within 2 hours Cornwall-wide
+- **Mobile workshop** - fully equipped van
+- **On-site welding** and fabrication capabilities
+- **Pricing**: £95/hour + parts
+- **Coverage**: Industrial & heritage equipment
+
+**Planned Maintenance** 💪 Preventive Care
+- **Pump overhauls** - centrifugal & positive displacement
+- **Gearbox rebuilds** - all makes and models
+- **Hydraulic repairs** - systems & components
+- **Lead time**: 1-2 weeks
+- **Pricing**: Quote on inspection
+
+**Recent Emergency Projects**:
+- **Cornwall Clay Industries** - Main conveyor gearbox
+- **Mining Operations Ltd** - Hydraulic pump failure
+- **Heritage Railway** - Steam crane breakdown
+
+**SWSE Repair Advantages**:
+- ⚡ **Certified Engineers** - Time-served professionals
+- 🛡️ **Parts Sourcing** - Obsolete & modern components
+- 🌡️ **Warranty Coverage** - 12 months all repairs
+- 📱 **Progress Updates** - Real-time job tracking
+
+Experiencing a breakdown? I can dispatch our emergency team immediately!`
+      } else if (lowerInput.includes('quote') || lowerInput.includes('price') || lowerInput.includes('cost')) {
+        responseContent = `I'll help you get an accurate SWSE engineering quote! 💷
+
+**Pricing Guide**:
+
+**Steam Locomotive Services**
+- **Boiler inspection**: £2,500 - £5,000
+- **Complete restoration**: £15,000 - £85,000
+- **Mechanical overhaul**: £8,500 - £25,000
+- **Certification**: £1,500 - £3,000
+
+**CAD Design Services**
+- **SolidWorks modeling**: £75/hour
+- **Technical drawings**: £65/hour
+- **FEA analysis**: £85/hour
+- **Rush jobs**: +50% premium
+
+**Plant Repair Services**
+- **Emergency callout**: £95/hour + parts
+- **Planned maintenance**: £75/hour + parts
+- **Material markup**: 15% on cost
+- **Travel**: £1.50/mile beyond 25 miles
+
+**Bespoke Fabrication**
+- **Design consultation**: £85/hour
+- **Material**: At cost + 15%
+- **Machining**: £65-95/hour depending on complexity
+- **Assembly**: £75/hour
+
+**Quick Quote Process**:
+1. **Brief description** of your project
+2. **Site visit** (free within 50 miles)
+3. **Detailed quotation** within 48 hours
+4. **Fixed price** guarantee for 30 days
+
+**Payment Terms**:
+- **New clients**: 50% deposit, 50% on completion
+- **Established clients**: Net 30 days
+- **Large projects**: Staged payments available
+
+Ready to get started? I can arrange a consultation with our engineering team!`
+      } else if (lowerInput.includes('help') || lowerInput.includes('support') || lowerInput.includes('contact')) {
+        responseContent = `Welcome to South West Steam Engineering Support! 🏗️
 
 **How can I help you today?**
 
-**🛒 Orders & Shipping**
-- Track your FlexVolt order status
-- Modify or cancel orders
-- Express shipping options
-- Bulk order processing
+**🚂 Steam Engineering Services**
+- Locomotive restoration quotes
+- Boiler inspection scheduling
+- Heritage certification guidance
+- Project timeline planning
 
-**🔋 FlexVolt Product Support**
-- Battery compatibility guide
-- Runtime calculations
-- Tool recommendations
-- Warranty claims
+**📐 CAD Design Support**
+- SolidWorks modeling requests
+- Technical drawing standards
+- File format conversions
+- Design consultation booking
 
-**💡 Technical Assistance**
-- Charging best practices
-- Storage guidelines
-- Troubleshooting tips
-- Safety protocols
+**🔧 Repair & Maintenance**
+- Emergency breakdown support
+- Planned maintenance quotes
+- Parts sourcing assistance
+- Warranty claim processing
 
-**💰 Contractor Benefits**
-- Volume discounts (10-20% off)
-- Net 30 payment terms
-- Dedicated account manager
-- Priority support
+**💼 Business Services**
+- Account setup for contractors
+- Volume pricing discussions
+- Payment terms negotiation
+- Project management
 
-**📊 Fleet Management**
-- Battery tracking solutions
-- Usage analytics
-- Replacement planning
-- Cost optimization
+**📞 Contact Information**
+- **Phone**: 01726 123 456
+- **Emergency**: 07700 900 123
+- **Email**: enquiries@swsteam.co.uk
+- **Address**: Bodmin Industrial Estate, Cornwall
 
-Just let me know what you need help with, and I'll provide expert assistance right away!`
-      } else if (lowerInput.includes('runtime') || lowerInput.includes('how long')) {
-        responseContent = `Let me calculate FlexVolt runtime for your tools! ⚡
+**🕒 Operating Hours**
+- **Workshop**: Mon-Fri 7:30-17:30
+- **Emergency**: 24/7 Cornwall-wide
+- **Office**: Mon-Fri 8:00-17:00
+- **Quote Service**: Same day response
 
-**FlexVolt Runtime Guide:**
-
-**Light-Duty Tools** (Drills, Impact Drivers)
-- **6Ah**: 3-4 hours continuous
-- **9Ah**: 5-6.5 hours continuous
-- **15Ah**: 8-10 hours continuous
-
-**Medium-Duty Tools** (Circular Saws, Grinders)
-- **6Ah**: 45-60 minutes active cutting
-- **9Ah**: 75-90 minutes active cutting
-- **15Ah**: 2-2.5 hours active cutting
-
-**Heavy-Duty Tools** (Table Saws, Miter Saws)
-- **6Ah**: 175 cuts per charge
-- **9Ah**: 260 cuts per charge
-- **15Ah**: 430 cuts per charge
-
-**Pro Tips for Maximum Runtime**:
-- 🔄 Rotate batteries to prevent overheating
-- ❄️ Store batteries at room temperature
-- 🔌 Use DCB118 Fast Charger for quick turnaround
-- 📊 Track usage with Tool Connect app
-
-**Need a specific calculation?** Tell me:
-1. Which tools you're using
-2. Your typical daily usage
-3. Crew size
-
-I'll recommend the perfect battery configuration!`
-      } else if (lowerInput.includes('order') || lowerInput.includes('track')) {
-        responseContent = `I'll help you track your FlexVolt order! 📦
-
-**Your Recent Orders:**
-
-**Order #FV-2024-005** - Delivered ✅
-- 2× 9Ah FlexVolt Battery
-- 2× 15Ah FlexVolt Battery
-- 1× DCB118 Fast Charger
-- Total: $745 (Saved $486)
-- **Tracking**: 1Z999AA10123456784
-
-**Order #FV-2024-004** - In Transit 🚚
-- 5× 6Ah FlexVolt Battery
-- 3× 9Ah FlexVolt Battery
-- Expected delivery: Tomorrow by 5 PM
-- **Tracking**: 1Z999AA10123456783
-
-**Quick Actions:**
-- 📱 Get SMS delivery updates
-- 🔄 Reorder favorite items
-- 📄 Download invoices
-- 💬 Contact your account manager
-
-**Contractor Perks Active**:
-- 15% volume discount applied
-- Free next-day shipping
-- Extended 30-day returns
-- Priority customer support
-
-Need to modify an order? Orders can be changed within 2 hours of placement. Let me know!`
-      } else if (lowerInput.includes('recommend') || lowerInput.includes('crew') || lowerInput.includes('package')) {
-        responseContent = `Let me recommend the perfect FlexVolt package for your crew! 👷‍♂️
-
-**Popular Crew Packages:**
-
-**🏆 MID-SIZE CREW PACKAGE** (Most Popular)
-*Perfect for 4-6 person crews*
-- 10× 6Ah FlexVolt batteries
-- 10× 9Ah FlexVolt batteries  
-- 5× 15Ah FlexVolt batteries
-- **224 total runtime hours**
-- **Price**: $4,425 (Save $1,105)
-- ✅ Covers all tool types
-- ✅ No downtime guarantee
-
-**⚡ STARTER CREW PACKAGE**
-*Ideal for 1-3 person teams*
-- 2× 6Ah FlexVolt batteries
-- 2× 9Ah FlexVolt batteries
-- 2× 15Ah FlexVolt batteries
-- **64 total runtime hours**
-- **Price**: $1,270 (Save $379)
-- ✅ Residential contractor favorite
-
-**💪 LARGE CREW PACKAGE**
-*Built for 10+ person operations*
-- 20× 9Ah FlexVolt batteries
-- 10× 15Ah FlexVolt batteries
-- 5× DCB118 Fast Chargers
-- **380 total runtime hours**
-- **Price**: $6,995 (Save $2,430)
-- ✅ Commercial project ready
-- ✅ Dedicated support included
-
-**Volume Discounts**:
-- $1,000+: 10% off
-- $2,500+: 15% off
-- $5,000+: 20% off
-
-Which crew size should I calculate for?`
+Just let me know what specific engineering support you need!`
       } else {
-        responseContent = `Thanks for reaching out! I'm your FlexVolt expert, ready to help you power up your projects. ⚡
+        responseContent = `Thank you for contacting South West Steam Engineering! 🏗️
 
-**Here's what I can help you with:**
+I'm here to assist with all your engineering needs:
 
-• **Find FlexVolt batteries** - Match batteries to your DeWalt tools
-• **Calculate runtime** - Get accurate estimates for your equipment  
-• **Compare products** - 6Ah vs 9Ah vs 15Ah detailed comparison
-• **Track orders** - Real-time shipping updates
-• **Technical support** - Charging, storage, and troubleshooting
-• **Bulk pricing** - Contractor discounts up to 20% off
+**🚂 Steam Locomotive Services**
+- Heritage railway restoration
+- Boiler inspections & certification
+- Mechanical overhauls
 
-**Quick FlexVolt Facts**:
-- 🔋 Works with ALL DeWalt 20V MAX and 60V MAX tools
-- ⚡ Automatic voltage switching technology
-- 🏆 #1 contractor choice for reliability
-- 🛡️ 3-year warranty + free replacement
+**📐 Professional CAD Design**
+- SolidWorks 3D modeling
+- Technical drawings to BS standards
+- Stress analysis & validation
 
-What would you like to know more about? Feel free to ask me anything about FlexVolt batteries!`
+**🔧 Plant & Machinery Repair**
+- 24/7 emergency callout
+- Planned maintenance programs
+- Parts sourcing & fabrication
+
+**⚙️ Bespoke Engineering**
+- Custom component design
+- Precision machining
+- Project management
+
+Could you tell me more about your specific engineering requirements? I'd be happy to connect you with the right specialist or provide detailed information about our services.`
       }
-      
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -338,33 +339,27 @@ What would you like to know more about? Feel free to ask me anything about FlexV
         timestamp: new Date()
       }
 
+      // Update conversation with assistant response
       updatedConversation.messages.push(assistantMessage)
-      
-      // Update conversations list
-      const updatedConversations = conversations.filter(c => c.id !== updatedConversation.id)
-      saveConversations([updatedConversation, ...updatedConversations])
+      updatedConversation.updatedAt = new Date()
+
       setCurrentConversation({ ...updatedConversation })
+
+      // Save to localStorage
+      const updatedConversations = conversations.map(conv => 
+        conv.id === updatedConversation.id ? updatedConversation : conv
+      )
+      
+      if (!conversations.find(conv => conv.id === updatedConversation.id)) {
+        updatedConversations.unshift(updatedConversation)
+      }
+      
+      saveConversations(updatedConversations)
+
     } catch (error) {
       console.error('Error sending message:', error)
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: 'I apologize, but I encountered an error. Please try again in a moment.',
-        timestamp: new Date()
-      }
-      updatedConversation.messages.push(errorMessage)
-      setCurrentConversation({ ...updatedConversation })
     } finally {
       setIsLoading(false)
-    }
-  }
-
-  const deleteConversation = (id: string) => {
-    const updated = conversations.filter(c => c.id !== id)
-    saveConversations(updated)
-    
-    if (currentConversation?.id === id) {
-      setCurrentConversation(updated[0] || null)
     }
   }
 
@@ -372,121 +367,111 @@ What would you like to know more about? Feel free to ask me anything about FlexV
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const filteredConversations = conversations.filter(conv => 
-    conv.title.toLowerCase().includes(searchQuery.toLowerCase())
-  )
-
-  const handleFileUpload = () => {
-    fileInputRef.current?.click()
-  }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (files && files.length > 0) {
-      // Handle file upload
-      console.log('Files selected:', files)
+  const deleteConversation = (convId: string) => {
+    const updated = conversations.filter(conv => conv.id !== convId)
+    saveConversations(updated)
+    
+    if (currentConversation?.id === convId) {
+      setCurrentConversation(updated.length > 0 ? updated[0] : null)
     }
   }
 
+  const filteredConversations = conversations.filter(conv =>
+    conv.title.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   const quickActions = [
-    { 
-      icon: Battery, 
-      text: 'Find batteries', 
-      color: '#006FEE',
-      bgColor: '#E6F4FF',
-      hoverBg: '#C3E7FF'
+    {
+      icon: Train,
+      title: 'Steam Locomotive Restoration',
+      description: 'Get quotes for heritage railway locomotive restoration services',
+      message: 'I need information about steam locomotive restoration services. Can you help me with pricing and timelines?'
     },
-    { 
-      icon: Clock, 
-      text: 'Calculate runtime', 
-      color: '#7C3AED',
-      bgColor: '#EDE9FE',
-      hoverBg: '#DDD6FE'
+    {
+      icon: Cog,
+      title: 'CAD Design Services',
+      description: 'Professional 3D modeling and technical drawing services',
+      message: 'I need CAD design services for an engineering project. What are your capabilities and pricing?'
     },
-    { 
-      icon: Package, 
-      text: 'Track orders', 
-      color: '#059669',
-      bgColor: '#D1FAE5',
-      hoverBg: '#A7F3D0'
+    {
+      icon: Factory,
+      title: 'Emergency Plant Repair',
+      description: '24/7 industrial machinery breakdown support',
+      message: 'I have an emergency plant breakdown and need immediate repair support. What is your response time?'
     },
-    { 
-      icon: TrendingUp, 
-      text: 'Get recommendations', 
-      color: '#DC2626',
-      bgColor: '#FEE2E2',
-      hoverBg: '#FECACA'
+    {
+      icon: Wrench,
+      title: 'Bespoke Engineering',
+      description: 'Custom fabrication and precision engineering solutions',
+      message: 'I need custom engineering solutions for a unique project. Can you help with design and fabrication?'
     }
   ]
 
   return (
-    <div style={{
-      display: 'flex',
-      height: '100vh',
-      backgroundColor: '#F8FAFC',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
-    }}>
+    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#F8FAFC' }}>
       {/* Sidebar */}
       <div style={{
-        width: isSidebarOpen ? '300px' : '0px',
-        backgroundColor: 'white',
-        borderRight: '1px solid #E5E7EB',
+        width: isSidebarOpen ? '320px' : '0',
         transition: 'width 0.3s ease',
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: '2px 0 8px rgba(0, 0, 0, 0.04)'
+        borderRight: '1px solid #E2E8F0',
+        backgroundColor: 'white'
       }}>
-        {/* Sidebar Header */}
-        <div style={{
-          padding: '24px 20px',
-          borderBottom: '1px solid #E5E7EB'
-        }}>
+        <div style={{ padding: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Train size={20} color="white" />
+            </div>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#1E293B', margin: 0 }}>
+                SWSE Engineering
+              </h3>
+              <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>
+                Expert Support
+              </p>
+            </div>
+          </div>
+
           <button
             onClick={createNewConversation}
             style={{
               width: '100%',
-              padding: '14px 20px',
-              backgroundColor: '#006FEE',
-              border: 'none',
-              borderRadius: '10px',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              border: '1px solid #1E3A8A',
+              backgroundColor: '#1E3A8A',
               color: 'white',
-              fontSize: '15px',
-              fontWeight: '600',
+              fontSize: '14px',
+              fontWeight: '500',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
               gap: '8px',
-              transition: 'all 0.2s ease',
-              boxShadow: '0 2px 8px rgba(0, 111, 238, 0.25)'
+              marginBottom: '20px',
+              transition: 'all 0.2s ease'
             }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#0050B3'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.35)'
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#1E40AF'
             }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = '#006FEE'
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 111, 238, 0.25)'
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#1E3A8A'
             }}
           >
-            <Plus size={20} strokeWidth={2.5} />
-            New Conversation
+            <Plus size={16} />
+            New Engineering Chat
           </button>
-        </div>
 
-        {/* Search */}
-        <div style={{ padding: '16px 20px' }}>
-          <div style={{ position: 'relative' }}>
-            <Search size={18} style={{
-              position: 'absolute',
-              left: '14px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#6B7280'
-            }} />
+          {/* Search */}
+          <div style={{ position: 'relative', marginBottom: '16px' }}>
+            <Search size={16} color="#9CA3AF" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
             <input
               type="text"
               placeholder="Search conversations..."
@@ -494,311 +479,214 @@ What would you like to know more about? Feel free to ask me anything about FlexV
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '12px 12px 12px 44px',
-                backgroundColor: '#F9FAFB',
-                border: '1px solid #E5E7EB',
-                borderRadius: '8px',
+                padding: '8px 12px 8px 36px',
+                border: '1px solid #D1D5DB',
+                borderRadius: '6px',
                 fontSize: '14px',
-                color: '#111827',
-                outline: 'none',
-                transition: 'all 0.2s'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#006FEE'
-                e.target.style.backgroundColor = 'white'
-                e.target.style.boxShadow = '0 0 0 3px rgba(0, 111, 238, 0.1)'
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#E5E7EB'
-                e.target.style.backgroundColor = '#F9FAFB'
-                e.target.style.boxShadow = 'none'
+                backgroundColor: '#F9FAFB'
               }}
             />
           </div>
-        </div>
 
-        {/* Conversations List */}
-        <div style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '8px 12px'
-        }}>
-          {filteredConversations.map(conv => (
-            <div
-              key={conv.id}
-              onClick={() => setCurrentConversation(conv)}
-              style={{
-                padding: '14px 16px',
-                marginBottom: '4px',
-                backgroundColor: currentConversation?.id === conv.id ? '#EFF6FF' : 'transparent',
-                borderRadius: '10px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                border: currentConversation?.id === conv.id ? '1px solid #DBEAFE' : '1px solid transparent',
-                transform: hoveredConv === conv.id && currentConversation?.id !== conv.id ? 'translateX(4px)' : 'translateX(0)'
-              }}
-              onMouseEnter={() => setHoveredConv(conv.id)}
-              onMouseLeave={() => setHoveredConv(null)}
-              onMouseOver={(e) => {
-                if (currentConversation?.id !== conv.id) {
-                  e.currentTarget.style.backgroundColor = '#F9FAFB'
-                }
-              }}
-              onMouseOut={(e) => {
-                if (currentConversation?.id !== conv.id) {
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                }
-              }}
-            >
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center'
-              }}>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                  <div style={{
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: currentConversation?.id === conv.id ? '#006FEE' : '#111827',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    marginBottom: '4px'
-                  }}>
-                    {conv.title}
+          {/* Conversations List */}
+          <div style={{ height: 'calc(100vh - 280px)', overflowY: 'auto' }}>
+            {filteredConversations.map(conversation => (
+              <div
+                key={conversation.id}
+                onClick={() => setCurrentConversation(conversation)}
+                onMouseEnter={() => setHoveredConv(conversation.id)}
+                onMouseLeave={() => setHoveredConv(null)}
+                style={{
+                  padding: '12px',
+                  borderRadius: '8px',
+                  marginBottom: '8px',
+                  cursor: 'pointer',
+                  backgroundColor: currentConversation?.id === conversation.id ? '#EFF6FF' : 
+                                   hoveredConv === conversation.id ? '#F8FAFC' : 'transparent',
+                  border: currentConversation?.id === conversation.id ? '1px solid #BFDBFE' : '1px solid transparent',
+                  transition: 'all 0.2s ease',
+                  position: 'relative'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <h4 style={{
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      color: '#1E293B',
+                      margin: '0 0 4px 0',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {conversation.title}
+                    </h4>
+                    <p style={{
+                      fontSize: '12px',
+                      color: '#64748B',
+                      margin: 0
+                    }}>
+                      {conversation.updatedAt.toLocaleDateString()}
+                    </p>
                   </div>
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#6B7280'
-                  }}>
-                    {new Date(conv.updatedAt).toLocaleDateString()}
-                  </div>
+                  {hoveredConv === conversation.id && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        deleteConversation(conversation.id)
+                      }}
+                      style={{
+                        padding: '4px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        backgroundColor: '#FEF2F2',
+                        color: '#EF4444',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  )}
                 </div>
-                {hoveredConv === conv.id && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      deleteConversation(conv.id)
-                    }}
-                    style={{
-                      padding: '6px',
-                      border: 'none',
-                      background: 'none',
-                      cursor: 'pointer',
-                      color: '#EF4444',
-                      opacity: 0,
-                      transition: 'opacity 0.2s',
-                      animation: 'fadeIn 0.2s forwards'
-                    }}
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Main Chat Area */}
-      <div style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative'
-      }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <header style={{
-          background: 'linear-gradient(135deg, #006FEE 0%, #0050B3 100%)',
-          padding: '20px 24px',
+        <div style={{
+          padding: '16px 24px',
+          borderBottom: '1px solid #E2E8F0',
+          backgroundColor: 'white',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          boxShadow: '0 2px 12px rgba(0, 111, 238, 0.15)',
-          position: 'relative',
-          zIndex: 10
+          gap: '12px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              style={{
-                padding: '8px',
-                border: 'none',
-                background: 'rgba(255, 255, 255, 0.15)',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                color: 'white',
-                transition: 'all 0.2s',
-                backdropFilter: 'blur(10px)'
-              }}
-              onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'}
-              onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'}
-            >
-              {isSidebarOpen ? <X size={20} strokeWidth={2.5} /> : <Menu size={20} strokeWidth={2.5} />}
-            </button>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <div style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
-              }}>
-                <Sparkles size={24} style={{ color: 'white' }} strokeWidth={2.5} />
-              </div>
-              <div>
-                <h1 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: 'white',
-                  margin: 0,
-                  letterSpacing: '-0.02em'
-                }}>
-                  Lithi AI Assistant
-                </h1>
-                <p style={{
-                  fontSize: '14px',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  margin: 0
-                }}>
-                  Your Battery Expert
-                </p>
-              </div>
-            </div>
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            style={{
+              padding: '8px',
+              borderRadius: '6px',
+              border: '1px solid #E2E8F0',
+              backgroundColor: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            <Menu size={16} color="#64748B" />
+          </button>
+          <div>
+            <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#1E293B', margin: 0 }}>
+              {currentConversation?.title || 'South West Steam Engineering Support'}
+            </h2>
+            <p style={{ fontSize: '14px', color: '#64748B', margin: 0 }}>
+              Expert engineering assistance - Available 24/7
+            </p>
           </div>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            <span style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px' }}>Mike Johnson</span>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-              backdropFilter: 'blur(10px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontWeight: '600',
-              fontSize: '16px',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
-            }}>
-              MJ
-            </div>
-          </div>
-        </header>
+        </div>
 
         {/* Messages Area */}
         <div style={{
           flex: 1,
           overflowY: 'auto',
-          backgroundColor: '#F8FAFC',
-          position: 'relative'
+          padding: '24px',
+          backgroundColor: '#F8FAFC'
         }}>
           {showWelcome && (
             <div style={{
               maxWidth: '800px',
               margin: '0 auto',
-              padding: '60px 24px 40px',
-              textAlign: 'center'
+              textAlign: 'center',
+              padding: '40px 20px'
             }}>
               <div style={{
-                width: '88px',
-                height: '88px',
-                borderRadius: '24px',
-                background: 'linear-gradient(135deg, #006FEE, #0050B3)',
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)',
+                borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '0 auto 28px',
-                boxShadow: '0 12px 32px rgba(0, 111, 238, 0.25)',
-                position: 'relative'
+                margin: '0 auto 24px'
               }}>
-                <Battery size={44} style={{ color: 'white' }} strokeWidth={2} />
-                <div style={{
-                  position: 'absolute',
-                  top: '-4px',
-                  right: '-4px',
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: '#10B981',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
-                }}>
-                  <Sparkles size={14} style={{ color: 'white' }} strokeWidth={3} />
-                </div>
+                <Train size={40} color="white" />
               </div>
-              <h2 style={{
+              <h1 style={{
                 fontSize: '32px',
-                fontWeight: '800',
-                color: '#111827',
-                marginBottom: '12px',
-                letterSpacing: '-0.03em'
+                fontWeight: '700',
+                color: '#1E293B',
+                marginBottom: '16px'
               }}>
-                Welcome to Lithi AI
-              </h2>
+                Welcome to SWSE Engineering Support
+              </h1>
               <p style={{
-                fontSize: '17px',
-                color: '#6B7280',
-                marginBottom: '48px',
-                lineHeight: '1.6',
-                maxWidth: '600px',
-                margin: '0 auto 48px'
+                fontSize: '18px',
+                color: '#64748B',
+                marginBottom: '32px',
+                lineHeight: '1.6'
               }}>
-                I'm your intelligent battery assistant. I can help you find the perfect battery, 
-                calculate runtime for your tools, track orders, and provide expert technical support.
+                Get expert assistance with steam locomotive restoration, CAD design, plant repair, 
+                and bespoke engineering solutions. Our Cornwall-based specialists are here to help.
               </p>
+
+              {/* Quick Actions */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '16px',
-                maxWidth: '560px',
-                margin: '0 auto'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '20px',
+                marginTop: '40px'
               }}>
-                {quickActions.map((item, idx) => (
+                {quickActions.map((action, index) => (
                   <div
-                    key={idx}
+                    key={index}
+                    onClick={() => sendMessage(action.message)}
+                    onMouseEnter={() => setHoveredQuickAction(index)}
+                    onMouseLeave={() => setHoveredQuickAction(null)}
                     style={{
                       padding: '24px',
-                      backgroundColor: hoveredQuickAction === idx ? item.hoverBg : item.bgColor,
-                      borderRadius: '16px',
+                      borderRadius: '12px',
+                      border: '1px solid #E2E8F0',
+                      backgroundColor: 'white',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      transform: hoveredQuickAction === idx ? 'translateY(-4px)' : 'translateY(0)',
-                      boxShadow: hoveredQuickAction === idx 
-                        ? `0 12px 24px ${item.color}20`
-                        : '0 2px 8px rgba(0, 0, 0, 0.04)',
-                      border: `2px solid ${hoveredQuickAction === idx ? item.color : 'transparent'}`
+                      transition: 'all 0.2s ease',
+                      transform: hoveredQuickAction === index ? 'translateY(-2px)' : 'translateY(0)',
+                      boxShadow: hoveredQuickAction === index 
+                        ? '0 8px 20px rgba(30, 58, 138, 0.15)' 
+                        : '0 2px 4px rgba(0, 0, 0, 0.05)'
                     }}
-                    onMouseEnter={() => setHoveredQuickAction(idx)}
-                    onMouseLeave={() => setHoveredQuickAction(null)}
-                    onClick={() => sendMessage(item.text)}
                   >
-                    <item.icon 
-                      size={28} 
-                      style={{ 
-                        color: item.color, 
-                        marginBottom: '12px',
-                        strokeWidth: 2
-                      }} 
-                    />
-                    <p style={{
-                      fontSize: '15px',
+                    <div style={{
+                      width: '48px',
+                      height: '48px',
+                      background: 'linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)',
+                      borderRadius: '10px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '16px'
+                    }}>
+                      <action.icon size={24} color="#1E3A8A" />
+                    </div>
+                    <h3 style={{
+                      fontSize: '16px',
                       fontWeight: '600',
-                      color: '#111827',
+                      color: '#1E293B',
+                      marginBottom: '8px'
+                    }}>
+                      {action.title}
+                    </h3>
+                    <p style={{
+                      fontSize: '14px',
+                      color: '#64748B',
+                      lineHeight: '1.5',
                       margin: 0
                     }}>
-                      {item.text}
+                      {action.description}
                     </p>
                   </div>
                 ))}
@@ -806,504 +694,161 @@ What would you like to know more about? Feel free to ask me anything about FlexV
             </div>
           )}
 
-          <div style={{ padding: '24px 0' }}>
-            {currentConversation?.messages.map((message, index) => (
-              <div
-                key={message.id}
-                style={{
-                  marginBottom: '24px',
-                  opacity: 0,
-                  transform: 'translateY(10px)',
-                  animation: 'messageAppear 0.4s ease-out forwards',
-                  animationDelay: `${index * 0.05}s`
-                }}
-              >
-                <div style={{
-                  maxWidth: '840px',
-                  margin: '0 auto',
-                  padding: '0 24px'
-                }}>
-                  {message.role === 'user' ? (
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'flex-end'
-                    }}>
-                      <div style={{
-                        maxWidth: '70%',
-                        backgroundColor: '#006FEE',
-                        color: 'white',
-                        borderRadius: '18px 18px 4px 18px',
-                        padding: '16px 20px',
-                        fontSize: '15px',
-                        lineHeight: '1.6',
-                        boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
-                      }}>
-                        {message.content}
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '12px',
-                        marginBottom: '12px'
-                      }}>
-                        <div style={{
-                          width: '38px',
-                          height: '38px',
-                          borderRadius: '12px',
-                          background: 'linear-gradient(135deg, #006FEE, #0050B3)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
-                        }}>
-                          <Sparkles size={20} style={{ color: 'white' }} strokeWidth={2.5} />
-                        </div>
-                        <span style={{
-                          fontSize: '15px',
-                          fontWeight: '600',
-                          color: '#111827'
-                        }}>
-                          Lithi AI
-                        </span>
-                      </div>
-                      <div style={{
-                        backgroundColor: 'white',
-                        borderRadius: '18px',
-                        padding: '20px 24px',
-                        fontSize: '15px',
-                        lineHeight: '1.7',
-                        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
-                        border: '1px solid #E5E7EB'
-                      }}>
-                        <ReactMarkdown
-                          components={{
-                            p: ({ children }) => (
-                              <p style={{ 
-                                margin: '0 0 16px 0', 
-                                lineHeight: '1.7',
-                                color: '#374151'
-                              }}>
-                                {children}
-                              </p>
-                            ),
-                            strong: ({ children }) => (
-                              <strong style={{ 
-                                fontWeight: '700',
-                                color: '#006FEE'
-                              }}>
-                                {children}
-                              </strong>
-                            ),
-                            ul: ({ children }) => (
-                              <ul style={{ 
-                                margin: '0 0 16px 0', 
-                                paddingLeft: '0',
-                                listStyle: 'none'
-                              }}>
-                                {children}
-                              </ul>
-                            ),
-                            li: ({ children }) => (
-                              <li style={{ 
-                                marginBottom: '10px',
-                                paddingLeft: '28px',
-                                position: 'relative',
-                                color: '#374151'
-                              }}>
-                                <span style={{
-                                  position: 'absolute',
-                                  left: '0',
-                                  top: '8px',
-                                  width: '8px',
-                                  height: '8px',
-                                  borderRadius: '50%',
-                                  backgroundColor: '#006FEE'
-                                }} />
-                                {children}
-                              </li>
-                            ),
-                            code: ({ children }) => (
-                              <code style={{
-                                backgroundColor: '#F3F4F6',
-                                padding: '2px 6px',
-                                borderRadius: '4px',
-                                fontSize: '14px',
-                                fontFamily: 'Menlo, Monaco, Consolas, monospace',
-                                color: '#DC2626'
-                              }}>
-                                {children}
-                              </code>
-                            )
-                          }}
-                        >
-                          {message.content}
-                        </ReactMarkdown>
-                      </div>
-                    </div>
-                  )}
-                  {message.attachments && message.attachments.length > 0 && (
-                    <div style={{
-                      marginTop: '8px',
-                      display: 'flex',
-                      gap: '8px',
-                      flexWrap: 'wrap',
-                      justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start'
-                    }}>
-                      {message.attachments.map((file, idx) => (
-                        <div
-                          key={idx}
-                          style={{
-                            padding: '8px 12px',
-                            backgroundColor: '#EFF6FF',
-                            borderRadius: '8px',
-                            fontSize: '13px',
-                            color: '#006FEE',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '6px'
-                          }}
-                        >
-                          <Paperclip size={14} />
-                          {file.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#9CA3AF',
-                    marginTop: '8px',
-                    textAlign: message.role === 'user' ? 'right' : 'left'
-                  }}>
-                    {new Date(message.timestamp).toLocaleTimeString([], { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })}
-                  </div>
-                </div>
-              </div>
-            ))}
-            
-            {isLoading && (
+          {/* Messages */}
+          {currentConversation?.messages.map(message => (
+            <div
+              key={message.id}
+              style={{
+                display: 'flex',
+                marginBottom: '24px',
+                justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start'
+              }}
+            >
               <div style={{
-                maxWidth: '840px',
-                margin: '0 auto',
-                padding: '0 24px'
+                maxWidth: '70%',
+                padding: '16px 20px',
+                borderRadius: '16px',
+                backgroundColor: message.role === 'user' ? '#1E3A8A' : 'white',
+                color: message.role === 'user' ? 'white' : '#1E293B',
+                border: message.role === 'assistant' ? '1px solid #E2E8F0' : 'none',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
               }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px'
-                }}>
-                  <div style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, #006FEE, #0050B3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(0, 111, 238, 0.2)'
-                  }}>
-                    <Sparkles size={20} style={{ color: 'white' }} strokeWidth={2.5} />
-                  </div>
-                  <span style={{
-                    fontSize: '15px',
-                    fontWeight: '600',
-                    color: '#111827'
-                  }}>
-                    Lithi AI
-                  </span>
+                <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
                 </div>
                 <div style={{
-                  backgroundColor: 'white',
-                  borderRadius: '18px',
-                  padding: '20px 24px',
-                  border: '1px solid #E5E7EB',
-                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)'
+                  fontSize: '12px',
+                  opacity: 0.7,
+                  marginTop: '8px'
                 }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      gap: '6px'
-                    }}>
-                      <div className="loading-dot" style={{
-                        width: '10px',
-                        height: '10px',
-                        backgroundColor: '#006FEE',
-                        borderRadius: '50%',
-                        animation: 'pulse 1.5s ease-in-out infinite'
-                      }} />
-                      <div className="loading-dot" style={{
-                        width: '10px',
-                        height: '10px',
-                        backgroundColor: '#006FEE',
-                        borderRadius: '50%',
-                        animation: 'pulse 1.5s ease-in-out 0.15s infinite'
-                      }} />
-                      <div className="loading-dot" style={{
-                        width: '10px',
-                        height: '10px',
-                        backgroundColor: '#006FEE',
-                        borderRadius: '50%',
-                        animation: 'pulse 1.5s ease-in-out 0.3s infinite'
-                      }} />
-                    </div>
-                    <span style={{
-                      fontSize: '14px',
-                      color: '#6B7280',
-                      fontStyle: 'italic'
-                    }}>
-                      Thinking...
-                    </span>
-                  </div>
+                  {message.timestamp.toLocaleTimeString()}
                 </div>
               </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
+            </div>
+          ))}
+
+          {isLoading && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '16px 20px',
+              marginBottom: '24px'
+            }}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Train size={20} color="white" />
+              </div>
+              <div style={{
+                padding: '16px 20px',
+                borderRadius: '16px',
+                backgroundColor: 'white',
+                border: '1px solid #E2E8F0',
+                color: '#64748B',
+                fontSize: '14px'
+              }}>
+                SWSE Engineering specialist is typing...
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
         </div>
 
         {/* Input Area */}
         <div style={{
-          borderTop: '1px solid #E5E7EB',
-          backgroundColor: 'white',
-          boxShadow: '0 -4px 12px rgba(0, 0, 0, 0.04)'
+          padding: '24px',
+          borderTop: '1px solid #E2E8F0',
+          backgroundColor: 'white'
         }}>
           <div style={{
-            maxWidth: '840px',
+            maxWidth: '800px',
             margin: '0 auto',
-            padding: '20px 24px'
+            position: 'relative'
           }}>
+            <textarea
+              ref={textareaRef}
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  sendMessage()
+                }
+              }}
+              placeholder="Ask about steam locomotives, CAD design, plant repair, or any engineering service..."
+              style={{
+                width: '100%',
+                minHeight: '56px',
+                maxHeight: '200px',
+                padding: '16px 60px 16px 20px',
+                borderRadius: '12px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                resize: 'none',
+                outline: 'none',
+                fontFamily: 'inherit'
+              }}
+            />
             <div style={{
+              position: 'absolute',
+              right: '12px',
+              bottom: '12px',
               display: 'flex',
-              gap: '12px',
-              alignItems: 'flex-end'
+              gap: '8px',
+              alignItems: 'center'
             }}>
               <input
-                type="file"
                 ref={fileInputRef}
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
+                type="file"
                 multiple
-                accept="image/*,.pdf,.doc,.docx,.txt"
+                style={{ display: 'none' }}
+                accept="image/*,.pdf,.doc,.docx"
               />
-              <div style={{ 
-                flex: 1,
-                position: 'relative'
-              }}>
-                <textarea
-                  ref={textareaRef}
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault()
-                      sendMessage()
-                    }
-                  }}
-                  placeholder="Ask me anything about batteries..."
-                  style={{
-                    width: '100%',
-                    padding: '16px 52px 16px 20px',
-                    backgroundColor: '#F9FAFB',
-                    border: '2px solid #E5E7EB',
-                    borderRadius: '14px',
-                    fontSize: '15px',
-                    color: '#111827',
-                    outline: 'none',
-                    resize: 'none',
-                    minHeight: '56px',
-                    maxHeight: '140px',
-                    lineHeight: '1.5',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#006FEE'
-                    e.target.style.backgroundColor = 'white'
-                    e.target.style.boxShadow = '0 0 0 4px rgba(0, 111, 238, 0.1)'
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#E5E7EB'
-                    e.target.style.backgroundColor = '#F9FAFB'
-                    e.target.style.boxShadow = 'none'
-                  }}
-                />
-                <button
-                  onClick={handleFileUpload}
-                  style={{
-                    position: 'absolute',
-                    right: '14px',
-                    bottom: '14px',
-                    padding: '8px',
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    color: '#6B7280',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F3F4F6'
-                    e.currentTarget.style.color = '#006FEE'
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent'
-                    e.currentTarget.style.color = '#6B7280'
-                  }}
-                  title="Attach files"
-                >
-                  <Paperclip size={20} strokeWidth={2} />
-                </button>
-              </div>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                style={{
+                  padding: '8px',
+                  borderRadius: '6px',
+                  border: '1px solid #E2E8F0',
+                  backgroundColor: 'white',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Paperclip size={16} color="#64748B" />
+              </button>
               <button
                 onClick={() => sendMessage()}
                 disabled={!inputMessage.trim() || isLoading}
                 style={{
-                  padding: '16px',
-                  backgroundColor: inputMessage.trim() && !isLoading ? '#006FEE' : '#E5E7EB',
-                  color: 'white',
+                  padding: '12px',
+                  borderRadius: '8px',
                   border: 'none',
-                  borderRadius: '12px',
-                  width: '56px',
-                  height: '56px',
-                  cursor: !inputMessage.trim() || isLoading ? 'not-allowed' : 'pointer',
-                  transition: 'all 0.2s ease',
+                  backgroundColor: inputMessage.trim() && !isLoading ? '#1E3A8A' : '#E2E8F0',
+                  color: inputMessage.trim() && !isLoading ? 'white' : '#9CA3AF',
+                  cursor: inputMessage.trim() && !isLoading ? 'pointer' : 'not-allowed',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: inputMessage.trim() && !isLoading 
-                    ? '0 4px 12px rgba(0, 111, 238, 0.3)' 
-                    : 'none'
-                }}
-                onMouseOver={(e) => {
-                  if (inputMessage.trim() && !isLoading) {
-                    e.currentTarget.style.backgroundColor = '#0050B3'
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 111, 238, 0.4)'
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (inputMessage.trim() && !isLoading) {
-                    e.currentTarget.style.backgroundColor = '#006FEE'
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 111, 238, 0.3)'
-                  }
+                  transition: 'all 0.2s ease'
                 }}
               >
-                <Send size={20} strokeWidth={2.5} />
+                <Send size={16} />
               </button>
-            </div>
-            <div style={{
-              marginTop: '12px',
-              fontSize: '13px',
-              color: '#6B7280',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <ImageIcon size={16} />
-              <span>You can attach images, PDFs, and documents</span>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes pulse {
-          0% {
-            opacity: 0.3;
-            transform: scale(0.8);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0.3;
-            transform: scale(0.8);
-          }
-        }
-        
-        @keyframes messageAppear {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          to {
-            opacity: 1;
-          }
-        }
-        
-        /* Custom scrollbar */
-        *::-webkit-scrollbar {
-          width: 8px;
-        }
-        
-        *::-webkit-scrollbar-track {
-          background: #F9FAFB;
-          border-radius: 10px;
-        }
-        
-        *::-webkit-scrollbar-thumb {
-          background: #E5E7EB;
-          border-radius: 10px;
-        }
-        
-        *::-webkit-scrollbar-thumb:hover {
-          background: #D1D5DB;
-        }
-        
-        /* Input field animations */
-        textarea:focus {
-          animation: focusGlow 0.3s ease-out;
-        }
-        
-        @keyframes focusGlow {
-          0% {
-            box-shadow: 0 0 0 0 rgba(0, 111, 238, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 4px rgba(0, 111, 238, 0.1);
-          }
-        }
-        
-        /* Button animations */
-        button {
-          position: relative;
-          overflow: hidden;
-        }
-        
-        button::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.2);
-          transform: translate(-50%, -50%);
-          transition: width 0.3s, height 0.3s;
-        }
-        
-        button:active::after {
-          width: 300px;
-          height: 300px;
-        }
-      `}</style>
     </div>
   )
 }
