@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWSE Invoice INV-2024-0012</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+        .header {
+            border-bottom: 3px solid #006FEE;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .logo-section h1 {
+            color: #006FEE;
+            font-size: 24px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+        .logo-section p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+        .invoice-title {
+            background: #006FEE;
+            color: white;
+            padding: 15px 20px;
+            margin: 30px 0;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .client-info, .invoice-info {
+            flex: 1;
+        }
+        .invoice-info {
+            text-align: right;
+        }
+        .section-title {
+            color: #006FEE;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+        .amount {
+            text-align: right;
+            font-weight: 600;
+        }
+        .total-row {
+            background: #f8f9fa;
+            font-weight: 700;
+        }
+        .total-row td {
+            border-top: 2px solid #006FEE;
+        }
+        .notes {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #006FEE;
+            margin: 30px 0;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-info">
+            <div class="logo-section">
+                <h1>SOUTH WEST STEAM ENGINEERING</h1>
+                <p>Heritage Railway Engineering & Restoration Specialists</p>
+                <p>Established 1985</p>
+            </div>
+            <div class="contact-info">
+                <strong>South West Steam Engineering Ltd</strong><br>
+                Unit 5, Cornwall Industrial Estate<br>
+                Truro, Cornwall, TR1 3XZ<br>
+                United Kingdom<br><br>
+                Tel: +44 (0) 1872 123456<br>
+                Email: enquiries@swsteamengineering.co.uk<br>
+                Web: www.swsteamengineering.co.uk<br><br>
+                <strong>VAT Registration:</strong> GB123456789<br>
+                <strong>Company Registration:</strong> 12345678
+            </div>
+        </div>
+    </div>
+
+    <div class="invoice-title">
+        INVOICE
+    </div>
+
+    <div class="invoice-details">
+        <div class="client-info">
+            <div class="section-title">Bill To:</div>
+            <strong>Didcot Railway Centre</strong><br>
+            Didcot Railway Centre<br>
+            Didcot, Oxfordshire<br>
+            OX11 7NJ<br>
+            United Kingdom<br><br>
+            <strong>Project:</strong> 7¼" Gauge Steam Locomotive Restoration<br>
+            <strong>Project Ref:</strong> PROJ-2024-047
+        </div>
+        <div class="invoice-info">
+            <div class="section-title">Invoice Details:</div>
+            <strong>Invoice Number:</strong> INV-2024-0012<br>
+            <strong>Invoice Date:</strong> 20th May 2024<br>
+            <strong>Due Date:</strong> 19th June 2024<br>
+            <strong>Payment Terms:</strong> 30 Days Net<br><br>
+            <strong>Engineer:</strong> Mike Thompson CEng<br>
+            <strong>Project Manager:</strong> Sarah Williams
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Rate (£)</th>
+                <th>Amount (£)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fire Tube Inspection & Assessment<br><small>Initial condition survey and documentation of existing fire tubes including photographic record and dimensional analysis</small></td>
+                <td>24</td>
+                <td>tubes</td>
+                <td class="amount">45.00</td>
+                <td class="amount">1,080.00</td>
+            </tr>
+            <tr>
+                <td>Fire Tube Removal & Cleaning<br><small>Careful removal of existing fire tubes, cleaning and preparation for restoration work</small></td>
+                <td>24</td>
+                <td>tubes</td>
+                <td class="amount">32.50</td>
+                <td class="amount">780.00</td>
+            </tr>
+            <tr>
+                <td>Machining - Fire Tube End Preparation<br><small>Precision machining of tube ends to heritage railway standards, ensuring proper fit and seal</small></td>
+                <td>48</td>
+                <td>ends</td>
+                <td class="amount">18.75</td>
+                <td class="amount">900.00</td>
+            </tr>
+            <tr>
+                <td>Welding - Structural Repairs<br><small>TIG welding repairs to tube plate connections using heritage-approved materials and techniques</small></td>
+                <td>6.5</td>
+                <td>hours</td>
+                <td class="amount">85.00</td>
+                <td class="amount">552.50</td>
+            </tr>
+            <tr>
+                <td>Materials - Steel Fire Tubes (Heritage Grade)<br><small>High-grade steel tubes manufactured to original 1920s specifications with certification</small></td>
+                <td>24</td>
+                <td>tubes</td>
+                <td class="amount">125.00</td>
+                <td class="amount">3,000.00</td>
+            </tr>
+            <tr>
+                <td>Materials - Welding Consumables<br><small>Low hydrogen welding electrodes and associated consumables</small></td>
+                <td>1</td>
+                <td>lot</td>
+                <td class="amount">185.50</td>
+                <td class="amount">185.50</td>
+            </tr>
+            <tr>
+                <td>Quality Assurance & Testing<br><small>Pressure testing, non-destructive testing, and certification to heritage railway standards</small></td>
+                <td>1</td>
+                <td>service</td>
+                <td class="amount">450.00</td>
+                <td class="amount">450.00</td>
+            </tr>
+            <tr>
+                <td>Project Management & Documentation<br><small>Project coordination, progress reporting, and heritage compliance documentation</small></td>
+                <td>8</td>
+                <td>hours</td>
+                <td class="amount">75.00</td>
+                <td class="amount">600.00</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="amount"><strong>Subtotal:</strong></td>
+                <td class="amount"><strong>£7,548.00</strong></td>
+            </tr>
+            <tr>
+                <td colspan="4" class="amount"><strong>VAT (20%):</strong></td>
+                <td class="amount"><strong>£1,509.60</strong></td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="4" class="amount"><strong>TOTAL AMOUNT DUE:</strong></td>
+                <td class="amount"><strong>£9,057.60</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="notes">
+        <div class="section-title">Notes & Terms:</div>
+        <p><strong>Work Completed:</strong> Phase 1 of the boiler restoration project has been completed according to heritage railway standards. All work has been carried out by qualified engineers with extensive experience in steam locomotive restoration.</p>
+        
+        <p><strong>Certification:</strong> This work complies with the Railway Heritage Trust guidelines and has been inspected by our certified welding inspector. All materials used carry appropriate certifications for heritage railway use.</p>
+        
+        <p><strong>Payment Terms:</strong> Payment is due within 30 days of invoice date. Late payment charges of 1.5% per month may apply to overdue accounts.</p>
+        
+        <p><strong>Warranty:</strong> All work is guaranteed for 12 months from completion date. Materials carry manufacturer's standard warranty.</p>
+    </div>
+
+    <div class="footer">
+        <p><strong>South West Steam Engineering Ltd</strong> - Registered in England & Wales. Company No: 12345678</p>
+        <p>VAT Registration No: GB123456789 | Authorised by the Railway Heritage Trust</p>
+        <p>Thank you for choosing South West Steam Engineering for your heritage railway restoration needs.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+SOUTH WEST STEAM ENGINEERING LTD
+Progress Photography Documentation Guide
+==========================================
+
+Project: 7¼" Gauge Steam Locomotive Restoration
+Project Reference: PROJ-2024-047
+Client: Didcot Railway Centre
+
+PROGRESS PHOTOGRAPHY OVERVIEW
+=============================
+
+This document outlines the comprehensive photographic documentation process 
+used throughout the steam locomotive restoration project. All progress photos 
+are taken using professional equipment and follow heritage railway standards 
+for project documentation.
+
+PHOTOGRAPHY SCHEDULE & MILESTONES
+=================================
+
+Phase 1: Initial Assessment (January 2024)
+- Overall condition photography from multiple angles
+- Detail shots of fire tubes, smokebox, and boiler assembly
+- Documentation of serial numbers and manufacturer plates
+- Pre-restoration baseline photography for insurance purposes
+
+Phase 2: Dismantling Process (February 2024)
+- Step-by-step dismantling documentation
+- Component identification and cataloguing photos
+- Damage assessment photography with measurement references
+- Safe storage and organization documentation
+
+Phase 3: Restoration Work (March - May 2024)
+- Daily progress photography during active work periods
+- Before/during/after shots of each restoration stage
+- Material specifications and quality control documentation
+- Precision measurement and fitting verification photos
+
+Phase 4: Quality Testing (May 2024)
+- Pressure testing setup and execution documentation
+- Non-destructive testing (NDT) process photography
+- Quality inspection results with visual evidence
+- Certification process documentation
+
+TECHNICAL SPECIFICATIONS
+========================
+
+Camera Equipment:
+- Primary: Professional DSLR with macro lens capability
+- Backup: High-resolution mirrorless camera system
+- Lighting: Professional LED panel system for consistent illumination
+- Measurement: Digital calipers and reference scales in all detail shots
+
+Photo Standards:
+- Minimum resolution: 24 megapixels
+- File format: RAW + high-quality JPEG
+- Color calibration: Professional color checker reference
+- Metadata: Comprehensive EXIF data with GPS coordinates where applicable
+
+SAMPLE PHOTO CATEGORIES
+======================
+
+1. OVERVIEW SHOTS
+   - Full locomotive profile (both sides)
+   - Front and rear elevation views
+   - Three-quarter perspective shots showing overall condition
+
+2. DETAIL DOCUMENTATION
+   - Serial number plates and manufacturer markings
+   - Condition of major components (boiler, firebox, smokebox)
+   - Wear patterns and areas requiring attention
+   - Material thickness measurements with calipers
+
+3. WORK IN PROGRESS
+   - Team members performing specialized tasks
+   - Equipment setup and safety procedures
+   - Step-by-step process documentation
+   - Quality control checkpoints
+
+4. COMPLETION VERIFICATION
+   - Finished work from multiple angles
+   - Before/after comparison shots
+   - Testing procedures and results
+   - Final inspection documentation
+
+DIGITAL ARCHIVE ORGANIZATION
+============================
+
+File Naming Convention:
+SWSE_PROJ2024047_YYYYMMDD_Category_SequenceNumber.RAW/.JPG
+
+Categories:
+- OVR: Overview shots
+- DTL: Detail documentation  
+- WIP: Work in progress
+- TST: Testing procedures
+- CMP: Completion verification
+
+Storage and Backup:
+- Primary: Secure cloud storage with client access portal
+- Secondary: Local RAID backup system
+- Archive: Long-term storage on professional optical media
+- Client copies: High-resolution digital package on USB drive
+
+QUALITY ASSURANCE
+=================
+
+All photographs undergo quality review by:
+1. Project Engineer - Technical accuracy verification
+2. Quality Manager - Standards compliance check
+3. Client Representative - Documentation completeness approval
+
+Photo Processing Standards:
+- Minimal processing to maintain technical accuracy
+- Color correction for consistent lighting conditions
+- Sharpening and noise reduction using professional software
+- Watermarking with SWSE logo for copyright protection
+
+CLIENT ACCESS & DELIVERY
+========================
+
+Digital Portal Access:
+- Secure client login to view progress photos in real-time
+- Download capability for approved high-resolution images
+- Search and filter functionality by date and category
+- Mobile-responsive interface for field access
+
+Delivery Package Contents:
+1. Complete photo archive on USB 3.0 drive
+2. Organized folder structure matching project phases
+3. PDF contact sheets for easy browsing
+4. Technical metadata spreadsheet
+5. Copyright license for client's promotional use
+
+HERITAGE RAILWAY COMPLIANCE
+===========================
+
+All photography documentation meets or exceeds:
+- Railway Heritage Trust documentation standards
+- Insurance requirements for heritage locomotive restoration
+- Professional engineering documentation practices
+- British Standards for technical photography (BS 7542)
+
+Contact Information:
+South West Steam Engineering Ltd
+Unit 5, Cornwall Industrial Estate
+Truro, Cornwall, TR1 3XZ
+Tel: +44 (0) 1872 123456
+Email: documentation@swsteamengineering.co.uk
+
+Photography Team:
+Lead Photographer: Mike Thompson CEng
+Documentation Coordinator: Sarah Williams
+Quality Reviewer: James Harrison
+
+This document demonstrates SWSE's commitment to comprehensive project 
+documentation and professional standards in heritage railway restoration.
+
+© 2024 South West Steam Engineering Ltd. All rights reserved.

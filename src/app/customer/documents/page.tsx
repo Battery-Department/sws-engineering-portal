@@ -33,16 +33,16 @@ interface CustomerDocument {
   }
 }
 
-// Mock data - replace with actual API call
+// Sample documents with actual downloadable files
 const mockCustomerDocuments: CustomerDocument[] = [
   {
     id: '1',
-    filename: 'Invoice_INV-2024-0012.pdf',
+    filename: 'SWSE Invoice INV-2024-0012.html',
     fileType: 'invoice',
-    fileSize: 245760,
+    fileSize: 45760,
     uploadedAt: '2024-05-20T10:30:00Z',
     projectRef: 'PROJ-2024-047',
-    projectName: '7¼" Gauge Steam Locomotive Restoration',
+    projectName: '7¼" Gauge Steam Locomotive Restoration - Fire Tube Replacement',
     isPublic: true,
     generation: {
       documentNumber: 'INV-2024-0012',
@@ -53,12 +53,12 @@ const mockCustomerDocuments: CustomerDocument[] = [
   },
   {
     id: '2',
-    filename: 'Progress_Report_RPT-2024-0008.pdf',
+    filename: 'SWSE Progress Report RPT-2024-0008.html',
     fileType: 'project_report',
-    fileSize: 1024000,
+    fileSize: 78400,
     uploadedAt: '2024-05-18T14:15:00Z',
     projectRef: 'PROJ-2024-047',
-    projectName: '7¼" Gauge Steam Locomotive Restoration',
+    projectName: '7¼" Gauge Steam Locomotive Restoration - Progress Report',
     isPublic: true,
     generation: {
       documentNumber: 'RPT-2024-0008',
@@ -69,12 +69,12 @@ const mockCustomerDocuments: CustomerDocument[] = [
   },
   {
     id: '3',
-    filename: 'Completion_Certificate_CERT-2024-0005.pdf',
+    filename: 'SWSE Completion Certificate CERT-2024-0005.html',
     fileType: 'certificate',
-    fileSize: 512000,
+    fileSize: 52000,
     uploadedAt: '2024-05-22T16:45:00Z',
     projectRef: 'PROJ-2024-047',
-    projectName: '7¼" Gauge Steam Locomotive Restoration',
+    projectName: '7¼" Gauge Steam Locomotive Restoration - Completion Certificate',
     isPublic: true,
     generation: {
       documentNumber: 'CERT-2024-0005',
@@ -85,13 +85,29 @@ const mockCustomerDocuments: CustomerDocument[] = [
   },
   {
     id: '4',
-    filename: 'Progress_Photos_May_2024.zip',
+    filename: 'Sample Progress Photos Documentation.txt',
     fileType: 'photo',
-    fileSize: 15728640,
+    fileSize: 2048,
     uploadedAt: '2024-05-21T11:20:00Z',
     projectRef: 'PROJ-2024-047',
-    projectName: '7¼" Gauge Steam Locomotive Restoration',
+    projectName: '7¼" Gauge Steam Locomotive Restoration - Photo Documentation Guide',
     isPublic: true
+  },
+  {
+    id: '5',
+    filename: 'SWSE Quote Template Example.html',
+    fileType: 'quote',
+    fileSize: 35000,
+    uploadedAt: '2024-05-10T09:15:00Z',
+    projectRef: 'PROJ-2024-048',
+    projectName: 'Industrial Gearbox Restoration - Quote Example',
+    isPublic: true,
+    generation: {
+      documentNumber: 'QTE-2024-0023',
+      documentType: 'quote',
+      status: 'completed',
+      generatedAt: '2024-05-10T09:15:00Z'
+    }
   }
 ]
 
@@ -100,6 +116,7 @@ export default function CustomerDocumentsPage() {
   const [loading, setLoading] = useState(true)
   const [selectedType, setSelectedType] = useState('all')
   const [downloading, setDownloading] = useState<string | null>(null)
+  const [previewDocument, setPreviewDocument] = useState<CustomerDocument | null>(null)
 
   useEffect(() => {
     // Simulate API call
@@ -151,25 +168,56 @@ export default function CustomerDocumentsPage() {
     try {
       setDownloading(documentId)
       
-      // Simulate download
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Map document IDs to actual file paths
+      const fileMap: { [key: string]: string } = {
+        '1': '/sample-documents/SWSE-Invoice-INV-2024-0012.html',
+        '2': '/sample-documents/SWSE-Progress-Report-RPT-2024-0008.html',
+        '3': '/sample-documents/SWSE-Certificate-CERT-2024-0005.html',
+        '4': '/sample-documents/photo-documentation-guide.txt',
+        '5': '/sample-documents/quote-template-example.html'
+      }
       
-      // In a real implementation, you would fetch the document
-      // const response = await fetch(`/api/customer/documents/${documentId}/download`)
-      // const blob = await response.blob()
-      // const url = window.URL.createObjectURL(blob)
-      // const link = document.createElement('a')
-      // link.href = url
-      // link.download = filename
-      // link.click()
+      const filePath = fileMap[documentId]
       
-      alert(`Download started: ${filename}`)
+      if (filePath) {
+        // Create a temporary delay for realistic download experience
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        
+        // Create download link
+        const link = document.createElement('a')
+        link.href = filePath
+        link.download = filename
+        link.target = '_blank'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        
+        // Show success message
+        alert(`✓ Download complete: ${filename}\n\nThis is a sample document demonstrating SWSE's professional documentation standards.`)
+      } else {
+        alert('Sample file not available for this document type.')
+      }
     } catch (error) {
       console.error('Error downloading document:', error)
-      alert('Error downloading document')
+      alert('Error downloading document. Please try again.')
     } finally {
       setDownloading(null)
     }
+  }
+
+  const previewDocumentHandler = (document: CustomerDocument) => {
+    setPreviewDocument(document)
+  }
+
+  const getPreviewUrl = (documentId: string) => {
+    const fileMap: { [key: string]: string } = {
+      '1': '/sample-documents/SWSE-Invoice-INV-2024-0012.html',
+      '2': '/sample-documents/SWSE-Progress-Report-RPT-2024-0008.html',
+      '3': '/sample-documents/SWSE-Certificate-CERT-2024-0005.html',
+      '4': '/sample-documents/photo-documentation-guide.txt',
+      '5': '/sample-documents/quote-template-example.html'
+    }
+    return fileMap[documentId] || ''
   }
 
   const filteredDocuments = documents.filter(doc => 
@@ -181,6 +229,7 @@ export default function CustomerDocumentsPage() {
     { value: 'invoice', label: 'Invoices', count: documents.filter(d => d.fileType === 'invoice').length },
     { value: 'project_report', label: 'Reports', count: documents.filter(d => d.fileType === 'project_report').length },
     { value: 'certificate', label: 'Certificates', count: documents.filter(d => d.fileType === 'certificate').length },
+    { value: 'quote', label: 'Quotes', count: documents.filter(d => d.fileType === 'quote').length },
     { value: 'photo', label: 'Photos', count: documents.filter(d => d.fileType === 'photo').length }
   ]
 
@@ -318,7 +367,10 @@ export default function CustomerDocumentsPage() {
                               {isDownloading ? 'Downloading...' : 'Download'}
                             </button>
                             
-                            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            <button 
+                              onClick={() => previewDocumentHandler(document)}
+                              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                            >
                               <Eye className="w-4 h-4" />
                               Preview
                             </button>
@@ -363,6 +415,99 @@ export default function CustomerDocumentsPage() {
             </div>
           </div>
         </div>
+
+        {/* Preview Modal */}
+        {previewDocument && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+              <div className="flex justify-between items-center p-6 border-b border-gray-200">
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">{previewDocument.filename}</h3>
+                  <p className="text-sm text-gray-600">{previewDocument.projectName}</p>
+                </div>
+                <button
+                  onClick={() => setPreviewDocument(null)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <span className="sr-only">Close</span>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-6 overflow-auto max-h-[calc(90vh-120px)]">
+                {previewDocument.fileType === 'photo' ? (
+                  <div className="text-center">
+                    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-12">
+                      <div className="text-gray-500 mb-4">
+                        <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <h4 className="text-lg font-medium text-gray-900 mb-2">Photo Documentation Guide</h4>
+                      <p className="text-gray-600 mb-4">
+                        This file contains comprehensive photography guidelines and standards used in SWSE project documentation.
+                      </p>
+                      <button
+                        onClick={() => downloadDocument(previewDocument.id, previewDocument.filename)}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#006FEE] text-white rounded-lg hover:bg-[#0050B3] transition-colors"
+                      >
+                        <Eye className="w-4 h-4" />
+                        View Full Documentation
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <div className="flex items-center gap-2 text-blue-800 mb-2">
+                        <FileText className="w-5 h-5" />
+                        <span className="font-medium">Document Preview</span>
+                      </div>
+                      <p className="text-sm text-blue-700 mb-3">
+                        This is a professional sample document demonstrating SWSE's documentation standards and attention to detail.
+                      </p>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => {
+                            const previewUrl = getPreviewUrl(previewDocument.id)
+                            if (previewUrl) {
+                              window.open(previewUrl, '_blank')
+                            }
+                          }}
+                          className="inline-flex items-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                          <Eye className="w-4 h-4" />
+                          Open in New Tab
+                        </button>
+                        <button
+                          onClick={() => downloadDocument(previewDocument.id, previewDocument.filename)}
+                          className="inline-flex items-center gap-2 px-3 py-2 border border-blue-600 text-blue-600 text-sm rounded-lg hover:bg-blue-50 transition-colors"
+                        >
+                          <Download className="w-4 h-4" />
+                          Download
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="border border-gray-200 rounded-lg overflow-hidden">
+                      <iframe
+                        src={getPreviewUrl(previewDocument.id)}
+                        className="w-full h-96 border-0"
+                        title={`Preview of ${previewDocument.filename}`}
+                        sandbox="allow-same-origin"
+                      />
+                    </div>
+                    
+                    <div className="text-center text-sm text-gray-500">
+                      <p>Preview may not show full formatting. For best experience, open in new tab or download the document.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

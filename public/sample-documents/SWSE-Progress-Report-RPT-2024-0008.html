@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWSE Progress Report RPT-2024-0008</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 30px;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+        .header {
+            border-bottom: 3px solid #006FEE;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .logo-section h1 {
+            color: #006FEE;
+            font-size: 28px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+        .logo-section p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .report-info {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+        .report-title {
+            background: linear-gradient(135deg, #006FEE 0%, #0050B3 100%);
+            color: white;
+            padding: 20px 30px;
+            margin: 30px 0;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .project-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #006FEE;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+        }
+        .section-title {
+            color: #006FEE;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .milestone-completed {
+            background: #d1fae5;
+            border-color: #10B981;
+        }
+        .milestone-current {
+            background: #dbeafe;
+            border-color: #006FEE;
+        }
+        .milestone-pending {
+            background: #f9fafb;
+            border-color: #e9ecef;
+        }
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-complete {
+            background: #10B981;
+            color: white;
+        }
+        .status-current {
+            background: #006FEE;
+            color: white;
+        }
+        .status-pending {
+            background: #e9ecef;
+            color: #666;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #006FEE;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .issues-list {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .issue-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 4px;
+            border-left: 4px solid #ef4444;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .photo-placeholder {
+            background: #f3f4f6;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #6b7280;
+            font-style: italic;
+        }
+        .next-steps {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #006FEE;
+            font-size: 12px;
+            color: #666;
+        }
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .signature-block {
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin: 30px 0 10px 0;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-info">
+            <div class="logo-section">
+                <h1>SOUTH WEST STEAM ENGINEERING</h1>
+                <p>Heritage Railway Engineering & Restoration Specialists</p>
+                <p>Unit 5, Cornwall Industrial Estate, Truro, Cornwall TR1 3XZ</p>
+            </div>
+            <div class="report-info">
+                <strong>Progress Report RPT-2024-0008</strong><br>
+                Report Date: 18th May 2024<br>
+                Period: 1st May - 15th May 2024<br><br>
+                Prepared by: Mike Thompson CEng<br>
+                Reviewed by: Sarah Williams<br>
+                Project Manager: James Harrison
+            </div>
+        </div>
+    </div>
+
+    <div class="report-title">
+        PROJECT PROGRESS REPORT
+    </div>
+
+    <div class="project-summary">
+        <h3 style="color: #006FEE; margin-top: 0;">Project Summary</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <strong>Project:</strong> 7¼" Gauge Steam Locomotive Restoration<br>
+                <strong>Client:</strong> Didcot Railway Centre<br>
+                <strong>Project Reference:</strong> PROJ-2024-047<br>
+                <strong>Start Date:</strong> 15th January 2024<br>
+                <strong>Target Completion:</strong> 30th May 2024
+            </div>
+            <div>
+                <strong>Contract Value:</strong> £47,500.00<br>
+                <strong>Budget Spent:</strong> £38,200.00 (80.4%)<br>
+                <strong>Overall Progress:</strong> 85% Complete<br>
+                <strong>Status:</strong> <span style="color: #10B981; font-weight: bold;">On Track</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Overall Project Progress</div>
+        <div style="margin-bottom: 10px;">
+            <strong>85% Complete</strong> - Project remains on schedule for completion by 30th May 2024
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 85%;"></div>
+        </div>
+        <p style="margin-top: 15px; color: #10B981; font-weight: 600;">
+            ✓ Excellent progress this period. All major milestones achieved on time.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Key Metrics</div>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">24</div>
+                <div class="metric-label">Fire Tubes Completed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">127</div>
+                <div class="metric-label">Engineering Hours</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">98%</div>
+                <div class="metric-label">Quality Score</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-label">Safety Incidents</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Milestone Progress</div>
+        
+        <div class="milestone-item milestone-completed">
+            <div class="status-icon status-complete">✓</div>
+            <div>
+                <strong>Phase 1: Initial Assessment & Planning</strong><br>
+                <small>Completed 25th January 2024 - Condition survey and project planning finalized</small>
+            </div>
+        </div>
+        
+        <div class="milestone-item milestone-completed">
+            <div class="status-icon status-complete">✓</div>
+            <div>
+                <strong>Phase 2: Boiler Dismantling</strong><br>
+                <small>Completed 8th February 2024 - Safe removal and cataloguing of all components</small>
+            </div>
+        </div>
+        
+        <div class="milestone-item milestone-completed">
+            <div class="status-icon status-complete">✓</div>
+            <div>
+                <strong>Phase 3: Fire Tube Replacement</strong><br>
+                <small>Completed 15th May 2024 - All 24 fire tubes machined, fitted and tested</small>
+            </div>
+        </div>
+        
+        <div class="milestone-item milestone-current">
+            <div class="status-icon status-current">4</div>
+            <div>
+                <strong>Phase 4: Smokebox Restoration</strong><br>
+                <small>In Progress - Expected completion 22nd May 2024</small>
+            </div>
+        </div>
+        
+        <div class="milestone-item milestone-pending">
+            <div class="status-icon status-pending">5</div>
+            <div>
+                <strong>Phase 5: Final Assembly & Testing</strong><br>
+                <small>Scheduled 23rd - 30th May 2024</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Work Completed This Period (1st - 15th May 2024)</div>
+        <ul style="margin-left: 20px;">
+            <li><strong>Fire Tube Installation:</strong> Completed installation of all 24 new heritage-grade steel fire tubes with precision fitting and welding to original 1920s specifications.</li>
+            <li><strong>Pressure Testing:</strong> Successfully pressure tested boiler to 270 PSI (1.5x working pressure) with zero leakage detected.</li>
+            <li><strong>Non-Destructive Testing:</strong> Radiographic testing completed on all critical welds - 100% pass rate achieved.</li>
+            <li><strong>Smokebox Preparation:</strong> Commenced restoration of smokebox assembly including cleaning, repair welding, and preparation for reassembly.</li>
+            <li><strong>Quality Documentation:</strong> Updated all engineering drawings and prepared certification documentation for heritage railway compliance.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Issues & Risks</div>
+        <div class="issues-list">
+            <div class="issue-item">
+                <strong>Minor Issue:</strong> Small amount of pitting discovered on original smokebox plate. Resolution: Additional cleaning and minor repair welding required (2 days additional work).
+            </div>
+            <div style="background: #f0f9ff; border-left-color: #0ea5e9; padding: 15px; border-radius: 4px; margin: 10px 0;">
+                <strong>Risk Mitigation:</strong> Weather contingency plans in place for final outdoor testing phase. Indoor testing facilities secured as backup.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Progress Photos</div>
+        <div class="photo-grid">
+            <div class="photo-placeholder">
+                Fire Tube Installation<br>
+                <small>New heritage-grade steel tubes fitted with precision</small>
+            </div>
+            <div class="photo-placeholder">
+                Pressure Testing Setup<br>
+                <small>Hydraulic test to 270 PSI - zero leakage</small>
+            </div>
+            <div class="photo-placeholder">
+                Smokebox Restoration<br>
+                <small>Cleaning and preparation work in progress</small>
+            </div>
+            <div class="photo-placeholder">
+                Quality Inspection<br>
+                <small>Radiographic testing of critical weld joints</small>
+            </div>
+        </div>
+        <p style="font-style: italic; color: #666; text-align: center; margin-top: 20px;">
+            High-resolution photographs available in separate digital package
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Next Steps (16th - 30th May 2024)</div>
+        <div class="next-steps">
+            <ul style="margin: 0;">
+                <li><strong>Complete Smokebox Restoration</strong> (Target: 22nd May)</li>
+                <li><strong>Final Assembly</strong> - Reassemble all components (23rd - 25th May)</li>
+                <li><strong>System Testing</strong> - Full operational testing and calibration (26th - 28th May)</li>
+                <li><strong>Final Inspection</strong> - Independent quality assurance review (29th May)</li>
+                <li><strong>Handover Documentation</strong> - Prepare complete certification package (30th May)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Budget Status</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div>
+                <strong>Original Contract Value:</strong> £47,500.00<br>
+                <strong>Approved Variations:</strong> £0.00<br>
+                <strong>Total Authorized:</strong> £47,500.00<br><br>
+                <strong>Costs to Date:</strong> £38,200.00<br>
+                <strong>Projected Final Cost:</strong> £46,800.00<br>
+                <strong>Forecast Saving:</strong> £700.00
+            </div>
+            <div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80.4%;"></div>
+                </div>
+                <p style="color: #10B981; font-weight: 600; margin-top: 10px;">
+                    ✓ Project tracking under budget with potential savings
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="signature-section">
+        <div class="signature-block">
+            <div class="signature-line">
+                <strong>Mike Thompson</strong><br>
+                Chief Engineer<br>
+                CEng, MIMechE
+            </div>
+        </div>
+        
+        <div class="signature-block">
+            <div class="signature-line">
+                <strong>Sarah Williams</strong><br>
+                Quality Assurance Manager<br>
+                CSWIP 3.1, BINDT Level 3
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Report Classification:</strong> Client Confidential</p>
+        <p><strong>Distribution:</strong> Didcot Railway Centre Management Team, SWSE Project Team</p>
+        <p><strong>Next Report:</strong> Final Completion Report - Due 30th May 2024</p>
+        <br>
+        <p style="text-align: center;">
+            <strong>South West Steam Engineering Ltd</strong> - Company Registration No: 12345678<br>
+            Unit 5, Cornwall Industrial Estate, Truro, Cornwall, TR1 3XZ<br>
+            Tel: +44 (0) 1872 123456 • Email: enquiries@swsteamengineering.co.uk
+        </p>
+    </div>
+</body>
+</html>
