@@ -26,7 +26,7 @@ export default function PortalHeader() {
     { name: 'Dashboard', href: '/portal/dashboard', icon: ShoppingCart },
     { name: 'Orders', href: '/portal/orders', icon: Package },
     { name: 'Subscriptions', href: '/portal/subscriptions', icon: CreditCard },
-    { name: 'Chat with Lithi', href: '/portal/chat', icon: MessageCircle },
+    { name: 'Chat with SWSE', href: '/portal/chat', icon: MessageCircle },
   ];
 
   return (
@@ -40,7 +40,7 @@ export default function PortalHeader() {
                   <span className="text-white font-bold text-xl">⚡</span>
                 </div>
                 <span className="text-xl font-bold text-gray-900 dark:text-white">
-                  Battery Department
+                  SWSE Portal
                 </span>
               </Link>
             </div>

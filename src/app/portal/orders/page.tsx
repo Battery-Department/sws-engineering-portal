@@ -19,7 +19,7 @@ import {
   Clock,
   Home,
   CreditCard,
-  Battery,
+  Wrench,
   FileText,
   Menu,
   Bell,
@@ -73,72 +73,72 @@ export default function OrdersPage() {
       setOrders([
         {
           id: '1',
-          orderNumber: 'FLX-2025-001',
+          orderNumber: 'SWSE-2025-001',
           createdAt: '2025-05-10',
           status: 'delivered',
           total: 4140.00,
           items: [
-            { productName: '9Ah FlexVolt Battery', quantity: 24, price: 125.00 },
-            { productName: '6Ah FlexVolt Battery', quantity: 12, price: 95.00 }
+            { productName: 'Boiler Installation Service', quantity: 1, price: 2500.00 },
+            { productName: 'Steam System Maintenance', quantity: 1, price: 1640.00 }
           ],
           trackingNumber: '1Z999AA10123456784',
           estimatedDelivery: '2025-05-12',
-          deliveryAddress: 'Kiewit Corporation, 1550 Mike Fahey St, Omaha, NE 68102',
-          carrier: 'FedEx'
+          deliveryAddress: 'Bristol Manufacturing Ltd, 45 Industrial Park, Bristol, BS1 4QD',
+          carrier: 'Service Team A'
         },
         {
           id: '2',
-          orderNumber: 'FLX-2025-002',
+          orderNumber: 'SWSE-2025-002',
           createdAt: '2025-05-15',
           status: 'in-transit',
           total: 4410.00,
           items: [
-            { productName: '15Ah FlexVolt Battery', quantity: 18, price: 245.00 }
+            { productName: 'Industrial Pump System Design', quantity: 1, price: 4410.00 }
           ],
           trackingNumber: '1Z999AA10123456785',
           estimatedDelivery: '2025-05-18',
-          deliveryAddress: 'McCarthy Building Companies, 1341 N Rock Hill Rd, St. Louis, MO 63124',
-          carrier: 'UPS'
+          deliveryAddress: 'Cornwall Engineering Works, 23 Station Road, Truro, TR1 2AE',
+          carrier: 'Service Team B'
         },
         {
           id: '3',
-          orderNumber: 'FLX-2025-003',
+          orderNumber: 'SWSE-2025-003',
           createdAt: '2025-05-16',
           status: 'processing',
           total: 4425.00,
           items: [
-            { productName: 'Mid-Size Crew Package', quantity: 1, price: 4425.00 }
+            { productName: 'Pressure Vessel Inspection & Certification', quantity: 1, price: 4425.00 }
           ],
-          deliveryAddress: 'Hensel Phelps, 420 S Emporia St, Greeley, CO 80631',
-          carrier: 'FedEx'
+          deliveryAddress: 'Devon Power Solutions, 88 Queens Street, Exeter, EX4 3RP',
+          carrier: 'Service Team C'
         },
         {
           id: '4',
-          orderNumber: 'FLX-2025-004',
+          orderNumber: 'SWSE-2025-004',
           createdAt: '2025-05-08',
           status: 'delivered',
           total: 10125.00,
           items: [
-            { productName: 'Full Workforce Solution', quantity: 1, price: 8875.00 },
-            { productName: '9Ah FlexVolt Battery', quantity: 10, price: 125.00 }
+            { productName: 'Complete Steam System Overhaul', quantity: 1, price: 8875.00 },
+            { productName: 'Emergency Repair Service', quantity: 1, price: 1250.00 }
           ],
           trackingNumber: 'FRT-12345',
           estimatedDelivery: '2025-05-10',
-          deliveryAddress: 'Mortenson Construction, 700 Meadow Lane N, Minneapolis, MN 55422',
-          carrier: 'Freight'
+          deliveryAddress: 'Somerset Heavy Industries, 12 Maritime Way, Bridgwater, TA6 4RJ',
+          carrier: 'Field Team'
         },
         {
           id: '5',
-          orderNumber: 'FLX-2025-005',
+          orderNumber: 'SWSE-2025-005',
           createdAt: '2025-05-20',
           status: 'processing',
           total: 3990.00,
           items: [
-            { productName: '6Ah FlexVolt Battery', quantity: 12, price: 95.00 },
-            { productName: '9Ah FlexVolt Battery', quantity: 24, price: 125.00 }
+            { productName: 'Valve Replacement Service', quantity: 1, price: 1140.00 },
+            { productName: 'Piping System Analysis', quantity: 1, price: 2850.00 }
           ],
-          deliveryAddress: 'Turner Construction, 375 Hudson St, New York, NY 10014',
-          carrier: 'FedEx'
+          deliveryAddress: 'Plymouth Marine Engineering, 55 Mayflower Drive, Plymouth, PL1 1AA',
+          carrier: 'Service Team D'
         }
       ])
       setOrdersLoading(false)
@@ -207,8 +207,8 @@ export default function OrdersPage() {
           
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center px-4">
-              <Battery className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-semibold">Battery Department</span>
+              <Wrench className="h-8 w-8 text-blue-600" />
+              <span className="ml-2 text-xl font-semibold">Engineering Services</span>
             </div>
             <nav className="mt-8 px-2">
               <Link href="/portal/dashboard" className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
@@ -224,8 +224,8 @@ export default function OrdersPage() {
                 Billing
               </Link>
               <a href="#" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Battery className="mr-4 h-6 w-6" />
-                Inventory
+                <Wrench className="mr-4 h-6 w-6" />
+                Projects
               </a>
               <a href="#" className="mt-1 group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
                 <FileText className="mr-4 h-6 w-6" />
@@ -241,8 +241,8 @@ export default function OrdersPage() {
         <div className="flex-1 flex flex-col min-h-0 bg-white border-r border-gray-200">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center px-4">
-              <Battery className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-semibold">Battery Department</span>
+              <Wrench className="h-8 w-8 text-blue-600" />
+              <span className="ml-2 text-xl font-semibold">Engineering Services</span>
             </div>
             <nav className="mt-8 flex-1 px-2 space-y-1">
               <Link href="/portal/dashboard" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
@@ -258,8 +258,8 @@ export default function OrdersPage() {
                 Billing
               </Link>
               <a href="#" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                <Battery className="mr-3 h-5 w-5" />
-                Inventory
+                <Wrench className="mr-3 h-5 w-5" />
+                Projects
               </a>
               <a href="#" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
                 <FileText className="mr-3 h-5 w-5" />
@@ -322,7 +322,7 @@ export default function OrdersPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900">Order Management</h2>
-                    <p className="mt-1 text-sm text-gray-600">Track and manage your battery orders</p>
+                    <p className="mt-1 text-sm text-gray-600">Track and manage your engineering service orders</p>
                   </div>
                   <div className="flex space-x-3">
                     <button className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">

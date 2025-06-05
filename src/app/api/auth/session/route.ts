@@ -22,15 +22,15 @@ export async function GET(request: NextRequest) {
     }
 
     // For demo user
-    if (decoded.email === 'demo@battery.com') {
+    if (decoded.email === 'demo@swse.com') {
       return NextResponse.json({
         user: {
           id: '1',
-          email: 'demo@battery.com',
+          email: 'demo@swse.com',
           name: 'Demo User',
           customer: {
             id: '1',
-            companyName: 'Battery Department'
+            companyName: 'South West Steam Engineering'
           }
         }
       });

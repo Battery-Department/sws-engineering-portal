@@ -1,6 +1,6 @@
 /**
  * Token Manager
- * Centralized token management for Lithi ecosystem
+ * Centralized token management for SWSE ecosystem
  */
 
 interface TokenData {
@@ -11,9 +11,9 @@ interface TokenData {
 }
 
 class TokenManager {
-  private tokenKey = 'lithi-auth-token'
-  private refreshKey = 'lithi-refresh-token'
-  private serviceTokensKey = 'lithi-service-tokens'
+  private tokenKey = 'swse-auth-token'
+  private refreshKey = 'swse-refresh-token'
+  private serviceTokensKey = 'swse-service-tokens'
 
   // Get main authentication token
   async getToken(): Promise<string | null> {

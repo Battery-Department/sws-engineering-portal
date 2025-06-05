@@ -1,11 +1,11 @@
 /**
  * Event Bus
- * Real-time event system for Lithi ecosystem
+ * Real-time event system for SWSE ecosystem
  */
 
 import { EventEmitter } from 'events'
 import { io, Socket } from 'socket.io-client'
-import { lithiGateway } from '@/services/api-gateway'
+import { swseGateway } from '@/services/api-gateway'
 import { tokenManager } from '@/services/auth/token-manager'
 
 interface EventPayload {
@@ -26,7 +26,7 @@ interface EventSubscription {
   filter?: (event: EventPayload) => boolean
 }
 
-export class LithiEventBus extends EventEmitter {
+export class SWSEEventBus extends EventEmitter {
   private socket: Socket | null = null
   private subscriptions: Map<string, EventSubscription> = new Map()
   private eventHistory: EventPayload[] = []
@@ -68,7 +68,7 @@ export class LithiEventBus extends EventEmitter {
       this.connectionStatus = true
       this.reconnectAttempts = 0
       this.emit('connected')
-      console.log('Connected to Lithi Event Bus')
+      console.log('Connected to SWSE Event Bus')
       
       // Re-subscribe to events after reconnection
       this.resubscribeToEvents()
@@ -77,7 +77,7 @@ export class LithiEventBus extends EventEmitter {
     this.socket.on('disconnect', () => {
       this.connectionStatus = false
       this.emit('disconnected')
-      console.log('Disconnected from Lithi Event Bus')
+      console.log('Disconnected from SWSE Event Bus')
     })
 
     this.socket.on('event', (event: EventPayload) => {
@@ -172,7 +172,7 @@ export class LithiEventBus extends EventEmitter {
       id: this.generateId(),
       type,
       data,
-      source: 'lithi-dashboard',
+      source: 'swse-dashboard',
       timestamp: new Date().toISOString(),
       userId: options.userId,
       sessionId: options.sessionId,
@@ -189,7 +189,7 @@ export class LithiEventBus extends EventEmitter {
     
     // Broadcast to other services if requested
     if (options.broadcast) {
-      await lithiGateway.broadcastEvent({
+      await swseGateway.broadcastEvent({
         ...event,
         targets: ['chatbot', 'copilot', 'monday']
       })
@@ -392,7 +392,7 @@ export class LithiEventBus extends EventEmitter {
 }
 
 // Export singleton instance
-export const eventBus = new LithiEventBus()
+export const eventBus = new SWSEEventBus()
 
 // Common event types
 export const EventTypes = {

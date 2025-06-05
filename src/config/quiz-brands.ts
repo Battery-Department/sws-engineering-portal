@@ -2,38 +2,38 @@
 import { QuizBrand } from '@/types/quiz-v2';
 
 export const QUIZ_BRANDS: QuizBrand[] = [
-  // Tier 1 - Most Popular (Professional)
+  // Tier 1 - Most Popular (Industrial)
   {
-    id: 'dewalt',
-    name: 'dewalt',
-    displayName: 'DeWalt',
-    color: '#FEBD17', // DeWalt yellow
-    voltage: '20V MAX / FLEXVOLT',
-    voltageOptions: ['12V MAX', '20V MAX', '60V MAX', 'FLEXVOLT'],
-    marketShare: '44%',
-    popularWith: ['Carpenters', 'General Contractors'],
+    id: 'industrial-pro',
+    name: 'industrial-pro',
+    displayName: 'Industrial Pro',
+    color: '#2563EB', // Industrial blue
+    voltage: '24V / 48V Industrial',
+    voltageOptions: ['12V', '24V', '48V', '110V'],
+    marketShare: '35%',
+    popularWith: ['Industrial Engineers', 'Plant Maintenance'],
     category: 'professional'
   },
   {
-    id: 'milwaukee',
-    name: 'milwaukee',
-    displayName: 'Milwaukee',
-    color: '#EE0000', // Milwaukee red
-    voltage: 'M18 / M12',
-    voltageOptions: ['M12', 'M18', 'MX FUEL'],
-    marketShare: '38%',
-    popularWith: ['Electricians', 'Plumbers'],
+    id: 'steam-tech',
+    name: 'steam-tech',
+    displayName: 'Steam Tech',
+    color: '#DC2626', // Steam red
+    voltage: 'ST18 / ST24',
+    voltageOptions: ['ST12', 'ST18', 'ST24', 'ST48'],
+    marketShare: '32%',
+    popularWith: ['Steam Engineers', 'Thermal Systems'],
     category: 'professional'
   },
   {
-    id: 'makita',
-    name: 'makita',
-    displayName: 'Makita',
-    color: '#00A4B4', // Makita teal
-    voltage: '18V LXT / 40V XGT',
-    voltageOptions: ['12V max CXT', '18V LXT', '36V (18V X2)', '40V max XGT'],
+    id: 'precision-eng',
+    name: 'precision-eng',
+    displayName: 'Precision Engineering',
+    color: '#059669', // Engineering green
+    voltage: '18V PE / 36V Industrial',
+    voltageOptions: ['12V PE', '18V PE', '36V Industrial', '48V Heavy Duty'],
     marketShare: '28%',
-    popularWith: ['Framers', 'Finish Carpenters'],
+    popularWith: ['Precision Engineers', 'Quality Control'],
     category: 'professional'
   },
   

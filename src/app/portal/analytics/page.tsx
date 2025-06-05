@@ -80,11 +80,11 @@ const salesData = [
   { month: 'Jun', sales: 67000, orders: 180 },
 ]
 
-const topProducts = [
-  { name: '9Ah FlexVolt Battery', sales: 1425, revenue: '$178,125', growth: '+22%' },
-  { name: 'Mid-Size Crew Package', sales: 30, revenue: '$132,750', growth: '+18%' },
-  { name: '15Ah FlexVolt Battery', sales: 401, revenue: '$98,175', growth: '+15%' },
-  { name: '6Ah FlexVolt Battery', sales: 810, revenue: '$76,950', growth: '+8%' },
+const topServices = [
+  { name: 'Pipeline Installation', projects: 142, revenue: '$178,125', growth: '+22%' },
+  { name: 'Equipment Maintenance', projects: 30, revenue: '$132,750', growth: '+18%' },
+  { name: 'System Integration', projects: 401, revenue: '$98,175', growth: '+15%' },
+  { name: 'Emergency Repairs', projects: 81, revenue: '$76,950', growth: '+8%' },
 ]
 
 export default function AnalyticsPage() {
@@ -136,7 +136,7 @@ export default function AnalyticsPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -193,7 +193,7 @@ export default function AnalyticsPage() {
       }} className="md-show">
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE Portal</span>
           </div>
           <nav style={{ flex: 1, padding: '0 8px' }}>
             {navigation.map((item) => (
@@ -434,11 +434,11 @@ export default function AnalyticsPage() {
                 boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
               }}>
                 <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
-                  Top Products
+                  Top Services
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {topProducts.map((product, index) => (
-                    <div key={product.name} style={{
+                  {topServices.map((service, index) => (
+                    <div key={service.name} style={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -469,19 +469,19 @@ export default function AnalyticsPage() {
                         </div>
                         <div>
                           <div style={{ fontSize: '14px', fontWeight: '500', color: '#111827' }}>
-                            {product.name}
+                            {service.name}
                           </div>
                           <div style={{ fontSize: '12px', color: '#6b7280' }}>
-                            {product.sales} units sold
+                            {service.projects} projects completed
                           </div>
                         </div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
                         <div style={{ fontSize: '14px', fontWeight: '600', color: '#111827' }}>
-                          {product.revenue}
+                          {service.revenue}
                         </div>
-                        <div style={{ fontSize: '12px', color: product.growth.startsWith('+') ? '#10b981' : '#ef4444' }}>
-                          {product.growth}
+                        <div style={{ fontSize: '12px', color: service.growth.startsWith('+') ? '#10b981' : '#ef4444' }}>
+                          {service.growth}
                         </div>
                       </div>
                     </div>

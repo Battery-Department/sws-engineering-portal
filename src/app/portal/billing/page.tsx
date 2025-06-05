@@ -24,7 +24,7 @@ const navigation = [
   { name: 'Dashboard', href: '/portal/dashboard', icon: Home },
   { name: 'Orders', href: '/portal/orders', icon: ShoppingCart },
   { name: 'Billing', href: '/portal/billing', icon: DollarSign, current: true },
-  { name: 'Inventory', href: '/portal/inventory', icon: Package },
+  { name: 'Projects', href: '/portal/projects', icon: Package },
   { name: 'Shipping', href: '/portal/shipping', icon: Truck },
   { name: 'Analytics', href: '/portal/analytics', icon: BarChart },
   { name: 'Settings', href: '/portal/settings', icon: Settings },
@@ -251,10 +251,10 @@ export default function BillingPage() {
               <div className="px-4 py-5 sm:p-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Billing Address</h3>
                 <div className="mt-4">
-                  <p className="text-sm font-medium text-gray-900">Battery Dealer Inc.</p>
-                  <p className="text-sm text-gray-500">123 Main Street</p>
-                  <p className="text-sm text-gray-500">New York, NY 10001</p>
-                  <p className="text-sm text-gray-500">United States</p>
+                  <p className="text-sm font-medium text-gray-900">South West Steam Engineering Ltd.</p>
+                  <p className="text-sm text-gray-500">45 Industrial Way</p>
+                  <p className="text-sm text-gray-500">Plymouth, PL4 0RZ</p>
+                  <p className="text-sm text-gray-500">United Kingdom</p>
                 </div>
                 <div className="mt-6">
                   <button

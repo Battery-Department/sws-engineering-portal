@@ -335,7 +335,7 @@ export default function CustomerDashboardPage() {
               title: 'New Project Request',
               icon: Plus,
               color: '#3B82F6',
-              href: '/customer/requirements'
+              href: '/customer/quiz'
             },
             {
               title: 'View All Projects',

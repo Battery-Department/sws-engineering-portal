@@ -61,9 +61,19 @@ export default function SWSEChatPage() {
       const saved = localStorage.getItem('swseConversations')
       if (saved) {
         const parsed = JSON.parse(saved)
-        setConversations(parsed)
-        if (parsed.length > 0 && !currentConversation) {
-          setCurrentConversation(parsed[0])
+        // Convert date strings back to Date objects
+        const conversationsWithDates = parsed.map((conv: any) => ({
+          ...conv,
+          createdAt: new Date(conv.createdAt),
+          updatedAt: new Date(conv.updatedAt),
+          messages: conv.messages.map((msg: any) => ({
+            ...msg,
+            timestamp: new Date(msg.timestamp)
+          }))
+        }))
+        setConversations(conversationsWithDates)
+        if (conversationsWithDates.length > 0 && !currentConversation) {
+          setCurrentConversation(conversationsWithDates[0])
         }
       }
     } catch (error) {

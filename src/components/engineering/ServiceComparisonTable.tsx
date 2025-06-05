@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-interface Battery {
+interface Service {
   id: string;
   name: string;
 }
@@ -10,16 +10,16 @@ interface Spec {
   values: string[];
 }
 
-interface BatteryComparisonTableProps {
-  batteries: Battery[];
+interface ServiceComparisonTableProps {
+  services: Service[];
   specs: Spec[];
-  selectedBattery?: string;
+  selectedService?: string;
 }
 
-const BatteryComparisonTable: React.FC<BatteryComparisonTableProps> = ({ 
-  batteries, 
+const ServiceComparisonTable: React.FC<ServiceComparisonTableProps> = ({ 
+  services, 
   specs,
-  selectedBattery = ''
+  selectedService = ''
 }) => {
   const [highlightedColumn, setHighlightedColumn] = useState<number | null>(null);
   

@@ -28,14 +28,14 @@ export async function POST(request: NextRequest) {
       apiKey: apiKey,
     })
 
-    const systemPrompt = `You are Lithi, an AI assistant for a battery technology company. You help customers with:
-- Finding the right battery solutions for EVs, energy storage, and other applications
-- Placing and tracking orders
-- Technical specifications and comparisons
-- Pricing and quotes
-- Support and troubleshooting
+    const systemPrompt = `You are SWSE Assistant, an AI assistant for South West Steam Engineering. You help customers with:
+- Finding the right engineering solutions for heritage railways, industrial equipment, and CAD design
+- Managing engineering projects and tracking progress
+- Technical specifications and engineering requirements
+- Project quotes and cost estimates
+- Support and technical assistance
 
-Be helpful, professional, and knowledgeable about battery technology. Keep responses concise and focused.
+Be helpful, professional, and knowledgeable about engineering services. Keep responses concise and focused.
 
 When providing information with multiple categories or sections, format your response as follows:
 - Use a brief introductory paragraph
@@ -45,13 +45,13 @@ When providing information with multiple categories or sections, format your res
 - Bold important numbers and technical specifications
 
 Example format:
-Here's an overview of our battery solutions:
+Here's an overview of our engineering services:
 
-Power tools (drills, saws, etc.):
-The 9Ah FLEXVOLT battery provides excellent runtime for professional tools...
+Steam Locomotive Restoration:
+Complete boiler overhauls include inspection, repair, and certification...
 
-Outdoor equipment (blowers, chainsaws, etc.):
-These high-drain tools typically run for 30-60 minutes...
+CAD Design Services:
+Our experienced engineers provide detailed 3D modeling and technical drawings...
 
 ${context ? `\n\nContext: ${context}` : ''}`
 
@@ -96,20 +96,20 @@ function getMockResponse(message: string): string {
   const lowerMessage = message.toLowerCase()
   
   if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-    return 'Hello! I\'m Lithi, your battery assistant. How can I help you today?'
-  } else if (lowerMessage.includes('battery') || lowerMessage.includes('batteries')) {
-    return 'I can help you find the perfect battery solution. Are you looking for batteries for electric vehicles, energy storage systems, or other applications?'
+    return 'Hello! I\'m your SWSE engineering assistant. How can I help you with your engineering project today?'
+  } else if (lowerMessage.includes('steam') || lowerMessage.includes('locomotive')) {
+    return 'I can help you with steam locomotive restoration services. Are you looking for boiler repairs, mechanical overhauls, or complete restoration?'
   } else if (lowerMessage.includes('order') || lowerMessage.includes('buy')) {
-    return 'I\'d be happy to help you place an order. What type of batteries are you interested in? We have solutions for EVs, energy storage, and more.'
+    return 'I\'d be happy to help you start a project. What type of engineering services are you interested in? We offer steam restoration, CAD design, and industrial repair services.'
   } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-    return 'Our pricing varies based on battery type and quantity. Could you provide more details about your specific needs so I can give you accurate pricing?'
+    return 'Our pricing varies based on service type and project scope. Could you provide more details about your specific engineering needs so I can give you accurate pricing?'
   } else if (lowerMessage.includes('help')) {
-    return 'I\'m here to assist you with:\n- Finding the right battery solution\n- Placing orders\n- Tracking existing orders\n- Technical specifications\n- Pricing information\n\nWhat would you like help with?'
+    return 'I\'m here to assist you with:\n- Finding the right engineering solution\n- Starting new projects\n- Tracking project progress\n- Technical specifications\n- Cost estimates\n\nWhat would you like help with?'
   } else if (lowerMessage.includes('track') || lowerMessage.includes('status')) {
     return 'To track your order, please provide your order number or I can show you a list of your recent orders.'
   } else if (lowerMessage.includes('technical') || lowerMessage.includes('specs')) {
-    return 'I can provide detailed technical specifications for our battery products. Which product line are you interested in?'
+    return 'I can provide detailed technical specifications for our engineering services. Which service are you interested in - steam restoration, CAD design, or industrial repair?'
   }
   
-  return 'I\'m here to help with your battery needs. Could you please provide more details about what you\'re looking for?'
+  return 'I\'m here to help with your engineering needs. Could you please provide more details about your project requirements?'
 }

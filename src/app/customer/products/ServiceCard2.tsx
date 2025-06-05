@@ -1,22 +1,22 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Plus, Minus, Battery, Zap, ChevronDown, ChevronUp, Star } from 'lucide-react';
+import { Plus, Minus, Settings, Zap, ChevronDown, ChevronUp, Star } from 'lucide-react';
 
-interface BatteryCardProps {
-  type: '6Ah' | '9Ah' | '15Ah'
+interface ServiceCardProps {
+  type: 'Design' | 'Consulting' | 'Installation' | 'Maintenance'
   specs: {
-    weight: string
-    runtime: string
-    chargingTime: string
-    compatibleTools?: string
+    expertise: string
+    duration: string
+    response: string
+    serviceTypes?: string
     bestFor?: string
-    dimensions?: string
+    availability?: string
     basePrice: number
   }
   retailPrice: number
-  quantity: number
-  onQuantityChange: (quantity: number) => void
+  hours: number
+  onHoursChange: (hours: number) => void
   discountRate: number
   isExpanded: boolean
   onToggleExpand: () => void
@@ -39,12 +39,12 @@ const colors = {
   popular: "#FFA500"
 }
 
-const BatteryCard2: React.FC<BatteryCardProps> = ({
+const ServiceCard2: React.FC<ServiceCardProps> = ({
   type,
   specs,
   retailPrice,
-  quantity,
-  onQuantityChange,
+  hours,
+  onHoursChange,
   discountRate,
   isExpanded,
   onToggleExpand,
@@ -53,10 +53,10 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
   const finalPrice = specs.basePrice * (1 - discountRate);
   const savingsAmount = retailPrice - finalPrice;
   const savingsPercentage = Math.round((savingsAmount / retailPrice) * 100);
-  const isPopular = type === '9Ah';
+  const isPopular = type === 'Consulting';
 
   const handleQuickAdd = (amount: number) => {
-    onQuantityChange(quantity + amount);
+    onHoursChange(hours + amount);
   };
 
   return (
@@ -117,7 +117,7 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             display: "inline-block",
             marginBottom: "8px",
           }}>
-            FlexVolt
+            SWSE Engineering
           </div>
           
           <h3 style={{
@@ -126,14 +126,14 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             color: colors.primary,
             margin: "0 0 6px 0",
           }}>
-            {type} Battery
+            {type} Service
           </h3>
           
           <div style={{
             fontSize: "14px",
             color: colors.textLight,
           }}>
-            {specs.runtime} · {specs.weight}
+            {specs.duration} · {specs.expertise}
           </div>
         </div>
 
@@ -150,14 +150,14 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
               fontWeight: 700,
               color: colors.price,
             }}>
-              ${finalPrice.toFixed(0)}
+              £{finalPrice.toFixed(0)}/hr
             </span>
             <span style={{
               fontSize: "16px",
               color: colors.textLight,
               textDecoration: "line-through",
             }}>
-              ${retailPrice}
+              £{retailPrice}/hr
             </span>
           </div>
           
@@ -170,7 +170,7 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             borderRadius: "4px",
             display: "inline-block"
           }}>
-            Save ${savingsAmount.toFixed(0)} ({savingsPercentage}%)
+            Save £{savingsAmount.toFixed(0)} ({savingsPercentage}%)
           </div>
         </div>
 
@@ -236,16 +236,16 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             color: colors.text
           }}>
             <div style={{ marginBottom: "8px" }}>
-              <strong>Charging Time:</strong> {specs.chargingTime}
+              <strong>Response Time:</strong> {specs.response}
             </div>
             <div style={{ marginBottom: "8px" }}>
-              <strong>Dimensions:</strong> {specs.dimensions}
+              <strong>Availability:</strong> {specs.availability}
             </div>
             <div style={{ marginBottom: "8px" }}>
               <strong>Best For:</strong> {specs.bestFor}
             </div>
             <div>
-              <strong>Compatible:</strong> {specs.compatibleTools}
+              <strong>Service Types:</strong> {specs.serviceTypes}
             </div>
           </div>
         )}
@@ -268,7 +268,7 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             fontSize: "14px",
             fontWeight: "600",
             color: colors.text
-          }}>Quantity</span>
+          }}>Hours</span>
           
           <div style={{
             display: "flex",
@@ -280,13 +280,13 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             background: "white"
           }}>
             <button
-              onClick={() => onQuantityChange(Math.max(0, quantity - 1))}
+              onClick={() => onHoursChange(Math.max(0, hours - 1))}
               style={{
                 width: "32px",
                 height: "32px",
                 borderRadius: "6px",
                 border: "none",
-                background: quantity > 0 ? colors.accent : colors.border,
+                background: hours > 0 ? colors.accent : colors.border,
                 color: "white",
                 cursor: "pointer",
                 display: "flex",
@@ -294,15 +294,15 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
                 justifyContent: "center",
                 transition: "background 0.2s"
               }}
-              disabled={quantity === 0}
+              disabled={hours === 0}
             >
               <Minus size={16} />
             </button>
             
             <input
               type="number"
-              value={quantity}
-              onChange={(e) => onQuantityChange(Math.max(0, parseInt(e.target.value) || 0))}
+              value={hours}
+              onChange={(e) => onHoursChange(Math.max(0, parseInt(e.target.value) || 0))}
               style={{
                 width: "60px",
                 textAlign: "center",
@@ -315,7 +315,7 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
             />
             
             <button
-              onClick={() => onQuantityChange(quantity + 1)}
+              onClick={() => onHoursChange(hours + 1)}
               style={{
                 width: "32px",
                 height: "32px",
@@ -374,4 +374,4 @@ const BatteryCard2: React.FC<BatteryCardProps> = ({
   );
 };
 
-export default BatteryCard2;
+export default ServiceCard2;

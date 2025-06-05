@@ -4,35 +4,35 @@ import React, { useEffect, useState } from 'react';
 import { ShoppingCart, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface PersistentCartProps {
-  quantities: { [key: string]: number };
+  hours: { [key: string]: number };
   baseTotal: number;
   discountAmount: number;
   finalTotal: number;
   currentDiscountTier: number;
   discountTiers: any[];
-  retailPrices: { [key: string]: number };
-  batterySpecs: { [key: string]: any };
+  standardRates: { [key: string]: number };
+  serviceSpecs: { [key: string]: any };
   onCheckout: () => void;
   onInvoice: () => void;
   isMobile: boolean;
 }
 
 const PersistentCart: React.FC<PersistentCartProps> = ({
-  quantities,
+  hours,
   baseTotal,
   discountAmount,
   finalTotal,
   currentDiscountTier,
   discountTiers,
-  retailPrices,
-  batterySpecs,
+  standardRates,
+  serviceSpecs,
   onCheckout,
   onInvoice,
   isMobile
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const totalItems = Object.values(quantities).reduce((a, b) => a + b, 0);
+  const totalHours = Object.values(hours).reduce((a, b) => a + b, 0);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +43,7 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!isScrolled || isMobile || totalItems === 0) return null;
+  if (!isScrolled || isMobile || totalHours === 0) return null;
 
   return (
     <div style={{
@@ -53,7 +53,7 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
       background: 'white',
       borderRadius: '16px',
       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-      border: '1px solid #E6F4FF',
+      border: '1px solid #FED7AA',
       width: '320px',
       zIndex: 100,
       transition: 'all 0.3s ease',
@@ -63,7 +63,7 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
       <div
         style={{
           padding: '16px',
-          borderBottom: isExpanded ? '1px solid #E6F4FF' : 'none',
+          borderBottom: isExpanded ? '1px solid #FED7AA' : 'none',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
@@ -79,12 +79,12 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
           <div style={{
             position: 'relative'
           }}>
-            <ShoppingCart size={24} color="#006FEE" />
+            <ShoppingCart size={24} color="#D97706" />
             <div style={{
               position: 'absolute',
               top: '-8px',
               right: '-8px',
-              background: '#006FEE',
+              background: '#D97706',
               color: 'white',
               borderRadius: '50%',
               width: '20px',
@@ -95,21 +95,21 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               fontSize: '12px',
               fontWeight: '600'
             }}>
-              {totalItems}
+              {totalHours}
             </div>
           </div>
           <div>
             <div style={{
               fontSize: '16px',
               fontWeight: '700',
-              color: '#003D88'
+              color: '#92400E'
             }}>
               ${finalTotal.toFixed(2)}
             </div>
             {currentDiscountTier >= 0 && (
               <div style={{
                 fontSize: '12px',
-                color: '#10B981',
+                color: '#059669',
                 fontWeight: '500'
               }}>
                 {discountTiers[currentDiscountTier].discount} applied
@@ -128,13 +128,13 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
             overflowY: 'auto',
             padding: '16px'
           }}>
-            {Object.entries(quantities).map(([type, quantity]) => {
-              if (quantity === 0) return null;
-              const batteryType = type as '6Ah' | '9Ah' | '15Ah';
-              const savings = ((retailPrices[batteryType] - batterySpecs[batteryType].basePrice) / retailPrices[batteryType]) * 100;
+            {Object.entries(hours).map(([serviceType, serviceHours]) => {
+              if (serviceHours === 0) return null;
+              const serviceKey = serviceType as keyof typeof serviceSpecs;
+              const savings = ((standardRates[serviceType] - serviceSpecs[serviceKey].hourlyRate) / standardRates[serviceType]) * 100;
               
               return (
-                <div key={type} style={{
+                <div key={serviceType} style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
@@ -145,16 +145,16 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
                   <div>
                     <div style={{
                       fontWeight: '600',
-                      color: '#003D88',
+                      color: '#92400E',
                       marginBottom: '4px'
                     }}>
-                      {type} Battery × {quantity}
+                      {serviceSpecs[serviceKey].name} × {serviceHours}h
                     </div>
                     <div style={{
                       fontSize: '12px',
-                      color: '#10B981'
+                      color: '#059669'
                     }}>
-                      Save {Math.round(savings)}% vs retail
+                      Save {Math.round(savings)}% vs standard rate
                     </div>
                   </div>
                   <div style={{
@@ -162,16 +162,16 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
                   }}>
                     <div style={{
                       fontWeight: '600',
-                      color: '#003D88'
+                      color: '#92400E'
                     }}>
-                      ${(batterySpecs[batteryType].basePrice * quantity).toFixed(2)}
+                      ${(serviceSpecs[serviceKey].hourlyRate * serviceHours).toFixed(2)}
                     </div>
                     <div style={{
                       fontSize: '12px',
                       color: '#64748B',
                       textDecoration: 'line-through'
                     }}>
-                      ${(retailPrices[batteryType] * quantity).toFixed(2)}
+                      ${(standardRates[serviceType] * serviceHours).toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -182,8 +182,8 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
           {/* Totals */}
           <div style={{
             padding: '16px',
-            borderTop: '1px solid #E6F4FF',
-            background: '#F8FAFC'
+            borderTop: '1px solid #FED7AA',
+            background: '#FFFBEB'
           }}>
             <div style={{
               display: 'flex',
@@ -191,17 +191,17 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               marginBottom: '8px'
             }}>
               <span style={{ color: '#64748B' }}>Subtotal</span>
-              <span style={{ color: '#003D88' }}>${baseTotal.toFixed(2)}</span>
+              <span style={{ color: '#92400E' }}>${baseTotal.toFixed(2)}</span>
             </div>
             {currentDiscountTier >= 0 && (
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 marginBottom: '8px',
-                color: '#10B981',
+                color: '#059669',
                 fontWeight: '600'
               }}>
-                <span>Bulk Discount</span>
+                <span>Volume Discount</span>
                 <span>-${discountAmount.toFixed(2)}</span>
               </div>
             )}
@@ -209,10 +209,10 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               display: 'flex',
               justifyContent: 'space-between',
               paddingTop: '8px',
-              borderTop: '1px solid #E6F4FF',
+              borderTop: '1px solid #FED7AA',
               fontWeight: '700',
               fontSize: '18px',
-              color: '#003D88'
+              color: '#92400E'
             }}>
               <span>Total</span>
               <span>${finalTotal.toFixed(2)}</span>
@@ -229,7 +229,7 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               onClick={onCheckout}
               style={{
                 flex: 1,
-                background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+                background: 'linear-gradient(135deg, #D97706 0%, #F59E0B 100%)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
@@ -241,20 +241,20 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 111, 238, 0.2)';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(217, 119, 6, 0.2)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              Checkout
+              Request Quote
             </button>
             <button
               onClick={onInvoice}
               style={{
                 flex: 1,
-                background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
@@ -266,14 +266,14 @@ const PersistentCart: React.FC<PersistentCartProps> = ({
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 8px rgba(16, 185, 129, 0.2)';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(5, 150, 105, 0.2)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              Get Invoice
+              Get Estimate
             </button>
           </div>
         </>

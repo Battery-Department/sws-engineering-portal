@@ -23,7 +23,7 @@ import {
 interface Material {
   material: string
   supplier: string
-  unitCost: number
+  unitPrice: number
   date: string
   category?: string
 }
@@ -34,7 +34,7 @@ interface CalculationItem {
   supplier: string
   quantity: number
   unit: string
-  unitCost: number
+  unitPrice: number
   totalCost: number
   category?: string
   notes?: string
@@ -49,12 +49,12 @@ interface Project {
 
 // Mock data for development - replace with actual API calls
 const mockMaterials: Material[] = [
-  { material: 'Mild Steel Bar 25mm', supplier: 'Cornwall Steel Ltd', unitCost: 8.50, date: '2024-05-20', category: 'steel' },
-  { material: 'Stainless Steel Sheet 3mm', supplier: 'Devon Metals', unitCost: 12.75, date: '2024-05-18', category: 'steel' },
-  { material: 'Bronze Bearing', supplier: 'Heritage Bearings', unitCost: 45.00, date: '2024-05-15', category: 'hardware' },
-  { material: 'High Temp Paint', supplier: 'Railway Supplies', unitCost: 28.50, date: '2024-05-10', category: 'consumables' },
-  { material: 'M12 Hex Bolts Grade 8.8', supplier: 'Fastener Direct', unitCost: 1.25, date: '2024-05-19', category: 'hardware' },
-  { material: 'Copper Tube 15mm', supplier: 'Plumbing Supplies SW', unitCost: 6.80, date: '2024-05-17', category: 'materials' }
+  { material: 'Mild Steel Bar 25mm', supplier: 'Cornwall Steel Ltd', unitPrice: 8.50, date: '2024-05-20', category: 'steel' },
+  { material: 'Stainless Steel Sheet 3mm', supplier: 'Devon Metals', unitPrice: 12.75, date: '2024-05-18', category: 'steel' },
+  { material: 'Bronze Bearing', supplier: 'Heritage Bearings', unitPrice: 45.00, date: '2024-05-15', category: 'hardware' },
+  { material: 'High Temp Paint', supplier: 'Railway Supplies', unitPrice: 28.50, date: '2024-05-10', category: 'consumables' },
+  { material: 'M12 Hex Bolts Grade 8.8', supplier: 'Fastener Direct', unitPrice: 1.25, date: '2024-05-19', category: 'hardware' },
+  { material: 'Copper Tube 15mm', supplier: 'Plumbing Supplies SW', unitPrice: 6.80, date: '2024-05-17', category: 'materials' }
 ]
 
 const mockProjects: Project[] = [
@@ -132,8 +132,8 @@ export default function MaterialCalculatorPage() {
       supplier: materialData.supplier,
       quantity,
       unit,
-      unitCost: materialData.unitCost,
-      totalCost: quantity * materialData.unitCost,
+      unitPrice: materialData.unitPrice,
+      totalCost: quantity * materialData.unitPrice,
       category: materialData.category,
       notes
     }
@@ -157,7 +157,7 @@ export default function MaterialCalculatorPage() {
   const updateItemQuantity = (id: string, newQuantity: number) => {
     setCalculationItems(calculationItems.map(item => 
       item.id === id 
-        ? { ...item, quantity: newQuantity, totalCost: newQuantity * item.unitCost }
+        ? { ...item, quantity: newQuantity, totalCost: newQuantity * item.unitPrice }
         : item
     ))
   }
@@ -299,7 +299,7 @@ export default function MaterialCalculatorPage() {
               <option value="">Choose a material...</option>
               {filteredMaterials.map((material, index) => (
                 <option key={index} value={material.material}>
-                  {material.material} - {material.supplier} ({formatCurrency(material.unitCost)})
+                  {material.material} - {material.supplier} ({formatCurrency(material.unitPrice)})
                 </option>
               ))}
             </select>
@@ -377,7 +377,7 @@ export default function MaterialCalculatorPage() {
                 </div>
                 <div className="text-right">
                   <p className="text-lg font-bold text-[#006FEE]">
-                    {formatCurrency(getSelectedMaterialData()?.unitCost || 0)}
+                    {formatCurrency(getSelectedMaterialData()?.unitPrice || 0)}
                   </p>
                   <button
                     onClick={() => loadPriceHistory(selectedMaterial)}
@@ -393,10 +393,10 @@ export default function MaterialCalculatorPage() {
                 <div className="mt-2 pt-2 border-t border-blue-200">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">
-                      {quantity} {unit} × {formatCurrency(getSelectedMaterialData()?.unitCost || 0)}
+                      {quantity} {unit} × {formatCurrency(getSelectedMaterialData()?.unitPrice || 0)}
                     </span>
                     <span className="font-semibold text-gray-900">
-                      = {formatCurrency((getSelectedMaterialData()?.unitCost || 0) * quantity)}
+                      = {formatCurrency((getSelectedMaterialData()?.unitPrice || 0) * quantity)}
                     </span>
                   </div>
                 </div>
@@ -542,7 +542,7 @@ export default function MaterialCalculatorPage() {
                       </div>
                       <div>
                         <label className="text-xs text-gray-500">Unit Cost</label>
-                        <p className="font-medium text-gray-900">{formatCurrency(item.unitCost)}</p>
+                        <p className="font-medium text-gray-900">{formatCurrency(item.unitPrice)}</p>
                       </div>
                       <div>
                         <label className="text-xs text-gray-500">Total</label>

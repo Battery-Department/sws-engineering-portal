@@ -13,7 +13,7 @@ import {
   Zap,
   RefreshCw,
   FileText,
-  Battery,
+  Wrench,
   DollarSign
 } from 'lucide-react';
 
@@ -43,14 +43,14 @@ export default function ChatPage() {
 
   const quickActions: QuickAction[] = [
     {
-      icon: Battery,
-      label: 'Battery Recommendations',
-      prompt: 'What battery would you recommend for my electric vehicle?'
+      icon: Wrench,
+      label: 'Engineering Services',
+      prompt: 'What engineering services do you offer for heritage railways?'
     },
     {
       icon: DollarSign,
       label: 'Get Pricing',
-      prompt: 'What are the current prices for Tesla Model 3 battery packs?'
+      prompt: 'What are the current prices for steam locomotive restoration?'
     },
     {
       icon: FileText,
@@ -60,7 +60,7 @@ export default function ChatPage() {
     {
       icon: RefreshCw,
       label: 'Warranty Info',
-      prompt: 'What warranty options are available for battery purchases?'
+      prompt: 'What warranty options are available for engineering projects?'
     }
   ];
 
@@ -77,7 +77,7 @@ export default function ChatPage() {
         {
           id: '1',
           role: 'assistant',
-          content: `Hello ${user.name || user.email}! I'm Lithi, your AI battery assistant. How can I help you today with your battery needs?`,
+          content: `Hello ${user.name || user.email}! I'm your SWSE AI engineering assistant. How can I help you today with your engineering project needs?`,
           timestamp: new Date()
         }
       ]);
@@ -106,7 +106,7 @@ export default function ChatPage() {
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate API call to Lithi AI
+    // Simulate API call to SWSE AI
     setTimeout(() => {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -123,22 +123,22 @@ export default function ChatPage() {
     const lowerInput = userInput.toLowerCase();
     
     if (lowerInput.includes('price') || lowerInput.includes('cost')) {
-      return "Based on current market rates, our Tesla Model 3 battery packs are priced at $3,999. We also offer financing options and bulk discounts for orders over 5 units. Would you like me to show you our complete pricing catalog?";
+      return "Based on current market rates, our steam locomotive restoration services start at £15,000 for basic boiler inspection and repair. We also offer comprehensive restoration packages and financing options for large projects. Would you like me to show you our complete service catalog?";
     }
     
     if (lowerInput.includes('track') || lowerInput.includes('order')) {
       return "I can help you track your order! Please provide your order number (format: ORD-XXXX-XXX) and I'll get you the latest status update. You can also view all your orders in the Orders section of your portal.";
     }
     
-    if (lowerInput.includes('recommend') || lowerInput.includes('which battery')) {
-      return "To recommend the best battery for your needs, I'd need to know more about your vehicle. What make and model are you working with? Also, are you looking for OEM replacement or upgraded capacity options?";
+    if (lowerInput.includes('recommend') || lowerInput.includes('which service')) {
+      return "To recommend the best engineering service for your needs, I'd need to know more about your project. Are you working on heritage railway restoration, industrial equipment repair, or do you need CAD design services? What's the scale and timeline of your project?";
     }
     
     if (lowerInput.includes('warranty')) {
-      return "We offer comprehensive warranty coverage on all our batteries:\n\n• Standard: 2 years / 50,000 miles\n• Extended: 4 years / 100,000 miles\n• Premium: 6 years / 150,000 miles\n\nAll warranties include protection against manufacturing defects and capacity degradation below 70%. Would you like more details about a specific warranty plan?";
+      return "We offer comprehensive warranty coverage on all our engineering services:\n\n• Standard: 12 months on all repairs and installations\n• Extended: 24 months with maintenance contract\n• Premium: 36 months for complete restoration projects\n\nAll warranties include protection against workmanship defects and materials failure. Would you like more details about a specific warranty plan?";
     }
     
-    return "I'm here to help with all your battery needs! I can assist with product recommendations, pricing information, order tracking, technical specifications, and warranty details. What would you like to know?";
+    return "I'm here to help with all your engineering needs! I can assist with service recommendations, project quotes, order tracking, technical specifications, and warranty details. What would you like to know?";
   };
 
   const handleQuickAction = (action: QuickAction) => {
@@ -170,7 +170,7 @@ export default function ChatPage() {
             <Zap size={24} className="text-white" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Lithi AI Assistant</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">SWSE AI Assistant</h2>
             <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
               Online - Ready to help

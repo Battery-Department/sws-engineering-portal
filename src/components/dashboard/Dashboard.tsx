@@ -9,7 +9,7 @@ import InventoryView from './views/InventoryView';
 import SettingsView from './views/SettingsView';
 import StaffView from './views/StaffView';
 import ReportsView from './views/ReportsView';
-import LithiView from './views/LithiView';
+import SWSEView from './views/SWSEView';
 import InvoicesView from './views/InvoicesView';
 
 export default function Dashboard() {
@@ -37,7 +37,9 @@ export default function Dashboard() {
       case 'reports':
         return <ReportsView />;
       case 'lithi':
-        return <LithiView />;
+        return <SWSEView />;
+      case 'swse':
+        return <SWSEView />;
       case 'invoices':
         return <InvoicesView />;
       default:

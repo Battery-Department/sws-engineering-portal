@@ -268,7 +268,7 @@ export default function CustomerPage() {
             color: '#0A051E',
             marginBottom: '16px'
           }}>
-            Why Choose Lithi?
+            Why Choose South West Steam Engineering?
           </h2>
           <p style={{
             fontSize: '18px',
@@ -276,7 +276,7 @@ export default function CustomerPage() {
             maxWidth: '600px',
             margin: '0 auto'
           }}>
-            Industry-leading battery technology paired with unbeatable prices and customer service
+            Cornwall's premier heritage railway specialists delivering world-class engineering solutions
           </p>
         </div>
 
@@ -355,44 +355,81 @@ export default function CustomerPage() {
             color: '#0A051E',
             marginBottom: '16px'
           }}>
-            Ready to Power Up Your Business?
+            Ready to Start Your Engineering Project?
           </h2>
           <p style={{
             fontSize: '18px',
             color: '#5B6B7D',
             marginBottom: '32px'
           }}>
-            Join thousands of businesses saving money with our bulk battery solutions
+            Get a quote for your steam locomotive restoration or engineering project today
           </p>
-          <button
-            onClick={() => router.push('/customer/auth/register')}
-            style={{
-              background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
-              color: 'white',
-              padding: '18px 40px',
-              borderRadius: '12px',
-              fontSize: '18px',
-              fontWeight: '700',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              boxShadow: '0 8px 24px rgba(0, 111, 238, 0.3)',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 111, 238, 0.4)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 111, 238, 0.3)'
-            }}
-          >
-            Create Your Account
-            <ArrowRight size={20} />
-          </button>
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <button
+              onClick={() => router.push('/customer/quiz')}
+              style={{
+                background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
+                color: 'white',
+                padding: '18px 40px',
+                borderRadius: '12px',
+                fontSize: '18px',
+                fontWeight: '700',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 8px 24px rgba(0, 111, 238, 0.3)',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 111, 238, 0.4)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 111, 238, 0.3)'
+              }}
+            >
+              New Project Request
+              <ArrowRight size={20} />
+            </button>
+            <button
+              onClick={() => router.push('/customer/auth/register')}
+              style={{
+                backgroundColor: 'rgba(0, 111, 238, 0.1)',
+                color: '#006FEE',
+                padding: '18px 40px',
+                borderRadius: '12px',
+                fontSize: '18px',
+                fontWeight: '700',
+                border: '2px solid #006FEE',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#006FEE'
+                e.currentTarget.style.color = 'white'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(0, 111, 238, 0.1)'
+                e.currentTarget.style.color = '#006FEE'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              Create Your Account
+              <ArrowRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
 

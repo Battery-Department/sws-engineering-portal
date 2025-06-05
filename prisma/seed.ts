@@ -55,13 +55,13 @@ async function main() {
 
     // Create test B2B user
     const existingB2BUser = await prisma.user.findUnique({
-      where: { email: 'admin@lithi.com' }
+      where: { email: 'admin@swse.com' }
     })
 
     if (!existingB2BUser) {
       const b2bUser = await prisma.user.create({
         data: {
-          email: 'admin@lithi.com',
+          email: 'admin@swse.com',
           name: 'Admin User',
           password: hashedPassword,
           role: 'admin'

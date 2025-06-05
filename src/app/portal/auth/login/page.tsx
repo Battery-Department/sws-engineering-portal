@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 // import { useAuth } from '@/contexts/AuthContext'
-import { LogIn, Mail, Lock, AlertCircle, Battery } from 'lucide-react'
+import { LogIn, Mail, Lock, AlertCircle, Wrench } from 'lucide-react'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -68,7 +68,7 @@ export default function LoginPage() {
               margin: '0 auto 16px',
               boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
             }}>
-              <Battery size={40} style={{ color: 'white' }} />
+              <Wrench size={40} style={{ color: 'white' }} />
             </div>
             <h1 style={{
               fontSize: '28px',
@@ -76,7 +76,7 @@ export default function LoginPage() {
               color: '#111827',
               marginBottom: '8px'
             }}>
-              Battery Hub
+              SWSE Portal
             </h1>
             <p style={{ color: '#6b7280' }}>Sign in to your account</p>
           </div>
@@ -258,7 +258,7 @@ export default function LoginPage() {
               Demo Credentials
             </h3>
             <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '4px' }}>
-              Email: demo@battery.com
+              Email: demo@swse.com
             </p>
             <p style={{ fontSize: '14px', color: '#6b7280' }}>
               Password: demo123

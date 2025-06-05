@@ -46,21 +46,21 @@ export default function PaymentPage() {
       date: '2025-05-15',
       amount: 4599.00,
       status: 'paid',
-      description: 'Tesla Powerwall 2 + Installation'
+      description: 'Steam Engine Restoration - Phase 1'
     },
     {
       id: 'INV-2025-002',
       date: '2025-05-10',
       amount: 2999.00,
       status: 'paid',
-      description: 'LG Chem RESU 10H'
+      description: 'Industrial Machinery Design Services'
     },
     {
       id: 'INV-2025-003',
       date: '2025-05-03',
       amount: 1599.00,
       status: 'pending',
-      description: 'Enphase IQ7+ Microinverters'
+      description: 'Heritage Railway Engineering Consultation'
     }
   ])
 
@@ -257,7 +257,7 @@ export default function PaymentPage() {
                 }}>
                   {invoice.status}
                 </div>
-                <span style={{ fontWeight: '600' }}>${invoice.amount.toFixed(2)}</span>
+                <span style={{ fontWeight: '600' }}>£{invoice.amount.toFixed(2)}</span>
                 <button
                   style={{
                     ...styles.button,
@@ -286,7 +286,7 @@ export default function PaymentPage() {
               marginBottom: '16px'
             }}>
               <span style={{ color: '#6b7280' }}>Current Balance</span>
-              <span style={{ fontWeight: '600', fontSize: '20px' }}>$1,599.00</span>
+              <span style={{ fontWeight: '600', fontSize: '20px' }}>£1,599.00</span>
             </div>
             
             <div style={{ 

@@ -167,7 +167,7 @@ export default function ShippingPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE Portal</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -224,7 +224,7 @@ export default function ShippingPage() {
       }} className="md-show">
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Department</span>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE Portal</span>
           </div>
           <nav style={{ flex: 1, padding: '0 8px' }}>
             {navigation.map((item) => (

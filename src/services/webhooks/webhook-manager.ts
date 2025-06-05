@@ -1,10 +1,10 @@
 /**
  * Webhook Manager
- * Centralized webhook management for Lithi ecosystem
+ * Centralized webhook management for SWSE ecosystem
  */
 
 import { EventEmitter } from 'events'
-import { lithiGateway } from '@/services/api-gateway'
+import { swseGateway } from '@/services/api-gateway'
 
 interface WebhookConfig {
   id?: string
@@ -59,7 +59,7 @@ export class WebhookManager extends EventEmitter {
     this.webhooks.set(webhookId, webhook)
     
     // Register with backend services
-    await lithiGateway.registerWebhook('dashboard', webhook)
+    await swseGateway.registerWebhook('dashboard', webhook)
     
     this.emit('webhook:registered', webhook)
     return webhookId
@@ -75,7 +75,7 @@ export class WebhookManager extends EventEmitter {
     this.webhooks.delete(webhookId)
     
     // Unregister from backend services
-    await lithiGateway.unregisterWebhook('dashboard', webhookId)
+    await swseGateway.unregisterWebhook('dashboard', webhookId)
     
     this.emit('webhook:unregistered', webhook)
   }
@@ -255,7 +255,7 @@ export class WebhookManager extends EventEmitter {
     const testEvent: Omit<WebhookEvent, 'id' | 'timestamp'> = {
       type: 'test',
       data: { message: 'Test webhook delivery' },
-      source: 'lithi-dashboard'
+      source: 'swse-dashboard'
     }
 
     try {

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { MessageSquare, Send, X, Minimize2, Maximize2, Bot, User } from 'lucide-react'
-import { lithiIntegration } from '@/services/integrations/lithi-integration'
+import { swseIntegration } from '@/services/integrations/swse-integration'
 import { eventBus, EventTypes } from '@/services/events/event-bus'
 
 interface Message {
@@ -13,7 +13,7 @@ interface Message {
   metadata?: any
 }
 
-export function LithiChat() {
+export function SWSEChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
@@ -26,12 +26,12 @@ export function LithiChat() {
   useEffect(() => {
     // Initialize chat integration
     const initializeChat = async () => {
-      await lithiIntegration.initialize()
-      const available = await lithiIntegration.isChatbotAvailable()
+      await swseIntegration.initialize()
+      const available = await swseIntegration.isChatbotAvailable()
       setIsConnected(available)
       
       // Load chat history
-      const history = await lithiIntegration.getChatHistory()
+      const history = await swseIntegration.getChatHistory()
       setMessages(history.map(msg => ({
         id: msg.id,
         content: msg.content,
@@ -88,7 +88,7 @@ export function LithiChat() {
     setIsTyping(true)
 
     try {
-      await lithiIntegration.sendChatMessage(inputValue)
+      await swseIntegration.sendChatMessage(inputValue)
     } catch (error) {
       console.error('Error sending message:', error)
       setIsTyping(false)
@@ -196,7 +196,7 @@ export function LithiChat() {
           <Bot size={20} />
           <div>
             <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>
-              Lithi Assistant
+              SWSE Assistant
             </h3>
             <p style={{ margin: 0, fontSize: '12px', opacity: 0.9 }}>
               {isConnected ? 'Online' : 'Connecting...'}
@@ -265,7 +265,7 @@ export function LithiChat() {
                 padding: '40px 20px'
               }}>
                 <Bot size={48} style={{ margin: '0 auto 16px', opacity: 0.5 }} />
-                <p>Hi! I'm your Lithi assistant. How can I help you today?</p>
+                <p>Hi! I'm your SWSE engineering assistant. How can I help you today?</p>
               </div>
             )}
             

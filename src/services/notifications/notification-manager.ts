@@ -1,11 +1,11 @@
 /**
  * Notification Manager
- * Unified notification system for the Lithi ecosystem
+ * Unified notification system for the SWSE ecosystem
  */
 
 import { prisma } from '@/lib/prisma'
 import { eventBus, EventTypes } from '@/services/events/event-bus'
-import { lithiGateway } from '@/services/api-gateway'
+import { swseGateway } from '@/services/api-gateway'
 
 interface NotificationOptions {
   userId: string

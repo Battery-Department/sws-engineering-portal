@@ -4,9 +4,9 @@ import { Users, Plus, Mail, Shield } from 'lucide-react';
 
 export default function StaffView() {
   const staffMembers = [
-    { id: 1, name: 'John Doe', email: 'john@batterydept.com', role: 'Admin', status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'jane@batterydept.com', role: 'Manager', status: 'Active' },
-    { id: 3, name: 'Mike Wilson', email: 'mike@batterydept.com', role: 'Support', status: 'Active' },
+    { id: 1, name: 'John Doe', email: 'john@swsteamengineering.com', role: 'Admin', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@swsteamengineering.com', role: 'Manager', status: 'Active' },
+    { id: 3, name: 'Mike Wilson', email: 'mike@swsteamengineering.com', role: 'Support', status: 'Active' },
   ];
 
   return (

@@ -48,7 +48,7 @@ export default function CustomerLoginPage() {
     // Create guest session for demo
     const guestUser = {
       id: 'guest-' + Date.now(),
-      email: 'guest@lithi.com',
+      email: 'guest@swse.co.uk',
       name: 'Guest User',
       tier: 'Guest'
     }
@@ -62,7 +62,7 @@ export default function CustomerLoginPage() {
 
   const handleDemoLogin = () => {
     // Auto-fill demo credentials
-    setEmail('demo@lithi.com')
+    setEmail('demo@swse.co.uk')
     setPassword('demo123')
     setError('')
   }
@@ -110,7 +110,7 @@ export default function CustomerLoginPage() {
             color: 'white',
             marginBottom: '8px'
           }}>
-            Welcome to Lithi
+            Welcome to SWSE
           </h1>
           <p style={{
             fontSize: '16px',
@@ -139,7 +139,7 @@ export default function CustomerLoginPage() {
               🎯 Test Credentials
             </div>
             <div style={{ fontSize: '14px', color: '#5B6B7D' }}>
-              <div>Email: demo@lithi.com</div>
+              <div>Email: demo@swse.co.uk</div>
               <div>Password: demo123</div>
             </div>
             <button

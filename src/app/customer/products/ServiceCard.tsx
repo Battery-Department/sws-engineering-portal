@@ -1,19 +1,19 @@
 import React from 'react'
 
-interface BatteryCardProps {
-  type: '6Ah' | '9Ah' | '15Ah'
+interface ServiceCardProps {
+  type: 'Design' | 'Consulting' | 'Installation' | 'Maintenance'
   specs: {
-    weight: string
-    runtime: string
-    chargingTime: string
-    compatibleTools?: string
+    expertise: string
+    duration: string
+    response: string
+    serviceTypes?: string
     bestFor?: string
-    dimensions?: string
+    availability?: string
     basePrice: number
   }
   retailPrice: number
-  quantity: number
-  onQuantityChange: (quantity: number) => void
+  hours: number
+  onHoursChange: (hours: number) => void
   discountRate: number
   isExpanded: boolean
   onToggleExpand: () => void
@@ -35,12 +35,12 @@ const colors = {
   buttonHover: "#F8FAFC",
 }
 
-const BatteryCard: React.FC<BatteryCardProps> = ({
+const ServiceCard: React.FC<ServiceCardProps> = ({
   type,
   specs,
   retailPrice,
-  quantity,
-  onQuantityChange,
+  hours,
+  onHoursChange,
   discountRate,
   isExpanded,
   onToggleExpand,
@@ -83,7 +83,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
             display: "inline-block",
             marginBottom: "8px",
           }}>
-            FlexVolt
+            SWSE Engineering
           </div>
           
           <h2
@@ -94,7 +94,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
               margin: "0 0 6px 0",
             }}
           >
-            {type} Battery
+            {type} Service
           </h2>
           
           <div style={{
@@ -102,7 +102,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
             color: colors.textLight,
             marginBottom: "10px",
           }}>
-            {specs.runtime} · {specs.weight}
+            {specs.duration} · {specs.expertise}
           </div>
           
           <div
@@ -120,7 +120,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
                 color: colors.price,
               }}
             >
-              ${finalPrice.toFixed(0)}
+              £{finalPrice.toFixed(0)}/hr
             </div>
             <div
               style={{
@@ -130,7 +130,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
                 textDecoration: "line-through",
               }}
             >
-              ${retailPrice}
+              £{retailPrice}/hr
             </div>
             
             <div style={{
@@ -163,31 +163,31 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
             }}
           >
             <button
-              onClick={() => onQuantityChange(Math.max(0, quantity - 1))}
+              onClick={() => onHoursChange(Math.max(0, hours - 1))}
               onMouseEnter={(e) => {
-                if (quantity > 0) {
+                if (hours > 0) {
                   e.currentTarget.style.backgroundColor = '#0096CC';
                 }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = quantity > 0 ? colors.accent : "#E2E8F0";
+                e.currentTarget.style.backgroundColor = hours > 0 ? colors.accent : "#E2E8F0";
               }}
               style={{
                 width: "38px",
                 height: "38px",
-                backgroundColor: quantity > 0 ? colors.accent : "#E2E8F0",
+                backgroundColor: hours > 0 ? colors.accent : "#E2E8F0",
                 color: colors.buttonText,
                 border: "none",
                 borderRadius: "8px 0 0 8px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                cursor: quantity > 0 ? "pointer" : "not-allowed",
+                cursor: hours > 0 ? "pointer" : "not-allowed",
                 fontSize: "18px",
                 fontWeight: "600",
                 transition: "background-color 0.2s ease",
               }}
-              disabled={quantity === 0}
+              disabled={hours === 0}
             >
               −
             </button>
@@ -196,10 +196,10 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
               type="number"
               min="0"
               max="999"
-              value={quantity}
+              value={hours}
               onChange={(e) => {
                 const val = parseInt(e.target.value) || 0;
-                onQuantityChange(Math.max(0, Math.min(999, val)));
+                onHoursChange(Math.max(0, Math.min(999, val)));
               }}
               style={{
                 width: "40px",
@@ -220,7 +220,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
             />
 
             <button
-              onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
+              onClick={() => onHoursChange(Math.min(999, hours + 1))}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#0096CC';
               }}
@@ -242,7 +242,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
                 fontWeight: "600",
                 transition: "background-color 0.2s ease",
               }}
-              disabled={quantity >= 999}
+              disabled={hours >= 999}
             >
               +
             </button>
@@ -271,7 +271,7 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
           <path d="M9 12l2 2 4-4" />
         </svg>
         <span style={{fontSize: "13px", color: colors.savings, fontWeight: 500}}>
-          Compatible with all DeWalt 20V/60V tools
+          Available for all industrial and heritage projects
         </span>
       </div>
 
@@ -338,29 +338,29 @@ const BatteryCard: React.FC<BatteryCardProps> = ({
               }}
             >
               <SpecItem
-                label="Weight"
-                value={specs.weight}
+                label="Expertise"
+                value={specs.expertise}
                 colors={colors}
-                icon="weight"
+                icon="expertise"
               />
               <SpecItem
-                label="Runtime"
-                value={specs.runtime}
+                label="Project Duration"
+                value={specs.duration}
                 colors={colors}
                 icon="clock"
               />
               <SpecItem
-                label="Charging Time"
-                value={specs.chargingTime}
+                label="Response Time"
+                value={specs.response}
                 colors={colors}
-                icon="battery"
+                icon="response"
               />
-              {specs.dimensions && (
+              {specs.availability && (
                 <SpecItem
-                  label="Dimensions"
-                  value={specs.dimensions}
+                  label="Availability"
+                  value={specs.availability}
                   colors={colors}
-                  icon="box"
+                  icon="calendar"
                 />
               )}
             </div>
@@ -421,12 +421,10 @@ function SpecItem({ label, value, colors, icon }: { label: string; value: string
   let iconSvg;
   
   switch(icon) {
-    case "weight":
+    case "expertise":
       iconSvg = (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={colors.textLight} strokeWidth="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="16"></line>
-          <line x1="8" y1="12" x2="16" y2="12"></line>
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
         </svg>
       );
       break;
@@ -438,18 +436,20 @@ function SpecItem({ label, value, colors, icon }: { label: string; value: string
         </svg>
       );
       break;
-    case "battery":
+    case "response":
       iconSvg = (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={colors.textLight} strokeWidth="2">
-          <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
-          <line x1="23" y1="13" x2="23" y2="11"></line>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
         </svg>
       );
       break;
-    case "box":
+    case "calendar":
       iconSvg = (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={colors.textLight} strokeWidth="2">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
       );
       break;
@@ -489,4 +489,4 @@ function SpecItem({ label, value, colors, icon }: { label: string; value: string
   )
 }
 
-export default BatteryCard
+export default ServiceCard

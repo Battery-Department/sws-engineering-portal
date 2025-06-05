@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import EnhancedDiscountProgressBar from '../../../components/battery/EnhancedDiscountProgressBar';
+import EnhancedDiscountProgressBar from '../../../components/engineering/EnhancedDiscountProgressBar';
 
 interface OrderSummaryProps {
   items: {
-    type: '6Ah' | '9Ah' | '15Ah';
-    quantity: number;
+    type: 'Design' | 'Consulting' | 'Installation' | 'Maintenance';
+    hours: number;
     retailPrice: number;
     discountedPrice: number;
   }[];
@@ -21,8 +21,8 @@ const DISCOUNT_TIERS = {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) => {
   const prevSubtotalRef = useRef(0);
-  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = items.reduce((sum, item) => sum + (item.retailPrice * item.quantity), 0);
+  const totalHours = items.reduce((sum, item) => sum + item.hours, 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.retailPrice * item.hours), 0);
   
   // Calculate discount based on subtotal
   let currentDiscount = 0;
@@ -75,7 +75,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
     progressPercent = 100;
   }
   
-  if (totalQuantity === 0) {
+  if (totalHours === 0) {
     return (
       <div style={{
         padding: '16px',
@@ -84,7 +84,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
       }}>
         <p style={{ fontSize: '14px', color: '#666' }}>
-          Your cart is empty. Add batteries to see pricing.
+          Your cart is empty. Add service hours to see pricing.
         </p>
       </div>
     );
@@ -105,10 +105,10 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
         <div style={{ marginBottom: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
             <span style={{ color: '#525252', fontSize: '14px' }}>
-              Items ({totalQuantity})
+              Service Hours ({totalHours})
             </span>
             <span style={{ color: '#0A051E', fontSize: '14px' }}>
-              ${subtotal.toFixed(2)}
+              £{subtotal.toFixed(2)}
             </span>
           </div>
           
@@ -118,7 +118,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
                 Discount ({savingsPercent}%)
               </span>
               <span style={{ color: '#008952', fontSize: '14px', fontWeight: 500 }}>
-                -${discountAmount.toFixed(2)}
+                -£{discountAmount.toFixed(2)}
               </span>
             </div>
           )}
@@ -134,7 +134,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
               Total
             </span>
             <span style={{ color: '#0A051E', fontSize: '18px', fontWeight: 600 }}>
-              ${total.toFixed(2)}
+              £{total.toFixed(2)}
             </span>
           </div>
         </div>
@@ -148,7 +148,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
             marginBottom: '16px'
           }}>
             <span style={{ color: '#008952', fontSize: '14px', fontWeight: 500 }}>
-              You're saving ${savings.toFixed(2)} ({savingsPercent}%)
+              You're saving £{savings.toFixed(2)} ({savingsPercent}%)
             </span>
           </div>
         )}
@@ -181,7 +181,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, isMobile = false }) 
         // Trigger confetti if over $1000
         if (total >= 1000) {
           // Confetti effect will be implemented separately
-          console.log('🎉 Confetti! Order over $1000');
+          console.log('🎉 Confetti! Order over £1000');
         }
         console.log('Proceeding to checkout...');
       }}>

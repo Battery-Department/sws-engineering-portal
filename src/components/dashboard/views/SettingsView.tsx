@@ -23,7 +23,7 @@ export default function SettingsView() {
               <input
                 type="text"
                 className="w-full px-3 py-2 border border-[#e5e5e5] rounded-md focus:outline-none focus:ring-2 focus:ring-[#6b46c1]"
-                defaultValue="Battery Department Inc."
+                defaultValue="South West Steam Engineering Ltd"
               />
             </div>
             <div>
@@ -31,7 +31,7 @@ export default function SettingsView() {
               <input
                 type="email"
                 className="w-full px-3 py-2 border border-[#e5e5e5] rounded-md focus:outline-none focus:ring-2 focus:ring-[#6b46c1]"
-                defaultValue="admin@batterydept.com"
+                defaultValue="admin@swsteamengineering.com"
               />
             </div>
           </div>

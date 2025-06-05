@@ -28,7 +28,7 @@ const menuItems = [
   { id: 'staff', label: 'Staff Accounts', icon: Users },
   { id: 'invoices', label: 'Invoices', icon: FileText },
   { id: 'reports', label: 'Reports', icon: FileSignature },
-  { id: 'lithi', label: 'Lithi AI', icon: Bot },
+  { id: 'swse', label: 'SWSE AI', icon: Bot },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
@@ -42,7 +42,7 @@ export default function Sidebar({ activeView, setActiveView }: SidebarProps) {
             <span className="energy-icon">⚡</span>
           </div>
           <div>
-            <h1 className="sidebar-title">Battery Dept</h1>
+            <h1 className="sidebar-title">SWSE</h1>
             <p className="sidebar-subtitle">Enterprise Portal</p>
           </div>
         </div>
@@ -75,10 +75,10 @@ export default function Sidebar({ activeView, setActiveView }: SidebarProps) {
 
       <div className="sidebar-footer">
         <div className="user-info">
-          <div className="user-avatar energy-glow">BD</div>
+          <div className="user-avatar energy-glow">SW</div>
           <div className="user-details">
-            <p className="user-name">Battery Dept</p>
-            <p className="user-email">admin@batterydept.com</p>
+            <p className="user-name">SWSE Admin</p>
+            <p className="user-email">admin@swsteamengineering.com</p>
           </div>
         </div>
         <div className="subscription-info">

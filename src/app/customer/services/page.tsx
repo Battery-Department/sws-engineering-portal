@@ -147,104 +147,66 @@ export default function ServicesPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const handleServiceInquiry = (serviceId: string) => {
-    router.push(`/customer/requirements?service=${serviceId}`);
+    router.push(`/customer/quiz?service=${serviceId}`);
   };
 
   const handleGetQuote = () => {
-    router.push('/customer/requirements');
+    router.push('/customer/quiz');
   };
 
   return (
     <div style={{ backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
-      {/* Hero Section */}
+      {/* Hero Section - Reduced */}
       <div style={{
-        background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #60A5FA 100%)',
+        background: 'linear-gradient(135deg, #006FEE 0%, #0084FF 100%)',
         color: 'white',
-        padding: '64px 24px',
+        padding: '32px 24px',
         borderRadius: '0 0 24px 24px'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '12px',
-            background: 'rgba(255, 255, 255, 0.15)',
-            padding: '8px 20px',
-            borderRadius: '100px',
-            marginBottom: '24px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <Train size={20} />
-            <span style={{ fontWeight: '600', fontSize: '14px' }}>
-              20+ YEARS OF CORNWALL ENGINEERING EXCELLENCE
-            </span>
-          </div>
-
           <h1 style={{
-            fontSize: '56px',
-            fontWeight: '800',
-            marginBottom: '24px',
-            lineHeight: '1.1'
+            fontSize: '36px',
+            fontWeight: '700',
+            marginBottom: '16px'
           }}>
-            SOUTH WEST STEAM ENGINEERING
+            Our Engineering Services
           </h1>
 
           <p style={{
-            fontSize: '24px',
+            fontSize: '18px',
             fontWeight: '400',
-            marginBottom: '32px',
+            marginBottom: '24px',
             opacity: 0.9,
-            maxWidth: '800px',
-            margin: '0 auto 32px'
+            maxWidth: '600px',
+            margin: '0 auto 24px'
           }}>
-            Cornwall's premier heritage railway specialists delivering world-class engineering solutions
-            from steam locomotive restoration to precision industrial services
+            Professional engineering solutions for heritage railways and industrial equipment
           </p>
 
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            gap: '32px',
-            marginTop: '40px',
+            gap: '24px',
             flexWrap: 'wrap'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <CheckCircle size={24} />
-              <span style={{ fontSize: '18px', fontWeight: '500' }}>Heritage Railway Certified</span>
+              <CheckCircle size={20} />
+              <span style={{ fontSize: '14px', fontWeight: '500' }}>Heritage Certified</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Shield size={24} />
-              <span style={{ fontSize: '18px', fontWeight: '500' }}>Network Rail Approved</span>
+              <Shield size={20} />
+              <span style={{ fontSize: '14px', fontWeight: '500' }}>Network Rail Approved</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Award size={24} />
-              <span style={{ fontSize: '18px', fontWeight: '500' }}>ISO 9001 Compliant</span>
+              <Award size={20} />
+              <span style={{ fontSize: '14px', fontWeight: '500' }}>ISO 9001</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Services Grid */}
-      <div style={{ padding: '64px 24px', maxWidth: '1400px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <h2 style={{
-            fontSize: '40px',
-            fontWeight: '700',
-            color: '#1E3A8A',
-            marginBottom: '16px'
-          }}>
-            Our Engineering Services
-          </h2>
-          <p style={{
-            fontSize: '20px',
-            color: '#64748B',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            From heritage steam locomotives to modern industrial equipment,
-            we deliver precision engineering solutions across Cornwall and beyond
-          </p>
-        </div>
+      <div style={{ padding: '48px 24px', maxWidth: '1400px', margin: '0 auto' }}>
 
         <div style={{
           display: 'grid',

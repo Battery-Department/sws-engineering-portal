@@ -1,9 +1,9 @@
 /**
  * Health Monitor Service
- * Monitors the health of all Lithi ecosystem services
+ * Monitors the health of all SWSE ecosystem services
  */
 
-import { lithiGateway } from '@/services/api-gateway'
+import { swseGateway } from '@/services/api-gateway'
 import { eventBus, EventTypes } from '@/services/events/event-bus'
 import { prisma } from '@/lib/prisma'
 
@@ -122,10 +122,10 @@ export class HealthMonitor {
           response = await fetch('/api/health')
           break
         case 'chatbot':
-          response = await lithiGateway.getChatHistory('health-check')
+          response = await swseGateway.getChatHistory('health-check')
           break
         case 'copilot':
-          response = await lithiGateway.getCopilotSuggestions({ test: true })
+          response = await swseGateway.getCopilotSuggestions({ test: true })
           break
       }
 

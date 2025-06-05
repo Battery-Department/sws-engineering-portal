@@ -2,46 +2,52 @@
 
 import React from 'react';
 import Tooltip from './Tooltip';
-import { Calculator, Activity, Clock, Zap } from 'lucide-react';
+import { Calculator, Activity, Clock, DollarSign } from 'lucide-react';
 
-interface BatteryValueCalculatorProps {
+interface ServiceValueCalculatorProps {
   quantities: { [key: string]: number };
-  batterySpecs: { [key: string]: any };
+  serviceSpecs: { [key: string]: any };
   isMobile: boolean;
 }
 
-const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({ 
+const ServiceValueCalculator: React.FC<ServiceValueCalculatorProps> = ({ 
   quantities, 
-  batterySpecs,
+  serviceSpecs,
   isMobile 
 }) => {
-  // Calculate total Ah
-  const calculateTotalAh = () => {
+  // Calculate total service hours
+  const calculateTotalServiceHours = () => {
     let total = 0;
     Object.entries(quantities).forEach(([type, quantity]) => {
-      const ahValue = parseInt(type);
-      total += ahValue * quantity;
+      const serviceHours = parseInt(type) || 0;
+      total += serviceHours * quantity;
     });
     return total;
   };
 
-  const totalAh = calculateTotalAh();
+  const totalServiceHours = calculateTotalServiceHours();
   
-  // Tool runtime calculations based on amp-hour consumption
-  const toolConsumption = {
-    circularSaw: { name: "Circular Saw", ahPerHour: 5 },
-    drill: { name: "Drill", ahPerHour: 2 },
-    impactDriver: { name: "Impact Driver", ahPerHour: 3 },
-    grinder: { name: "Angle Grinder", ahPerHour: 4.5 },
-    recipSaw: { name: "Reciprocating Saw", ahPerHour: 6 },
-    jigsaw: { name: "Jigsaw", ahPerHour: 2.5 }
+  // Service type calculations based on hourly rates and project duration
+  const serviceTypes = {
+    steamSystem: { name: "Steam System Design", hourlyRate: 175, efficiency: 1.2 },
+    processOptimization: { name: "Process Optimization", hourlyRate: 200, efficiency: 1.5 },
+    troubleshooting: { name: "System Troubleshooting", hourlyRate: 150, efficiency: 1.0 },
+    maintenance: { name: "Maintenance Planning", hourlyRate: 125, efficiency: 0.8 },
+    inspection: { name: "Safety Inspection", hourlyRate: 160, efficiency: 1.1 },
+    training: { name: "Operator Training", hourlyRate: 140, efficiency: 0.9 }
   };
 
-  const calculateToolHours = (tool: any) => {
-    return Math.round(totalAh / tool.ahPerHour);
+  const calculateServiceValue = (service: any) => {
+    return Math.round(totalServiceHours * service.hourlyRate * service.efficiency);
   };
 
-  if (totalAh === 0) return null;
+  const calculateROI = (service: any) => {
+    const serviceValue = calculateServiceValue(service);
+    const potentialSavings = serviceValue * 2.5; // Typical ROI multiplier for engineering services
+    return Math.round(potentialSavings);
+  };
+
+  if (totalServiceHours === 0) return null;
 
   return (
     <div style={{
@@ -76,7 +82,7 @@ const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({
           fontWeight: "700",
           color: "#003D88",
           margin: 0
-        }}>Battery Value Calculator</h3>
+        }}>Service Value Calculator</h3>
       </div>
 
       <div style={{
@@ -92,12 +98,12 @@ const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({
           fontSize: "16px",
           color: "#64748B",
           fontWeight: "500"
-        }}>Total Power Capacity:</span>
+        }}>Total Service Hours:</span>
         <span style={{
           fontSize: "24px",
           fontWeight: "700",
           color: "#006FEE"
-        }}>{totalAh}Ah</span>
+        }}>{totalServiceHours} hrs</span>
       </div>
 
       <div style={{
@@ -106,12 +112,13 @@ const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({
         gap: "12px"
       }}>
         {[
-          toolConsumption.circularSaw,
-          toolConsumption.drill,
-          toolConsumption.impactDriver
-        ].map((tool, index) => {
-          const hours = calculateToolHours(tool);
-          const tooltipContent = `Based on typical ${tool.name} usage at ${tool.ahPerHour}Ah per hour. Actual runtime varies with workload intensity. This calculation assumes continuous operation at moderate load.`;
+          serviceTypes.steamSystem,
+          serviceTypes.processOptimization,
+          serviceTypes.troubleshooting
+        ].map((service, index) => {
+          const serviceValue = calculateServiceValue(service);
+          const roiValue = calculateROI(service);
+          const tooltipContent = `${service.name} at $${service.hourlyRate}/hr with ${((service.efficiency - 1) * 100).toFixed(0)}% efficiency factor. Potential ROI: $${roiValue.toLocaleString()} based on typical cost savings from improved operations.`;
           
           return (
             <Tooltip key={index} content={tooltipContent} position="top">
@@ -136,17 +143,17 @@ const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                <Clock size={16} color="#006FEE" style={{ marginBottom: "4px" }} />
+                <DollarSign size={16} color="#006FEE" style={{ marginBottom: "4px" }} />
                 <div style={{
-                  fontSize: "24px",
+                  fontSize: "20px",
                   fontWeight: "700",
                   color: "#006FEE",
                   marginBottom: "4px"
-                }}>{hours} hours</div>
+                }}>${serviceValue.toLocaleString()}</div>
                 <div style={{
                   fontSize: "13px",
                   color: "#64748B"
-                }}>{tool.name}</div>
+                }}>{service.name}</div>
               </div>
             </Tooltip>
           );
@@ -166,11 +173,11 @@ const BatteryValueCalculator: React.FC<BatteryValueCalculatorProps> = ({
           fontWeight: "600",
           margin: 0
         }}>
-          Your batteries can power a full crew's tools for {Math.round(totalAh / 15)} full workdays
+          Estimated ROI: ${Math.round(totalServiceHours * 400).toLocaleString()} in operational savings and efficiency gains
         </p>
       </div>
     </div>
   );
 };
 
-export default BatteryValueCalculator;
+export default ServiceValueCalculator;

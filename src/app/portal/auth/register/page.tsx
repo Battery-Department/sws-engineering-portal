@@ -62,7 +62,7 @@ export default function RegisterPage() {
             Create Your Account
           </h2>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Join Battery Department to manage your energy solutions
+            Join South West Steam Engineering to manage your industrial solutions
           </p>
         </div>
 

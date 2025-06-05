@@ -1,16 +1,16 @@
 {
-  "buildCommand": "mkdir -p data && touch data/lithi.db && npx prisma generate && npm run build",
+  "buildCommand": "mkdir -p data && touch data/swse.db && npx prisma generate && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "DATABASE_URL": "file:./data/lithi.db",
+    "DATABASE_URL": "file:./data/swse.db",
     "NEXTAUTH_SECRET": "i7a2WXB7sCk0aGA//CBWVfpBMTCxpqDbTTlZfzlABmw=",
-    "NEXTAUTH_URL": "https://battery-dashboard.vercel.app"
+    "NEXTAUTH_URL": "https://swse-dashboard.vercel.app"
   },
   "build": {
     "env": {
-      "DATABASE_URL": "file:./data/lithi.db"
+      "DATABASE_URL": "file:./data/swse.db"
     }
   }
 }

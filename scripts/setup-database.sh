@@ -2,7 +2,7 @@
 
 # Create data directory and initialize SQLite database for production
 mkdir -p data
-touch data/lithi.db
+touch data/swse.db
 
 # Initialize the database with the schema
 npx prisma db push --accept-data-loss

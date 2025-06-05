@@ -31,7 +31,7 @@ export default function AccountPage() {
       // Set default guest user
       setUser({
         name: 'Guest User',
-        email: 'guest@lithi.com',
+        email: 'guest@swse.com',
         tier: 'Guest'
       })
     }
@@ -138,7 +138,7 @@ export default function AccountPage() {
                   color: '#5B9FFF',
                   marginBottom: '8px'
                 }}>
-                  {user?.email || 'guest@lithi.com'}
+                  {user?.email || 'guest@swse.com'}
                 </p>
                 <div style={{
                   display: 'flex',

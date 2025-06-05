@@ -347,7 +347,7 @@ const faqs: FAQ[] = [
   { 
     id: "faq1", 
     question: "How do I register my battery for warranty?", 
-    answer: "Registration is automatic when you purchase direct from Battery Department. You only need your order number for warranty claims. No additional registration required."
+    answer: "Registration is automatic when you purchase direct from South West Steam Engineering. You only need your order number for warranty claims. No additional registration required."
   },
   { 
     id: "faq2", 
@@ -362,7 +362,7 @@ const faqs: FAQ[] = [
   { 
     id: "faq4", 
     question: "Will using these batteries void my DeWalt tool warranty?", 
-    answer: "No. Using Battery Department FlexVolt batteries will not void your DeWalt tool warranty. Our batteries are fully compatible with all DeWalt 20V/60V tools."
+    answer: "No. Using SWSE engineering components will not void your equipment warranty. Our solutions are fully compatible with industry standard specifications."
   }
 ];
 

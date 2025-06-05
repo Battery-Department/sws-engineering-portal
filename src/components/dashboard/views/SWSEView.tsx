@@ -10,7 +10,7 @@ interface Message {
   timestamp: Date;
 }
 
-export default function LithiView() {
+export default function SWSEView() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -44,7 +44,7 @@ export default function LithiView() {
     setTimeout(() => {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `I understand you're asking about "${input}". Let me help you with that. This is a simulated response from Lithi AI.`,
+        content: `I understand you're asking about "${input}". Let me help you with that. This is a simulated response from SWSE Engineering AI.`,
         role: 'assistant',
         timestamp: new Date()
       };
@@ -70,7 +70,7 @@ export default function LithiView() {
               <Bot className="text-white" size={24} />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Lithi AI Assistant</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">SWSE AI Assistant</h3>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-sm text-secondary">Online</span>
@@ -93,8 +93,8 @@ export default function LithiView() {
               <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-4">
                 <Sparkles className="text-white" size={32} />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Welcome to Lithi AI</h2>
-              <p className="text-secondary mb-6">Your intelligent assistant for Battery Department operations</p>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Welcome to SWSE Engineering AI</h2>
+              <p className="text-secondary mb-6">Your intelligent assistant for South West Steam Engineering operations</p>
               
               <div className="grid grid-cols-2 gap-3 max-w-md mx-auto">
                 {quickActions.map((action, index) => (
@@ -162,7 +162,7 @@ export default function LithiView() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-              placeholder="Ask Lithi AI anything..."
+              placeholder="Ask SWSE AI anything..."
               className="input-modern flex-1"
             />
             <button

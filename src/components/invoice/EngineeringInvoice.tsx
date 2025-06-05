@@ -1,7 +1,7 @@
 import React from 'react';
 import { FileText, Zap, Calendar, CheckCircle, Download, Printer } from 'lucide-react';
 
-const BatteryInvoice = () => {
+const EngineeringInvoice = () => {
   const today = new Date();
   const dueDate = new Date(today);
   dueDate.setDate(today.getDate() + 30);
@@ -15,9 +15,9 @@ const BatteryInvoice = () => {
   };
   
   const lineItems = [
-    { id: 1, description: "FlexVolt 6Ah Battery", quantity: 4, unitPrice: 76, originalPrice: 169, savings: "55%" },
-    { id: 2, description: "FlexVolt 9Ah Battery", quantity: 3, unitPrice: 100, originalPrice: 249, savings: "60%" },
-    { id: 3, description: "FlexVolt 15Ah Battery", quantity: 27, unitPrice: 196, originalPrice: 379, savings: "48%" }
+    { id: 1, description: "Steam Boiler Inspection Service", quantity: 1, unitPrice: 2500, originalPrice: 3000, savings: "17%" },
+    { id: 2, description: "CAD Design Hours", quantity: 40, unitPrice: 75, originalPrice: 85, savings: "12%" },
+    { id: 3, description: "Precision Machining Hours", quantity: 20, unitPrice: 95, originalPrice: 110, savings: "14%" }
   ];
   
   // Calculate totals
@@ -39,15 +39,15 @@ const BatteryInvoice = () => {
               <Zap size={24} className="text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">Battery Department LLC</h1>
-              <p className="text-sm text-gray-500">Professional Power Solutions</p>
+              <h1 className="text-2xl font-bold text-gray-800">South West Steam Engineering</h1>
+              <p className="text-sm text-gray-500">Professional Engineering Solutions</p>
             </div>
           </div>
           <div className="mt-4 text-sm text-gray-500">
-            <p>1250 Industrial Parkway</p>
-            <p>Chicago, IL 60642</p>
-            <p>support@batterydepartment.com</p>
-            <p>(312) 555-7890</p>
+            <p>Unit 7, Bodmin Industrial Estate</p>
+            <p>Walker Lines, Bodmin, Cornwall PL31 1EU</p>
+            <p>enquiries@swsteam.co.uk</p>
+            <p>01726 123 456</p>
           </div>
         </div>
         
@@ -109,7 +109,7 @@ const BatteryInvoice = () => {
               <tr key={item.id} className="border-b border-gray-200">
                 <td className="py-4 px-4 text-gray-800">
                   <div className="font-medium">{item.description}</div>
-                  <div className="text-xs text-green-600 mt-1">Compatible with all DeWalt 20V/60V tools</div>
+                  <div className="text-xs text-green-600 mt-1">Professional engineering service</div>
                 </td>
                 <td className="py-4 px-4 text-center text-gray-800">{item.quantity}</td>
                 <td className="py-4 px-4 text-right text-gray-800">${item.unitPrice.toFixed(2)}</td>
@@ -150,7 +150,7 @@ const BatteryInvoice = () => {
         <div>
           <h4 className="text-sm font-semibold text-gray-600 mb-2 uppercase">Payment Terms</h4>
           <p className="text-sm text-gray-600 mb-1">Payment due within 30 days</p>
-          <p className="text-sm text-gray-600 mb-1">Make checks payable to: Battery Department LLC</p>
+          <p className="text-sm text-gray-600 mb-1">Make checks payable to: South West Steam Engineering Ltd</p>
           <p className="text-sm text-gray-600">For wire transfers, please contact accounting</p>
         </div>
         <div>
@@ -176,11 +176,11 @@ const BatteryInvoice = () => {
       
       {/* Footer */}
       <div className="mt-8 pt-4 border-t border-gray-200 text-center text-xs text-gray-500">
-        <p>Questions? Contact our support team at support@batterydepartment.com or call (312) 555-7890</p>
-        <p className="mt-1">Battery Department LLC | Professional Portable Power Solutions | www.batterydepartment.com</p>
+        <p>Questions? Contact our support team at enquiries@swsteam.co.uk or call 01726 123 456</p>
+        <p className="mt-1">South West Steam Engineering | Professional Engineering Solutions | www.swsteam.co.uk</p>
       </div>
     </div>
   );
 };
 
-export default BatteryInvoice;
+export default EngineeringInvoice;

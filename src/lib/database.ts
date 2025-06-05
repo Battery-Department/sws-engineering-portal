@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
   global.prisma = prisma;
 }
 
-// Connect to the existing Lithi database
+// Connect to the existing SWSE database
 export async function getRecentMessages(limit: number = 10) {
   try {
     const messages = await prisma.message.findMany({

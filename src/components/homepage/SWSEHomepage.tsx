@@ -177,7 +177,7 @@ const ProductCard: React.FC<{ title: string; imageSrc: string; price?: string; d
         />
         {price && (
           <div className="absolute top-4 right-4 bg-black text-white font-medium px-3 py-1 rounded-full text-sm">
-            ${price}
+            £{price}
           </div>
         )}
       </div>
@@ -199,7 +199,7 @@ const ProductCard: React.FC<{ title: string; imageSrc: string; price?: string; d
   );
 };
 
-const BatteryDepartmentHomepage = () => {
+const SWSEHomepage = () => {
   const [activeStep, setActiveStep] = useState(1);
   
   useEffect(() => {
@@ -245,17 +245,17 @@ const BatteryDepartmentHomepage = () => {
           <div className="flex items-center">
             <div className="flex items-center text-indigo-600 font-bold text-xl">
               <Zap className="w-6 h-6 mr-2" />
-              <span>Battery Department</span>
+              <span>South West Steam Engineering</span>
             </div>
             <nav className="hidden md:flex ml-10 space-x-8">
               <a href="#" className="text-gray-700 hover:text-indigo-600 transition-colors">About</a>
               <a href="#" className="text-gray-700 hover:text-indigo-600 transition-colors">Reviews</a>
               <a href="#" className="text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
-              <a href="#" className="text-gray-700 hover:text-indigo-600 transition-colors">Power Portal</a>
+              <a href="#" className="text-gray-700 hover:text-indigo-600 transition-colors">Engineering Portal</a>
             </nav>
           </div>
           <div className="flex items-center space-x-4">
-            <Button primary>Build My Battery Kit</Button>
+            <Button primary>Start Engineering Project</Button>
           </div>
         </div>
       </header>
@@ -270,13 +270,13 @@ const BatteryDepartmentHomepage = () => {
                   <GradientBadge className="mb-4">Trusted by 300+ Clients</GradientBadge>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Your Premium Battery Fleet Supplier
+                  Cornwall's Premier Engineering Specialists
                 </h1>
                 <p className="text-lg text-gray-600 mb-8">
-                  Take a 30-second quiz to build your own custom plan tailored to your equipment needs with unmatched reliability and support.
+                  Take a 30-second quiz to get a custom engineering solution tailored to your project needs with unmatched expertise and support.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button primary className="text-base">Build My Battery Plan</Button>
+                  <Button primary className="text-base">Get Engineering Quote</Button>
                   <Button className="text-base">Learn More</Button>
                 </div>
               </div>
@@ -286,7 +286,7 @@ const BatteryDepartmentHomepage = () => {
                     <div className="absolute inset-0 -m-4 bg-gradient-to-br from-indigo-100/40 to-purple-100/40 rounded-3xl blur-xl"></div>
                     <img 
                       src="/api/placeholder/600/400" 
-                      alt="Battery Products" 
+                      alt="Engineering Solutions" 
                       className="relative rounded-2xl shadow-lg w-full object-cover object-center"
                     />
                     <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-lg border border-gray-100">
@@ -301,14 +301,14 @@ const BatteryDepartmentHomepage = () => {
         </div>
       </section>
       
-      {/* Power Portal Key Benefits */}
+      {/* Engineering Portal Key Benefits */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection delay={200}>
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <GradientBadge className="mb-4">Benefits</GradientBadge>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                The Power Portal:
+                The Engineering Portal:
                 <span className="text-indigo-600"> 6 Key Benefits</span>
               </h2>
               <p className="text-lg text-gray-600">
@@ -321,8 +321,8 @@ const BatteryDepartmentHomepage = () => {
             <AnimatedSection delay={300}>
               <FeatureCard 
                 icon={<div className="p-3 bg-indigo-50 rounded-lg inline-flex"><Zap className="w-6 h-6" /></div>}
-                title="Self-Serve Power Portal"
-                description="Manage your battery fleet from an easy-to-use portal. One click replenish ETC"
+                title="Self-Serve Engineering Portal"
+                description="Manage your engineering projects from an easy-to-use portal. Track progress, costs, and timelines."
               />
             </AnimatedSection>
             
@@ -330,7 +330,7 @@ const BatteryDepartmentHomepage = () => {
               <FeatureCard 
                 icon={<div className="p-3 bg-indigo-50 rounded-lg inline-flex"><Truck className="w-6 h-6" /></div>}
                 title="Direct-to-site Delivery"
-                description="Site managers can order batteries that arrive exactly where and when they're needed."
+                description="Direct delivery of materials and equipment to your site exactly when needed."
               />
             </AnimatedSection>
             
@@ -338,7 +338,7 @@ const BatteryDepartmentHomepage = () => {
               <FeatureCard 
                 icon={<div className="p-3 bg-indigo-50 rounded-lg inline-flex"><TrendingUp className="w-6 h-6" /></div>}
                 title="Inventory Management"
-                description="Track battery usage across multiple jobsites in real-time. Identify high-usage patterns."
+                description="Track project materials and resources across multiple sites in real-time. Optimize resource allocation."
               />
             </AnimatedSection>
             
@@ -383,11 +383,11 @@ const BatteryDepartmentHomepage = () => {
             <AnimatedSection delay={400}>
               <Step 
                 number="1"
-                title="Take our AI Powered Battery Quiz"
+                title="Take our AI Powered Engineering Quiz"
                 isOpen={activeStep === 1}
                 onClick={() => setActiveStep(1)}
-                description="Our quick quiz analyzes your equipment usage patterns and determines the optimal battery setup for your specific needs."
-                icon={<img src="/api/placeholder/120/120" alt="Battery Quiz" className="rounded-lg" />}
+                description="Our quick quiz analyzes your project requirements and determines the optimal engineering solution for your specific needs."
+                icon={<img src="/api/placeholder/120/120" alt="Engineering Quiz" className="rounded-lg" />}
               />
             </AnimatedSection>
             
@@ -409,11 +409,11 @@ const BatteryDepartmentHomepage = () => {
             <AnimatedSection delay={600}>
               <Step 
                 number="3"
-                title="Login To The Power Portal"
+                title="Login To The Engineering Portal"
                 isOpen={activeStep === 3}
                 onClick={() => setActiveStep(3)}
-                description="Manage your entire battery fleet from The Power Portal: our user friendly custom dashboard to manage invoices, warranty's, customer support and more."
-                icon={<img src="/api/placeholder/120/120" alt="Power Portal" className="rounded-lg" />}
+                description="Manage your entire project portfolio from The Engineering Portal: our user friendly custom dashboard to manage invoices, documentation, customer support and more."
+                icon={<img src="/api/placeholder/120/120" alt="Engineering Portal" className="rounded-lg" />}
               />
             </AnimatedSection>
           </div>
@@ -434,7 +434,7 @@ const BatteryDepartmentHomepage = () => {
                 We Power All Construction Teams
               </h2>
               <p className="text-xl opacity-80 max-w-3xl mx-auto">
-                Take advantage of trade priced batteries to supply your entire team.
+                Take advantage of competitive pricing for engineering solutions to support your entire operation.
               </p>
             </div>
           </AnimatedSection>
@@ -473,14 +473,14 @@ const BatteryDepartmentHomepage = () => {
         </div>
       </section>
       
-      {/* Featured Battery Packs */}
+      {/* Featured Engineering Services */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedSection delay={300}>
             <div className="text-center mb-16">
               <GradientBadge className="mb-4">Our Available Bundles</GradientBadge>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Featured Battery Packs
+                Featured Engineering Services
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Whether you are a private contractor or an enterprise workforce, we have suitable pack sizes for all.
@@ -491,10 +491,10 @@ const BatteryDepartmentHomepage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatedSection delay={400}>
               <ProductCard 
-                title="6 Piece FlexVolt Trade Pack"
+                title="6 Piece Industrial Steam Pack"
                 imageSrc="/api/placeholder/400/240"
                 price="720"
-                description="These batteries are compatible with all 60v/20v DeWalt tools."
+                description="Professional steam locomotive restoration services for heritage railways."
                 tags={["Free Pelican-Style Case"]}
               />
             </AnimatedSection>
@@ -578,9 +578,9 @@ const BatteryDepartmentHomepage = () => {
                 Our Client Feedback
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Take our 30 second quiz to see how your own battery design will look. It's easy!
+                Take our 30 second quiz to see how your engineering project will progress. It's easy!
               </p>
-              <Button primary className="mt-6 mx-auto">Design My battery</Button>
+              <Button primary className="mt-6 mx-auto">Plan My Project</Button>
             </div>
           </AnimatedSection>
           
@@ -630,23 +630,23 @@ const BatteryDepartmentHomepage = () => {
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <AnimatedSection delay={400}>
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <h3 className="text-xl font-semibold mb-6">What is Build-A-Battery?</h3>
+                <h3 className="text-xl font-semibold mb-6">What is SWSE Engineering?</h3>
                 <div className="flex flex-col gap-4">
                   <Accordion title="Do you have refund policy?">
                     <p className="py-3">
-                      All purchases come with a flexible full-refund policy. We look to do business for years, not months. If you ever need assistance, you can request help from The Power Portal - our modern self-serve portal where you can manage your entire battery fleet.
+                      All projects come with comprehensive warranties and support. We build lasting partnerships, not just one-time transactions. If you ever need assistance, you can request help from The Engineering Portal - our modern self-serve portal where you can manage your entire project portfolio.
                     </p>
                   </Accordion>
                   
                   <Accordion title="How does it work?">
                     <p className="py-3">
-                      Our innovative platform helps you identify the perfect battery solution for your equipment. After a quick assessment, we provide customized options that match your specific operational needs and budget.
+                      Our innovative platform helps you identify the perfect engineering solution for your project. After a quick assessment, we provide customized options that match your specific technical requirements and budget.
                     </p>
                   </Accordion>
                   
                   <Accordion title="Why should we trust your services?">
                     <p className="py-3">
-                      With over 300+ satisfied clients, industry-leading warranty terms, and a dedicated support team, we've built our reputation on quality products and exceptional service. Our batteries undergo rigorous testing to ensure maximum reliability.
+                      With over 300+ satisfied clients, industry-leading quality standards, and a dedicated engineering team, we've built our reputation on precision craftsmanship and exceptional service. Our solutions undergo rigorous testing to ensure maximum reliability.
                     </p>
                   </Accordion>
                 </div>
@@ -674,7 +674,7 @@ const BatteryDepartmentHomepage = () => {
                 </div>
                 
                 <div className="mt-8">
-                  <Button primary className="w-full justify-center">Build My Battery</Button>
+                  <Button primary className="w-full justify-center">Start My Project</Button>
                 </div>
               </div>
             </AnimatedSection>
@@ -710,10 +710,10 @@ const BatteryDepartmentHomepage = () => {
             <div>
               <div className="flex items-center text-white font-bold text-xl mb-4">
                 <Zap className="w-5 h-5 mr-2" />
-                <span>Battery Department</span>
+                <span>South West Steam Engineering</span>
               </div>
               <p className="text-gray-400 mb-4">
-                Powering the future of construction teams with innovative battery solutions.
+                Engineering excellence for heritage railways and industrial projects across Cornwall and beyond.
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -744,7 +744,7 @@ const BatteryDepartmentHomepage = () => {
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Reviews</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Power Portal</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Engineering Portal</a></li>
               </ul>
             </div>
             <div>
@@ -764,26 +764,26 @@ const BatteryDepartmentHomepage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
-                  <span className="text-gray-400">123 Battery Way, Electric City, CA 90210</span>
+                  <span className="text-gray-400">15 Engineering Works, Truro, Cornwall TR1 2HB</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
-                  <span className="text-gray-400">support@batterydept.com</span>
+                  <span className="text-gray-400">info@swsteamengineering.com</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                   </svg>
-                  <span className="text-gray-400">(800) 123-4567</span>
+                  <span className="text-gray-400">+44 1872 555 0123</span>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              Battery Department LLC © 2025. Designed With Love
+              South West Steam Engineering Ltd © 2025. Engineering Excellence
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
@@ -806,4 +806,4 @@ const BatteryDepartmentHomepage = () => {
   );
 };
 
-export default BatteryDepartmentHomepage;
+export default SWSEHomepage;

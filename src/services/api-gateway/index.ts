@@ -1,6 +1,6 @@
 /**
- * Lithi API Gateway
- * Centralized API gateway for the entire Lithi ecosystem
+ * SWSE API Gateway
+ * Centralized API gateway for the entire SWSE ecosystem
  */
 
 import axios, { AxiosInstance } from 'axios'
@@ -19,7 +19,7 @@ interface Services {
   monday: ServiceConfig
 }
 
-export class LithiAPIGateway {
+export class SWSEAPIGateway {
   private services: Services
   private instances: Record<string, AxiosInstance> = {}
 
@@ -70,7 +70,7 @@ export class LithiAPIGateway {
           }
           
           // Add service identifier
-          config.headers['X-Service-Origin'] = 'lithi-gateway'
+          config.headers['X-Service-Origin'] = 'swse-gateway'
           config.headers['X-Service-Target'] = key
           
           return config
@@ -265,7 +265,7 @@ export class LithiAPIGateway {
 }
 
 // Export singleton instance
-export const lithiGateway = new LithiAPIGateway()
+export const swseGateway = new SWSEAPIGateway()
 
 // Export for use in React components
-export const useLithiGateway = () => lithiGateway
+export const useSWSEGateway = () => swseGateway

@@ -6,42 +6,42 @@ interface Tool {
   consumption: number;
 }
 
-interface RuntimeCalculatorProps {
-  selectedBattery: string;
-  setSelectedBattery: (battery: string) => void;
+interface ProjectCalculatorProps {
+  selectedProject: string;
+  setSelectedProject: (project: string) => void;
   isMobile: boolean;
-  runtimeData: {
+  projectData: {
     tools: Tool[];
-    batteries: {
+    projects: {
       [key: string]: number;
     };
   };
 }
 
-const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
-  selectedBattery,
-  setSelectedBattery,
+const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({
+  selectedProject,
+  setSelectedProject,
   isMobile,
-  runtimeData
+  projectData
 }) => {
-  const [selectedTool, setSelectedTool] = useState(runtimeData.tools[0].id);
+  const [selectedTool, setSelectedTool] = useState(projectData.tools[0].id);
   const [barWidths, setBarWidths] = useState<number[]>([]);
   const [hoursNeeded, setHoursNeeded] = useState(4);
   
-  const selectedToolObj = runtimeData.tools.find(t => t.id === selectedTool);
+  const selectedToolObj = projectData.tools.find(t => t.id === selectedTool);
   
-  // Calculate runtimes for each battery with the selected tool
-  const runtimes = Object.entries(runtimeData.batteries).map(([battery, ah]) => ({
-    battery,
-    runtime: calculateRuntime(ah, selectedToolObj?.consumption || 1)
+  // Calculate project durations for each project type with the selected tool
+  const runtimes = Object.entries(projectData.projects).map(([project, hours]) => ({
+    project,
+    runtime: calculateRuntime(hours, selectedToolObj?.consumption || 1)
   }));
   
   // Find the max runtime for scaling the chart
   const maxRuntime = Math.max(...runtimes.map(item => item.runtime));
   
-  // Calculate runtime based on battery and tool consumption
-  function calculateRuntime(batteryAh: number, toolConsumption: number) {
-    return batteryAh / toolConsumption;
+  // Calculate runtime based on project hours and tool requirements
+  function calculateRuntime(projectHours: number, toolConsumption: number) {
+    return projectHours / toolConsumption;
   }
   
   // Function to calculate and recommend batteries for a job

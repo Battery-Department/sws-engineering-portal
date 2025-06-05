@@ -47,63 +47,63 @@ export default function InventoryPage() {
 
   const inventory = [
     {
-      id: 'FLX-6AH',
-      name: '6Ah FlexVolt Battery',
-      sku: 'FLX-6AH',
-      status: 'In Stock',
-      quantity: 850,
-      price: '$95.00',
-      category: 'FlexVolt Batteries',
+      id: 'ENG-DESIGN-01',
+      name: 'CAD Design & Engineering',
+      sku: 'ENG-DESIGN-01',
+      status: 'Available',
+      quantity: 12,
+      price: '$150/hour',
+      category: 'Design Services',
       lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'FLX-9AH',
-      name: '9Ah FlexVolt Battery',
-      sku: 'FLX-9AH',
-      status: 'In Stock',
-      quantity: 1247,
-      price: '$125.00',
-      category: 'FlexVolt Batteries',
+      id: 'ENG-STEAM-01',
+      name: 'Steam System Engineering',
+      sku: 'ENG-STEAM-01',
+      status: 'Available',
+      quantity: 8,
+      price: '$200/hour',
+      category: 'Steam Engineering',
       lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'FLX-15AH',
-      name: '15Ah FlexVolt Battery',
-      sku: 'FLX-15AH',
-      status: 'Low Stock',
-      quantity: 89,
-      price: '$245.00',
-      category: 'FlexVolt Batteries',
+      id: 'ENG-MECH-01',
+      name: 'Mechanical Engineering Services',
+      sku: 'ENG-MECH-01',
+      status: 'Limited Availability',
+      quantity: 3,
+      price: '$175/hour',
+      category: 'Mechanical Services',
       lastUpdate: 'May 23, 2025'
     },
     {
-      id: 'FLX-PKG-START',
-      name: 'Starter Crew Package',
-      sku: 'FLX-PKG-START',
-      status: 'In Stock',
-      quantity: 42,
-      price: '$1,270.00',
-      category: 'Bundle Packages',
+      id: 'ENG-PKG-SMALL',
+      name: 'Small Project Package',
+      sku: 'ENG-PKG-SMALL',
+      status: 'Available',
+      quantity: 10,
+      price: '$5,000',
+      category: 'Project Packages',
       lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'FLX-PKG-MID',
-      name: 'Mid-Size Crew Package',
-      sku: 'FLX-PKG-MID',
-      status: 'In Stock',
-      quantity: 28,
-      price: '$4,425.00',
-      category: 'Bundle Packages',
+      id: 'ENG-PKG-MED',
+      name: 'Medium Project Package',
+      sku: 'ENG-PKG-MED',
+      status: 'Available',
+      quantity: 6,
+      price: '$15,000',
+      category: 'Project Packages',
       lastUpdate: 'May 24, 2025'
     },
     {
-      id: 'FLX-PKG-FULL',
-      name: 'Full Workforce Solution',
-      sku: 'FLX-PKG-FULL',
-      status: 'Low Stock',
-      quantity: 8,
-      price: '$8,875.00',
-      category: 'Bundle Packages',
+      id: 'ENG-PKG-LARGE',
+      name: 'Large Industrial Project',
+      sku: 'ENG-PKG-LARGE',
+      status: 'Limited Availability',
+      quantity: 2,
+      price: '$50,000+',
+      category: 'Project Packages',
       lastUpdate: 'May 22, 2025'
     },
   ]
@@ -125,7 +125,7 @@ export default function InventoryPage() {
           </div>
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex-shrink-0 flex items-center px-4">
-              <span className="text-2xl font-bold text-white">Battery Department</span>
+              <span className="text-2xl font-bold text-white">Engineering Services Department</span>
             </div>
             <nav className="mt-5 px-2 space-y-1">
               {navigation.map((item) => (
@@ -183,7 +183,7 @@ export default function InventoryPage() {
         <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <span className="text-2xl font-bold text-white">Battery Department</span>
+              <span className="text-2xl font-bold text-white">Engineering Services Department</span>
             </div>
             <nav className="mt-5 flex-1 px-2 space-y-1">
               {navigation.map((item) => (
@@ -256,7 +256,7 @@ export default function InventoryPage() {
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900">Inventory</h1>
               <p className="mt-2 text-sm text-gray-700">
-                Manage your battery products and stock levels
+                Manage your engineering services and availability
               </p>
             </div>
 
@@ -270,7 +270,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Total Products</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Total Services</dt>
                         <dd className="flex items-baseline">
                           <div className="text-2xl font-semibold text-gray-900">6</div>
                         </dd>
@@ -287,7 +287,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Low Stock</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Limited Availability</dt>
                         <dd className="flex items-baseline">
                           <div className="text-2xl font-semibold text-gray-900">2</div>
                         </dd>
@@ -304,7 +304,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Out of Stock</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Unavailable</dt>
                         <dd className="flex items-baseline">
                           <div className="text-2xl font-semibold text-gray-900">0</div>
                         </dd>
@@ -321,7 +321,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="ml-5 w-0 flex-1">
                       <dl>
-                        <dt className="text-sm font-medium text-gray-500 truncate">Total Value</dt>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Monthly Capacity</dt>
                         <dd className="flex items-baseline">
                           <div className="text-2xl font-semibold text-gray-900">$420K</div>
                         </dd>
@@ -342,7 +342,7 @@ export default function InventoryPage() {
                   <input
                     type="text"
                     className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Search products..."
+                    placeholder="Search services..."
                   />
                 </div>
               </div>
@@ -359,7 +359,7 @@ export default function InventoryPage() {
                   className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Product
+                  Add Service
                 </button>
               </div>
             </div>
@@ -370,22 +370,22 @@ export default function InventoryPage() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Product
+                      Service
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      SKU
+                      Service Code
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Category
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      Availability
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Quantity
+                      Engineers
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Price
+                      Rate
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Last Update
@@ -410,8 +410,8 @@ export default function InventoryPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          item.status === 'In Stock' ? 'bg-green-100 text-green-800' :
-                          item.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' :
+                          item.status === 'Available' ? 'bg-green-100 text-green-800' :
+                          item.status === 'Limited Availability' ? 'bg-yellow-100 text-yellow-800' :
                           'bg-red-100 text-red-800'
                         }`}>
                           {item.status}

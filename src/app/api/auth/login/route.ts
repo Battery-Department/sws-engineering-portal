@@ -8,14 +8,14 @@ export async function POST(request: NextRequest) {
     const { email, password } = await request.json();
 
     // Demo user credentials
-    if (email === 'demo@battery.com' && password === 'demo123') {
+    if (email === 'demo@swse.com' && password === 'demo123') {
       const demoUser = {
         id: '1',
-        email: 'demo@battery.com',
+        email: 'demo@swse.com',
         name: 'Demo User',
         customer: {
           id: '1',
-          companyName: 'Battery Department'
+          companyName: 'South West Steam Engineering'
         }
       };
 

@@ -3,48 +3,48 @@
 import React, { useEffect, useState } from 'react';
 import { Clock } from 'lucide-react';
 
-interface Tool {
+interface Service {
   id: string;
   name: string;
-  consumption: number;
+  complexity: number; // complexity factor affecting project duration
 }
 
-interface Battery {
-  [key: string]: number;
+interface ProjectType {
+  [key: string]: number; // base duration in weeks
 }
 
-interface RuntimeCalculatorProps {
-  tools: Tool[];
-  batteries: Battery;
-  selectedBattery: string;
-  setSelectedBattery: (battery: string) => void;
-  selectedTool: string;
-  setSelectedTool: (tool: string) => void;
+interface ProjectDurationCalculatorProps {
+  services: Service[];
+  projectTypes: ProjectType;
+  selectedProjectType: string;
+  setSelectedProjectType: (projectType: string) => void;
+  selectedService: string;
+  setSelectedService: (service: string) => void;
   isMobile: boolean;
 }
 
-const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
-  tools,
-  batteries,
-  selectedBattery,
-  setSelectedBattery,
-  selectedTool,
-  setSelectedTool,
+const ProjectDurationCalculator: React.FC<ProjectDurationCalculatorProps> = ({
+  services,
+  projectTypes,
+  selectedProjectType,
+  setSelectedProjectType,
+  selectedService,
+  setSelectedService,
   isMobile
 }) => {
-  // Calculate runtime based on battery and tool selection
-  const calculateRuntime = (batteryAh: number, toolConsumption: number) => {
-    return batteryAh / toolConsumption;
+  // Calculate project duration based on project type and service complexity
+  const calculateProjectDuration = (baseWeeks: number, serviceComplexity: number) => {
+    return baseWeeks * serviceComplexity;
   };
 
-  const selectedToolObj = tools.find(t => t.id === selectedTool);
-  const runtimes = Object.entries(batteries).map(([battery, ah]) => ({
-    battery,
-    runtime: calculateRuntime(ah, selectedToolObj?.consumption || 1)
+  const selectedServiceObj = services.find(s => s.id === selectedService);
+  const durations = Object.entries(projectTypes).map(([projectType, baseWeeks]) => ({
+    projectType,
+    duration: calculateProjectDuration(baseWeeks, selectedServiceObj?.complexity || 1)
   }));
 
-  // Find the max runtime for scaling the chart
-  const maxRuntime = Math.max(...runtimes.map(item => item.runtime));
+  // Find the max duration for scaling the chart
+  const maxDuration = Math.max(...durations.map(item => item.duration));
 
   return (
     <div style={{ padding: '24px', background: 'white', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
@@ -63,26 +63,26 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
             color: '#111827', 
             marginBottom: '8px' 
           }}>
-            Select Battery
+            Select Project Type
           </label>
           <div style={{ display: 'flex', gap: '12px' }}>
-            {Object.keys(batteries).map(battery => (
+            {Object.keys(projectTypes).map(projectType => (
               <button
-                key={battery}
+                key={projectType}
                 style={{
                   padding: '8px 16px',
                   borderRadius: '8px',
                   fontSize: '14px',
                   fontWeight: '500',
-                  background: selectedBattery === battery ? '#2563EB' : 'white',
-                  color: selectedBattery === battery ? 'white' : '#6B7280',
-                  border: selectedBattery === battery ? 'none' : '1px solid #D1D5DB',
+                  background: selectedProjectType === projectType ? '#2563EB' : 'white',
+                  color: selectedProjectType === projectType ? 'white' : '#6B7280',
+                  border: selectedProjectType === projectType ? 'none' : '1px solid #D1D5DB',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
-                onClick={() => setSelectedBattery(battery)}
+                onClick={() => setSelectedProjectType(projectType)}
               >
-                {battery}
+                {projectType}
               </button>
             ))}
           </div>
@@ -96,7 +96,7 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
             color: '#111827', 
             marginBottom: '8px' 
           }}>
-            Select Tool
+            Select Service
           </label>
           <select 
             style={{
@@ -108,12 +108,12 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
               background: 'white',
               minWidth: '180px'
             }}
-            value={selectedTool}
-            onChange={(e) => setSelectedTool(e.target.value)}
+            value={selectedService}
+            onChange={(e) => setSelectedService(e.target.value)}
           >
-            {tools.map(tool => (
-              <option key={tool.id} value={tool.id}>
-                {tool.name}
+            {services.map(service => (
+              <option key={service.id} value={service.id}>
+                {service.name}
               </option>
             ))}
           </select>
@@ -128,7 +128,7 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
           color: '#111827', 
           marginBottom: '16px' 
         }}>
-          Runtime Comparison ({selectedToolObj?.name})
+          Project Duration Comparison ({selectedServiceObj?.name})
         </h3>
         
         <div style={{ 
@@ -138,9 +138,9 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
           height: '250px', 
           justifyContent: 'flex-end' 
         }}>
-          {runtimes.map(item => (
+          {durations.map(item => (
             <div 
-              key={item.battery} 
+              key={item.projectType} 
               style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -149,18 +149,18 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
               }}
             >
               <div style={{ 
-                width: '60px', 
+                width: '80px', 
                 fontSize: '14px', 
                 fontWeight: '500',
-                color: item.battery === selectedBattery ? '#2563EB' : '#6B7280',
+                color: item.projectType === selectedProjectType ? '#2563EB' : '#6B7280',
                 textAlign: 'right'
               }}>
-                {item.battery}
+                {item.projectType}
               </div>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
                 <div style={{
                   height: '24px',
-                  width: `${(item.runtime / maxRuntime) * 100}%`,
+                  width: `${(item.duration / maxDuration) * 100}%`,
                   background: 'linear-gradient(90deg, #93C5FD 0%, #2563EB 100%)',
                   borderRadius: '4px',
                   transition: 'all 0.3s ease',
@@ -168,15 +168,15 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
                   alignItems: 'center',
                   justifyContent: 'flex-end',
                   paddingRight: '12px',
-                  boxShadow: item.battery === selectedBattery ? '0 1px 3px rgba(37, 99, 235, 0.2)' : 'none',
-                  border: item.battery === selectedBattery ? '1px solid #2563EB' : 'none'
+                  boxShadow: item.projectType === selectedProjectType ? '0 1px 3px rgba(37, 99, 235, 0.2)' : 'none',
+                  border: item.projectType === selectedProjectType ? '1px solid #2563EB' : 'none'
                 }}>
                   <span style={{ 
                     fontSize: '13px', 
                     fontWeight: '600', 
                     color: 'white' 
                   }}>
-                    {item.runtime.toFixed(1)} hrs
+                    {item.duration.toFixed(1)} weeks
                   </span>
                 </div>
               </div>
@@ -199,10 +199,10 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
           border: '1px solid #E5E7EB' 
         }}>
           <div style={{ fontSize: '14px', color: '#6B7280', marginBottom: '8px' }}>
-            Total Battery Capacity
+            Base Project Scope
           </div>
           <div style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>
-            {batteries[selectedBattery]}Ah
+            {projectTypes[selectedProjectType]} weeks
           </div>
         </div>
         
@@ -213,13 +213,13 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
           border: '1px solid #E5E7EB' 
         }}>
           <div style={{ fontSize: '14px', color: '#6B7280', marginBottom: '8px' }}>
-            {selectedToolObj?.name} Runtime
+            {selectedServiceObj?.name} Duration
           </div>
           <div style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>
-            {calculateRuntime(
-              batteries[selectedBattery], 
-              selectedToolObj?.consumption || 1
-            ).toFixed(1)} hrs
+            {calculateProjectDuration(
+              projectTypes[selectedProjectType], 
+              selectedServiceObj?.complexity || 1
+            ).toFixed(1)} weeks
           </div>
         </div>
         
@@ -230,10 +230,10 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
           border: '1px solid #E5E7EB' 
         }}>
           <div style={{ fontSize: '14px', color: '#6B7280', marginBottom: '8px' }}>
-            Power Consumption
+            Service Complexity
           </div>
           <div style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>
-            {selectedToolObj?.consumption}Ah/hr
+            {selectedServiceObj?.complexity}x multiplier
           </div>
         </div>
       </div>
@@ -241,4 +241,4 @@ const RuntimeCalculator: React.FC<RuntimeCalculatorProps> = ({
   );
 };
 
-export default RuntimeCalculator;
+export default ProjectDurationCalculator;

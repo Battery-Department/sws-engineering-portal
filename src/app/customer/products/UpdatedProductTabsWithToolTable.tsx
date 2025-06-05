@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { FileText, BarChart3, Wrench, Shield, Truck, ChevronDown, ChevronRight, Clock, ExternalLink, LifeBuoy, Package } from 'lucide-react';
-import BatteryComparisonTable from '../../../components/BatteryComparisonTable';
-import RuntimeCalculator from '../../../components/RuntimeCalculator';
-import EnhancedToolCompatibilityTable from '../../../components/EnhancedToolCompatibilityTable';
+import ServiceSpecsTable from '../../../components/ServiceSpecsTable';
+import ServiceCalculator from '../../../components/ServiceCalculator';
+import EnhancedEquipmentCompatibilityTable from '../../../components/EnhancedEquipmentCompatibilityTable';
 
 // Types for the component
 interface WarrantyFeature {
@@ -33,308 +33,308 @@ interface Category {
   name: string;
 }
 
-interface ToolRuntime {
-  sixAh: number;
-  nineAh: number;
-  fifteenAh: number;
+interface ServiceTime {
+  basic: number;
+  standard: number;
+  premium: number;
 }
 
-interface Tool {
+interface Equipment {
   id: string;
   model: string;
   description: string;
   category: string;
   categoryId: string;
-  runtime: ToolRuntime;
-  powerConsumption: number;
-  compatibility: string;
+  serviceTime: ServiceTime;
+  complexity: number;
+  compliance: string;
 }
 
 // Data for the component
-const batterySpecs = [
-  { name: "Voltage", value6Ah: "20V/60V FlexVolt", value9Ah: "20V/60V FlexVolt", value15Ah: "20V/60V FlexVolt" },
-  { name: "Amp Hours", value6Ah: "6.0Ah", value9Ah: "9.0Ah", value15Ah: "15.0Ah" },
-  { name: "Weight", value6Ah: "1.9 lbs (0.86 kg)", value9Ah: "2.4 lbs (1.09 kg)", value15Ah: "3.2 lbs (1.45 kg)" },
-  { name: "Dimensions", value6Ah: '4.5" x 3" x 3.5"', value9Ah: '4.5" x 3" x 4.2"', value15Ah: '4.5" x 3" x 5.8"' },
-  { name: "Charge Time (Fast Charger)", value6Ah: "45 minutes", value9Ah: "55 minutes", value15Ah: "90 minutes" },
-  { name: "Charge Time (Standard)", value6Ah: "90 minutes", value9Ah: "120 minutes", value15Ah: "180 minutes" },
-  { name: "Cell Type", value6Ah: "Lithium-Ion", value9Ah: "Lithium-Ion", value15Ah: "Lithium-Ion" },
-  { name: "Cell Configuration", value6Ah: "15 cells", value9Ah: "20 cells", value15Ah: "30 cells" },
-  { name: "Charge Cycles", value6Ah: "1000+", value9Ah: "1000+", value15Ah: "1000+" },
-  { name: "Operating Temperature", value6Ah: "0°F to 104°F", value9Ah: "0°F to 104°F", value15Ah: "0°F to 104°F" },
-  { name: "Fuel Gauge", value6Ah: "3-LED Indicator", value9Ah: "3-LED Indicator", value15Ah: "3-LED Indicator" },
-  { name: "Warranty", value6Ah: "12 Months", value9Ah: "12 Months", value15Ah: "12 Months" },
-  { name: "Made In", value6Ah: "USA", value9Ah: "USA", value15Ah: "USA" }
+const serviceSpecs = [
+  { name: "Service Category", valueBasic: "Basic Inspection", valueStandard: "Standard Maintenance", valuePremium: "Premium Overhaul" },
+  { name: "Response Time", valueBasic: "24-48 hours", valueStandard: "Same Day", valuePremium: "Emergency 2-4 hours" },
+  { name: "Service Duration", valueBasic: "2-4 hours", valueStandard: "4-8 hours", valuePremium: "1-3 days" },
+  { name: "Technician Level", valueBasic: "Certified", valueStandard: "Senior Certified", valuePremium: "Master Technician" },
+  { name: "Equipment Coverage", valueBasic: "Visual Inspection", valueStandard: "Full Diagnostics", valuePremium: "Complete Overhaul" },
+  { name: "Report Delivery", valueBasic: "48 hours", valueStandard: "24 hours", valuePremium: "Same day" },
+  { name: "Follow-up Support", valueBasic: "Email only", valueStandard: "Phone & Email", valuePremium: "Dedicated Support" },
+  { name: "Service Guarantee", valueBasic: "30 days", valueStandard: "90 days", valuePremium: "12 months" },
+  { name: "Emergency Support", valueBasic: "Not included", valueStandard: "Business hours", valuePremium: "24/7 Available" },
+  { name: "Compliance Check", valueBasic: "Basic", valueStandard: "Standard", valuePremium: "Comprehensive" },
+  { name: "Documentation", valueBasic: "Summary Report", valueStandard: "Detailed Report", valuePremium: "Full Audit Package" },
+  { name: "Service Location", valueBasic: "On-site", valueStandard: "On-site", valuePremium: "On-site/Workshop" },
+  { name: "Quality Assurance", valueBasic: "Standard", valueStandard: "Enhanced", valuePremium: "Premium" }
 ];
 
 const categories: Category[] = [
-  { id: "all", name: "All Tools" },
-  { id: "drills", name: "Drills" },
-  { id: "saws", name: "Saws" },
-  { id: "grinders", name: "Grinders" },
-  { id: "impacts", name: "Impact Drivers" },
-  { id: "nailers", name: "Nailers" }
+  { id: "all", name: "All Equipment" },
+  { id: "boilers", name: "Boilers" },
+  { id: "vessels", name: "Pressure Vessels" },
+  { id: "steam", name: "Steam Systems" },
+  { id: "piping", name: "Piping Systems" },
+  { id: "safety", name: "Safety Systems" }
 ];
 
-// Enhanced tool data with more descriptive information
-const toolsData: Tool[] = [
+// Enhanced equipment data with more descriptive information
+const equipmentData: Equipment[] = [
   {
-    id: "drill1",
-    model: "DCD999",
-    description: "Cordless Drill/Driver with FLEXVOLT ADVANTAGE™ Technology",
-    category: "Drills",
-    categoryId: "drills",
-    runtime: {
-      sixAh: 1.3,
-      nineAh: 1.9,
-      fifteenAh: 3.2
+    id: "boiler1",
+    model: "ISB-1000",
+    description: "Industrial Steam Boiler - High Pressure ASME Section I",
+    category: "Boilers",
+    categoryId: "boilers",
+    serviceTime: {
+      basic: 4,
+      standard: 8,
+      premium: 24
     },
-    powerConsumption: 4.6,
-    compatibility: "compatible"
+    complexity: 8.5,
+    compliance: "ASME Section I"
   },
   {
-    id: "drill2",
-    model: "DCD996",
-    description: "20V MAX* XR® 3-Speed Hammerdrill Kit",
-    category: "Drills",
-    categoryId: "drills",
-    runtime: {
-      sixAh: 1.2,
-      nineAh: 1.8,
-      fifteenAh: 3.0
+    id: "boiler2",
+    model: "CSB-500",
+    description: "Commercial Steam Boiler - Standard Pressure System",
+    category: "Boilers",
+    categoryId: "boilers",
+    serviceTime: {
+      basic: 3,
+      standard: 6,
+      premium: 16
     },
-    powerConsumption: 5.0,
-    compatibility: "compatible"
+    complexity: 6.5,
+    compliance: "ASME Section I"
   },
   {
-    id: "drill3", 
-    model: "DCD740",
-    description: "Right Angle Drill with Extended Run Time",
-    category: "Drills",
-    categoryId: "drills",
-    runtime: {
-      sixAh: 2.3,
-      nineAh: 3.4,
-      fifteenAh: 5.7
+    id: "vessel1", 
+    model: "PV-750",
+    description: "Pressure Vessel - Process Storage Tank ASME Section VIII",
+    category: "Pressure Vessels",
+    categoryId: "vessels",
+    serviceTime: {
+      basic: 3,
+      standard: 6,
+      premium: 18
     },
-    powerConsumption: 2.6,
-    compatibility: "compatible"
+    complexity: 7.2,
+    compliance: "ASME Section VIII"
   },
   {
-    id: "drill4", 
-    model: "DCD460",
-    description: "60V MAX* VSR Stud and Joist Drill with E-Clutch® System",
-    category: "Drills",
-    categoryId: "drills",
-    runtime: {
-      sixAh: 0.8,
-      nineAh: 1.2,
-      fifteenAh: 2.0
+    id: "vessel2", 
+    model: "HE-300",
+    description: "Heat Exchanger - Shell and Tube Design TEMA Standards",
+    category: "Pressure Vessels",
+    categoryId: "vessels",
+    serviceTime: {
+      basic: 2.5,
+      standard: 5,
+      premium: 14
     },
-    powerConsumption: 7.5,
-    compatibility: "compatible"
+    complexity: 6.8,
+    compliance: "TEMA/ASME"
   },
   {
-    id: "saw1", 
-    model: "DCS573",
-    description: "7-1/4 in. FLEXVOLT® 60V MAX* Brushless Circular Saw with Brake",
-    category: "Saws",
-    categoryId: "saws",
-    runtime: {
-      sixAh: 0.7,
-      nineAh: 1.1,
-      fifteenAh: 1.8
+    id: "steam1", 
+    model: "ST-1200",
+    description: "Steam Turbine - Multi-Stage Industrial Power Generation",
+    category: "Steam Systems",
+    categoryId: "steam",
+    serviceTime: {
+      basic: 6,
+      standard: 12,
+      premium: 36
     },
-    powerConsumption: 8.5,
-    compatibility: "compatible"
+    complexity: 9.5,
+    compliance: "API 612"
   },
   {
-    id: "saw2", 
-    model: "DCS389",
-    description: "FLEXVOLT® 60V MAX* Brushless Cordless Reciprocating Saw",
-    category: "Saws",
-    categoryId: "saws",
-    runtime: {
-      sixAh: 0.8,
-      nineAh: 1.2,
-      fifteenAh: 2.0
+    id: "piping1", 
+    model: "HP-800",
+    description: "High Pressure Piping System - ASME B31.1 Power Piping",
+    category: "Piping Systems",
+    categoryId: "piping",
+    serviceTime: {
+      basic: 4,
+      standard: 8,
+      premium: 20
     },
-    powerConsumption: 7.5,
-    compatibility: "compatible"
+    complexity: 7.8,
+    compliance: "ASME B31.1"
   },
   {
-    id: "saw3", 
-    model: "DCS334",
-    description: "20V MAX* XR® Brushless Cordless Jig Saw",
-    category: "Saws",
-    categoryId: "saws",
-    runtime: {
-      sixAh: 1.6,
-      nineAh: 2.4,
-      fifteenAh: 4.0
+    id: "piping2", 
+    model: "PP-600",
+    description: "Process Piping System - ASME B31.3 Chemical Plant Service",
+    category: "Piping Systems",
+    categoryId: "piping",
+    serviceTime: {
+      basic: 3.5,
+      standard: 7,
+      premium: 18
     },
-    powerConsumption: 3.75,
-    compatibility: "compatible"
+    complexity: 7.2,
+    compliance: "ASME B31.3"
   },
   {
-    id: "saw4", 
-    model: "DCS727",
-    description: "FLEXVOLT® 60V MAX* 12 in. Brushless Dual Bevel Sliding Miter Saw",
-    category: "Saws",
-    categoryId: "saws",
-    runtime: {
-      sixAh: 0.4,
-      nineAh: 0.6,
-      fifteenAh: 1.0
+    id: "safety1", 
+    model: "SRV-400",
+    description: "Safety Relief Valve - ASME Section I & VIII Certified",
+    category: "Safety Systems",
+    categoryId: "safety",
+    serviceTime: {
+      basic: 1.5,
+      standard: 3,
+      premium: 8
     },
-    powerConsumption: 15.0,
-    compatibility: "compatible"
+    complexity: 5.5,
+    compliance: "ASME Section I/VIII"
   },
   {
-    id: "saw5", 
-    model: "DCS7485",
-    description: "FLEXVOLT® 60V MAX* 8-1/4 in. Table Saw",
-    category: "Saws",
-    categoryId: "saws",
-    runtime: {
-      sixAh: 0.5,
-      nineAh: 0.75,
-      fifteenAh: 1.25
+    id: "safety2", 
+    model: "ESD-200",
+    description: "Emergency Shutdown System - SIL 3 Rated Safety Instrumented",
+    category: "Safety Systems",
+    categoryId: "safety",
+    serviceTime: {
+      basic: 2,
+      standard: 4,
+      premium: 12
     },
-    powerConsumption: 12.0,
-    compatibility: "compatible"
+    complexity: 8.2,
+    compliance: "IEC 61511"
   },
   {
-    id: "grind1", 
-    model: "DCG414",
-    description: "FLEXVOLT® 60V MAX* 4-1/2 in. - 6 in. Cordless Grinder with Kickback Brake®",
-    category: "Grinders",
-    categoryId: "grinders",
-    runtime: {
-      sixAh: 0.9,
-      nineAh: 1.4,
-      fifteenAh: 2.3
+    id: "boiler3", 
+    model: "HPB-2000",
+    description: "High Pressure Boiler - Supercritical Steam Generation",
+    category: "Boilers",
+    categoryId: "boilers",
+    serviceTime: {
+      basic: 8,
+      standard: 16,
+      premium: 48
     },
-    powerConsumption: 6.6,
-    compatibility: "compatible"
+    complexity: 9.8,
+    compliance: "ASME Section I"
   },
   {
-    id: "grind2", 
-    model: "DCG426",
-    description: "20V MAX* XR® 1-1/2 in. Cordless Die Grinder",
-    category: "Grinders",
-    categoryId: "grinders",
-    runtime: {
-      sixAh: 1.5,
-      nineAh: 2.3,
-      fifteenAh: 3.8
+    id: "vessel3", 
+    model: "RV-900",
+    description: "Reactor Vessel - Chemical Process ASME Section VIII Div 2",
+    category: "Pressure Vessels",
+    categoryId: "vessels",
+    serviceTime: {
+      basic: 5,
+      standard: 10,
+      premium: 30
     },
-    powerConsumption: 4.0,
-    compatibility: "compatible"
+    complexity: 9.2,
+    compliance: "ASME VIII Div 2"
   },
   {
-    id: "impact1", 
-    model: "DCF887",
-    description: "20V MAX* XR® 1/4 in. 3-Speed Impact Driver",
-    category: "Impact Drivers",
-    categoryId: "impacts",
-    runtime: {
-      sixAh: 1.6,
-      nineAh: 2.4,
-      fifteenAh: 4.0
+    id: "steam2", 
+    model: "SG-800",
+    description: "Steam Generator - Once Through Steam Generator ASME Section I",
+    category: "Steam Systems",
+    categoryId: "steam",
+    serviceTime: {
+      basic: 4.5,
+      standard: 9,
+      premium: 28
     },
-    powerConsumption: 3.75,
-    compatibility: "compatible"
+    complexity: 8.8,
+    compliance: "ASME Section I"
   },
   {
-    id: "impact2", 
-    model: "DCF894",
-    description: "20V MAX* XR® 1/2 in. Mid-Range Cordless Impact Wrench with Detent Pin Anvil",
-    category: "Impact Drivers",
-    categoryId: "impacts",
-    runtime: {
-      sixAh: 1.2,
-      nineAh: 1.8,
-      fifteenAh: 3.0
+    id: "piping3", 
+    model: "SD-400",
+    description: "Steam Distribution System - Power Plant Main Steam Lines",
+    category: "Piping Systems",
+    categoryId: "piping",
+    serviceTime: {
+      basic: 3,
+      standard: 6,
+      premium: 16
     },
-    powerConsumption: 5.0,
-    compatibility: "compatible"
+    complexity: 6.8,
+    compliance: "ASME B31.1"
   },
   {
-    id: "impact3", 
-    model: "DCF899",
-    description: "20V MAX* XR® High Torque 1/2 in. Impact Wrench with Detent Pin Anvil",
-    category: "Impact Drivers",
-    categoryId: "impacts",
-    runtime: {
-      sixAh: 0.8,
-      nineAh: 1.2,
-      fifteenAh: 2.0
+    id: "safety3", 
+    model: "PRS-600",
+    description: "Pressure Relief System - Multi-Valve Protection System",
+    category: "Safety Systems",
+    categoryId: "safety",
+    serviceTime: {
+      basic: 2.5,
+      standard: 5,
+      premium: 15
     },
-    powerConsumption: 7.5,
-    compatibility: "compatible"
+    complexity: 7.5,
+    compliance: "API 520/521"
   },
   {
-    id: "nail1", 
-    model: "DCN692",
-    description: "20V MAX* XR® Dual Speed Framing Nailer",
-    category: "Nailers",
-    categoryId: "nailers",
-    runtime: {
-      sixAh: 1.1,
-      nineAh: 1.7,
-      fifteenAh: 2.8
+    id: "vessel4", 
+    model: "ST-1500",
+    description: "Storage Tank - Large Capacity Atmospheric Pressure API 650",
+    category: "Pressure Vessels",
+    categoryId: "vessels",
+    serviceTime: {
+      basic: 6,
+      standard: 12,
+      premium: 32
     },
-    powerConsumption: 5.5,
-    compatibility: "compatible"
+    complexity: 8.0,
+    compliance: "API 650"
   },
   {
-    id: "nail2", 
-    model: "DCN680",
-    description: "20V MAX* XR® 18 GA Cordless Brad Nailer",
-    category: "Nailers",
-    categoryId: "nailers",
-    runtime: {
-      sixAh: 1.5,
-      nineAh: 2.3,
-      fifteenAh: 3.8
+    id: "boiler4", 
+    model: "PB-400",
+    description: "Package Boiler - Compact Design Fire Tube Boiler",
+    category: "Boilers",
+    categoryId: "boilers",
+    serviceTime: {
+      basic: 2.5,
+      standard: 5,
+      premium: 12
     },
-    powerConsumption: 4.0,
-    compatibility: "compatible"
+    complexity: 5.8,
+    compliance: "ASME Section I"
   },
   {
-    id: "nail3", 
-    model: "DCN660",
-    description: "20V MAX* XR® 16 GA Cordless Angled Finish Nailer",
-    category: "Nailers",
-    categoryId: "nailers",
-    runtime: {
-      sixAh: 1.3,
-      nineAh: 2.0,
-      fifteenAh: 3.3
+    id: "steam3", 
+    model: "CT-350",
+    description: "Condensate Tank - Steam System Return and Storage",
+    category: "Steam Systems",
+    categoryId: "steam",
+    serviceTime: {
+      basic: 2,
+      standard: 4,
+      premium: 10
     },
-    powerConsumption: 4.6,
-    compatibility: "compatible"
+    complexity: 4.5,
+    compliance: "ASME Section VIII"
   },
 ];
 
-const warrantyFeatures: WarrantyFeature[] = [
+const serviceFeatures: WarrantyFeature[] = [
   { 
-    id: "hassle-free", 
-    title: "No-Hassle Replacement", 
-    description: "If your battery stops working, we'll replace it - no questions asked.",
+    id: "certified-inspection", 
+    title: "Certified Inspections", 
+    description: "All inspections performed by licensed and certified engineers to ensure compliance.",
     icon: <LifeBuoy size={24} className="text-green-600" />
   },
   { 
-    id: "full-coverage", 
-    title: "Full Coverage", 
-    description: "Covers all manufacturing defects and performance issues for 12 months.",
+    id: "comprehensive-reporting", 
+    title: "Comprehensive Reporting", 
+    description: "Detailed reports with findings, recommendations, and compliance status.",
     icon: <Shield size={24} className="text-green-600" />
   },
   { 
-    id: "fast-shipping", 
-    title: "Fast Shipping", 
-    description: "Replacement batteries ship within 1 business day after approval.",
+    id: "rapid-response", 
+    title: "Rapid Response", 
+    description: "Emergency services available 24/7 with guaranteed response times.",
     icon: <Package size={24} className="text-green-600" />
   }
 ];
@@ -342,72 +342,72 @@ const warrantyFeatures: WarrantyFeature[] = [
 const faqs: FAQ[] = [
   { 
     id: "faq1", 
-    question: "How do I register my battery for warranty?", 
-    answer: "Registration is automatic when you purchase direct from Battery Department. You only need your order number for warranty claims. No additional registration required."
+    question: "How do I schedule an engineering inspection?", 
+    answer: "Contact our scheduling team through our customer portal or call our dispatch center. We'll arrange a visit based on your equipment type and urgency level."
   },
   { 
     id: "faq2", 
-    question: "What's covered under the warranty?", 
-    answer: "Our warranty covers all manufacturing defects, premature battery failure, and performance issues. It does not cover physical damage, water damage, or normal capacity degradation over time."
+    question: "What's included in the service packages?", 
+    answer: "Our services include visual inspections, non-destructive testing, compliance checks, detailed reporting, and follow-up support. Premium packages include emergency response and extended warranties."
   },
   { 
     id: "faq3", 
-    question: "How do I make a warranty claim?", 
-    answer: "Simply contact our customer service team with your order number and a brief description of the issue. We'll process your claim within 24 hours and ship a replacement if approved."
+    question: "How quickly can you respond to emergencies?", 
+    answer: "Our emergency response team is available 24/7 with guaranteed response times of 2-4 hours for critical situations. Standard service requests are typically scheduled within 24-48 hours."
   },
   { 
     id: "faq4", 
-    question: "Will using these batteries void my DeWalt tool warranty?", 
-    answer: "No. Using Battery Department FlexVolt batteries will not void your DeWalt tool warranty. Our batteries are fully compatible with all DeWalt 20V/60V tools."
+    question: "Are your inspections compliant with industry standards?", 
+    answer: "Yes. All our inspections are performed by licensed Professional Engineers and comply with ASME, API, and local jurisdiction requirements. We provide certified documentation for regulatory compliance."
   }
 ];
 
-const shippingMethods: ShippingMethod[] = [
+const serviceMethods: ShippingMethod[] = [
   { 
     id: "standard", 
-    name: "Standard Shipping", 
-    price: "Free", 
-    delivery: "3-5 Business Days", 
+    name: "Standard Inspection", 
+    price: "24-48 hours", 
+    delivery: "Business Hours", 
     recommended: false
   },
   { 
-    id: "express", 
-    name: "Express Shipping", 
-    price: "$9.99", 
-    delivery: "2 Business Days", 
+    id: "priority", 
+    name: "Priority Service", 
+    price: "Same Day", 
+    delivery: "Extended Hours", 
     recommended: true
   },
   { 
-    id: "overnight", 
-    name: "Overnight Shipping", 
-    price: "$24.99", 
-    delivery: "Next Business Day", 
+    id: "emergency", 
+    name: "Emergency Response", 
+    price: "2-4 hours", 
+    delivery: "24/7 Available", 
     recommended: false
   }
 ];
 
-// Runtime data for calculator
-const runtimeData = {
-  tools: [
-    { id: "circularSaw", name: "Circular Saw", consumption: 5 },
-    { id: "drill", name: "Drill", consumption: 2 },
-    { id: "impactDriver", name: "Impact Driver", consumption: 3 },
-    { id: "recip", name: "Reciprocating Saw", consumption: 4.5 },
-    { id: "grinder", name: "Angle Grinder", consumption: 5.5 }
+// Service estimation data for calculator
+const serviceData = {
+  equipmentTypes: [
+    { id: "boiler", name: "Steam Boiler", complexity: 8 },
+    { id: "vessel", name: "Pressure Vessel", complexity: 6 },
+    { id: "piping", name: "Piping System", complexity: 4 },
+    { id: "valve", name: "Safety Valve", complexity: 3 },
+    { id: "turbine", name: "Steam Turbine", complexity: 9 }
   ],
-  batteries: {
-    "6Ah": 6,
-    "9Ah": 9,
-    "15Ah": 15
+  serviceTypes: {
+    "Basic": 1,
+    "Standard": 2,
+    "Premium": 3
   }
 };
 
-export default function UpdatedProductTabsWithToolTable() {
+export default function UpdatedServiceTabsWithEquipmentTable() {
   const [activeTab, setActiveTab] = useState("specs");
-  const [selectedBattery, setSelectedBattery] = useState("9Ah");
+  const [selectedService, setSelectedService] = useState("Standard");
   const [activeCategory, setActiveCategory] = useState("all");
   const [expandedFAQ, setExpandedFAQ] = useState("");
-  const [selectedTool, setSelectedTool] = useState(runtimeData.tools[0].id);
+  const [selectedEquipment, setSelectedEquipment] = useState(serviceData.equipmentTypes[0].id);
   const [isClient, setIsClient] = useState(false);
   
   // For responsive behavior
@@ -429,34 +429,34 @@ export default function UpdatedProductTabsWithToolTable() {
     setExpandedFAQ(expandedFAQ === id ? "" : id);
   };
   
-  // Calculate runtime based on battery and tool selection
-  const calculateRuntime = (batteryAh: number, toolConsumption: number) => {
-    return batteryAh / toolConsumption;
+  // Calculate service time based on service type and equipment complexity
+  const calculateServiceTime = (serviceMultiplier: number, equipmentComplexity: number) => {
+    return serviceMultiplier * equipmentComplexity;
   };
   
-  const selectedToolObj = runtimeData.tools.find(t => t.id === selectedTool);
+  const selectedEquipmentObj = serviceData.equipmentTypes.find(e => e.id === selectedEquipment);
   
   const tabs = [
-    { id: "specs", label: "Technical Specs", icon: <FileText size={16} /> },
-    { id: "runtime", label: "Runtime Calculator", icon: <BarChart3 size={16} /> },
-    { id: "compatibility", label: "Tool Compatibility", icon: <Wrench size={16} /> },
-    { id: "warranty", label: "Warranty", icon: <Shield size={16} /> },
-    { id: "shipping", label: "Shipping & Delivery", icon: <Truck size={16} /> }
+    { id: "specs", label: "Service Specs", icon: <FileText size={16} /> },
+    { id: "calculator", label: "Service Calculator", icon: <BarChart3 size={16} /> },
+    { id: "equipment", label: "Equipment Coverage", icon: <Wrench size={16} /> },
+    { id: "service", label: "Service Guarantee", icon: <Shield size={16} /> },
+    { id: "scheduling", label: "Scheduling & Response", icon: <Truck size={16} /> }
   ];
 
-  // Handle selecting a tool from compatibility table for runtime calculator
-  const handleSelectToolForRuntime = (toolId: string) => {
-    // Find corresponding runtime calculator tool
-    const compatibilityTool = toolsData.find(t => t.id === toolId);
-    if (compatibilityTool) {
-      // Find the closest matching tool in the runtime calculator
-      const matchingTool = runtimeData.tools.find(t => 
-        t.name.toLowerCase().includes(compatibilityTool.description.toLowerCase()) ||
-        compatibilityTool.description.toLowerCase().includes(t.name.toLowerCase())
+  // Handle selecting equipment from compatibility table for service calculator
+  const handleSelectEquipmentForCalculator = (equipmentId: string) => {
+    // Find corresponding service calculator equipment
+    const compatibilityEquipment = equipmentData.find(e => e.id === equipmentId);
+    if (compatibilityEquipment) {
+      // Find the closest matching equipment in the service calculator
+      const matchingEquipment = serviceData.equipmentTypes.find(e => 
+        e.name.toLowerCase().includes(compatibilityEquipment.description.toLowerCase()) ||
+        compatibilityEquipment.description.toLowerCase().includes(e.name.toLowerCase())
       );
       
-      if (matchingTool) {
-        setSelectedTool(matchingTool.id);
+      if (matchingEquipment) {
+        setSelectedEquipment(matchingEquipment.id);
       }
     }
   };
@@ -470,14 +470,14 @@ export default function UpdatedProductTabsWithToolTable() {
     return null; // Prevent hydration errors
   }
 
-  // Convert our battery specs format to the one expected by BatteryComparisonTable
-  const formattedBatterySpecs = batterySpecs.map(spec => ({
+  // Convert our service specs format to the one expected by ServiceSpecsTable
+  const formattedServiceSpecs = serviceSpecs.map(spec => ({
     name: spec.name,
-    values: [spec.value6Ah, spec.value9Ah, spec.value15Ah]
+    values: [spec.valueBasic, spec.valueStandard, spec.valuePremium]
   }));
 
   return (
-    <div className="product-tabs my-8">
+    <div className="service-tabs my-8">
       {/* Tab Navigation */}
       <div style={{ 
         display: 'flex', 
@@ -519,75 +519,75 @@ export default function UpdatedProductTabsWithToolTable() {
         boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
         transition: 'all 0.15s ease-in-out'
       }}>
-        {/* Technical Specs Tab */}
+        {/* Service Specs Tab */}
         {activeTab === "specs" && (
           <div style={{ overflow: 'hidden', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
-            {/* Battery Selector */}
+            {/* Service Selector */}
             <div style={{ background: '#F9FAFB', padding: '16px', borderBottom: '1px solid #E5E7EB' }}>
               <div style={{ display: 'flex', gap: '16px' }}>
-                {["6Ah", "9Ah", "15Ah"].map(battery => (
+                {["Basic", "Standard", "Premium"].map(service => (
                   <button
-                    key={battery}
+                    key={service}
                     style={{
                       padding: '8px 16px',
                       borderRadius: '9999px',
                       fontSize: '14px',
                       fontWeight: '500',
-                      background: selectedBattery === battery ? '#2563EB' : 'white',
-                      color: selectedBattery === battery ? 'white' : '#6B7280',
-                      border: selectedBattery === battery ? 'none' : '1px solid #D1D5DB',
+                      background: selectedService === service ? '#2563EB' : 'white',
+                      color: selectedService === service ? 'white' : '#6B7280',
+                      border: selectedService === service ? 'none' : '1px solid #D1D5DB',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
-                    onClick={() => setSelectedBattery(battery)}
+                    onClick={() => setSelectedService(service)}
                   >
-                    {battery} Battery
+                    {service} Service
                   </button>
                 ))}
               </div>
             </div>
             
-            {/* Render the new BatteryComparisonTable component */}
-            <BatteryComparisonTable 
-              batteries={[
-                { id: "6ah", name: "6Ah Battery" },
-                { id: "9ah", name: "9Ah Battery" },
-                { id: "15ah", name: "15Ah Battery" }
+            {/* Render the new ServiceSpecsTable component */}
+            <ServiceSpecsTable 
+              services={[
+                { id: "basic", name: "Basic Service" },
+                { id: "standard", name: "Standard Service" },
+                { id: "premium", name: "Premium Service" }
               ]}
-              specs={formattedBatterySpecs}
-              selectedBattery={selectedBattery.toLowerCase().replace('ah', 'ah')}
+              specs={formattedServiceSpecs}
+              selectedService={selectedService.toLowerCase()}
             />
           </div>
         )}
 
-        {/* Runtime Calculator Tab */}
-        {activeTab === "runtime" && (
+        {/* Service Calculator Tab */}
+        {activeTab === "calculator" && (
           <div style={{ padding: '24px', background: 'white', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
-            {/* Render the new RuntimeCalculator component */}
-            <RuntimeCalculator 
-              selectedBattery={selectedBattery}
-              setSelectedBattery={setSelectedBattery}
+            {/* Render the new ServiceCalculator component */}
+            <ServiceCalculator 
+              selectedService={selectedService}
+              setSelectedService={setSelectedService}
               isMobile={isMobile}
-              runtimeData={runtimeData}
+              serviceData={serviceData}
             />
           </div>
         )}
 
-        {/* Enhanced Tool Compatibility Tab */}
-        {activeTab === "compatibility" && (
+        {/* Enhanced Equipment Compatibility Tab */}
+        {activeTab === "equipment" && (
           <div style={{ padding: '24px', background: 'white', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
-            <EnhancedToolCompatibilityTable 
-              tools={toolsData}
+            <EnhancedEquipmentCompatibilityTable 
+              equipment={equipmentData}
               categories={categories}
               isMobile={isMobile}
-              onSelectToolForRuntimeCalculator={handleSelectToolForRuntime}
+              onSelectEquipmentForServiceCalculator={handleSelectEquipmentForCalculator}
               switchTab={switchTab}
             />
           </div>
         )}
 
-        {/* Warranty Tab */}
-        {activeTab === "warranty" && (
+        {/* Service Guarantee Tab */}
+        {activeTab === "service" && (
           <div style={{ padding: '24px', background: 'white', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
             <div style={{ 
               display: 'flex', 
@@ -610,14 +610,14 @@ export default function UpdatedProductTabsWithToolTable() {
                   color: '#111827', 
                   marginBottom: '4px' 
                 }}>
-                  12-Month Zero-Hassle Warranty
+                  Comprehensive Service Guarantee
                 </h3>
                 <p style={{ 
                   fontSize: '14px', 
                   color: '#6B7280', 
                   margin: '0' 
                 }}>
-                  Comprehensive coverage for your FlexVolt batteries
+                  Quality assurance for all SWSE engineering services
                 </p>
               </div>
             </div>
@@ -628,7 +628,7 @@ export default function UpdatedProductTabsWithToolTable() {
               gap: '16px', 
               marginBottom: '32px' 
             }}>
-              {warrantyFeatures.map(feature => (
+              {serviceFeatures.map(feature => (
                 <div
                   key={feature.id}
                   style={{
@@ -755,14 +755,14 @@ export default function UpdatedProductTabsWithToolTable() {
                   color: '#1E40AF', 
                   marginBottom: '4px' 
                 }}>
-                  Need to register a warranty?
+                  Need to schedule a service?
                 </h4>
                 <p style={{ 
                   fontSize: '14px', 
                   color: '#3B82F6', 
                   margin: '0' 
                 }}>
-                  All purchases are automatically registered. You're covered!
+                  Contact our scheduling team for immediate assistance!
                 </p>
               </div>
               
@@ -780,14 +780,14 @@ export default function UpdatedProductTabsWithToolTable() {
                 gap: '8px'
               }}>
                 <LifeBuoy size={16} />
-                Contact Support
+                Schedule Service
               </button>
             </div>
           </div>
         )}
 
-        {/* Shipping & Delivery Tab */}
-        {activeTab === "shipping" && (
+        {/* Scheduling & Response Tab */}
+        {activeTab === "scheduling" && (
           <div style={{ padding: '24px', background: 'white', borderRadius: '8px', border: '1px solid #E5E7EB' }}>
             <div style={{ marginBottom: '32px' }}>
               <h3 style={{ 
@@ -796,7 +796,7 @@ export default function UpdatedProductTabsWithToolTable() {
                 color: '#111827', 
                 marginBottom: '16px' 
               }}>
-                Shipping Methods
+                Service Response Times
               </h3>
               
               <table style={{ 
@@ -816,7 +816,7 @@ export default function UpdatedProductTabsWithToolTable() {
                       textAlign: 'left',
                       borderBottom: '1px solid #E5E7EB'
                     }}>
-                      Method
+                      Service Type
                     </th>
                     <th style={{ 
                       padding: '12px 16px', 
@@ -826,7 +826,7 @@ export default function UpdatedProductTabsWithToolTable() {
                       textAlign: 'center',
                       borderBottom: '1px solid #E5E7EB'
                     }}>
-                      Cost
+                      Response Time
                     </th>
                     <th style={{ 
                       padding: '12px 16px', 
@@ -836,12 +836,12 @@ export default function UpdatedProductTabsWithToolTable() {
                       textAlign: 'center',
                       borderBottom: '1px solid #E5E7EB'
                     }}>
-                      Delivery Time
+                      Availability
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {shippingMethods.map((method, index) => (
+                  {serviceMethods.map((method, index) => (
                     <tr 
                       key={method.id}
                       style={{ 
@@ -916,7 +916,7 @@ export default function UpdatedProductTabsWithToolTable() {
                 color: '#111827', 
                 marginBottom: '16px' 
               }}>
-                Delivery Timeline
+                Service Process Timeline
               </h3>
               
               <div style={{ position: 'relative', paddingBottom: '16px' }}>
@@ -965,7 +965,7 @@ export default function UpdatedProductTabsWithToolTable() {
                       marginBottom: '4px',
                       textAlign: 'center'
                     }}>
-                      Order Received
+                      Service Requested
                     </div>
                     <div style={{
                       fontSize: '12px',
@@ -1002,7 +1002,7 @@ export default function UpdatedProductTabsWithToolTable() {
                       marginBottom: '4px',
                       textAlign: 'center'
                     }}>
-                      Processing
+                      Scheduling
                     </div>
                     <div style={{
                       fontSize: '12px',
@@ -1039,14 +1039,14 @@ export default function UpdatedProductTabsWithToolTable() {
                       marginBottom: '4px',
                       textAlign: 'center'
                     }}>
-                      Shipped
+                      On-Site Service
                     </div>
                     <div style={{
                       fontSize: '12px',
                       color: '#6B7280',
                       textAlign: 'center'
                     }}>
-                      Same Day
+                      As Scheduled
                     </div>
                   </div>
                   
@@ -1076,14 +1076,14 @@ export default function UpdatedProductTabsWithToolTable() {
                       marginBottom: '4px',
                       textAlign: 'center'
                     }}>
-                      Delivered
+                      Report Delivered
                     </div>
                     <div style={{
                       fontSize: '12px',
                       color: '#6B7280',
                       textAlign: 'center'
                     }}>
-                      1-3 Days
+                      24-48 Hours
                     </div>
                   </div>
                 </div>
@@ -1120,14 +1120,14 @@ export default function UpdatedProductTabsWithToolTable() {
                   color: '#0C4A6E', 
                   marginBottom: '4px' 
                 }}>
-                  Same-Day Shipping on All Orders
+                  24/7 Emergency Response Available
                 </h4>
                 <p style={{ 
                   fontSize: '14px', 
                   color: '#0369A1', 
                   margin: '0' 
                 }}>
-                  Place your order before 2:00 PM EST for same-day shipping. Orders placed after 2:00 PM will ship next business day.
+                  For critical situations, our emergency response team is available around the clock with guaranteed 2-4 hour response times.
                 </p>
               </div>
             </div>

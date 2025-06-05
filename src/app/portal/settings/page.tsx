@@ -57,14 +57,14 @@ export default function SettingsPage() {
 
   // Form states
   const [generalSettings, setGeneralSettings] = useState({
-    companyName: 'Battery Department',
-    email: user?.email || 'demo@battery.com',
-    phone: '+1 (555) 123-4567',
-    website: 'www.battery-department.com',
-    address: '123 Battery Street',
-    city: 'San Francisco',
-    state: 'CA',
-    zipCode: '94111'
+    companyName: 'South West Steam Engineering',
+    email: user?.email || 'info@swse.co.uk',
+    phone: '+44 (0) 1234 567890',
+    website: 'www.swse.co.uk',
+    address: '123 Engineering Lane',
+    city: 'Plymouth',
+    state: 'Devon',
+    zipCode: 'PL1 2AB'
   })
 
   const [notifications, setNotifications] = useState({
@@ -128,7 +128,7 @@ export default function SettingsPage() {
         }} onClick={(e) => e.stopPropagation()}>
           <div style={{ padding: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+              <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE Portal</span>
               <button
                 onClick={() => setSidebarOpen(false)}
                 style={{
@@ -185,7 +185,7 @@ export default function SettingsPage() {
       }} className="md-show">
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <div style={{ padding: '20px' }}>
-            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>Battery Hub</span>
+            <span style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>SWSE Portal</span>
           </div>
           <nav style={{ flex: 1, padding: '0 8px' }}>
             {navigation.map((item) => (
@@ -602,10 +602,10 @@ export default function SettingsPage() {
                           </div>
                           <div style={{ fontSize: '12px', color: '#6b7280' }}>
                             {key === 'emailAlerts' && 'Receive important system alerts via email'}
-                            {key === 'orderUpdates' && 'Get notified when order status changes'}
+                            {key === 'orderUpdates' && 'Get notified when project status changes'}
                             {key === 'marketingEmails' && 'Receive promotional emails and newsletters'}
                             {key === 'securityAlerts' && 'Get notified about security-related events'}
-                            {key === 'monthlyReports' && 'Receive monthly performance reports'}
+                            {key === 'monthlyReports' && 'Receive monthly service reports'}
                           </div>
                         </div>
                         <label style={{ position: 'relative', display: 'inline-block', width: '48px', height: '24px' }}>
@@ -653,9 +653,9 @@ export default function SettingsPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
                     {[
                       { name: 'Stripe', description: 'Payment processing', connected: true, icon: '💳' },
-                      { name: 'Shippo', description: 'Shipping and logistics', connected: true, icon: '📦' },
-                      { name: 'QuickBooks', description: 'Accounting software', connected: false, icon: '📊' },
-                      { name: 'Salesforce', description: 'CRM integration', connected: false, icon: '☁️' }
+                      { name: 'ServiceNow', description: 'Service management', connected: true, icon: '🔧' },
+                      { name: 'Sage', description: 'Accounting and project management', connected: false, icon: '📊' },
+                      { name: 'AutoCAD', description: 'Engineering design integration', connected: false, icon: '📐' }
                     ].map((integration) => (
                       <div key={integration.name} style={{
                         padding: '24px',

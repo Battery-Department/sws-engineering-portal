@@ -109,7 +109,7 @@ export default function CustomerRegisterPage() {
             Create Account
           </h2>
           <p style={{ color: '#6b7280' }}>
-            Join Lithi to start shopping
+            Join SWSE to start your engineering journey
           </p>
         </div>
 

@@ -1,9 +1,9 @@
 /**
- * Lithi Integration Service
- * Connects the Lithi chatbot with the dashboard system
+ * SWSE Integration Service
+ * Connects the SWSE chatbot with the dashboard system
  */
 
-import { lithiGateway } from '@/services/api-gateway'
+import { swseGateway } from '@/services/api-gateway'
 import { eventBus, EventTypes } from '@/services/events/event-bus'
 import { webhookManager, WebhookEvents } from '@/services/webhooks/webhook-manager'
 import { tokenManager } from '@/services/auth/token-manager'
@@ -18,7 +18,7 @@ interface ChatContext {
   metadata?: Record<string, any>
 }
 
-export class LithiIntegration {
+export class SWSEIntegration {
   private isInitialized = false
   private chatContext: ChatContext = {}
 
@@ -38,7 +38,7 @@ export class LithiIntegration {
     await this.initializeChatContext()
     
     this.isInitialized = true
-    console.log('Lithi integration initialized')
+    console.log('SWSE integration initialized')
   }
 
   private setupEventSubscriptions(): void {
@@ -62,7 +62,7 @@ export class LithiIntegration {
 
     // Chat events from chatbot
     eventBus.subscribe(EventTypes.CHAT_MESSAGE, async (event) => {
-      if (event.source === 'lithi-chatbot') {
+      if (event.source === 'swse-chatbot') {
         await this.handleChatbotMessage(event.data)
       }
     })
@@ -86,7 +86,7 @@ export class LithiIntegration {
       secret: process.env.WEBHOOK_SECRET,
       active: true,
       metadata: {
-        service: 'lithi-chatbot'
+        service: 'swse-chatbot'
       }
     })
   }
@@ -110,11 +110,11 @@ export class LithiIntegration {
     }
 
     // Create chat session
-    const session = await lithiGateway.createChatSession({
+    const session = await swseGateway.createChatSession({
       userId: userData.id,
       userEmail: userData.email,
       userName: userData.name,
-      source: 'battery-dashboard',
+      source: 'swse-dashboard',
       metadata: {
         customerType: userData.customer?.type || 'individual',
         companyName: userData.customer?.companyName
@@ -131,7 +131,7 @@ export class LithiIntegration {
   private async handleUserLogout(userData: any): Promise<void> {
     if (this.chatContext.sessionId) {
       // End chat session
-      await lithiGateway.sendChatMessage(
+      await swseGateway.sendChatMessage(
         this.chatContext.sessionId,
         'User logged out'
       )
@@ -191,7 +191,7 @@ export class LithiIntegration {
   // Create order from chat
   private async createOrderFromChat(orderData: any): Promise<void> {
     try {
-      const order = await lithiGateway.createOrder({
+      const order = await swseGateway.createOrder({
         ...orderData,
         source: 'chatbot',
         chatSessionId: this.chatContext.sessionId
@@ -217,7 +217,7 @@ export class LithiIntegration {
   // Update customer profile
   private async updateCustomerProfile(profileData: any): Promise<void> {
     try {
-      await lithiGateway.updateCopilotUserProfile(
+      await swseGateway.updateCopilotUserProfile(
         this.chatContext.userId!,
         profileData
       )
@@ -238,7 +238,7 @@ export class LithiIntegration {
   private async scheduleCallback(callbackData: any): Promise<void> {
     try {
       // Create Monday.com item for callback
-      await lithiGateway.createMondayItem(
+      await swseGateway.createMondayItem(
         process.env.MONDAY_CALLBACKS_BOARD_ID!,
         `Callback for ${this.chatContext.customerData?.name}`,
         {
@@ -264,7 +264,7 @@ export class LithiIntegration {
   // Search products
   private async searchProducts(searchData: any): Promise<void> {
     try {
-      const results = await lithiGateway.getDashboardStats() // Replace with actual product search
+      const results = await swseGateway.getDashboardStats() // Replace with actual product search
       
       await this.sendChatMessage(
         `Found ${results.data.length} products matching your search.`,
@@ -334,7 +334,7 @@ export class LithiIntegration {
   private async notifyChatbot(eventType: string, eventData: any): Promise<void> {
     if (!this.chatContext.sessionId) return
 
-    await lithiGateway.sendChatMessage(
+    await swseGateway.sendChatMessage(
       this.chatContext.sessionId,
       `Event: ${eventType}`
     )
@@ -356,7 +356,7 @@ export class LithiIntegration {
   // Fetch customer data
   private async fetchCustomerData(userId: string): Promise<any> {
     try {
-      const response = await lithiGateway.getDashboardStats() // Replace with actual customer data endpoint
+      const response = await swseGateway.getDashboardStats() // Replace with actual customer data endpoint
       return response.data
     } catch (error) {
       console.error('Error fetching customer data:', error)
@@ -372,7 +372,7 @@ export class LithiIntegration {
   // Check if chatbot is available
   async isChatbotAvailable(): Promise<boolean> {
     try {
-      const health = await lithiGateway.healthCheck()
+      const health = await swseGateway.healthCheck()
       return health.chatbot
     } catch {
       return false
@@ -384,7 +384,7 @@ export class LithiIntegration {
     if (!this.chatContext.sessionId) return []
 
     try {
-      const response = await lithiGateway.getChatHistory(this.chatContext.sessionId)
+      const response = await swseGateway.getChatHistory(this.chatContext.sessionId)
       return response.data.messages
     } catch (error) {
       console.error('Error fetching chat history:', error)
@@ -394,9 +394,9 @@ export class LithiIntegration {
 }
 
 // Export singleton instance
-export const lithiIntegration = new LithiIntegration()
+export const swseIntegration = new SWSEIntegration()
 
 // Initialize on import
 if (typeof window !== 'undefined') {
-  lithiIntegration.initialize().catch(console.error)
+  swseIntegration.initialize().catch(console.error)
 }
